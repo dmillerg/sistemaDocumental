@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --firstcolor: rgb(51, 73, 255);
+    --firstcolor-hover: rgb(73, 79, 168);
+    --firstcolor-section: rgba(59, 64, 142, 0.281);
+    --theme-color: rgb(255, 255, 255);
+    --dimen-tooltip: -70px;
+}
+
+.text-firstcolor {
+    color: var(--firstcolor);
+}
+
+.svg-shadow {
+    filter: drop-shadow(3px 3px 2px var(--firstcolor-hover));
+}
+
+.tip-container{
+    position: relative;
+}
+
+.tips {
+    background-color: var(--theme-color);
+    border: solid 1px var(--firstcolor);
+    color: var(--firstcolor);
+    margin-left: 15px;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 var(--firstcolor-hover);
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+    transition: ease-in-out 0.01s;
+}
+
+.tips-bottom {
+    transform: translateY(-100%);
+}
+
+.tips-top {
+    transform: translateY(100%);
+}
+
+.tips::after {
+    content: attr(data-tooltip);
+}
+
+.btn:hover .tips.tips-show {
+    visibility: visible;
+    transform: translate(0);
+    transition: ease-in-out .2s;
+}
