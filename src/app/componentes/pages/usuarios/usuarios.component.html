@@ -1,0 +1,22 @@
+<table class="tabla tabla-dark tabla-hover">
+    <tr>
+        <th>id</th>
+        <th>usuario</th>
+        <th>nombre</th>
+        <th>fecha ultima sesion</th>
+        <th>acciones</th>
+    </tr>
+    <tr *ngFor="let item of usuarios" [ngClass]="{'tr-active': item.nombre == 'daniel'}">
+        <td>{{item.id}}</td>
+        <td>{{item.usuario}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.fecha_ultima}}</td>
+        <td>
+            <button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-firstcolor"><i class="bi bi-trash"></i></button>
+        </td>
+    </tr>
+
+</table>
+
+

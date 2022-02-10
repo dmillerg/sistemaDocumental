@@ -8,11 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +23,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

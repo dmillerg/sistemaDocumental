@@ -27,6 +27,7 @@
 
   .sidenavk span,i {
     color: white;
+    font-size: 20px;
   }
   
   .sidenav-content .btn{
@@ -42,4 +43,36 @@
     padding: 8px 8px 8px 8px;
     text-align: center;
     font-size: small;
+  }
+
+  .sidenavk-header{
+    position: absolute;
+    top: 0;
+  }
+
+  .sidenavk-active .menu-icon{
+    transform: rotate(90deg);
+    transition: all .3s;
+  }
+
+  .menu-icon{
+    transform: rotate(0deg);
+    transition: all .3s;
+  }
+
+  .contenedor{
+    width: calc(100% - 250px);
+    right: 0;
+    position: fixed;
+    height: 100%;
+    transition: all .3s;
+  }
+
+  .contenedor-active{
+    width: calc(100% - 50px);
+    transition: all .3s;
+  }
+
+  a:hover{
+    background-color: var(--firstcolor-hover);
   }

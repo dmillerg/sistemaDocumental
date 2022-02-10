@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
     --firstcolor: rgb(51, 73, 255);
-    --firstcolor-hover: rgb(73, 79, 168);
+    --firstcolor-hover-white: rgb(106, 120, 248);
+    --firstcolor-hover: rgb(33, 38, 104);
     --firstcolor-section: rgba(59, 64, 142, 0.281);
     --theme-color: rgb(255, 255, 255);
     --dimen-tooltip: -70px;
@@ -27,7 +28,7 @@
     padding: 10px;
     box-shadow: 0 0 10px 0 var(--firstcolor-hover);
     position: absolute;
-    z-index: 1;
+    z-index: 999;
     visibility: hidden;
     transition: ease-in-out 0.01s;
 }
@@ -48,4 +49,74 @@
     visibility: visible;
     transform: translate(0);
     transition: ease-in-out .2s;
+}
+
+.btn-firstcolor{
+    padding: 15px;
+    background-color: var(--firstcolor);
+    border-radius: 0.5em;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(3px 3px 2px var(--firstcolor-hover));
+    border: none;
+    color: white;
+    transition: all .3s;
+}
+
+.btn-firstcolor:hover{
+    background-color: var(--firstcolor-hover);
+    color: white;
+    transition: all .3s;
+}
+
+.btn-outline-firstcolor{
+    padding: 15px;
+    background-color: white;
+    border-radius: 0.5em;
+    border: solid 1px var(--firstcolor);
+    color: var(--firstcolor);
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
+    transition: all .3s;
+}
+
+.btn-outline-firstcolor:hover{
+    background-color: var(--firstcolor);
+    color: white;
+    border: none;
+    transition: all .3s;
+}
+
+.tabla{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 0 10px 0 var(--firstcolor-hover);
+    border-radius: 0.5em;
+}
+
+.tabla-dark th{
+    background-color: var(--firstcolor);
+    color: white;
+}
+
+.tabla th{
+    border-bottom: solid 2px var(--firstcolor);
+    padding: 2px;
+    padding-bottom: 5px;
+}
+
+.tabla td{
+    /* border-bottom: solid 1px var(--firstcolor); */
+    padding: 2px;
+    font-size: 14px;
+}
+
+.tabla-hover tr:hover{
+    background-color: var(--firstcolor-hover-white);
+    color: white;
+    transition: all 0.3s;
+}
+
+.tr-active{
+    background-color: var(--firstcolor-hover-white);
+    color: white;
 }
