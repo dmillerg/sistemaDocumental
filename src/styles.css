@@ -4,7 +4,8 @@
     --firstcolor-hover-white: rgb(106, 120, 248);
     --firstcolor-hover: rgb(33, 38, 104);
     --firstcolor-section: rgba(59, 64, 142, 0.281);
-    --theme-color: rgb(255, 255, 255);
+    --theme-color-ligth: rgb(255, 255, 255);
+    --theme-color-dark: rgb(41, 41, 41);
     --dimen-tooltip: -70px;
 }
 
@@ -21,7 +22,7 @@
 }
 
 .tips {
-    background-color: var(--theme-color);
+    background-color: var(--theme-color-ligth);
     border: solid 1px var(--firstcolor);
     color: var(--firstcolor);
     margin-left: 15px;
@@ -58,29 +59,30 @@
     text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
     filter: drop-shadow(3px 3px 2px var(--firstcolor-hover));
     border: none;
-    color: white;
+    color: var(--theme-color-ligth);
     transition: all .3s;
 }
 
 .btn-firstcolor:hover{
     background-color: var(--firstcolor-hover);
-    color: white;
+    color: var(--theme-color-ligth);
     transition: all .3s;
 }
 
 .btn-outline-firstcolor{
     padding: 15px;
-    background-color: white;
+    background-color: var(--theme-color-ligth);
     border-radius: 0.5em;
     border: solid 1px var(--firstcolor);
     color: var(--firstcolor);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.4);
     text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
     transition: all .3s;
 }
 
 .btn-outline-firstcolor:hover{
     background-color: var(--firstcolor);
-    color: white;
+    color: var(--theme-color-ligth);
     border: none;
     transition: all .3s;
 }
@@ -89,19 +91,23 @@
     width: 100%;
     text-align: center;
     margin-top: 20px;
-    box-shadow: 0 0 10px 0 var(--firstcolor-hover);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
     border-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
 }
 
 .tabla-dark th{
     background-color: var(--firstcolor);
-    color: white;
+    color: var(--theme-color-ligth);
+    
 }
 
 .tabla th{
     border-bottom: solid 2px var(--firstcolor);
     padding: 2px;
     padding-bottom: 5px;
+    
 }
 
 .tabla td{
@@ -112,11 +118,41 @@
 
 .tabla-hover tr:hover{
     background-color: var(--firstcolor-hover-white);
-    color: white;
+    color: var(--theme-color-ligth);
     transition: all 0.3s;
 }
 
 .tr-active{
     background-color: var(--firstcolor-hover-white);
-    color: white;
+    color: var(--theme-color-ligth);
+    transition: all .3s;
+}
+
+.ligth{
+    background-color: var(--theme-color-ligth);
+    color: var(--firstcolor);
+    transition: all .3s;
+}
+
+.dark{
+    background-color: var(--theme-color-dark);
+    color: var(--theme-color-ligth);
+}
+
+.btn-fab{
+    padding: 10px;
+    border-radius: 100%;
+    background-color: var(--firstcolor);
+    color: var(--theme-color-ligth);
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.6);
+}
+
+.centrado-horizontal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

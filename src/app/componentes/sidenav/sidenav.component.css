@@ -13,11 +13,13 @@
   }
 
   .sidenav-content a {
-    margin-block: 15px;
+    margin-block: 1px;
+    font-size: small;
   }
 
   .sidenavk-active {
     width: 50px;
+    
     transition: all .3s;
   }
 
@@ -25,9 +27,13 @@
     display: none;
   }
 
-  .sidenavk span,i {
-    color: white;
+  .sidenavk i {
     font-size: 20px;
+    line-height: 15px;
+  }
+
+  .sidenavk i,span{
+    color: white;
   }
   
   .sidenav-content .btn{
@@ -75,4 +81,8 @@
 
   a:hover{
     background-color: var(--firstcolor-hover);
+  }
+
+  .content{
+    margin-inline: 20px;
   }

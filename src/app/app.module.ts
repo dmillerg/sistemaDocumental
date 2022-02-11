@@ -10,12 +10,14 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { DetailnavComponent } from './componentes/detailnav/detailnav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    DetailnavComponent
   ],
   imports: [
     BrowserModule,

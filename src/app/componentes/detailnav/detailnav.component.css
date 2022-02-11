@@ -1,0 +1,15 @@
+.title-line{
+    height: 25px;
+    color: var(--theme-color-ligth);
+    background-color: var(--firstcolor);
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+
+.info{
+    padding: 20px;
+}
+
+.margin-bottom{
+    margin-bottom: 10px;
+}
