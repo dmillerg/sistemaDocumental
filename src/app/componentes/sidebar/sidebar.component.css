@@ -145,3 +145,16 @@
 .gg.active {
     width: 10px;
 }
+
+.content{
+    position: fixed;
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    transition: all .3s ease;
+}
+
+.sidebar.active ~ .content{
+    margin-left: 60px;
+    width: calc(100% - 60px);
+    transition: all .3s ease;
+}
