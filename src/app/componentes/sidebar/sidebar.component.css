@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: var(--firstcolor-hover);
+    width: 260px;
+    height: 100%;
+    transition: all .3s ease;
+}
+
+.sidebar.active {
+    width: 60px;
+    transition: all .3s ease;
+}
+
+.sidebar .sidebar-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    color: var(--theme-color-ligth);
+    height: 60px;
+}
+
+.sidebar .sidebar-header .logo i {
+    font-size: 28px;
+}
+
+.sidebar .sidebar-header .logo span {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.sidebar .sidebar-header .logo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sidebar.active .sidebar-header .logo {
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.sidebar .sidebar-header .btn {
+    position: absolute;
+    color: var(--theme-color-ligth);
+    right: 10px;
+    top: 0px;
+}
+
+.sidebar ul li {
+    color: var(--firstcolor);
+    line-height: 50px;
+    width: 100%;
+    padding: 12px;
+    min-width: 50px;
+    list-style: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin-left: -25px;
+    padding-left: 7.5px;
+    transition: all .3s ease;
+    width: 100%;
+}
+
+.sidebar ul {
+    margin-top: 20px;
+    position: relative;
+    left: 0;
+}
+
+.sidebar ul li:hover {
+    background-color: var(--firstcolor);
+    color: var(--theme-color-ligth);
+    transition: all .3s ease;
+    border-radius: 12px;
+}
+
+.sidebar ul li i {
+    margin-right: 20px;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+}
+
+.sidebar ul li span {
+    font-weight: 400;
+    color: white;
+}
+
+.sidebar.active ul li span {
+    width: 0;
+    white-space: nowrap;
+    /* white-space: nowrap; */
+}
+
+.sidebar .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  
+}
+
+.sidebar .sidebar-footer i{
+    color: var(--theme-color-ligth);
+    font-size: 25px;
+    font-weight: 400;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.sidebar .sidebar-footer span{
+    color: var(--theme-color-ligth);
+    /* font-size: 20px; */
+}
+
+.gg {
+    width: 400px;
+    background-color: red;
+    height: 20px;
+    white-space: inherit;
+}
+
+.gg.active {
+    width: 10px;
+}

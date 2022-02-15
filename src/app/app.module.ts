@@ -6,18 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
-import { DetailnavComponent } from './componentes/detailnav/detailnav.component';
+import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
-    UsuariosComponent,
-    DetailnavComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
