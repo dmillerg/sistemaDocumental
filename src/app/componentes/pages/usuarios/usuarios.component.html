@@ -1,0 +1,32 @@
+
+<div class="contenedor">
+    <div class="title-page">
+        <div class="title-logo">
+            <i class="bi bi-person text-oscuro"></i>
+            <h1 class="title text-oscuro">Usuarios</h1>
+        </div>
+        <p class="text-oscuro">Usuarios registrados en el sistema</p>
+    </div>
+    <table class="tablas">
+        <thead class="head">
+            <td colspan="1"></td>
+            <td colspan="2">id</td>
+            <td colspan="3">usuario</td>
+            <td colspan="3">nombre</td>
+            <td colspan="3">fecha registro</td>
+            <td colspan="2">acciones</td>
+        </thead>
+        <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle()">
+            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="2">{{item.id}}</td>
+            <td colspan="3">{{item.usuario}}</td>
+            <td colspan="3">{{item.nombre}}</td>
+            <td colspan="3">{{item.fecha_registro}}</td>
+            <td colspan="2"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+    </table>
+</div>
+<button (click)="detailToggle()"></button>
+<div class="sidebar-right">
+
+</div>

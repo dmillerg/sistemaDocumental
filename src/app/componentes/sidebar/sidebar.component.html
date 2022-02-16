@@ -1,7 +1,9 @@
-<!-- <div class="gg" (click)="toggleSidebar()">
-    asdasdasdasd asda sdasd asda sda 
-</div> -->
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
 <div class="sidebar">
+    <div class="burbuja"></div>
+    <div class="burbuja-2"></div>
     <div class="sidebar-header">
         <div class="logo">
             <i class="bi bi-emoji-angry"></i>
@@ -9,33 +11,20 @@
         </div>
         <button id="btn" class="btn" (click)="toggleSidebar()"><i class="bi bi-list"></i></button>
     </div>
+    <div class="search">
+        <input type="text" name="search" [(ngModel)]="search" (ngModelChange)="filterMenu()" class="search-in" placeholder="Buscar...">
+        <button class="btn-search"><i class="bi bi-search"></i></button>
+    </div>
     <ul>
-        <li class="active">
-            <i class="bi bi-person"></i>
-            <span>Usuarios</span>
-        </li>
-        <li>
-            <i class="bi bi-file-earmark-text"></i>
-            <span>Secretos</span>
-        </li>
-        <li>
-            <i class="bi bi-file-earmark-richtext"></i>
-            <span>Limitados</span>
-        </li>
-        <li>
-            <i class="bi bi-file-earmark-zip"></i>
-            <span>Personal</span>
-        </li>
-        <li>
-            <i class="bi bi-gear"></i>
-            <span>Ajustes</span>
+        <li *ngFor="let item of menu" [ngClass]="{'active': item.active}" (click)="changePage(item)">
+            <i [class]="item.icono"></i>
+            <span>{{item.nombre}}</span>
+            <div class="tooltips">{{item.nombre}}</div>
         </li>
     </ul>
     <div class="sidebar-footer">
         <i class="bi bi-box-arrow-left" style="color: white;"></i>
         <span>Logout</span>
+        <div class="tooltips">Cerrar Sesión</div>
     </div>
-</div>
-<div class="content">
-    HOLA MUNDO
 </div>

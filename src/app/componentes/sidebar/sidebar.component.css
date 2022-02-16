@@ -55,7 +55,8 @@
 
 .sidebar ul li {
     color: var(--firstcolor);
-    line-height: 50px;
+    position: relative;
+    line-height: 30px;
     width: 100%;
     padding: 12px;
     min-width: 50px;
@@ -67,12 +68,14 @@
     padding-left: 12.5px;
     transition: all .3s ease;
     width: 100%;
+    cursor: pointer;
 }
 
 .sidebar ul {
-    margin-top: 20px;
+    margin-top: 10px;
     position: relative;
     left: 0;
+    margin-bottom: 60px;
 }
 
 .sidebar ul li:hover {
@@ -82,12 +85,13 @@
     border-radius: 12px;
 }
 
-.sidebar.active ul li:hover{
+.sidebar.active ul li:hover {
     padding-left: 15px;
 }
 
-.sidebar ul li.active{
+.sidebar ul li.active {
     border-left: 4px solid var(--firstcolor);
+    transition: all .3s ease;
     /* background-color: rgba(255, 255, 255, 0.1); */
 }
 
@@ -106,7 +110,9 @@
 .sidebar.active ul li span {
     width: 0;
     white-space: nowrap;
-    /* white-space: nowrap; */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1s ease;
 }
 
 .sidebar .sidebar-footer {
@@ -119,10 +125,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-  
+    cursor: pointer;
 }
 
-.sidebar .sidebar-footer i{
+.sidebar .sidebar-footer i {
     color: var(--theme-color-ligth);
     font-size: 25px;
     font-weight: 400;
@@ -130,31 +136,127 @@
     margin-left: 15px;
 }
 
-.sidebar .sidebar-footer span{
+.sidebar .sidebar-footer span {
     color: var(--theme-color-ligth);
     /* font-size: 20px; */
 }
 
-.gg {
-    width: 400px;
-    background-color: red;
-    height: 20px;
-    white-space: inherit;
-}
-
-.gg.active {
-    width: 10px;
-}
-
-.content{
+.content {
     position: fixed;
     margin-left: 260px;
     width: calc(100% - 260px);
     transition: all .3s ease;
 }
 
-.sidebar.active ~ .content{
+.content.active{
     margin-left: 60px;
     width: calc(100% - 60px);
+    transition: all .3s ease;
+}
+
+.search {
+    position: relative;
+}
+
+.search .search-in {
+    position: relative;
+    padding: 12px;
+    width: 90%;
+    margin-top: 20px;
+    line-height: 30px;
+    border-radius: 12px;
+    border: none;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: var(--firstcolor);
+    color: var(--theme-color-ligth);
+    padding-left: 45px;
+    outline: none;
+}
+
+.search .search-in::placeholder {
+    color: var(--firstcolor-hover);
+}
+
+.search .btn-search {
+    position: absolute;
+    top: 35%;
+    left: 15px;
+    color: var(--theme-color-ligth);
+    font-size: 22px;
+    font-weight: 400;
+    border: none;
+    background: transparent;
+    padding: 5px;
+    border-radius: 12px;
+    transition: all .3s ease;
+}
+
+.search .btn-search:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+}
+
+.sidebar .burbuja {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    border-radius: 100%;
+    left: -20px;
+    top: -20px;
+    background-color: rgba(106, 120, 248, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(106, 120, 248, 0.2);
+}
+
+.sidebar .burbuja-2 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border-radius: 100%;
+    left: 10px;
+    top: 10px;
+    background-color: rgba(106, 120, 248, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(106, 120, 248, 0.2);
+}
+
+.tooltips {
+    background-color: var(--firstcolor-hover);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px 2px var(--firstcolor-hover);
+    box-sizing: border-box;
+    position: absolute;
+    left: 60px;
+    top: 10px;
+    text-align: center;
+    color: var(--theme-color-ligth);
+    border: solid 1px var(--firstcolor-hover);
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.sidebar ul li .tooltips {
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.sidebar.active ul li:hover .tooltips {
+    opacity: 1;
+    transition: all .3s ease;
+}
+
+.sidebar.active .sidebar-footer:hover .tooltips {
+    opacity: 1;
+    transition: all .3s ease;
+}
+
+.sidebar .sidebar-footer .tooltips {
+    opacity: 0;
     transition: all .3s ease;
 }

@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
+import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,

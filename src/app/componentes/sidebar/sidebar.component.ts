@@ -7,6 +7,74 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  menu: any[] = [
+    {
+      active: true,
+      nombre: 'Inicio',
+      icono: 'bi bi-house'
+    },
+    {
+      active: false,
+      nombre: 'Usuario',
+      icono: 'bi bi-person'
+    },
+    {
+      active: false,
+      nombre: 'Secretos',
+      icono: 'bi bi-file-earmark-text'
+    },
+    {
+      active: false,
+      nombre: 'Limitados',
+      icono: 'bi bi-file-earmark-richtext'
+    },
+    {
+      active: false,
+      nombre: 'Personal',
+      icono: 'bi bi-file-earmark-zip'
+    },
+    {
+      active: false,
+      nombre: 'Ajustes',
+      icono: 'bi bi-gear'
+    },
+  ]
+
+  menus: any[] = [
+    {
+      active: true,
+      nombre: 'Inicio',
+      icono: 'bi bi-house'
+    },
+    {
+      active: false,
+      nombre: 'Usuario',
+      icono: 'bi bi-person'
+    },
+    {
+      active: false,
+      nombre: 'Secretos',
+      icono: 'bi bi-file-earmark-text'
+    },
+    {
+      active: false,
+      nombre: 'Limitados',
+      icono: 'bi bi-file-earmark-richtext'
+    },
+    {
+      active: false,
+      nombre: 'Personal',
+      icono: 'bi bi-file-earmark-zip'
+    },
+    {
+      active: false,
+      nombre: 'Ajustes',
+      icono: 'bi bi-gear'
+    },
+  ]
+
+  search: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
@@ -14,6 +82,21 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar() {
     document.querySelector('.sidebar')?.classList.toggle('active');
-    document.querySelector('.gg')?.classList.toggle('active');
+    document.querySelector('.content')?.classList.toggle('active');
   }
+
+  changePage(target: any) {
+    this.menu = this.menu.filter((e) => {
+      if (e.active) {
+        e.active = !e.active;
+      }
+      return true;
+    });
+    target.active = true;
+  }
+
+  filterMenu() {
+    this.menu = this.menus.filter((e) => e.nombre.toLowerCase().includes(this.search.toLowerCase()))
+  }
+
 }
