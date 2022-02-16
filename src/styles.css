@@ -9,43 +9,6 @@
     --dimen-tooltip: -70px;
 }
 
-.text-firstcolor {
-    color: var(--firstcolor);
-}
-
-.svg-shadow {
-    filter: drop-shadow(3px 3px 2px var(--firstcolor-hover));
-}
-
-.tip-container{
-    position: relative;
-}
-
-.tips {
-    background-color: var(--theme-color-ligth);
-    border: solid 1px var(--firstcolor);
-    color: var(--firstcolor);
-    margin-left: 15px;
-    padding: 10px;
-    box-shadow: 0 0 10px 0 var(--firstcolor-hover);
-    position: absolute;
-    z-index: 999;
-    visibility: hidden;
-    transition: ease-in-out 0.01s;
-}
-
-.tips-bottom {
-    transform: translateY(-100%);
-}
-
-.tips-top {
-    transform: translateY(100%);
-}
-
-.tips::after {
-    content: attr(data-tooltip);
-}
-
 .btn:hover .tips.tips-show {
     visibility: visible;
     transform: translate(0);
