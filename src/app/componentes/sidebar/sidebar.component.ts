@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       active: false,
-      nombre: 'Secretos',
+      nombre: 'Clasificados',
       icono: 'bi bi-file-earmark-text'
     },
     {
@@ -30,8 +30,18 @@ export class SidebarComponent implements OnInit {
     },
     {
       active: false,
-      nombre: 'Personal',
+      nombre: 'Ordinarios',
       icono: 'bi bi-file-earmark-zip'
+    },
+    {
+      active: false,
+      nombre: 'Ordinarios Personal',
+      icono: 'bi bi-file-earmark-binary'
+    },
+    {
+      active: false,
+      nombre: 'Secretos',
+      icono: 'bi bi-file-earmark-check'
     },
     {
       active: false,

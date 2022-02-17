@@ -1,0 +1,67 @@
+.background-content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content .login-content {
+    width: 400px;
+    height: 400px;
+    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 0.5em;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content .login-content h3 {
+    color: var(--theme-color-ligth);
+    -webkit-text-stroke: 3px var(--firstcolor-hover);
+    font-weight: 900;
+}
+
+.background-content .login-content .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content .login-content .login-form .input-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content .login-content .login-form .input-content input {
+    border: none;
+    outline-color: none;
+    width: 100%;
+    line-height: 30px;
+    border-radius: 0.5em;
+    margin-block: 10px;
+    outline: none;
+    background-color: var(--firstcolor);
+    text-align: center;
+    padding: 10px;
+}
+
+.background-content .login-content .login-form .input-content input::placeholder {
+    text-align: center;
+    color: var(--theme-color-ligth);
+}
+
+.background-content .login-content .login-form .input-content label {
+    color: var(--firstcolor-hover);
+}
+
+.background-content .login-content .login-form .btn-aceptar {
+    width: 100%;
+}

@@ -1,4 +1,3 @@
-
 <div class="contenedor">
     <div class="title-page">
         <div class="title-logo">
@@ -16,7 +15,7 @@
             <td colspan="3">fecha registro</td>
             <td colspan="2">acciones</td>
         </thead>
-        <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle()">
+        <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.usuario}}</td>
@@ -26,7 +25,6 @@
         </tr>
     </table>
 </div>
-<button (click)="detailToggle()"></button>
 <div class="sidebar-right">
-
+    <app-detailbar [data]="selected"></app-detailbar>
 </div>

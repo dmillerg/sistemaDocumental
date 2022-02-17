@@ -108,10 +108,7 @@
 }
 
 .sidebar.active ul li span {
-    width: 0;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
     transition: all 1s ease;
 }
 
@@ -240,6 +237,7 @@
     border: solid 1px var(--firstcolor-hover);
     z-index: 0;
     white-space: nowrap;
+    pointer-events: none;
 }
 
 .sidebar ul li .tooltips {
