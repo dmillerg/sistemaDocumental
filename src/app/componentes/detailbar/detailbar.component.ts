@@ -19,11 +19,20 @@ export class DetailbarComponent implements OnInit {
 
   convertirData(datax: any) {
     let d = JSON.stringify(this.data)
-    d = d.slice(1,d.length-1)
-    d = d.replace(/"/g,'')
-    d = d.replace(/:/g,': ')
-    d = d.replace(/_/g,' ')
+    d = d.slice(1, d.length - 1)
+    d = d.replace(/"/g, '')
+    d = d.replace(/:/g, ': ')
+    d = d.replace(/_/g, ' ')
     this.data_detail = d.split(',')
+    this.data_detail = this.data_detail.filter((e) => {
+      if (e.includes('fecha')) {
+        console.log(e.substring(e.indexOf(':')+2,e.length))
+        let ad = e.substring(e.indexOf(':')+2,e.length)
+        // console.log(ad);
+        e = Date.parse(ad).toLocaleString('en-US');
+      }
+      return true;
+    })
     return this.data_detail;
   }
 

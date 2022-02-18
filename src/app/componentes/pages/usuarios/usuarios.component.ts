@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalUsuarioComponent } from 'src/app/modals/modal-usuario/modal-usuario.component';
 import { Usuario } from 'src/app/models/usuario.service';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -40,7 +42,7 @@ export class UsuariosComponent implements OnInit {
     rol: '',
   };
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
     this.loadUsuarios();
@@ -60,6 +62,15 @@ export class UsuariosComponent implements OnInit {
 
     }
     this.selected = item;
+  }
+
+  addUsuario(){
+    let modal = this.modalService.open(ModalUsuarioComponent);
+    modal.componentInstance.modalHeader = "Usuarios";
+    modal.componentInstance.modalAction = "Agregar";
+    modal.result.then((e)=>{
+      this.loadUsuarios();
+    })
   }
 
 }

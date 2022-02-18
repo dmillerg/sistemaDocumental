@@ -5,6 +5,7 @@
     <div class="detail-descripcion">
         <ul *ngFor="let item of convertirData(data)">
             <li>{{item}}</li>
+            <li>{{!item.includes('hora') ? item : item | date: 'EEEE, MMMM, dd, YYYY - hh:mm a'}}</li>
         </ul>
     </div>
     <div class="detail-footer">

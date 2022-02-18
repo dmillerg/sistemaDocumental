@@ -16,7 +16,8 @@
     position: absolute;
     right: 0;
     max-width: 50px;
-    background-color: var(--firstcolor-hover-white);
+    background-color: var(--firstcolor);
+    box-shadow: 0 0 10px 2px var(--firstcolor-hover-white);
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -25,22 +26,34 @@
 }
 
 .user-data .text-content{
+    position: relative;
     display: flex;
-    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 10px;
+    flex-direction: row;
     font-size: 12px;
     font-weight: 400;
+    text-align: center;
     align-items: center;
     justify-content: center;
     color: var(--theme-color-ligth);
-    width: 50%;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    width: 55%;
+
 }
 
-.user-data .text-content p{
-    padding-top: 25%;
-    text-align: center;
+.user-data .text-content .user{
+    /* padding-top: 25%; */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.user-data .text-content .date{
+    /* padding-top: 25%; */
+    position: absolute;
+    top: 30px;
+    font-size: 10px;
+    font-weight: 500;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

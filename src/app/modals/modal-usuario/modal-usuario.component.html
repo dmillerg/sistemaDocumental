@@ -1,0 +1,37 @@
+<div class="form-content">
+    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <div class="image-content">
+        <i class="bi bi-person"></i>
+    </div>
+    <form action="" class="form-complete">
+        <div class="input-content">
+            <label for="usuario">Usuario</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="usuario" id="usuario" placeholder="usuario" [(ngModel)]="usuario.usuario">
+        </div>
+        <div class="input-content">
+            <label for="usuario">Nombre</label>
+            <i class="bi bi-chat-left-dots prefix"></i>
+            <input type="text" class="in" name="nombre" id="nombre" placeholder="nombre" [(ngModel)]="usuario.nombre">
+        </div>
+        <div class="input-content">
+            <label for="usuario">Contraseña</label>
+            <i class="bi bi-key prefix"></i>
+            <i class="bi suffix" [ngClass]="{'bi-eye': hide_pass, 'bi-eye-slash': !hide_pass}" (click)="hide_pass = !hide_pass"></i>
+            <input [type]="hide_pass ? 'text' : 'password'" class="in" name="password" id="password" placeholder="contraseña" [(ngModel)]="usuario.password">
+        </div>
+        <div class="input-content">
+            <label for="usuario">Confirmacion de contraseña</label>
+            <i class="bi bi-arrow-repeat prefix"></i>
+            <i class="bi suffix" [ngClass]="{'bi-eye': hide_password, 'bi-eye-slash': !hide_password}" (click)="hide_password = !hide_password"></i>
+            <input [type]="hide_password ? 'text' : 'password'" class="in" name="confirm" id="confirm" placeholder="repita su contraseña" [(ngModel)]="password2">
+        </div>
+        <div class="input-content">
+            <label for="usuario">rol</label>
+            <i class="bi bi-person-rolodex prefix"></i>
+            <input type="text" class="in" name="rol" id="rol" placeholder="rol" [(ngModel)]="usuario.rol">
+        </div>
+
+        <button class="btn btn-firstcolor" (click)="addUpdateUsuario()"> Agregar</button>
+    </form>
+</div>

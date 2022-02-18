@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,42 +12,58 @@ export class SidebarComponent implements OnInit {
     {
       active: true,
       nombre: 'Inicio',
-      icono: 'bi bi-house'
+      icono: 'bi bi-house',
+      link: 'inicio',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Usuario',
-      icono: 'bi bi-person'
+      icono: 'bi bi-person',
+      link: 'usuarios',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Clasificados',
-      icono: 'bi bi-file-earmark-text'
+      icono: 'bi bi-file-earmark-text',
+      link: 'clasificados',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Limitados',
-      icono: 'bi bi-file-earmark-richtext'
+      icono: 'bi bi-file-earmark-richtext',
+      link: 'limitados',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Ordinarios',
-      icono: 'bi bi-file-earmark-zip'
+      icono: 'bi bi-file-earmark-zip',
+      link: 'ordinarios',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Ordinarios Personal',
-      icono: 'bi bi-file-earmark-binary'
+      icono: 'bi bi-file-earmark-binary',
+      link: 'inicio',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Secretos',
-      icono: 'bi bi-file-earmark-check'
+      icono: 'bi bi-file-earmark-check',
+      link: 'secretos',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Ajustes',
-      icono: 'bi bi-gear'
+      icono: 'bi bi-gear',
+      link: 'ajustes',
+      permiso: true,
     },
   ]
 
@@ -54,38 +71,64 @@ export class SidebarComponent implements OnInit {
     {
       active: true,
       nombre: 'Inicio',
-      icono: 'bi bi-house'
+      icono: 'bi bi-house',
+      link: 'inicio',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Usuario',
-      icono: 'bi bi-person'
+      icono: 'bi bi-person',
+      link: 'usuarios',
+      permiso: true,
     },
     {
       active: false,
-      nombre: 'Secretos',
-      icono: 'bi bi-file-earmark-text'
+      nombre: 'Clasificados',
+      icono: 'bi bi-file-earmark-text',
+      link: 'clasificados',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Limitados',
-      icono: 'bi bi-file-earmark-richtext'
+      icono: 'bi bi-file-earmark-richtext',
+      link: 'limitados',
+      permiso: true,
     },
     {
       active: false,
-      nombre: 'Personal',
-      icono: 'bi bi-file-earmark-zip'
+      nombre: 'Ordinarios',
+      icono: 'bi bi-file-earmark-zip',
+      link: 'ordinarios',
+      permiso: true,
+    },
+    {
+      active: false,
+      nombre: 'Ordinarios Personal',
+      icono: 'bi bi-file-earmark-binary',
+      link: 'inicio',
+      permiso: true,
+    },
+    {
+      active: false,
+      nombre: 'Secretos',
+      icono: 'bi bi-file-earmark-check',
+      link: 'secretos',
+      permiso: true,
     },
     {
       active: false,
       nombre: 'Ajustes',
-      icono: 'bi bi-gear'
+      icono: 'bi bi-gear',
+      link: 'ajustes',
+      permiso: true,
     },
   ]
 
   search: string = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -103,6 +146,7 @@ export class SidebarComponent implements OnInit {
       return true;
     });
     target.active = true;
+    this.router.navigate([target.link])
   }
 
   filterMenu() {

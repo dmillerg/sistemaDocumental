@@ -12,6 +12,8 @@ import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 import { DetailbarComponent } from './componentes/detailbar/detailbar.component';
 import { LoginComponent } from './componentes/pages/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { LoginComponent } from './componentes/pages/login/login.component';
     UsuariosComponent,
     DetailbarComponent,
     LoginComponent,
+    ModalUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { LoginComponent } from './componentes/pages/login/login.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxWebstorageModule.forRoot(),
+    NgbModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
