@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
-import { Usuario } from '../models/usuario.service';
+import { Usuario } from '../models/usuario.models';
 
 @Injectable({
   providedIn: 'root'

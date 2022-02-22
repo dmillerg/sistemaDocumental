@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario.service';
+import { Usuario } from 'src/app/models/usuario.models';
 
 @Component({
   selector: 'app-detailbar',

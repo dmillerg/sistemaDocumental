@@ -14,6 +14,7 @@ import { DetailbarComponent } from './componentes/detailbar/detailbar.component'
 import { LoginComponent } from './componentes/pages/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
+import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.comp
     DetailbarComponent,
     LoginComponent,
     ModalUsuarioComponent,
+    ModalOrdinariosComponent,
   ],
   imports: [
     BrowserModule,

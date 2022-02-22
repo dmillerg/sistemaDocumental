@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Usuario } from 'src/app/models/usuario.service';
+import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
