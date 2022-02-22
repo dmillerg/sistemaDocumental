@@ -72,10 +72,12 @@
 }
 
 .sidebar ul {
-    margin-top: 10px;
-    position: relative;
+    top: 160px;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
     left: 0;
-    margin-bottom: 60px;
+    bottom: 60px;
 }
 
 .sidebar ul li:hover {
