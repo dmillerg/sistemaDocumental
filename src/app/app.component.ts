@@ -8,7 +8,6 @@ import { Login } from './models/login';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   login: Login = {
     message: '',
     status: '',
@@ -21,15 +20,15 @@ export class AppComponent implements OnInit {
       fecha_registro: '',
       fecha_ultima_sesion: '',
       rol: '',
-    }
+    },
   };
   mode: boolean = false;
   title = 'sistema-documental';
   constructor(private storage: SessionStorageService) {
-  }
 
+  }
   ngOnInit(): void {
-    if (this.storage.retrieve('usuario')) {
+    if(this.storage.retrieve('usuario')){
       this.login = this.storage.retrieve('usuario');
     }
     this.storage.observe('usuario').subscribe((result) => {

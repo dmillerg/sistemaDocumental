@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSecretoComponent } from './modal-secreto.component';
+import { ModalSecretosComponent } from './modal-secretos.component';
 
-describe('ModalSecretoComponent', () => {
-  let component: ModalSecretoComponent;
-  let fixture: ComponentFixture<ModalSecretoComponent>;
+describe('ModalSecretosComponent', () => {
+  let component: ModalSecretosComponent;
+  let fixture: ComponentFixture<ModalSecretosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalSecretoComponent ]
+      declarations: [ ModalSecretosComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalSecretoComponent);
+    fixture = TestBed.createComponent(ModalSecretosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

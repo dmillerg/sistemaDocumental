@@ -1,57 +1,96 @@
 <div class="form-content">
     <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
     <div class="image-content">
-        <i class="bi bi-file-earmark-medical"></i>
+        <i class="bi bi-file-earmark-arrow-up"></i>
     </div>
     <form action="" class="form-complete">
+        <div class="scrollbar" id="style-1">
+          
         <div class="input-content">
-            <label for="no">No</label>
+            
+            <label for="ordinarios">Id</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="ordinarios.id">
+        </div>
+
+        <div class="input-content">
+            <label for="ordinarios">No</label>
             <i class="bi bi-123 prefix"></i>
-            <input type="text" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinario.no">
+            <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinarios.no">
         </div>
+   
         <div class="input-content">
-            <label for="fecha">Fecha</label>
-            <i class="bi bi-calendar prefix"></i>
-            <input type="date" class="in" name="fecha" id="fecha" placeholder="Fecha" [(ngModel)]="ordinario.fecha">
-        </div>
-        <div class="input-content">
-            <label for="enviado">Enviado</label>
-            <i class="bi bi-send prefix"></i>
-            <input type="text" class="in" name="enviado" id="enviado" placeholder="enviado" [(ngModel)]="ordinario.enviado">
-        </div>
-        <div class="input-content">
-            <label for="rsb">RSB</label>
-            <i class="bi bi-journal-arrow-down prefix"></i>
-            <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="ordinario.rsb">
-        </div>
-        <div class="input-content">
-            <label for="rs">RS</label>
-            <i class="bi bi-file-arrow-down prefix"></i>
-            <input type="text" class="in" name="rs" id="rs" placeholder="rs" [(ngModel)]="ordinario.rs">
-        </div>
-        <div class="input-content">
-            <label for="fecha_registro_ctc">Fecha de registro ctc</label>
-            <i class="bi bi-calendar-event prefix"></i>
-            <input type="date" class="in" name="fecha_registro_ctc" id="fecha_registro_ctc" placeholder="fecha de registro ctc" [(ngModel)]="ordinario.fecha_registro_ctc">
-        </div>
-        <div class="input-content">
-            <label for="asunto">Asunto</label>
-            <i class="bi bi-chat-square-dots prefix"></i>
-            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="ordinario.asunto">
-        </div>
-        <div class="input-content">
-            <label for="destino">Destino</label>
-            <i class="bi bi-shop prefix"></i>
-            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="ordinario.destino">
-        </div>
-        <div class="input-content">
-            <label for="traslado">Traslado</label>
-            <i class="bi bi-truck prefix"></i>
-            <input type="text" class="in" name="traslado" id="traslado" placeholder="traslado" [(ngModel)]="ordinario.traslado">
+            
+            <label for="ordinarios">Fecha</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="fecha" id="fecha" placeholder="fecha" [(ngModel)]="ordinarios.fecha">
         </div>
 
-        <button class="" style="visibility: hidden;" (click)="aceptar.click()"> Agregar</button>
+        <div class="input-content">
+            
+            <label for="ordinarios">Enviado</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="enviado" id="enviado" placeholder="enviado" [(ngModel)]="ordinarios.enviado">
+        </div>
+
+        <div class="input-content">
+            
+            <label for="ordinarios">Rsb</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="ordinarios.rsb">
+        </div>
+
+        <div class="input-content">
+            
+            <label for="ordinarios">Rs</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="rs" id="rs" placeholder="rs" [(ngModel)]="ordinarios.rs">
+        </div>
+
+        <div class="input-content">
+            
+            <label for="ordinarios">Fecha registro</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="fecha_registro_ctc" id="fecha_registro_ctc" placeholder="fecha_registro_ctc" [(ngModel)]="ordinarios.fecha_registro_ctc">
+        </div>
+
+        <div class="input-content">
+            
+            <label for="ordinarios">Asunto</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="ordinarios.asunto">
+        </div>
+
+        <div class="input-content">
+            
+            <label for="ordinarios">Destino</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="ordinarios.destino">
+        </div>
+        
+        <div class="input-content">
+            
+            <label for="ordinarios">Traslado</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="traslado" id="traslado" placeholder="traslado" [(ngModel)]="ordinarios.traslado">
+        </div>
+        
+        <div class="input-content">
+            
+            <label for="ordinarios">Fecha traslado</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="fecha_traslado" id="fecha_traslado" placeholder="fecha_traslado" [(ngModel)]="ordinarios.fecha_traslado">
+        </div>
+
+        <div class="input-content">
+            <label for="ordinarios">Imagen</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="imagen" id="imagen" placeholder="imagen" [(ngModel)]="ordinarios.imagen">
+        </div>
+                </div>
+        <button style="width: 450px;" class="btn btn-firstcolor" (click)="addUpdateOrdinarios()"> Agregar</button>
+               
     </form>
-
-    <button #aceptar class="btn btn-aceptar btn-firstcolor" (click)="addOrUpdateOrdinario()"> Agregar</button>
 </div>
+
+

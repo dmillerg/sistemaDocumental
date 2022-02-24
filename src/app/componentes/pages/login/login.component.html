@@ -4,19 +4,15 @@
         <p class="text-info">Necesita rellenar todos los campos para confirmar su identidad</p>
         <form action="" class="login-form">
             <div class="input-content">
-                <label for="user" class="input-label">usuario</label>
-                <i class="bi bi-person prefix"></i>
-                <input type="text" name="user" id="user" placeholder="usuario" [(ngModel)]="usuario" class="input" required>
-                <p *ngIf="usuario_error">Este campo es obligatorio</p>
+                <label for="user" class="input-label">Usuario</label>
+                <input type="text" name="user" id="user" placeholder="usuario" [(ngModel)]="usuario" class="input">
             </div>
             <div class="input-content">
-                <label for="password" class="input-label">contraseña</label>
-                <i class="bi bi-key prefix"></i>
-                <i class="bi suffix" [ngClass]="{'bi-eye': see , 'bi-eye-slash': !see}" (click)="see=!see"></i>
-                <p *ngIf="password_error">Este campo es obligatorio</p>
-                <input [type]="see ? 'text' : 'password'" name="password" id="password" placeholder="contraseña" [(ngModel)]="password" class="input" required>
+                <label for="password" class="input-label">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="contraseña" [(ngModel)]="password" class="input">
             </div>
-            <button class="btn btn-aceptar btn-firstcolor" (click)="loguear()">Aceptar</button>
+            <br/>
+            <button class="btn btn-aceptar btn-outline-firstcolor" (click)="loguear()">Aceptar</button>
         </form>
     </div>
 </div>

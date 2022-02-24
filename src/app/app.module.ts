@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -14,12 +13,14 @@ import { DetailbarComponent } from './componentes/detailbar/detailbar.component'
 import { LoginComponent } from './componentes/pages/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
-import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
 import { LimitadosComponent } from './componentes/pages/limitados/limitados/limitados.component';
 import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados/clasificados.component';
-
+import { SecretosComponent } from './componentes/pages/secretos/secretos.component';
+import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
+import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
+import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,11 +29,14 @@ import { ClasificadosComponent } from './componentes/pages/clasificados/clasific
     DetailbarComponent,
     LoginComponent,
     LimitadosComponent,
+    SecretosComponent,
     ClasificadosComponent,
     ModalUsuarioComponent,
     ModalOrdinariosComponent,
     ModalClasificadosComponent,
     ModalLimitadosComponent,
+  ModalSecretosComponent,
+  OrdinariosComponent,
   ],
   imports: [
     BrowserModule,
