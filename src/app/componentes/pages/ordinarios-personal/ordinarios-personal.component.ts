@@ -2,75 +2,66 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
-import { Ordinarios } from 'src/app/models/ordinarios.model';
+import { Ordinario_personal } from 'src/app/models/ordinario.model.personal'; 
+import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
+
+
 
 @Component({
-  selector: 'app-ordinarios',
-  templateUrl: './ordinarios.component.html',
-  styleUrls: ['./ordinarios.component.css']
+  selector: 'app-ordinarios-personal',
+  templateUrl: './ordinarios-personal.component.html',
+  styleUrls: ['./ordinarios-personal.component.css']
 })
-export class OrdinariosComponent implements OnInit {
+export class OrdinariosPersonalComponent implements OnInit {
 
-  
-  ordinarios: Ordinarios[] = [
+ 
+  ordinario_personal: Ordinario_personal[] = [
     {
       id: 1,
       no: 2,
       fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
+      procedencia: 'a',
       asunto: 'a',
       destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
+      archivo: 'a',
       imagen: 'a'
     },
     {
       id: 1,
       no: 2,
       fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
+      procedencia: 'a',
       asunto: 'a',
       destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
+      archivo: 'a',
       imagen: 'a'
     }
   ];
 
-  selected: Ordinarios = {
+  selected: Ordinario_personal = {
     id: 1,
     no: 2,
     fecha: 'a',
-    enviado: 'a',
-    rsb: 'a',
-    rs: 'a',
-    fecha_registro_ctc: 'a',
+    procedencia: 'a',
     asunto: 'a',
     destino: 'a',
-    traslado: 'a',
-    fecha_traslado: 'a',
+    archivo: 'a',
     imagen: 'a',
   };
 
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
-    this.loadOrdinarios();
+    this.loadOrdinariosP();
   }
 
-  loadOrdinarios(){
-    this.api.getOrdinarios().subscribe((result)=>{
-      this.ordinarios = result;
+  loadOrdinariosP(){
+    this.api.getOrdinariosP().subscribe((result)=>{
+      this.ordinario_personal = result;
     })
   }
 
-  detailToggle(item: Ordinarios) {
+  detailToggle(item: Ordinario_personal) {
     if (this.selected == item) {
       document.querySelector('.sidebar-right')?.classList.toggle('active');
       document.querySelector('.tablas')?.classList.toggle('active');
@@ -80,14 +71,13 @@ export class OrdinariosComponent implements OnInit {
     this.selected = item;
   }
 
-  addOrdinarios(){
-    let modal = this.modalService.open(ModalOrdinariosComponent);
-    modal.componentInstance.modalHeader = "Ordinarios";
+  addOrdinariosP(){
+    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+    modal.componentInstance.modalHeader = "Ordinario_personal";
     modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e)=>{
-      this.loadOrdinarios();
+      this.loadOrdinariosP();
     })
   }
-
 
 }

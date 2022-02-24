@@ -28,8 +28,11 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    if(this.storage.retrieve('usuario')){
+      this.login = this.storage.retrieve('usuario');
+    }
     this.storage.observe('usuario').subscribe((result) => {
-      this.login = result.usuario.nombre;
+      this.login = result;
     })
   }
 

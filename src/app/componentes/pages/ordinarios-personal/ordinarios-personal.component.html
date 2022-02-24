@@ -1,0 +1,43 @@
+<div class="contenedor">
+    <div class="title-page">
+        <div class="title-logo">
+            <i class="bi bi-person text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Ordinarios Personal</h1>
+        </div>
+        <p class="text-oscuro">Ordinarios Personal registrados en el sistema</p>
+ 
+        <button id="newDoc" class="newDocButton" (click)="addOrdinariosP()">Nuevo Documento 
+            <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+            </button>
+         </div>
+    <table class="tablas">
+        <thead class="head">
+            <td colspan="1"></td>
+            <td colspan="2">id</td>
+            <td colspan="3">no</td>
+            <td colspan="4">fecha</td>
+            <td colspan="5">archivo</td>
+            <td colspan="6">asunto</td>
+            <td colspan="7">destino</td>
+            <td colspan="8">procedencia</td>
+            <td colspan="9">imagen</td>
+        </thead>
+        <tr *ngFor="let item of ordinario_personal" class="ligth" (click)="detailToggle(item)">
+            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="2">{{item.id}}</td>
+            <td colspan="3">{{item.no}}</td>
+            <td colspan="4">{{item.fecha}}</td>
+            <td colspan="5">{{item.archivo}}</td>
+            <td colspan="6">{{item.asunto}}</td>
+            <td colspan="7">{{item.destino}}</td>
+            <td colspan="8">{{item.procedencia}}</td>
+            <td colspan="9">{{item.imagen}}</td>
+            <td colspan="10"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+    </table>
+</div>
+<div class="sidebar-right">
+    <app-detailbar [data]="selected"></app-detailbar>
+</div>
+
+

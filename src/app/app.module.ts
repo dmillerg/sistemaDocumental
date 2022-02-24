@@ -18,10 +18,10 @@ import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitado
 import { LimitadosComponent } from './componentes/pages/limitados/limitados/limitados.component';
 import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados/clasificados.component';
 import { SecretosComponent } from './componentes/pages/secretos/secretos.component';
-import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
 import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
-
+import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
+import { OrdinariosPersonalComponent } from './componentes/pages/ordinarios-personal/ordinarios-personal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +38,7 @@ import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.c
     ModalLimitadosComponent,
   ModalSecretosComponent,
   OrdinariosComponent,
+  OrdinariosPersonalComponent,
   ],
   imports: [
     BrowserModule,

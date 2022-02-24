@@ -100,6 +100,7 @@ export class ModalClasificadosComponent implements OnInit {
   addUpdateClasificados() {
     let formData = new FormData();
     formData.append('id', this.clasificados.id.toString());
+    formData.append('no', this.clasificados.no.toString());
     formData.append('fecha', this.clasificados.fecha.toString());
     formData.append('enviado', this.clasificados.enviado.toString());
     formData.append('rsb', this.clasificados.rsb.toString());
@@ -111,6 +112,7 @@ export class ModalClasificadosComponent implements OnInit {
     formData.append('clasif', this.clasificados.clasif.toString());
     formData.append('destino', this.clasificados.destino.toString());
     formData.append('traslado', this.clasificados.traslado.toString());
+    formData.append('fecha_registro_ctc', this.clasificados.fecha_registro_ctc.toString());
     formData.append('fecha_traslado', this.clasificados.fecha_traslado.toString());
     formData.append('imagen', this.clasificados.imagen.toString());
 
