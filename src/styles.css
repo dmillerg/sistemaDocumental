@@ -56,6 +56,8 @@
 
 .text-oscuro {
     color: var(--firstcolor-hover);
+    margin-bottom: -8px;
+    
 }
 
 .ligth {
@@ -91,3 +93,83 @@
     background-color: transparent;
     border: none;
 }
+
+/*Scroll dentro del Form*/
+
+.scrollbar
+{
+	margin-left: 22px;
+	float: left;
+	height: 300px;
+	width: 420px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+.scrollbar1
+{
+	margin-left: 22px;
+	float: left;
+	
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+/* STYLE */
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px var(--firstcolor-hover);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px var(--firstcolor-hover);
+	background-color: var(--firstcolor-hover);
+}
+
+/* STYLE */
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px var(--firstcolor);
+	border-radius: 10px;
+	background-color:var(--firstcolor-hover);
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 12px;
+	background-color:var(--firstcolor-hover);
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px var(--firstcolor);
+	background-color: white;
+}
+
+/*Registrar nuevo documento
+*/
+.newDocButton{
+    border-radius: 10px;
+    background-color: var(--firstcolor-hover);
+    color: white;
+    margin-left: 770px;
+    margin-bottom:-10px;
+    margin-top: -90px;
+    border-color: var(--firstcolor-hover);
+    }

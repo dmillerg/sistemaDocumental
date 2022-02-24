@@ -15,16 +15,16 @@
         <input type="text" name="search" [(ngModel)]="search" (ngModelChange)="filterMenu()" class="search-in" placeholder="Buscar...">
         <button class="btn-search"><i class="bi bi-search"></i></button>
     </div>
-    <ul>
+    <ul class="scrollbar1" id="style-2">
         <li *ngFor="let item of menu" [ngClass]="{'active': item.active}" (click)="changePage(item)">
             <i [class]="item.icono"></i>
             <span>{{item.nombre}}</span>
             <div class="tooltips">{{item.nombre}}</div>
         </li>
     </ul>
-    <div class="sidebar-footer">
+    <div class="sidebar-footer" id="foot">
         <i class="bi bi-box-arrow-left" style="color: white;"></i>
-        <span>Logout</span>
+        <span id="spn">Logout</span>
         <div class="tooltips">Cerrar Sesión</div>
     </div>
 </div>

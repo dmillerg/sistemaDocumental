@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.models';
+import { Clasificados } from 'src/app/models/clasificados.service';
+import { Limitados } from 'src/app/models/limitados.service';
 
 @Component({
   selector: 'app-detailbar',

@@ -66,7 +66,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   addUsuario(){
-    let modal = this.modalService.open(ModalOrdinariosComponent);
+    let modal = this.modalService.open(ModalUsuarioComponent);
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e)=>{

@@ -1,0 +1,59 @@
+<div class="contenedor">
+    <div class="title-page">
+        <div class="title-logo">
+            <i class="bi bi-person text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
+            
+           
+        </div>
+        <p class="text-oscuro">  Clasificados registrados en el sistema</p>
+   
+         <button id="newDoc" class="newDocButton" (click)="addClasificados()">Nuevo Documento 
+            <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+        </button>
+      
+    </div>
+   
+    <table class="tablas">
+        <thead class="head">
+            <td colspan="1"></td>
+            <td colspan="2">id</td>
+            <td colspan="3">no</td>
+            <td colspan="4">fecha</td>
+            <td colspan="5">enviado</td>
+            <td colspan="6">rsb</td>
+            <td colspan="7">rs</td>
+            <td colspan="8">fecha_registro_ctc</td>
+            <td colspan="9">asunto</td>
+            <td colspan="10">doc</td>
+            <td colspan="11">ej</td>
+            <td colspan="12">clasif</td>
+            <td colspan="13">destino</td>
+            <td colspan="14">traslado</td>
+            <td colspan="15">fecha_traslado</td>
+            <td colspan="16">imagen</td>
+        </thead>
+        <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
+            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="2">{{item.id}}</td>
+            <td colspan="3">{{item.no}}</td>
+            <td colspan="4">{{item.fecha}}</td>
+            <td colspan="5">{{item.enviado}}</td>
+            <td colspan="6">{{item.rsb}}</td>
+            <td colspan="7">{{item.rs}}</td>
+            <td colspan="8">{{item.fecha_registro_ctc}}</td>
+            <td colspan="9">{{item.asunto}}</td>
+            <td colspan="10">{{item.doc}}</td>
+            <td colspan="11">{{item.ej}}</td>
+            <td colspan="12">{{item.clasif}}</td>
+            <td colspan="13">{{item.destino}}</td>
+            <td colspan="14">{{item.fecha_traslado}}</td>
+            <td colspan="15">{{item.imagen}}</td>
+            <td colspan="16"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+    </table>
+</div>
+<div class="sidebar-right">
+    <app-detailbar [data]="selected"></app-detailbar>
+</div>
+

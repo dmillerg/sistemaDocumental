@@ -1,0 +1,82 @@
+<div class="form-content">
+    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <div class="image-content" onclick="loadImage()">
+        <i class="bi bi-file-earmark-arrow-up"></i>
+        <input type="file" name="file" id="seleccionArchivos" accept="image/*"/>
+   <img id="imagenPrevisualizacion">
+    </div>
+    <form action="" class="form-complete">
+        <div class="scrollbar" id="style-1">
+          
+        <div class="input-content">
+            <label for="limitados">Id</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="limitados.id">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">No</label>
+            <i class="bi bi-123 prefix"></i>
+            <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="limitados.no">
+        </div>
+   
+        <div class="input-content">
+            <label for="limitados">Procedencia</label>
+            <i class="bi bi-house prefix"></i>
+            <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia" [(ngModel)]="limitados.procedencia" onkeyup="validate(this)">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Titulo</label>
+            <i class="bi bi-file-font prefix"></i>
+            <input type="text" class="in" name="titulo" id="titulo" placeholder="titulo" [(ngModel)]="limitados.titulo">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Fecha</label>
+            <i class="bi bi-calendar-date prefix"></i>
+            <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="limitados.fecha">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Movimiento 1</label>
+            <i class="bi bi-file-earmark-arrow-up prefix"></i>
+            <input type="text" class="in" name="movimiento1" id="movimiento1" placeholder="movimiento1" [(ngModel)]="limitados.movimiento1">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Movimiento 2</label>
+            <i class="bi bi-file-earmark-arrow-down prefix"></i>
+            <input type="text" class="in" name="movimiento2" id="movimiento2" placeholder="movimiento2" [(ngModel)]="limitados.movimiento2">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Destruccion</label>
+            <i class="bi bi-dash-circle prefix"></i>
+            <input type="text" class="in" name="destruccion" id="destruccion" placeholder="destruccion" [(ngModel)]="limitados.destruccion">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Expediente</label>
+            <i class="bi bi-file-earmark prefix"></i>
+            <input type="text" class="in" name="expediente" id="expediente" placeholder="expediente" [(ngModel)]="limitados.expediente">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Observacion</label>
+            <i class="bi bi-eye prefix"></i>
+            <input type="text" class="in" name="observacion" id="observacion" placeholder="observacion" [(ngModel)]="limitados.observacion">
+        </div>
+
+        <div class="input-content">
+            <label for="limitados">Imagen</label>
+            <i class="bi bi-image-fill prefix"></i>
+            <input type="text" class="in" name="imagen" id="imagen" [(ngModel)]="limitados.imagen">
+                  </div>
+             
+                </div>
+        <button class="btn btn-firstcolor" (click)="addUpdateLimitados()"> Agregar</button>
+               
+    </form>
+</div>
+

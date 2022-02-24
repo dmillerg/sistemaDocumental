@@ -249,6 +249,10 @@
     transition: all .3s ease;
 }
 
+.sidebar.active ul{
+    margin-left: 2px;
+}
+
 .sidebar.active ul li:hover .tooltips {
     opacity: 1;
     transition: all .3s ease;
