@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/service/api.service';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
 
+
+
 @Component({
   selector: 'app-ordinarios',
   templateUrl: './ordinarios.component.html',
@@ -58,6 +60,8 @@ export class OrdinariosComponent implements OnInit {
     imagen: 'a',
   };
 
+  server: string = '';
+  loading: boolean = false
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
@@ -65,8 +69,13 @@ export class OrdinariosComponent implements OnInit {
   }
 
   loadOrdinarios(){
+    this.loading = true;
     this.api.getOrdinarios().subscribe((result)=>{
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.ordinarios = result;
+      this.loading = false;
     })
   }
 

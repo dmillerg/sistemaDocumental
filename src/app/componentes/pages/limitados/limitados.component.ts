@@ -53,7 +53,8 @@ export class LimitadosComponent implements OnInit {
       observacion: '',
       imagen: '',
   };
-
+  server: string = '';
+  loading: boolean = false;
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
@@ -61,8 +62,13 @@ export class LimitadosComponent implements OnInit {
   }
 
   loadLimitados(){
+    this.loading = true;
     this.api.getLimitados().subscribe((result)=>{
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.limitados = result;
+      this.loading = false;
     })
   }
 

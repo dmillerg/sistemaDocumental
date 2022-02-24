@@ -6,7 +6,7 @@
         </div>
         <p class="text-oscuro">Limitados registrados en el sistema</p>
  
-        <button id="newDoc" class="newDocButton" (click)="addLimitados()">Nuevo Documento 
+        <button id="newDoc" class="btn btn-firstcolor newDocButton" (click)="addLimitados()">Nuevo Documento 
             <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
          </div>
@@ -25,6 +25,8 @@
             <td colspan="11">observacion</td>
             <td colspan="12">imagen</td>
         </thead>
+        <app-loading [loading]="loading"></app-loading>
+        <p class="server">{{server}}</p>
         <tr *ngFor="let item of limitados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>

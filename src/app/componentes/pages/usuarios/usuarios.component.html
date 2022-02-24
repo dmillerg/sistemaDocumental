@@ -6,7 +6,7 @@
         </div>
         <p class="text-oscuro">Usuarios registrados en el sistema</p>
   
-        <button id="newUser" class="newUserButton" (click)="addUsuario()">Nuevo Usuario 
+        <button id="newUser" class="btn btn-firstcolor" (click)="addUsuario()">Nuevo Usuario 
         <i style="margin:5px; font-size: 20px;" class="bi bi-person-plus"></i>
         </button>
          </div>
@@ -19,6 +19,7 @@
             <td colspan="3">fecha registro</td>
             <td colspan="2">acciones</td>
         </thead>
+        <app-loading [loading]="loading"></app-loading>
         <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
