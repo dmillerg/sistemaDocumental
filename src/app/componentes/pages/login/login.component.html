@@ -3,13 +3,14 @@
         <h3>Bienvenido</h3>
         <form action="" class="login-form">
             <div class="input-content">
-                <label for="user" class="input-label">usuario</label>
+                <label for="user" class="input-label">Usuario</label>
                 <input type="text" name="user" id="user" placeholder="usuario" [(ngModel)]="usuario" class="input">
             </div>
             <div class="input-content">
-                <label for="password" class="input-label">contraseña</label>
+                <label for="password" class="input-label">Contraseña</label>
                 <input type="password" name="password" id="password" placeholder="contraseña" [(ngModel)]="password" class="input">
             </div>
+            <br/>
             <button class="btn btn-aceptar btn-outline-firstcolor" (click)="loguear()">Aceptar</button>
         </form>
     </div>

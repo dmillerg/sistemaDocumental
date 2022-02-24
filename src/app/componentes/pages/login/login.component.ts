@@ -12,9 +12,11 @@ export class LoginComponent implements OnInit {
   usuario: string = '';
   password: string = '';
 
+
   constructor(private api:ApiService, private storage:SessionStorageService) { }
 
   ngOnInit(): void {
+  
   }
  loguear(){
    var formData = new FormData();
@@ -26,4 +28,5 @@ export class LoginComponent implements OnInit {
    this.storage.store('usuario',result);
  });
  }
+
 }
