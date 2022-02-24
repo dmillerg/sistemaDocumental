@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionStorageService } from 'ngx-webstorage';
+import { Login } from './models/login';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit
 {
-
+  login: Login = {message:"",status:"",token:"",usuario:{id: 0,
+    usuario: '',
+    nombre: '',
+    password: '',
+    fecha_registro: '',
+    fecha_ultima_sesion: '',
+    rol: ''}};
   mode: boolean = false;
   title = 'sistema-documental';
+constructor(private storage:SessionStorageService){
 
+}
   ngOnInit(): void {
-    
+    this.login= this.storage.retrieve('usuario');
   }
 
   themeChange(){

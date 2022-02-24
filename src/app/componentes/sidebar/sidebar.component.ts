@@ -136,6 +136,13 @@ export class SidebarComponent implements OnInit {
   toggleSidebar() {
     document.querySelector('.sidebar')?.classList.toggle('active');
     document.querySelector('.content')?.classList.toggle('active');
+    
+    if (document.querySelector('.scrollbar1')?.getAttribute('style')!='width:55px'){
+    document.querySelector('.scrollbar1')?.setAttribute('style','width:55px');
+  }
+    else{
+    document.querySelector('.scrollbar1')?.setAttribute('style','width:220px');
+     }
   }
 
   changePage(target: any) {

@@ -1,0 +1,47 @@
+<div class="contenedor">
+    <div class="title-page">
+        <div class="title-logo">
+            <i class="bi bi-person text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Limitados</h1>
+        </div>
+        <p class="text-oscuro">Limitados registrados en el sistema</p>
+ 
+        <button id="newDoc" class="newDocButton" (click)="addLimitados()">Nuevo Documento 
+            <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+            </button>
+         </div>
+    <table class="tablas">
+        <thead class="head">
+            <td colspan="1"></td>
+            <td colspan="2">id</td>
+            <td colspan="3">no</td>
+            <td colspan="4">procedencia</td>
+            <td colspan="5">titulo</td>
+            <td colspan="6">fecha</td>
+            <td colspan="7">movimiento1</td>
+            <td colspan="8">movimiento2</td>
+            <td colspan="9">destruccion</td>
+            <td colspan="10">expediente</td>
+            <td colspan="11">observacion</td>
+            <td colspan="12">imagen</td>
+        </thead>
+        <tr *ngFor="let item of limitados" class="ligth" (click)="detailToggle(item)">
+            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="2">{{item.id}}</td>
+            <td colspan="3">{{item.no}}</td>
+            <td colspan="4">{{item.procedencia}}</td>
+            <td colspan="5">{{item.titulo}}</td>
+            <td colspan="6">{{item.fecha}}</td>
+            <td colspan="7">{{item.movimiento1}}</td>
+            <td colspan="8">{{item.movimiento2}}</td>
+            <td colspan="9">{{item.destruccion}}</td>
+            <td colspan="10">{{item.expediente}}</td>
+            <td colspan="11">{{item.observacion}}</td>
+            <td colspan="12">{{item.imagen}}</td>
+            <td colspan="13"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+    </table>
+</div>
+<div class="sidebar-right">
+    <app-detailbar [data]="selected"></app-detailbar>
+</div>

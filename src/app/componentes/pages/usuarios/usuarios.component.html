@@ -2,10 +2,14 @@
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
-            <h1 class="title text-oscuro">Usuarios</h1>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Usuarios</h1>
         </div>
-        <p class="text-oscuro" (click)="addUsuario()">Usuarios registrados en el sistema</p>
-    </div>
+        <p class="text-oscuro">Usuarios registrados en el sistema</p>
+  
+        <button id="newUser" class="newUserButton" (click)="addUsuario()">Nuevo Usuario 
+        <i style="margin:5px; font-size: 20px;" class="bi bi-person-plus"></i>
+        </button>
+         </div>
     <table class="tablas">
         <thead class="head">
             <td colspan="1"></td>
