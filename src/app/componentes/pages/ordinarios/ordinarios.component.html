@@ -27,7 +27,7 @@
             <td colspan="13">imagen</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{server}}</p>
+        <p class="server">{{ordinarios.length>0? '': 'No hay documentos'}}</p>
         <tr *ngFor="let item of ordinarios" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>

@@ -34,7 +34,7 @@
             <td colspan="16">imagen</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{server}}</p>
+        <p class="server">{{clasificados.length>0? '': 'No hay documentos'}}</p>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
