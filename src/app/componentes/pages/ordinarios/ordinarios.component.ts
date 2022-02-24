@@ -60,6 +60,8 @@ export class OrdinariosComponent implements OnInit {
     imagen: 'a',
   };
 
+  server: string = '';
+  loading: boolean = false
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
@@ -67,8 +69,13 @@ export class OrdinariosComponent implements OnInit {
   }
 
   loadOrdinarios(){
+    this.loading = true;
     this.api.getOrdinarios().subscribe((result)=>{
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.ordinarios = result;
+      this.loading = false;
     })
   }
 

@@ -43,6 +43,8 @@ export class UsuariosComponent implements OnInit {
     rol: '',
   };
 
+  loading: boolean = false;
+
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
@@ -50,8 +52,10 @@ export class UsuariosComponent implements OnInit {
   }
 
   loadUsuarios(){
+    this.loading = true;
     this.api.getUsuarios().subscribe((result)=>{
       this.usuarios = result;
+      this.loading = false;
     })
   }
 

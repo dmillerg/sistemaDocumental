@@ -8,7 +8,7 @@
         </div>
         <p class="text-oscuro">  Clasificados registrados en el sistema</p>
    
-         <button id="newDoc" class="newDocButton" (click)="addClasificados()">Nuevo Documento 
+         <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()">Nuevo Documento 
             <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
         </button>
       
@@ -33,6 +33,8 @@
             <td colspan="15">fecha_traslado</td>
             <td colspan="16">imagen</td>
         </thead>
+        <app-loading [loading]="loading"></app-loading>
+        <p class="server">{{server}}</p>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>

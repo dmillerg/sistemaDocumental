@@ -47,15 +47,23 @@ export class SecretosComponent implements OnInit {
     comp: '',
     imagen:'',
   };
+  server: string = '';
+  loading: boolean = false;
 
   constructor(private api: ApiService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.loadSecretos();
   }
 
   loadSecretos() {
+    this.loading = true;
     this.api.getSecretos().subscribe((result) => {
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.secretos = result;
+      this.loading = false;
     });
   }
 

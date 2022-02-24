@@ -15,12 +15,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
 import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
-import { LimitadosComponent } from './componentes/pages/limitados/limitados/limitados.component';
-import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados/clasificados.component';
+import { LimitadosComponent } from './componentes/pages/limitados/limitados.component';
+import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados.component';
 import { SecretosComponent } from './componentes/pages/secretos/secretos.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
 import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
 import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
+import { LoadingComponent } from './componentes/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordina
     ModalLimitadosComponent,
   ModalSecretosComponent,
   OrdinariosComponent,
+  LoadingComponent,
   ],
   imports: [
     BrowserModule,

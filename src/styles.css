@@ -162,14 +162,22 @@
 	background-color: white;
 }
 
-/*Registrar nuevo documento
-*/
-.newDocButton{
-    border-radius: 10px;
-    background-color: var(--firstcolor-hover);
-    color: white;
-    margin-left: 770px;
-    margin-bottom:-10px;
-    margin-top: -90px;
-    border-color: var(--firstcolor-hover);
-    }
+.contenedor .title-page{
+    margin-bottom: 50px;
+}
+
+.contenedor .title-page .btn-firstcolor{
+    position: absolute;
+    right: 20px;
+    top: 80px;
+}
+
+.contenedor .tablas {
+    position: relative;
+}
+
+.contenedor .tablas .server{
+    position: absolute;
+    color: red;
+    margin-left: 45%;
+}

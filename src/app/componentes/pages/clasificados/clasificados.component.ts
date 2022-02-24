@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ClasificadosComponent implements OnInit {
 
-  
+
   clasificados: Clasificados[] = [
     {
       id: 1,
@@ -53,7 +53,7 @@ export class ClasificadosComponent implements OnInit {
     id: 1,
     no: 2,
     fecha: 'a',
-    enviado:'a',
+    enviado: 'a',
     rsb: 'a',
     rs: 'a',
     fecha_registro_ctc: 'a',
@@ -66,34 +66,41 @@ export class ClasificadosComponent implements OnInit {
     fecha_traslado: 'a',
     imagen: 'a',
   };
-
-  constructor(private api: ApiService, private modalService: NgbModal ) { }
+  loading: boolean = false;
+  server: string = '';
+  constructor(private api: ApiService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.loadClasificados();
   }
 
-  loadClasificados(){
-    this.api.getClasificados().subscribe((result)=>{
+  loadClasificados() {
+    this.loading = true;
+    this.api.getClasificados().subscribe((result) => {
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.clasificados = result;
-    })
+      this.loading = false;
+
+    });
   }
 
   detailToggle(item: Clasificados) {
     if (this.selected == item) {
       document.querySelector('.sidebar-right')?.classList.toggle('active');
       document.querySelector('.tablas')?.classList.toggle('active');
-    }else{
+    } else {
 
     }
     this.selected = item;
   }
 
-  addClasificados(){
+  addClasificados() {
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Agregar";
-    modal.result.then((e)=>{
+    modal.result.then((e) => {
       this.loadClasificados();
     })
   }

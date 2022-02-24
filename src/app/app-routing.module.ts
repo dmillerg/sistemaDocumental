@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados/clasificados.component';
-import { LimitadosComponent } from './componentes/pages/limitados/limitados/limitados.component';
+import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados.component';
+import { LimitadosComponent } from './componentes/pages/limitados/limitados.component';
 import { LoginComponent } from './componentes/pages/login/login.component';
 import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
 import { SecretosComponent } from './componentes/pages/secretos/secretos.component';
