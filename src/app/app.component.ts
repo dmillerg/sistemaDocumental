@@ -7,17 +7,29 @@ import { Login } from './models/login';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit
-{
-  login: string="";
+export class AppComponent implements OnInit {
+  login: Login = {
+    message: '',
+    status: '',
+    token: '',
+    usuario: {
+      id: -1,
+      usuario: '',
+      nombre: '',
+      password: '',
+      fecha_registro: '',
+      fecha_ultima_sesion: '',
+      rol: '',
+    },
+  };
   mode: boolean = false;
   title = 'sistema-documental';
-constructor(private storage:SessionStorageService){
+  constructor(private storage: SessionStorageService) {
 
-}
+  }
   ngOnInit(): void {
-    this.storage.observe('usuario').subscribe((result)=>{
-      this.login=result.usuario.nombre;
+    this.storage.observe('usuario').subscribe((result) => {
+      this.login = result.usuario.nombre;
     })
   }
 

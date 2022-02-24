@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   usuario: string = '';
   password: string = '';
 
-
   constructor(private api:ApiService, private storage:SessionStorageService) { }
 
   ngOnInit(): void {
