@@ -1,28 +1,24 @@
 .background-content {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    /* background-color: red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+margin: 50px;
+
 }
 
 .background-content .login-content {
     width: 400px;
+    margin: auto;
     height: 400px;
-    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
-    border-radius: 0.5em;
+    border-radius: 1em;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    padding-block: 100px;
 }
 
 .background-content .login-content h3 {
-    color: var(--theme-color-ligth);
-    -webkit-text-stroke: 3px var(--firstcolor-hover);
+    color: var(--firstcolor-hover);
     font-weight: 900;
 }
 
@@ -35,7 +31,8 @@
 
 .background-content .login-content .login-form .input-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    position: relative;
     align-items: center;
     justify-content: center;
 }
@@ -46,22 +43,65 @@
     width: 100%;
     line-height: 30px;
     border-radius: 0.5em;
-    margin-block: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     outline: none;
-    background-color: var(--firstcolor);
-    text-align: center;
     padding: 10px;
+    padding-left: 35px;
+    border: 1px dotted var(--firstcolor-hover);
+    transition: all .3s ease;
+}
+
+.background-content .login-content .login-form .input-content input:focus {
+    border: 1px solid var(--firstcolor-hover);
+    box-shadow: 0 0 2px 0 var(--firstcolor);
+    transition: all .3s ease;
 }
 
 .background-content .login-content .login-form .input-content input::placeholder {
-    text-align: center;
-    color: var(--theme-color-ligth);
+    text-align: start;
+    color: var(--firstcolor-hover);
 }
 
 .background-content .login-content .login-form .input-content label {
     color: var(--firstcolor-hover);
+    position: absolute;
+    left: 35px;
+    font-size: 12px;
+    top: -5px;
 }
 
 .background-content .login-content .login-form .btn-aceptar {
     width: 100%;
+}
+
+.background-content .login-content .login-form .input-content .prefix {
+    color: var(--firstcolor-hover);
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    padding: 5px;
+    border-right: 1px dotted var(--firstcolor-hover);
+}
+
+.background-content .login-content .login-form .input-content .suffix {
+    color: var(--firstcolor-hover);
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    padding: 5px;
+    /* border-left: 1px dotted var(--firstcolor-hover); */
+    cursor: pointer;
+}
+
+.background-content .login-content .input-content p{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    color: red;
+    font-size: 10px;
+}
+
+p.text-info{
+font-size: 12px;
 }
