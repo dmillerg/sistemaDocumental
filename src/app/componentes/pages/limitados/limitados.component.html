@@ -26,7 +26,7 @@
             <td colspan="12">imagen</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{limitados.length>0? '': 'No hay documentos'}}</p>
+        <p class="server">{{server}}</p>
         <tr *ngFor="let item of limitados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
@@ -41,6 +41,8 @@
             <td colspan="11">{{item.observacion}}</td>
             <td colspan="12">{{item.imagen}}</td>
             <td colspan="13"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="14"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+     
         </tr>
     </table>
 </div>

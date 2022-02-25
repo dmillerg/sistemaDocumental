@@ -22,6 +22,9 @@ import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.c
 import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
 import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 import { LoadingComponent } from './componentes/loading/loading.component';
+import { OrdinariosPersonalComponent } from './componentes/pages/ordinarios-personal/ordinarios-personal.component';
+import { ModalOrdinarioPersonalComponent } from './modals/modal-ordinario-personal/modal-ordinario-personal.component';
+import { InicioComponent } from './componentes/pages/inicio/inicio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,10 @@ import { LoadingComponent } from './componentes/loading/loading.component';
   ModalSecretosComponent,
   OrdinariosComponent,
   LoadingComponent,
+  OrdinariosPersonalComponent,
+  ModalOrdinarioPersonalComponent,
+  InicioComponent
+
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -34,7 +34,7 @@
             <td colspan="16">imagen</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{clasificados.length>0? '': 'No hay documentos'}}</p>
+        <p class="server">{{server}}</p>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
@@ -52,6 +52,8 @@
             <td colspan="14">{{item.fecha_traslado}}</td>
             <td colspan="15">{{item.imagen}}</td>
             <td colspan="16"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="17"><button class="btn btn-firstcolor" (click)="preguntar()"><i class="bi bi-trash"></i></button></td>
+            
         </tr>
     </table>
 </div>

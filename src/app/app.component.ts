@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Login } from './models/login';
 
@@ -15,7 +16,21 @@ export class AppComponent implements OnInit {
     usuario: {
       id: -1,
       usuario: '',
-      nombre: '',
+      nombre: 'acceder / registrarse',
+      password: '',
+      fecha_registro: '',
+      fecha_ultima_sesion: '',
+      rol: '',
+    },
+  };
+  login_copy: Login = {
+    message: '',
+    status: '',
+    token: '',
+    usuario: {
+      id: -1,
+      usuario: '',
+      nombre: 'acceder / registrarse',
       password: '',
       fecha_registro: '',
       fecha_ultima_sesion: '',
@@ -24,15 +39,16 @@ export class AppComponent implements OnInit {
   };
   mode: boolean = false;
   title = 'sistema-documental';
-  constructor(private storage: SessionStorageService) {
+  constructor(private storage: SessionStorageService, private router: Router) {
 
   }
   ngOnInit(): void {
-    if(this.storage.retrieve('usuario')){
+    if (this.storage.retrieve('usuario')) {
       this.login = this.storage.retrieve('usuario');
     }
     this.storage.observe('usuario').subscribe((result) => {
-      this.login = result;
+      if(result != undefined){
+      this.login = result;}else this.login = this.login_copy; 
     })
   }
 
@@ -47,6 +63,7 @@ export class AppComponent implements OnInit {
         e.classList.remove("text-oscuro");
         e.classList.add("text-ligth");
       })
+
     } else {
       document.querySelectorAll(".dark").forEach((e) => {
         e.classList.remove("dark");
@@ -60,4 +77,9 @@ export class AppComponent implements OnInit {
     this.mode = !this.mode;
   }
 
+  loginPage() {
+    if (!this.storage.retrieve('usuario')) {
+      this.router.navigate(['login']);
+    }
+  }
 }

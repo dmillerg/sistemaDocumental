@@ -4,39 +4,53 @@
         <i class="bi bi-file-earmark-medical"></i>
     </div>
     <form action="" class="form-complete">
+        <div class="scrollbar" id="style-1">
+       
         <div class="input-content">
-            <label for="no">No</label>
+        
+            <label for="ordinario_personal">Id</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="ordinario_personal.id">
+        </div>
+
+        <div class="input-content">
+            <label for="ordinario_personal">No</label>
             <i class="bi bi-123 prefix"></i>
-            <input type="text" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinario.no">
+            <input type="text" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinario_personal.no">
         </div>
         <div class="input-content">
-            <label for="fecha">Fecha</label>
+            <label for="ordinario_personal">Fecha</label>
             <i class="bi bi-calendar prefix"></i>
-            <input type="date" class="in" name="fecha" id="fecha" placeholder="Fecha" [(ngModel)]="ordinario.fecha">
+            <input type="date" class="in" name="fecha" id="fecha" placeholder="Fecha" [(ngModel)]="ordinario_personal.fecha">
         </div>
         <div class="input-content">
-            <label for="procedencia">Procedencia</label>
+            <label for="ordinario_personal">Procedencia</label>
             <i class="bi bi-send prefix"></i>
-            <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia" [(ngModel)]="ordinario.procedencia">
+            <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia" [(ngModel)]="ordinario_personal.procedencia">
         </div>
         <div class="input-content">
-            <label for="asunto">Asunto</label>
+            <label for="ordinario_personal">Asunto</label>
             <i class="bi bi-chat-square-dots prefix"></i>
-            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="ordinario.asunto">
+            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="ordinario_personal.asunto">
         </div>
         <div class="input-content">
-            <label for="destino">Destino</label>
+            <label for="ordinario_personal">Destino</label>
             <i class="bi bi-shop prefix"></i>
-            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="ordinario.destino">
+            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="ordinario_personal.destino">
         </div>
         <div class="input-content">
-            <label for="archivo">Archivo</label>
+            <label for="ordinario_personal">Archivo</label>
             <i class="bi bi-calendar-event prefix"></i>
-            <input type="text" class="in" name="archivo" id="archivo" placeholder="archivo" [(ngModel)]="ordinario.archivo">
+            <input type="text" class="in" name="archivo" id="archivo" placeholder="archivo" [(ngModel)]="ordinario_personal.archivo">
         </div>
         
-        <button class="" style="visibility: hidden;" (click)="aceptar.click()"> Agregar</button>
+        <div class="input-content">
+            <label for="ordinario_personal">Imagen</label>
+            <i class="bi bi-person prefix"></i>
+            <input type="text" class="in" name="imagen" id="imagen" placeholder="imagen" [(ngModel)]="ordinario_personal.imagen">
+        </div>
+    </div>
+        <button style="width: 450px;" class="btn btn-firstcolor" (click)="addUpdateOrdinariosP()"> Agregar</button>
     </form>
 
-    <button #aceptar class="btn btn-aceptar btn-firstcolor" (click)="addOrUpdateOrdinario()"> Agregar</button>
-</div>
+  </div>
