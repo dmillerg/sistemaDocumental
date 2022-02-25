@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
 import { Clasificados } from 'src/app/models/clasificados.service';
 import { ApiService } from 'src/app/service/api.service';
-
+import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
 @Component({
   selector: 'app-clasificados',
   templateUrl: './clasificados.component.html',
@@ -104,4 +104,15 @@ export class ClasificadosComponent implements OnInit {
       this.loadClasificados();
     })
   }
+
+  deleteClasificados() {
+    let modal = this.modalService.open(DeleteClasificadosComponent);
+    modal.componentInstance.modalHeader = "Clasificados";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.result.then((e) => {
+      this.loadClasificados();
+    })
+  }
+
+
 }

@@ -6,7 +6,7 @@
         </div>
         <p class="text-oscuro">Ordinarios Personal registrados en el sistema</p>
  
-        <button id="newDoc" class="newDocButton" (click)="addOrdinariosP()">Nuevo Documento 
+        <button id="newDoc" class="btn-firstcolor btn" (click)="addOrdinariosP()">Nuevo Documento 
             <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
          </div>
@@ -33,11 +33,13 @@
             <td colspan="8">{{item.procedencia}}</td>
             <td colspan="9">{{item.imagen}}</td>
             <td colspan="10"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="11"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+     
         </tr>
     </table>
 </div>
 <div class="sidebar-right">
     <app-detailbar [data]="selected"></app-detailbar>
-</div>
+</div> 
 
 

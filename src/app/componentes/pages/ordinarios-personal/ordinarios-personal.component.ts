@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
-import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
-import { Ordinario_personal } from 'src/app/models/ordinario.model.personal'; 
+import { Ordinario_personal } from 'src/app/models/ordinario.model.personal';
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
-
-
-
 @Component({
   selector: 'app-ordinarios-personal',
   templateUrl: './ordinarios-personal.component.html',
@@ -75,6 +71,15 @@ export class OrdinariosPersonalComponent implements OnInit {
     let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
     modal.componentInstance.modalHeader = "Ordinario_personal";
     modal.componentInstance.modalAction = "Agregar";
+    modal.result.then((e)=>{
+      this.loadOrdinariosP();
+    })
+  }
+
+  editOrdinariosP(){
+    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+    modal.componentInstance.modalHeader = "Ordinario_personal";
+    modal.componentInstance.modalAction = "Editar";
     modal.result.then((e)=>{
       this.loadOrdinariosP();
     })

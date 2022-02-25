@@ -17,7 +17,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   modalAction: string = '';
   
 
-  ordinarios: Ordinario_personal = {
+  ordinario_personal: Ordinario_personal = {
       id: -1,
       no: -1,
       fecha: '',
@@ -60,19 +60,19 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
 
   addUpdateOrdinariosP() {
     let formData = new FormData();
-    formData.append('id', this.ordinarios.id.toString());
-    formData.append('no', this.ordinarios.no.toString());
-    formData.append('fecha', this.ordinarios.fecha.toString());
-    formData.append('procedencia', this.ordinarios.procedencia.toString());
-    formData.append('asunto', this.ordinarios.asunto.toString());
-    formData.append('archivo', this.ordinarios.archivo.toString());
-    formData.append('destino', this.ordinarios.destino.toString());
-    formData.append('imagen', this.ordinarios.imagen.toString());
+    formData.append('id', this.ordinario_personal.id.toString());
+    formData.append('no', this.ordinario_personal.no.toString());
+    formData.append('fecha', this.ordinario_personal.fecha.toString());
+    formData.append('procedencia', this.ordinario_personal.procedencia.toString());
+    formData.append('asunto', this.ordinario_personal.asunto.toString());
+    formData.append('archivo', this.ordinario_personal.archivo.toString());
+    formData.append('destino', this.ordinario_personal.destino.toString());
+    formData.append('imagen', this.ordinario_personal.imagen.toString());
 
 
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
-      this.api.updateOrdinariosP(formData, this.ordinarios.id).subscribe((result) => {
+      this.api.updateOrdinariosP(formData, this.ordinario_personal.id).subscribe((result) => {
         this.actiModal.close('Ordinario_personal');
         console.log(result);
       }, (error) => {

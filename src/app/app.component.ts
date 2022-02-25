@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
         e.classList.remove("text-oscuro");
         e.classList.add("text-ligth");
       })
+
     } else {
       document.querySelectorAll(".dark").forEach((e) => {
         e.classList.remove("dark");

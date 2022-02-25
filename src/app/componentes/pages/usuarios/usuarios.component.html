@@ -15,18 +15,20 @@
             <td colspan="1"></td>
             <td colspan="2">id</td>
             <td colspan="3">usuario</td>
-            <td colspan="3">nombre</td>
-            <td colspan="3">fecha registro</td>
-            <td colspan="2">acciones</td>
+            <td colspan="4">nombre</td>
+            <td colspan="5">fecha registro</td>
+            <td colspan="6">acciones</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
         <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox"></td>
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.usuario}}</td>
-            <td colspan="3">{{item.nombre}}</td>
-            <td colspan="3">{{item.fecha_registro}}</td>
-            <td colspan="2"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="4">{{item.nombre}}</td>
+            <td colspan="5">{{item.fecha_registro}}</td>
+            <td colspan="6"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="7"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+     
         </tr>
     </table>
 </div>

@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
       active: false,
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
-      link: 'inicio',
+      link: 'ordinario_personal',
       permiso: true,
     },
     {
@@ -107,7 +107,7 @@ export class SidebarComponent implements OnInit {
       active: false,
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
-      link: 'inicio',
+      link: 'ordinario_personal',
       permiso: true,
     },
     {
@@ -146,6 +146,7 @@ export class SidebarComponent implements OnInit {
   }
 
   changePage(target: any) {
+    console.log(target.link);
     this.menu = this.menu.filter((e) => {
       if (e.active) {
         e.active = !e.active;
@@ -153,6 +154,7 @@ export class SidebarComponent implements OnInit {
       return true;
     });
     target.active = true;
+
     this.router.navigate([target.link])
   }
 

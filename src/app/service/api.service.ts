@@ -8,6 +8,7 @@ import { Clasificados } from '../models/clasificados.service';
 import { Login } from '../models/login';
 import { Secreto } from '../models/secreto.model';
 import { Ordinarios } from '../models/ordinarios.model';
+import { Ordinario_personal } from '../models/ordinario.model.personal';
 
 @Injectable({
   providedIn: 'root'
@@ -285,5 +286,53 @@ deleteOrdinarios(id: number = -1) {
   return this.http.delete(direccion, {headers: headers, params: params});
 }
 
+
+//Ordinarios Personal
+
+/**
+   * Obtiene todos los usuarios de la db
+   * @returns 
+   */
+ getOrdinariosP(limit: number = -1): Observable<Ordinario_personal[]> {
+  let direccion = this.url + 'ordinariopersonal/';
+  return this.http.get<Ordinario_personal[]>(direccion);
+}
+
+/**
+ * Agrega un nuevo usuario al sistema
+ * @param formData Datos del nuevo usuario
+ * @returns 
+ */
+addOrdinariosP(formData: FormData) {
+  let direccion = this.url + 'ordinariopersonal';
+  formData.append('token', this.storage.retrieve('usuario').token);
+  return this.http.post(direccion, formData);
+}
+
+/**
+ * Actualiza los datos de un usuario 
+ * @param formData Datos nuevos del usuario
+ * @returns 
+ */
+updateOrdinariosP(formData: FormData, id: number = -1) {
+  let direccion = this.url + 'ordinariopersonal/' + id.toString();
+  formData.append('token', this.storage.retrieve('token'));
+  return this.http.put(direccion, formData);
+}
+
+
+/**
+ * Elimina un usuario
+ * @param id del usuario a eliminar
+ * @returns 
+ */
+deleteOrdinariosP(id: number = -1) {
+  let direccion = this.url + 'ordinariopersonal/' + id.toString();
+  const headers = { 'content-type': 'application/json' };
+  const params = {
+    token: this.storage.retrieve('usuario').token,
+  };
+  return this.http.delete(direccion, {headers: headers, params: params});
+}
 
 }

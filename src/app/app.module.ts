@@ -15,22 +15,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
 import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
-<<<<<<< HEAD
-import { LimitadosComponent } from './componentes/pages/limitados/limitados/limitados.component';
-import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados/clasificados.component';
-=======
 import { LimitadosComponent } from './componentes/pages/limitados/limitados.component';
 import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados.component';
->>>>>>> c7b612128cc0fafacc11414cb8b5ef75f9874eb4
 import { SecretosComponent } from './componentes/pages/secretos/secretos.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
 import { OrdinariosComponent } from './componentes/pages/ordinarios/ordinarios.component';
 import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
-<<<<<<< HEAD
-import { OrdinariosPersonalComponent } from './componentes/pages/ordinarios-personal/ordinarios-personal.component';
-=======
 import { LoadingComponent } from './componentes/loading/loading.component';
->>>>>>> c7b612128cc0fafacc11414cb8b5ef75f9874eb4
+import { OrdinariosPersonalComponent } from './componentes/pages/ordinarios-personal/ordinarios-personal.component';
+import { ModalOrdinarioPersonalComponent } from './modals/modal-ordinario-personal/modal-ordinario-personal.component';
+import { DeleteClasificadosComponent } from './modals/delete-clasificados/delete-clasificados.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,11 +41,11 @@ import { LoadingComponent } from './componentes/loading/loading.component';
     ModalLimitadosComponent,
   ModalSecretosComponent,
   OrdinariosComponent,
-<<<<<<< HEAD
-  OrdinariosPersonalComponent,
-=======
   LoadingComponent,
->>>>>>> c7b612128cc0fafacc11414cb8b5ef75f9874eb4
+  OrdinariosPersonalComponent,
+  ModalOrdinarioPersonalComponent,
+  DeleteClasificadosComponent
+
   ],
   imports: [
     BrowserModule,
