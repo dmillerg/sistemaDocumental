@@ -294,3 +294,8 @@
     opacity: 0;
   }
 }
+
+.contenedor .tablas tr td img{
+width: 60px;
+height: 60px;
+}

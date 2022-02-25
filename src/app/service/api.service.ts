@@ -335,4 +335,20 @@ export class ApiService {
     };
     return this.http.delete(direccion, { headers: headers, params: params });
   }
+
+  //DOCUMENTO FOTO
+  /**
+   * Obtener la foto de un documento
+   * @param id del documento
+   * @param dir dir del documento en el server
+   * @returns 
+   */
+   getDocumentsFoto(id: number = -1, dir: string = '', datatable : string = '') {
+    let direccion = this.url + 'documentsFoto/' + id.toString();
+    let params = {
+      dir: dir,
+      datatable: datatable,
+    }
+    return this.http.get(direccion, { params: params });
+  }
 }

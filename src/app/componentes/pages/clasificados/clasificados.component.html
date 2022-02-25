@@ -16,43 +16,45 @@
    
     <table class="tablas">
         <thead class="head">
-            <td colspan="1"></td>
-            <td colspan="2">id</td>
-            <td colspan="3">no</td>
-            <td colspan="4">fecha</td>
-            <td colspan="5">enviado</td>
-            <td colspan="6">rsb</td>
-            <td colspan="7">rs</td>
-            <td colspan="8">fecha_registro_ctc</td>
-            <td colspan="9">asunto</td>
-            <td colspan="10">doc</td>
-            <td colspan="11">ej</td>
-            <td colspan="12">clasif</td>
-            <td colspan="13">destino</td>
-            <td colspan="14">traslado</td>
-            <td colspan="15">fecha_traslado</td>
-            <td colspan="16">imagen</td>
+            <td></td>
+            <td>id</td>
+            <td>no</td>
+            <td>fecha</td>
+            <td>enviado</td>
+            <td>rsb</td>
+            <td>rs</td>
+            <td>fecha_registro_ctc</td>
+            <td>asunto</td>
+            <td>doc</td>
+            <td>ej</td>
+            <td>clasif</td>
+            <td>destino</td>
+            <td>traslado</td>
+            <td>fecha_traslado</td>
+            <td>imagen</td>
+            <td>acciones</td>
         </thead>
         <app-loading [loading]="loading"></app-loading>
         <p class="server">{{server}}</p>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-            <td colspan="1"><input type="checkbox"></td>
-            <td colspan="2">{{item.id}}</td>
-            <td colspan="3">{{item.no}}</td>
-            <td colspan="4">{{item.fecha}}</td>
-            <td colspan="5">{{item.enviado}}</td>
-            <td colspan="6">{{item.rsb}}</td>
-            <td colspan="7">{{item.rs}}</td>
-            <td colspan="8">{{item.fecha_registro_ctc}}</td>
-            <td colspan="9">{{item.asunto}}</td>
-            <td colspan="10">{{item.doc}}</td>
-            <td colspan="11">{{item.ej}}</td>
-            <td colspan="12">{{item.clasif}}</td>
-            <td colspan="13">{{item.destino}}</td>
-            <td colspan="14">{{item.fecha_traslado}}</td>
-            <td colspan="15">{{item.imagen}}</td>
-            <td colspan="16"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="17"><button class="btn btn-firstcolor" (click)="preguntar()"><i class="bi bi-trash"></i></button></td>
+            <td><input type="checkbox"></td>
+            <td>{{item.id}}</td>
+            <td>{{item.no}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.enviado}}</td>
+            <td>{{item.rsb}}</td>
+            <td>{{item.rs}}</td>
+            <td>{{item.fecha_registro_ctc}}</td>
+            <td>{{item.asunto}}</td>
+            <td>{{item.doc}}</td>
+            <td>{{item.ej}}</td>
+            <td>{{item.clasif}}</td>
+            <td>{{item.destino}}</td>
+            <td>{{item.traslado}}</td>
+            <td>{{item.fecha_traslado}}</td>
+            <td><img [src]="item.imagen" alt=""></td>
+            <td><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
+            <td><button class="btn btn-firstcolor" (click)="preguntar()"><i class="bi bi-trash"></i></button></td>
             
         </tr>
     </table>

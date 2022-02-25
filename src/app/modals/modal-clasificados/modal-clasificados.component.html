@@ -1,7 +1,9 @@
 <div class="form-content">
     <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
-    <div class="image-content">
-        <i class="bi bi-person"></i>
+    <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
+        <i *ngIf="src_documento==''" class="bi bi-person"></i>
+        <img [src]="src_documento" class="img-fluid"> 
+        <input #img type="file" accept="image/*" (change)="fileEvent($event)" hidden>
     </div>
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">

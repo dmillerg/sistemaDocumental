@@ -78,6 +78,9 @@
     overflow-x: hidden;
     left: 0;
     bottom: 60px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .sidebar ul li:hover {
@@ -266,4 +269,8 @@
 .sidebar .sidebar-footer .tooltips {
     opacity: 0;
     transition: all .3s ease;
+}
+
+.sidebar ul li.nav-disable{
+    pointer-events: none;
 }

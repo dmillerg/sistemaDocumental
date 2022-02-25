@@ -181,3 +181,13 @@
     color: red;
     margin-left: 45%;
 }
+
+.transparente{
+    color: transparent;
+    background-color: transparent;
+}
+
+.form-content .image-content img{
+    width: 100%;
+    height: auto;
+}

@@ -70,6 +70,9 @@ export class ModalClasificadosComponent implements OnInit {
     imagen: ''
   }
 
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+
   constructor(private activeModal: NgbActiveModal, private api: ApiService) {
     this.actiModal = activeModal;
   }
@@ -115,6 +118,12 @@ export class ModalClasificadosComponent implements OnInit {
     formData.append('fecha_registro_ctc', this.clasificados.fecha_registro_ctc.toString());
     formData.append('fecha_traslado', this.clasificados.fecha_traslado.toString());
     formData.append('imagen', this.clasificados.imagen.toString());
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
+
 
 
     console.log(this.modalAction)
@@ -135,7 +144,18 @@ export class ModalClasificadosComponent implements OnInit {
         this.actiModal.close('Clasificados');
       })
     }
+  }
 
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 
 
