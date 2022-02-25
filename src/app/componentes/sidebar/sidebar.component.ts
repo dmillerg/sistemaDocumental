@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,49 +23,53 @@ export class SidebarComponent implements OnInit {
       nombre: 'Usuario',
       icono: 'bi bi-person',
       link: 'usuarios',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Clasificados',
       icono: 'bi bi-file-earmark-text',
       link: 'clasificados',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Limitados',
       icono: 'bi bi-file-earmark-richtext',
       link: 'limitados',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ordinarios',
       icono: 'bi bi-file-earmark-zip',
       link: 'ordinarios',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
       link: 'ordinario_personal',
+<<<<<<< HEAD
       permiso: true,
+=======
+      permiso: false,
+>>>>>>> 2fd287d65ecf42bdd7ab5a620935a11b3221a3b2
     },
     {
       active: false,
       nombre: 'Secretos',
       icono: 'bi bi-file-earmark-check',
       link: 'secretos',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ajustes',
       icono: 'bi bi-gear',
       link: 'ajustes',
-      permiso: true,
+      permiso: false,
     },
   ]
 
@@ -80,69 +86,92 @@ export class SidebarComponent implements OnInit {
       nombre: 'Usuario',
       icono: 'bi bi-person',
       link: 'usuarios',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Clasificados',
       icono: 'bi bi-file-earmark-text',
       link: 'clasificados',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Limitados',
       icono: 'bi bi-file-earmark-richtext',
       link: 'limitados',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ordinarios',
       icono: 'bi bi-file-earmark-zip',
       link: 'ordinarios',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
       link: 'ordinario_personal',
+<<<<<<< HEAD
       permiso: true,
+=======
+      permiso: false,
+>>>>>>> 2fd287d65ecf42bdd7ab5a620935a11b3221a3b2
     },
     {
       active: false,
       nombre: 'Secretos',
       icono: 'bi bi-file-earmark-check',
       link: 'secretos',
-      permiso: true,
+      permiso: false,
     },
     {
       active: false,
       nombre: 'Ajustes',
       icono: 'bi bi-gear',
       link: 'ajustes',
-      permiso: true,
+      permiso: false,
     },
   ]
 
   search: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: SessionStorageService, private api: ApiService) { }
 
   ngOnInit(): void {
+    if (this.storage.retrieve('usuario')) {
+      this.loadMenus(true);
+    }
+    this.storage.observe('usuario').subscribe((result) => {
+      this.loadMenus(true);
+    })
+  }
+
+  loadMenus(permiso: boolean = false) {
+    this.menu.forEach((e) => {
+      if (e.link != 'inicio') {
+        e.permiso = permiso;
+      }
+    })
+    this.menus.forEach((e) => {
+      if (e.link != 'inicio') {
+        e.permiso = permiso;
+      }
+    })
   }
 
   toggleSidebar() {
     document.querySelector('.sidebar')?.classList.toggle('active');
     document.querySelector('.content')?.classList.toggle('active');
-    
-    if (document.querySelector('.scrollbar1')?.getAttribute('style')!='width:55px'){
-    document.querySelector('.scrollbar1')?.setAttribute('style','width:55px');
-  }
-    else{
-    document.querySelector('.scrollbar1')?.setAttribute('style','width:220px');
-     }
+
+    if (document.querySelector('.scrollbar1')?.getAttribute('style') != 'width:55px') {
+      document.querySelector('.scrollbar1')?.setAttribute('style', 'width:55px');
+    }
+    else {
+      document.querySelector('.scrollbar1')?.setAttribute('style', 'width:220px');
+    }
   }
 
   changePage(target: any) {
@@ -160,6 +189,15 @@ export class SidebarComponent implements OnInit {
 
   filterMenu() {
     this.menu = this.menus.filter((e) => e.nombre.toLowerCase().includes(this.search.toLowerCase()))
+  }
+
+  logout(){
+    let formData = new FormData();
+    formData.append('id', this.storage.retrieve('usuario').usuario.id);
+    this.api.logout(formData).subscribe((result)=>{
+      this.storage.clear('usuario');
+      this.router.navigate(['inicio']);
+    })
   }
 
 }

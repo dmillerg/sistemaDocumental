@@ -1,0 +1,14 @@
+.container .row * .seccion{
+    width: 100%;
+    height: 300px;
+    border-radius: 1em;
+    box-shadow: 0 0 5px 2px var(--firstcolor-hover-white);
+    padding: 10px;
+    margin: auto;
+    border-left: 40px solid var(--firstcolor-hover);
+    margin-top: 20px;
+}
+
+.container{
+    margin-top: 80px;
+}

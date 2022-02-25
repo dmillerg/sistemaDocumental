@@ -16,13 +16,13 @@
         <button class="btn-search"><i class="bi bi-search"></i></button>
     </div>
     <ul class="scrollbar1" id="style-2">
-        <li *ngFor="let item of menu" [ngClass]="{'active': item.active}" (click)="changePage(item)">
-            <i [class]="item.icono"></i>
-            <span>{{item.nombre}}</span>
-            <div class="tooltips">{{item.nombre}}</div>
+        <li *ngFor="let item of menu" [ngClass]="{'active': item.active}" (click)="changePage(item)" >
+            <i *ngIf="item.permiso" [class]="item.icono"></i>
+            <span *ngIf="item.permiso">{{item.nombre}}</span>
+            <div *ngIf="item.permiso" class="tooltips">{{item.nombre}}</div>
         </li>
     </ul>
-    <div class="sidebar-footer" id="foot">
+    <div class="sidebar-footer" id="foot" (click)="logout()">
         <i class="bi bi-box-arrow-left" style="color: white;"></i>
         <span id="spn">Logout</span>
         <div class="tooltips">Cerrar Sesión</div>
