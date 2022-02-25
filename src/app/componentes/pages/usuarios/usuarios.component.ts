@@ -4,6 +4,7 @@ import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-
 import { ModalUsuarioComponent } from 'src/app/modals/modal-usuario/modal-usuario.component';
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/service/api.service';
+import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -74,6 +75,15 @@ export class UsuariosComponent implements OnInit {
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e)=>{
+      this.loadUsuarios();
+    })
+  }
+
+  deleteUsuario() {
+    let modal = this.modalService.open(DeleteClasificadosComponent);
+    modal.componentInstance.modalHeader = "Usuarios";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.result.then((e) => {
       this.loadUsuarios();
     })
   }

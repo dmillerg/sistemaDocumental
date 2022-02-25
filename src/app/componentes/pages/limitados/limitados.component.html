@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -10,7 +10,7 @@
             <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
          </div>
-    <table class="tablas">
+    <table class="tablas" id="ta" name="tabb">
         <thead class="head">
             <td colspan="1"></td>
             <td colspan="2">id</td>
@@ -41,7 +41,7 @@
             <td colspan="11">{{item.observacion}}</td>
             <td colspan="12">{{item.imagen}}</td>
             <td colspan="13"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="14"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+            <td colspan="14"><button (click)="deleteLimitados()" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
      
         </tr>
     </table>

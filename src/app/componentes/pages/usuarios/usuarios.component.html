@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -27,7 +27,7 @@
             <td colspan="4">{{item.nombre}}</td>
             <td colspan="5">{{item.fecha_registro}}</td>
             <td colspan="6"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="7"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+            <td colspan="7"><button (click)="deleteUsuario()" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
      
         </tr>
     </table>

@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -33,7 +33,7 @@
             <td colspan="8">{{item.procedencia}}</td>
             <td colspan="9">{{item.imagen}}</td>
             <td colspan="10"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="11"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+            <td colspan="11"><button (click)="deleteOrdinariosP()" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
      
         </tr>
     </table>

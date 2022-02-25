@@ -51,11 +51,7 @@ export class SidebarComponent implements OnInit {
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
       link: 'ordinario_personal',
-<<<<<<< HEAD
-      permiso: true,
-=======
       permiso: false,
->>>>>>> 2fd287d65ecf42bdd7ab5a620935a11b3221a3b2
     },
     {
       active: false,
@@ -114,11 +110,7 @@ export class SidebarComponent implements OnInit {
       nombre: 'Ordinarios Personal',
       icono: 'bi bi-file-earmark-binary',
       link: 'ordinario_personal',
-<<<<<<< HEAD
-      permiso: true,
-=======
       permiso: false,
->>>>>>> 2fd287d65ecf42bdd7ab5a620935a11b3221a3b2
     },
     {
       active: false,

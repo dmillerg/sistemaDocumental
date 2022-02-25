@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
+import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
 @Component({
   selector: 'app-secretos',
   templateUrl: './secretos.component.html',
@@ -86,4 +87,12 @@ export class SecretosComponent implements OnInit {
     })
   }
 
+  deleteSecretos() {
+    let modal = this.modalService.open(DeleteClasificadosComponent);
+    modal.componentInstance.modalHeader = "Secretos";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.result.then((e) => {
+      this.loadSecretos();
+    })
+  }
 }

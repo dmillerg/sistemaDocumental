@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 import { Limitados } from 'src/app/models/limitados.service';
 import { ApiService } from 'src/app/service/api.service';
+import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
 
 @Component({
   selector: 'app-limitados',
@@ -89,6 +90,30 @@ export class LimitadosComponent implements OnInit {
     modal.result.then((e)=>{
       this.loadLimitados();
     })
+  }
+
+  deleteLimitados() {
+    let modal = this.modalService.open(DeleteClasificadosComponent);
+    modal.componentInstance.modalHeader = "Limitados";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.result.then((e) => {
+      this.delete();
+  //    this.loadLimitados();
+    })
+  }
+
+  delete(){
+   // document.getElementsByName('tabb').item(1).remove();
+
+   /* var tableHeaderRowCount = 1;
+    var table = document.getElementById('ta');
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+        table.deleteRow(tableHeaderRowCount);
+    }
+*/
+//document.querySelectorAll(".table").forEach(function(e){e.remove()});
+
   }
 
 }

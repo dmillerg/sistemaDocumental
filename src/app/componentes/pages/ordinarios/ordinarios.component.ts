@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
-
+import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
 
 
 @Component({
@@ -98,5 +98,13 @@ export class OrdinariosComponent implements OnInit {
     })
   }
 
+  deleteOrdinarios() {
+    let modal = this.modalService.open(DeleteClasificadosComponent);
+    modal.componentInstance.modalHeader = "Ordinarios";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.result.then((e) => {
+      this.loadOrdinarios();
+    })
+  }
 
 }
