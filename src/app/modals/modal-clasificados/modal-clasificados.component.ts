@@ -79,9 +79,12 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rellenarSiEditas();
   }
 
   rellenarSiEditas() {
+    console.log('Hellos', this.clasificados.imagen)
+    console.log(this.modalAction == 'Editar')
     if (this.modalHeader == 'Editar') {
       this.clasificados_pasado.id = this.clasificados.id;
       this.clasificados_pasado.no = this.clasificados.no;
@@ -99,8 +102,9 @@ export class ModalClasificadosComponent implements OnInit {
       this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
       this.clasificados_pasado.imagen = this.clasificados.imagen;
  
-      this.src_documento=this.clasificados.imagen;
-      console.log(this.src_documento+"ffffff");
+      this.src_documento = this.clasificados.imagen;
+      console.log(this.src_documento, 'ass');
+      
     }
   }
 
@@ -161,7 +165,8 @@ export class ModalClasificadosComponent implements OnInit {
     this.uploadFiles = fileInput.target.files;
     const reader = new FileReader();
     reader.onload = () => {
-      this.src_documento = reader.result as string;
+      this.clasificados.imagen = reader.result as string;
+
     }
     reader.readAsDataURL(file);
   }
