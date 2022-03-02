@@ -3,7 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
-import { DeleteClasificadosComponent } from 'src/app/modals/delete-clasificados/delete-clasificados.component';
+import { DeleteComponent } from 'src/app/modals/delete/delete.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-secretos',
   templateUrl: './secretos.component.html',
@@ -65,6 +66,10 @@ export class SecretosComponent implements OnInit {
       }
       this.secretos = result;
       this.loading = false;
+      this.secretos.forEach((e) => {
+        console.log(e);
+        this.getDocumentFoto(e);
+      })
     });
   }
 
@@ -87,10 +92,32 @@ export class SecretosComponent implements OnInit {
     })
   }
 
-  deleteSecretos() {
-    let modal = this.modalService.open(DeleteClasificadosComponent);
+  
+  editSecretos(item:Secreto){
+    let modal = this.modalService.open(ModalSecretosComponent);
+    modal.componentInstance.modalHeader = "Secretos";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.usuario = item;
+    modal.result.then((e)=>{
+      this.loadSecretos();
+    })
+  }
+
+
+  getDocumentFoto(e: Secreto) {
+    this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_secretos/', 'documento_secreto').subscribe((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error.url);
+      e.imagen = error.url
+    });
+  }
+
+  deleteSecretos(idd:number) {
+    let modal = this.modalService.open(DeleteComponent);
     modal.componentInstance.modalHeader = "Secretos";
     modal.componentInstance.modalAction = "Eliminar";
+    modal.componentInstance.id = idd;
     modal.result.then((e) => {
       this.loadSecretos();
     })

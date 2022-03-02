@@ -1,9 +1,9 @@
 <div class="form-content">
     <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
-    <div class="image-content" onclick="loadImage()">
-        <i class="bi bi-file-earmark-arrow-up"></i>
-        <input type="file" name="file" id="seleccionArchivos" accept="image/*"/>
-   <img id="imagenPrevisualizacion">
+    <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
+        <i *ngIf="src_documento==''" class="bi bi-file-earmark-arrow-up"></i>
+        <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" class="img-fluid"> 
+        <input #img type="file" accept="image/*" (change)="fileEvent($event)" hidden>
     </div>
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
@@ -68,14 +68,9 @@
             <input type="text" class="in" name="observacion" id="observacion" placeholder="observacion" [(ngModel)]="limitados.observacion">
         </div>
 
-        <div class="input-content">
-            <label for="limitados">Imagen</label>
-            <i class="bi bi-image-fill prefix"></i>
-            <input type="text" class="in" name="imagen" id="imagen" [(ngModel)]="limitados.imagen">
-                  </div>
              
                 </div>
-        <button class="btn btn-firstcolor" (click)="addUpdateLimitados()"> Agregar</button>
+        <button class="btn btn-firstcolor" (click)="addUpdateLimitados()"> {{modalAction}}</button>
                
     </form>
 </div>

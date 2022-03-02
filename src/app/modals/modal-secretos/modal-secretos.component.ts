@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
 import { SecretosComponent } from 'src/app/componentes/pages/secretos/secretos.component';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-modal-secretos',
   templateUrl: './modal-secretos.component.html',
@@ -51,7 +52,10 @@ export class ModalSecretosComponent implements OnInit {
     imagen:'',
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+  
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -95,28 +99,49 @@ export class ModalSecretosComponent implements OnInit {
     formData.append('destino', this.secretos.destino.toString());
     formData.append('comp', this.secretos.comp.toString());
     formData.append('imagen', this.secretos.imagen.toString());
-
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
 
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateSecretos(formData, this.secretos.id).subscribe((result) => {
         this.actiModal.close('Secretos');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
+        
       }, (error) => {
         this.actiModal.close('Secretos');
         console.log(error);
+        this.lib.error('No se pudo editar','Error');
       });
     } else {
       this.api.addSecretos(formData).subscribe((result) => {
         this.actiModal.close('Secretos');
         console.log(result);
+        this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Secretos');
+        this.lib.error('No se pudo agregar','Error');
       })
       
     }
 
+  }
+
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 
 }

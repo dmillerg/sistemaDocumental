@@ -66,7 +66,7 @@ export class ApiService {
    */
   updateUsuario(formData: FormData, id: number = -1) {
     let direccion = this.url + 'usuarios/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -116,7 +116,7 @@ export class ApiService {
   updateClasificados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'clasificado/' + id.toString();
 
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('clasificado').token);
     return this.http.put(direccion, formData);
   }
 
@@ -171,7 +171,7 @@ export class ApiService {
    */
   updateLimitados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'limitado/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('limitado').token);
     return this.http.put(direccion, formData);
   }
 
@@ -220,7 +220,7 @@ export class ApiService {
    */
   updateSecretos(formData: FormData, id: number = -1) {
     let direccion = this.url + 'secreto/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('secreto').token);
     return this.http.put(direccion, formData);
   }
 
@@ -269,7 +269,7 @@ export class ApiService {
    */
   updateOrdinarios(formData: FormData, id: number = -1) {
     let direccion = this.url + 'ordinario/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('ordinario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -317,7 +317,7 @@ addOrdinariosP(formData: FormData) {
  */
 updateOrdinariosP(formData: FormData, id: number = -1) {
   let direccion = this.url + 'ordinariopersonal/' + id.toString();
-  formData.append('token', this.storage.retrieve('token'));
+  formData.append('token', this.storage.retrieve('ordinariopersonal').token);
   return this.http.put(direccion, formData);
 }
 
@@ -339,4 +339,20 @@ deleteOrdinariosP(id: number = -1) {
   
 
 
+
+  //DOCUMENTO FOTO
+  /**
+   * Obtener la foto de un documento
+   * @param id del documento
+   * @param dir dir del documento en el server
+   * @returns 
+   */
+   getDocumentsFoto(id: number = -1, dir: string = '', datatable : string = '') {
+    let direccion = this.url + 'documentsFoto/' + id.toString();
+    let params = {
+      dir: dir,
+      datatable: datatable,
+    }
+    return this.http.get(direccion, { params: params });
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Clasificados } from 'src/app/models/clasificados.service';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -70,7 +71,10 @@ export class ModalClasificadosComponent implements OnInit {
     imagen: ''
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -94,6 +98,9 @@ export class ModalClasificadosComponent implements OnInit {
       this.clasificados_pasado.traslado = this.clasificados.traslado;
       this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
       this.clasificados_pasado.imagen = this.clasificados.imagen;
+ 
+      this.src_documento=this.clasificados.imagen;
+      console.log(this.src_documento+"ffffff");
     }
   }
 
@@ -115,6 +122,12 @@ export class ModalClasificadosComponent implements OnInit {
     formData.append('fecha_registro_ctc', this.clasificados.fecha_registro_ctc.toString());
     formData.append('fecha_traslado', this.clasificados.fecha_traslado.toString());
     formData.append('imagen', this.clasificados.imagen.toString());
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
+
 
 
     console.log(this.modalAction)
@@ -122,20 +135,35 @@ export class ModalClasificadosComponent implements OnInit {
       this.api.updateClasificados(formData, this.clasificados.id).subscribe((result) => {
         this.actiModal.close('Clasificados');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
       }, (error) => {
         this.actiModal.close('Clasificados');
+        this.lib.error('No se pudo editar','Error');
         console.log(error);
       });
     } else {
       this.api.addClasificados(formData).subscribe((result) => {
         this.actiModal.close('Clasificados');
         console.log(result);
+        this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Clasificados');
+        this.lib.error('No se pudo agregar','Error');
       })
     }
+  }
 
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 
 

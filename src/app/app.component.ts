@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Login } from './models/login';
 
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
+   
     if (this.storage.retrieve('usuario')) {
       this.login = this.storage.retrieve('usuario');
     }
@@ -53,7 +55,7 @@ export class AppComponent implements OnInit {
   }
 
   themeChange() {
-    if (this.mode) {
+    if (!this.mode) {
       document.querySelectorAll(".ligth").forEach((e) => {
         e.classList.remove("ligth");
         e.classList.add("dark");

@@ -2,11 +2,11 @@
     <router-outlet></router-outlet>
 </div>
 <div class="sidebar">
-    <div class="burbuja"></div>
-    <div class="burbuja-2"></div>
+   <!-- <div class="burbuja"></div>
+    <div class="burbuja-2"></div>-->
     <div class="sidebar-header">
-        <div class="logo">
-            <i class="bi bi-emoji-smile"></i>
+        <div class="logo" >
+            <img width="50" height="50" style="margin-left: auto; margin-right: auto;" src="assets/img/ctc1.png"/>
             <span>Sistema Documental</span>
         </div>
         <button id="btn" class="btn" (click)="toggleSidebar()"><i class="bi bi-list"></i></button>
@@ -16,7 +16,7 @@
         <button class="btn-search"><i class="bi bi-search"></i></button>
     </div>
     <ul class="scrollbar1" id="style-2">
-        <li *ngFor="let item of menu" [ngClass]="{'active': item.active}" (click)="changePage(item)" >
+        <li *ngFor="let item of menu" [ngClass]="{'active': item.active, 'nav-disable' : !item.permiso}" (click)="changePage(item)" >
             <i *ngIf="item.permiso" [class]="item.icono"></i>
             <span *ngIf="item.permiso">{{item.nombre}}</span>
             <div *ngIf="item.permiso" class="tooltips">{{item.nombre}}</div>

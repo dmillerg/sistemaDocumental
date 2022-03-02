@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { OrdinariosPersonalComponent } from 'src/app/componentes/pages/ordinarios-personal/ordinarios-personal.component';
 import { Ordinario_personal } from 'src/app/models/ordinario.model.personal';
 import { ApiService } from 'src/app/service/api.service';
@@ -38,7 +39,11 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       imagen: '',
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+
+  
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -68,30 +73,53 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     formData.append('archivo', this.ordinario_personal.archivo.toString());
     formData.append('destino', this.ordinario_personal.destino.toString());
     formData.append('imagen', this.ordinario_personal.imagen.toString());
-
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
 
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateOrdinariosP(formData, this.ordinario_personal.id).subscribe((result) => {
         this.actiModal.close('Ordinario_personal');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
       }, (error) => {
         this.actiModal.close('Ordinario_personal');
         console.log(error);
+        this.lib.error('No se pudo editar','Error');
+
       });
     } else {
       
       this.api.addOrdinariosP(formData).subscribe((result) => {
         this.actiModal.close('Ordinario_personal');
         console.log(result);
+        this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Ordinario_personal');
+        this.lib.error('No se pudo agregar','Error');
       })
       
     }
 
+
   }
+
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
+  }
+
 
 
 }

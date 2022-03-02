@@ -6,7 +6,7 @@
         </div>
         <p class="text-oscuro">Ordinarios Personal registrados en el sistema</p>
  
-        <button id="newDoc" class="btn-firstcolor btn" (click)="addOrdinariosP()">Nuevo Documento 
+        <button id="newDoc" class="btn-firstcolor btn" (click)="addOrdinariosP()"  style="height: 55px;">Nuevo Documento 
             <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
          </div>
@@ -31,9 +31,10 @@
             <td colspan="6">{{item.asunto}}</td>
             <td colspan="7">{{item.destino}}</td>
             <td colspan="8">{{item.procedencia}}</td>
-            <td colspan="9">{{item.imagen}}</td>
-            <td colspan="10"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="11"><button (click)="deleteOrdinariosP()" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+            <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
+            
+            <td colspan="10"><button class="btn btn-firstcolor" (click)="editOrdinariosP(item)"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="11"><button (click)="deleteOrdinariosP(item.id)" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
      
         </tr>
     </table>

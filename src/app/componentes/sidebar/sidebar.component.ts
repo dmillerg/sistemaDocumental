@@ -137,7 +137,9 @@ export class SidebarComponent implements OnInit {
       this.loadMenus(true);
     }
     this.storage.observe('usuario').subscribe((result) => {
-      this.loadMenus(true);
+      if (this.storage.retrieve('usuario')) {
+        this.loadMenus(true);
+      }else this.loadMenus(false);
     })
   }
 
