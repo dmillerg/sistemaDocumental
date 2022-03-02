@@ -31,7 +31,7 @@ export class DetailbarComponent implements OnInit {
     this.data_detail = d.split(',')
     this.data_detail = this.data_detail.filter((e) => {
       if (e.includes('fecha')) {
-        console.log(e.substring(e.indexOf(':') + 2, e.length))
+        // console.log(e.substring(e.indexOf(':') + 2, e.length))
         let ad = e.substring(e.indexOf(':') + 2, e.length)
         // console.log(ad);
         e = Date.parse(ad).toLocaleString('en-US');
