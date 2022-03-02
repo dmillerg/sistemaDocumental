@@ -16,7 +16,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  
+  errorN: string="";
 
   ordinario_personal: Ordinario_personal = {
       id: -1,
@@ -64,6 +64,12 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   }
 
   addUpdateOrdinariosP() {
+
+    this.api.getOrdinariosP().subscribe((result) => {
+    
+      if( result.filter((n)=>n.no==this.ordinario_personal.no).length<=0)
+        {
+
     let formData = new FormData();
     formData.append('id', this.ordinario_personal.id.toString());
     formData.append('no', this.ordinario_personal.no.toString());
@@ -104,9 +110,14 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       })
       
     }
-
-
   }
+  else{
+
+    this.errorN ="El numero introducido ya existe";
+}    
+    
+})
+}
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

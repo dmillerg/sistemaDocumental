@@ -8,17 +8,18 @@
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
           
-        <div class="input-content">
+        <!-- <div class="input-content">
             
             <label for="ordinarios">Id</label>
             <i class="bi bi-person prefix"></i>
             <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="ordinarios.id">
-        </div>
+        </div>-->
 
         <div class="input-content">
             <label for="ordinarios">No</label>
             <i class="bi bi-123 prefix"></i>
             <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinarios.no">
+            <p style="color: red;">{{errorN}}</p>
         </div>
    
         <div class="input-content">

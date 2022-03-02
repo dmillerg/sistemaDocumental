@@ -116,7 +116,7 @@ export class ApiService {
   updateClasificados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'clasificado/' + id.toString();
 
-    formData.append('token', this.storage.retrieve('clasificado').token);
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -171,7 +171,7 @@ export class ApiService {
    */
   updateLimitados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'limitado/' + id.toString();
-    formData.append('token', this.storage.retrieve('limitado').token);
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -220,7 +220,7 @@ export class ApiService {
    */
   updateSecretos(formData: FormData, id: number = -1) {
     let direccion = this.url + 'secreto/' + id.toString();
-    formData.append('token', this.storage.retrieve('secreto').token);
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -269,7 +269,7 @@ export class ApiService {
    */
   updateOrdinarios(formData: FormData, id: number = -1) {
     let direccion = this.url + 'ordinario/' + id.toString();
-    formData.append('token', this.storage.retrieve('ordinario').token);
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -317,7 +317,7 @@ addOrdinariosP(formData: FormData) {
  */
 updateOrdinariosP(formData: FormData, id: number = -1) {
   let direccion = this.url + 'ordinariopersonal/' + id.toString();
-  formData.append('token', this.storage.retrieve('ordinariopersonal').token);
+  formData.append('token', this.storage.retrieve('usuario').token);
   return this.http.put(direccion, formData);
 }
 

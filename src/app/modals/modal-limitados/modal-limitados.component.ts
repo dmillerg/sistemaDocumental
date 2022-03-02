@@ -14,7 +14,7 @@ export class ModalLimitadosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  
+  errorN: string="";
 
   limitados: Limitados = {
     id: -1,
@@ -71,6 +71,12 @@ export class ModalLimitadosComponent implements OnInit {
   }
 
   addUpdateLimitados() {
+
+    this.api.getLimitados().subscribe((result) => {
+    
+      if( result.filter((n)=>n.no==this.limitados.no).length<=0)
+        {
+
     let formData = new FormData();
     formData.append('id', this.limitados.id.toString());
     formData.append('no', this.limitados.no.toString());
@@ -112,8 +118,14 @@ export class ModalLimitadosComponent implements OnInit {
         this.lib.error('No se pudo agregar','Error');
       })
     }
-
   }
+  else{
+
+    this.errorN ="El numero introducido ya existe";
+  }
+})
+   
+}
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

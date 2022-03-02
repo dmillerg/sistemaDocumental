@@ -15,7 +15,7 @@ export class ModalUsuarioComponent implements OnInit {
   modalAction: string = '';
   hide_pass: boolean = false;
   hide_password: boolean = false;
-
+  errorN: string="";
   usuario: Usuario = {
     id: -1,
     usuario: '',

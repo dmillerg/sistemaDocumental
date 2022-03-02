@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-clasificados',
   templateUrl: './clasificados.component.html',
@@ -36,7 +37,7 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
-  constructor(private api: ApiService, private modalService: NgbModal) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
     this.loadClasificados();
@@ -105,6 +106,39 @@ export class ClasificadosComponent implements OnInit {
     modal.result.then((e) => {
       this.loadClasificados();
     })
+  }
+
+  deleteAll() {
+   
+    var seleccionados = [], ids = [];
+    var i=0, j=0;
+
+      
+          var value;
+
+     /*     for (let val of document.querySelector('#tablas').){
+       seleccionados[i]= val;
+       i++;
+          }
+    
+       for (let val of seleccionados){
+          if(val==true){
+            ids[j] = 7;   ///Poner posicion
+            j++;
+          }
+       }
+    
+       if(ids.length>0){
+
+       for (let idd of ids)
+        this.api.deleteClasificados(idd).subscribe(result=>{ });
+  
+    this.lib.success('Eliminados con exito!','Eliminar');
+
+       }
+       else{
+        this.lib.info('Debe seleccionar un elemento','No es posible');
+       }*/
   }
 
 
