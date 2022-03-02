@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -6,7 +6,7 @@
         </div>
         <p class="text-oscuro">Usuarios registrados en el sistema</p>
   
-        <button id="newUser" class="btn btn-firstcolor" (click)="addUsuario()">Nuevo Usuario 
+        <button id="newUser" class="btn btn-firstcolor" (click)="addUsuario()"  style="height: 55px;">Nuevo Usuario 
         <i style="margin:5px; font-size: 20px;" class="bi bi-person-plus"></i>
         </button>
          </div>
@@ -16,6 +16,7 @@
             <td colspan="2">id</td>
             <td colspan="3">usuario</td>
             <td colspan="4">nombre</td>
+            <td colspan="4">rol</td>
             <td colspan="5">fecha registro</td>
             <td colspan="6">acciones</td>
         </thead>
@@ -25,9 +26,10 @@
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.usuario}}</td>
             <td colspan="4">{{item.nombre}}</td>
+            <td colspan="4">{{item.rol}}</td>
             <td colspan="5">{{item.fecha_registro}}</td>
-            <td colspan="6"><button class="btn btn-firstcolor"><i class="bi bi-pencil"></i></button></td>
-            <td colspan="7"><button class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
+            <td colspan="6"><button class="btn btn-firstcolor" (click)="editUsuario(item)"><i class="bi bi-pencil"></i></button></td>
+            <td colspan="7"><button (click)="deleteUsuario(item.id)" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
      
         </tr>
     </table>

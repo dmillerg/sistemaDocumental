@@ -1,14 +1,14 @@
 <app-sidebar></app-sidebar>
-<button class="btn btn-fab" (click)="themeChange()">
+<button class="btn btn-fab" (click)="themeChange()" style="width:50px; height:50px;background-color: rgb(128, 5, 5); box-shadow: 0 0 5px 1px rgb(37, 2, 2);">
     <i *ngIf="mode" class="bi bi-brightness-low"></i>
-    <i *ngIf="!mode" class="bi bi-moon"></i>
+    <i *ngIf="!mode" class="bi bi-moon" ></i>
 </button>
 
-<div class="user-data" (click)="loginPage()">
+<div class="user-data" (click)="loginPage()" style="cursor:pointer;">
     <div class="text-content">
         <p class="user">{{login.usuario.nombre}}</p>
         <p class="date">{{login.usuario.rol}}</p>
     </div>
-    <div class="image-content"><i class="bi bi-person"></i></div>
+    <div class="image-content" style="background-color: rgb(161, 2, 2)"><i class="bi bi-person"></i></div>
     
 </div>

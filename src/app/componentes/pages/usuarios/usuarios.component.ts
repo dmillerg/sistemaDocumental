@@ -4,6 +4,7 @@ import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-
 import { ModalUsuarioComponent } from 'src/app/modals/modal-usuario/modal-usuario.component';
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/service/api.service';
+import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -45,6 +46,7 @@ export class UsuariosComponent implements OnInit {
 
   loading: boolean = false;
 
+  server: string = '';
   constructor(private api: ApiService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
@@ -56,7 +58,12 @@ export class UsuariosComponent implements OnInit {
     this.api.getUsuarios().subscribe((result)=>{
       this.usuarios = result;
       this.loading = false;
+      this.usuarios.forEach((e) => {
+        console.log(e);
+      })
     })
+
+
   }
 
   detailToggle(item: Usuario) {
@@ -74,6 +81,26 @@ export class UsuariosComponent implements OnInit {
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e)=>{
+      this.loadUsuarios();
+    })
+  }
+
+  editUsuario(item:Usuario){
+    let modal = this.modalService.open(ModalUsuarioComponent);
+    modal.componentInstance.modalHeader = "Usuarios";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.usuario = item;
+    modal.result.then((e)=>{
+      this.loadUsuarios();
+    })
+  }
+
+  deleteUsuario(idd:number) {
+    let modal = this.modalService.open(DeleteComponent);
+    modal.componentInstance.modalHeader = "Usuarios";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.componentInstance.id = idd;
+    modal.result.then((e) => {
       this.loadUsuarios();
     })
   }

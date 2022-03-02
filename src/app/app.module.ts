@@ -24,7 +24,9 @@ import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordina
 import { LoadingComponent } from './componentes/loading/loading.component';
 import { OrdinariosPersonalComponent } from './componentes/pages/ordinarios-personal/ordinarios-personal.component';
 import { ModalOrdinarioPersonalComponent } from './modals/modal-ordinario-personal/modal-ordinario-personal.component';
-import { InicioComponent } from './componentes/pages/inicio/inicio.component';
+import { DeleteComponent } from './modals/delete/delete.component';
+import { ToastrModule } from 'ngx-toastr';
+import{ LayoutModule} from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,7 @@ import { InicioComponent } from './componentes/pages/inicio/inicio.component';
   LoadingComponent,
   OrdinariosPersonalComponent,
   ModalOrdinarioPersonalComponent,
-  InicioComponent
+  DeleteComponent
 
   ],
   imports: [
@@ -55,6 +57,8 @@ import { InicioComponent } from './componentes/pages/inicio/inicio.component';
     BrowserAnimationsModule,
     NgxWebstorageModule.forRoot(),
     NgbModule,
+   LayoutModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

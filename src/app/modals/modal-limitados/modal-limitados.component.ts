@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Limitados } from 'src/app/models/limitados.service';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -43,7 +44,10 @@ export class ModalLimitadosComponent implements OnInit {
     imagen: ''
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -79,6 +83,11 @@ export class ModalLimitadosComponent implements OnInit {
     formData.append('expediente', this.limitados.expediente.toString());
     formData.append('observacion', this.limitados.observacion.toString());
     formData.append('imagen', this.limitados.imagen.toString());
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
 
 
     console.log(this.modalAction)
@@ -86,24 +95,36 @@ export class ModalLimitadosComponent implements OnInit {
       this.api.updateLimitados(formData, this.limitados.id).subscribe((result) => {
         this.actiModal.close('Limitados');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
       }, (error) => {
         this.actiModal.close('Limitados');
         console.log(error);
+        this.lib.error('No se pudo editar','Error');
       });
     } else {
       this.api.addLimitados(formData).subscribe((result) => {
         this.actiModal.close('Limitados');
+        this.lib.success('Agregado con exito!','Agregar');
         console.log(result);
       }, (error) => {
         console.log(error);
         this.actiModal.close('Limitados');
+        this.lib.error('No se pudo agregar','Error');
       })
     }
 
   }
 
-  loadImage() {
-    
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 }
 

@@ -1,8 +1,8 @@
 <div class="form-content">
     <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
-    <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
-        <i *ngIf="src_documento==''" class="bi bi-person"></i>
-        <img [src]="src_documento" class="img-fluid"> 
+    <div (click)="img.click()" [ngClass]="{'transparente': clasificados.imagen!='', 'image-content': clasificados.imagen==''}">
+        <i *ngIf="clasificados.imagen==''" class="bi bi-person"></i>
+        <img style="width:150px; height:150px; margin-top:10px;" [src]="clasificados.imagen" class="img-fluid"> 
         <input #img type="file" accept="image/*" (change)="fileEvent($event)" hidden>
     </div>
     <form action="" class="form-complete">
@@ -98,14 +98,9 @@
             <input type="text" class="in" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
         </div>
 
-        <div class="input-content">
-            <label for="clasificados">Imagen</label>
-            <i class="bi bi-image-fill prefix"></i>
-            <input type="text" class="in" name="imagen" id="imagen" [(ngModel)]="clasificados.imagen">
-                  </div>
              
                 </div>
-        <button class="btn btn-firstcolor" (click)="addUpdateClasificados()"> Agregar</button>
+        <button class="btn btn-firstcolor" (click)="addUpdateClasificados()"> {{modalAction}}</button>
                
     </form>
 </div>

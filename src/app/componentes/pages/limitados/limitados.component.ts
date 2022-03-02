@@ -3,6 +3,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 import { Limitados } from 'src/app/models/limitados.service';
 import { ApiService } from 'src/app/service/api.service';
+import { DeleteComponent } from 'src/app/modals/delete/delete.component';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-limitados',
@@ -69,6 +72,10 @@ export class LimitadosComponent implements OnInit {
       }
       this.limitados = result;
       this.loading = false;
+      this.limitados.forEach((e) => {
+        console.log(e);
+        this.getDocumentFoto(e);
+      })
     })
   }
 
@@ -89,6 +96,35 @@ export class LimitadosComponent implements OnInit {
     modal.result.then((e)=>{
       this.loadLimitados();
     })
+  }
+
+  editLimitados(item:Limitados){
+    let modal = this.modalService.open(ModalLimitadosComponent);
+    modal.componentInstance.modalHeader = "Limitados";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.usuario = item;
+    modal.result.then((e)=>{
+      this.loadLimitados();
+    })
+  }
+
+  deleteLimitados(idd: number) {
+    let modal = this.modalService.open(DeleteComponent);
+    modal.componentInstance.modalHeader = "Limitados";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.componentInstance.id = idd;
+    modal.result.then((e) => {
+      this.loadLimitados();
+    })
+  }
+
+  getDocumentFoto(e: Limitados) {
+    this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_limitados/', 'documento_limitado').subscribe((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error.url);
+      e.imagen = error.url
+    });
   }
 
 }

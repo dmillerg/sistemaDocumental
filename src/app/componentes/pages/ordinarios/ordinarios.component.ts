@@ -3,7 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
-
+import { DeleteComponent } from 'src/app/modals/delete/delete.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -76,8 +77,24 @@ export class OrdinariosComponent implements OnInit {
       }
       this.ordinarios = result;
       this.loading = false;
+      this.ordinarios.forEach((e) => {
+        console.log(e);
+        this.getDocumentFoto(e);
+      })
+
+      
     })
   }
+
+  getDocumentFoto(e: Ordinarios) {
+    this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_ordinarios/', 'documento_ordinario').subscribe((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error.url);
+      e.imagen = error.url
+    });
+  }
+
 
   detailToggle(item: Ordinarios) {
     if (this.selected == item) {
@@ -94,6 +111,26 @@ export class OrdinariosComponent implements OnInit {
     modal.componentInstance.modalHeader = "Ordinarios";
     modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e)=>{
+      this.loadOrdinarios();
+    })
+  }
+
+  editOrdinarios(item:Ordinarios){
+    let modal = this.modalService.open(ModalOrdinariosComponent);
+    modal.componentInstance.modalHeader = "Ordinarios";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.usuario = item;
+    modal.result.then((e)=>{
+      this.loadOrdinarios();
+    })
+  }
+
+  deleteOrdinarios(idd: number) {
+    let modal = this.modalService.open(DeleteComponent);
+    modal.componentInstance.modalHeader = "Ordinarios";
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.componentInstance.id = idd;
+    modal.result.then((e) => {
       this.loadOrdinarios();
     })
   }

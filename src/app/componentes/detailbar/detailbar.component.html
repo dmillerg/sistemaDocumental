@@ -1,9 +1,9 @@
-<div class="detail-content">
-    <div class="image-content">
+<div class="detail-content" >
+    <div class="image-content" >
     <img [src]="data.imagen" alt="" class="img-fluid">
     </div>
-    <div class="detail-descripcion">
-        <ul *ngFor="let item of convertirData(data)">
+    <div class="detail-descripcion" >
+        <ul *ngFor="let item of convertirData(data)" >
             <li>{{item}}</li>
             <li>{{!item.includes('hora') ? item : item | date: 'EEEE, MMMM, dd, YYYY - hh:mm a'}}</li>
         </ul>

@@ -81,6 +81,7 @@
 }
 
 .contenedor .title-page p{
-    color: var(--firstcolor-hover);
+    color: rgb(161, 6, 6);
     font-size: 15px;
 }
+

@@ -5,8 +5,8 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: var(--firstcolor-hover);
-    box-shadow: 0 0 5px 1px var(--firstcolor-hover-white);
+    background-color: rgb(196, 29, 29);
+    box-shadow: 0 0 5px 1px rgb(37, 2, 2);
 }
 
 .user-data .image-content{
@@ -17,7 +17,7 @@
     right: 0;
     max-width: 50px;
     background-color: var(--firstcolor);
-    box-shadow: 0 0 10px 2px var(--firstcolor-hover-white);
+    box-shadow: 0 0 10px 2px rgb(37, 2, 2);
     border-radius: 25px;
     display: flex;
     align-items: center;

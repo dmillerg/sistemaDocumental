@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -37,7 +38,8 @@ export class ModalUsuarioComponent implements OnInit {
     rol: ''
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -64,22 +66,28 @@ export class ModalUsuarioComponent implements OnInit {
     formData.append('nombre', this.usuario.nombre.toString());
     formData.append('rol', this.usuario.rol.toString());
 
-    console.log(this.modalAction)
+
+    console.log(this.modalAction);
+    console.log(this.modalAction == "Editar");
     if (this.modalAction == "Editar") {
       this.api.updateUsuario(formData, this.usuario.id).subscribe((result) => {
         this.actiModal.close('Usuarios');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
       }, (error) => {
         this.actiModal.close('Usuarios');
+        this.lib.error('No se pudo editar','Error');
         console.log(error);
       });
     } else {
       this.api.addUsuario(formData).subscribe((result) => {
         this.actiModal.close('Usuarios');
         console.log(result);
+        this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Usuarios');
+        this.lib.error('No se pudo agregar','Error');
       })
     }
 

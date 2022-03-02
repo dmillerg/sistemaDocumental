@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
 import { OrdinariosComponent } from 'src/app/componentes/pages/ordinarios/ordinarios.component';
 import { ApiService } from 'src/app/service/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-modal-ordinarios',
   templateUrl: './modal-ordinarios.component.html',
@@ -44,7 +45,10 @@ export class ModalOrdinariosComponent implements OnInit {
     imagen: '',
   }
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  src_documento: string = '';
+  uploadFiles: Array<File> = [];
+  
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
 
@@ -82,29 +86,49 @@ export class ModalOrdinariosComponent implements OnInit {
     formData.append('fecha_traslado', this.ordinarios.fecha_traslado.toString());
     formData.append('destino', this.ordinarios.destino.toString());
     formData.append('imagen', this.ordinarios.imagen.toString());
-
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+    }
 
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateOrdinarios(formData, this.ordinarios.id).subscribe((result) => {
         this.actiModal.close('Ordinarios');
         console.log(result);
+        this.lib.success('Editado con exito!','Editar');
       }, (error) => {
         this.actiModal.close('Ordinarios');
         console.log(error);
+        this.lib.error('No se pudo editar','Error');
+
       });
     } else {
       
       this.api.addOrdinarios(formData).subscribe((result) => {
         this.actiModal.close('Ordinarios');
         console.log(result);
+        this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Ordinarios');
+        this.lib.error('No se pudo agregar','Error');
       })
       
     }
 
+  }
+  fileEvent(fileInput: any) {
+    // console.log(typeof('s'))
+    let file = fileInput.target.files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_documento = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 
 }

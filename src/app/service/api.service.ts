@@ -66,7 +66,7 @@ export class ApiService {
    */
   updateUsuario(formData: FormData, id: number = -1) {
     let direccion = this.url + 'usuarios/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('usuario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -116,7 +116,7 @@ export class ApiService {
   updateClasificados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'clasificado/' + id.toString();
 
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('clasificado').token);
     return this.http.put(direccion, formData);
   }
 
@@ -171,7 +171,7 @@ export class ApiService {
    */
   updateLimitados(formData: FormData, id: number = -1) {
     let direccion = this.url + 'limitado/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('limitado').token);
     return this.http.put(direccion, formData);
   }
 
@@ -220,7 +220,7 @@ export class ApiService {
    */
   updateSecretos(formData: FormData, id: number = -1) {
     let direccion = this.url + 'secreto/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('secreto').token);
     return this.http.put(direccion, formData);
   }
 
@@ -269,7 +269,7 @@ export class ApiService {
    */
   updateOrdinarios(formData: FormData, id: number = -1) {
     let direccion = this.url + 'ordinario/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
+    formData.append('token', this.storage.retrieve('ordinario').token);
     return this.http.put(direccion, formData);
   }
 
@@ -299,42 +299,46 @@ export class ApiService {
     return this.http.get<Ordinario_personal[]>(direccion);
   }
 
-  /**
-   * Agrega un nuevo usuario al sistema
-   * @param formData Datos del nuevo usuario
-   * @returns 
-   */
-  addOrdinariosP(formData: FormData) {
-    let direccion = this.url + 'ordinariopersonal';
-    formData.append('token', this.storage.retrieve('usuario').token);
-    return this.http.post(direccion, formData);
-  }
+/**
+ * Agrega un nuevo usuario al sistema
+ * @param formData Datos del nuevo usuario
+ * @returns 
+ */
+addOrdinariosP(formData: FormData) {
+  let direccion = this.url + 'ordinariopersonal';
+  formData.append('token', this.storage.retrieve('usuario').token);
+  return this.http.post(direccion, formData);
+}
 
-  /**
-   * Actualiza los datos de un usuario 
-   * @param formData Datos nuevos del usuario
-   * @returns 
-   */
-  updateOrdinariosP(formData: FormData, id: number = -1) {
-    let direccion = this.url + 'ordinariopersonal/' + id.toString();
-    formData.append('token', this.storage.retrieve('token'));
-    return this.http.put(direccion, formData);
-  }
+/**
+ * Actualiza los datos de un usuario 
+ * @param formData Datos nuevos del usuario
+ * @returns 
+ */
+updateOrdinariosP(formData: FormData, id: number = -1) {
+  let direccion = this.url + 'ordinariopersonal/' + id.toString();
+  formData.append('token', this.storage.retrieve('ordinariopersonal').token);
+  return this.http.put(direccion, formData);
+}
 
 
-  /**
-   * Elimina un usuario
-   * @param id del usuario a eliminar
-   * @returns 
-   */
-  deleteOrdinariosP(id: number = -1) {
-    let direccion = this.url + 'ordinariopersonal/' + id.toString();
-    const headers = { 'content-type': 'application/json' };
-    const params = {
-      token: this.storage.retrieve('usuario').token,
-    };
-    return this.http.delete(direccion, { headers: headers, params: params });
-  }
+/**
+ * Elimina un usuario
+ * @param id del usuario a eliminar
+ * @returns 
+ */
+deleteOrdinariosP(id: number = -1) {
+  let direccion = this.url + 'ordinariopersonal/' + id.toString();
+  const headers = { 'content-type': 'application/json' };
+  const params = {
+    token: this.storage.retrieve('usuario').token,
+  };
+  return this.http.delete(direccion, {headers: headers, params: params});
+}
+
+  
+
+
 
   //DOCUMENTO FOTO
   /**
