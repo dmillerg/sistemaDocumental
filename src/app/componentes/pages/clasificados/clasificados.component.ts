@@ -51,7 +51,7 @@ export class ClasificadosComponent implements OnInit {
       this.clasificados = result;
       console.log(this.clasificados);
       this.clasificados.forEach((e) => {
-        console.log(e);
+        // console.log(e);
         this.getDocumentFoto(e);
       })
       this.loading = false;
@@ -61,9 +61,9 @@ export class ClasificadosComponent implements OnInit {
 
   getDocumentFoto(e: Clasificados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_clasificados/', 'documento_clasificado').subscribe((result) => {
-      console.log(result);
+      // console.log(result);
     }, (error) => {
-      console.log(error.url);
+      // console.log(error.url);
       e.imagen = error.url
     });
   }

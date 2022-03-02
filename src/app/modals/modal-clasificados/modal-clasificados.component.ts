@@ -83,7 +83,7 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   rellenarSiEditas() {
-    console.log('Hellos', this.clasificados.imagen)
+    this.src_documento = this.clasificados.imagen;
     console.log(this.modalAction == 'Editar')
     if (this.modalHeader == 'Editar') {
       this.clasificados_pasado.id = this.clasificados.id;
@@ -101,10 +101,6 @@ export class ModalClasificadosComponent implements OnInit {
       this.clasificados_pasado.traslado = this.clasificados.traslado;
       this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
       this.clasificados_pasado.imagen = this.clasificados.imagen;
- 
-      this.src_documento = this.clasificados.imagen;
-      console.log(this.src_documento, 'ass');
-      
     }
   }
 
