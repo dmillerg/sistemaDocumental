@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
 import { Clasificados } from 'src/app/models/clasificados.service';
@@ -7,6 +7,8 @@ import { ApiService } from 'src/app/service/api.service';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Element } from '@angular/compiler/src/render3/r3_ast';
 @Component({
   selector: 'app-clasificados',
   templateUrl: './clasificados.component.html',
@@ -17,6 +19,7 @@ export class ClasificadosComponent implements OnInit {
 
   clasificados: Clasificados[] = [];
 
+  seleccionados: number[] = [];
   selected: Clasificados = {
     id: 1,
     no: 2,
@@ -36,7 +39,7 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
-  constructor(private api: ApiService, private modalService: NgbModal) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
     this.loadClasificados();
@@ -107,5 +110,55 @@ export class ClasificadosComponent implements OnInit {
     })
   }
 
+
+d(id:number){
+
+  if(this.seleccionados.filter((n)=>n==id).length>0){
+    this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+
+  }
+  else
+  this.seleccionados.push(id);
+
+  
+  console.log(this.seleccionados);
+  
+}
+  deleteAll() {
+   
+       if(this.seleccionados.length>0){
+
+       for (let idd of this.seleccionados)
+        this.api.deleteClasificados(idd).subscribe(result=>{this.loadClasificados();});
+  
+       
+    this.lib.success('Eliminados con exito!','Eliminar');
+
+       }
+       else{
+        this.lib.info('Debe seleccionar un elemento','No es posible');
+       }
+  }
+
+  selecc(){
+
+    // Guardar todos los id en seleccionados
+    var i=0;
+    for(let item of this.clasificados){
+    this.seleccionados[i] =item.id;
+    i++;
+  }
+
+  console.log(this.seleccionados);
+  // Marcar todos los checkbox
+/*
+  var tabla = eval(f);  
+ for (var i=0, len=tabla.elements.length; i<len ; i++)  
+  {  
+    if (tabla.elements[i].type == "checkbox")  
+      tabla.elements[i].checked = tabla.elements[0].checked;  
+  } 
+*/
+  }
 
 }

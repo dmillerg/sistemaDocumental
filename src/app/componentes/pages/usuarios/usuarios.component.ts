@@ -5,6 +5,7 @@ import { ModalUsuarioComponent } from 'src/app/modals/modal-usuario/modal-usuari
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/service/api.service';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuarios',
@@ -45,9 +46,9 @@ export class UsuariosComponent implements OnInit {
   };
 
   loading: boolean = false;
-
+seleccionados: number[]=[];
   server: string = '';
-  constructor(private api: ApiService, private modalService: NgbModal ) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
   ngOnInit(): void {
     this.loadUsuarios();
@@ -104,5 +105,32 @@ export class UsuariosComponent implements OnInit {
       this.loadUsuarios();
     })
   }
+  d(id:number){
 
+    if(this.seleccionados.filter((n)=>n==id).length>0){
+      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+  
+    }
+    else
+    this.seleccionados.push(id);
+  
+    
+    console.log(this.seleccionados);
+    
+  }
+  deleteAll() {
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados)
+     this.api.deleteUsuario(idd).subscribe(result=>{this.loadUsuarios();});
+
+    
+ this.lib.success('Eliminados con exito!','Eliminar');
+
+    }
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
+    }
+}
 }

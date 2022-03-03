@@ -15,7 +15,7 @@ export class ModalClasificadosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  
+  errorN: string="";
 
   clasificados: Clasificados = {
     id: 1,
@@ -105,6 +105,11 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   addUpdateClasificados() {
+
+    this.api.getClasificados().subscribe((result) => {
+    
+    if( result.filter((n)=>n.no==this.clasificados.no).length<=0)
+      {
     let formData = new FormData();
     formData.append('id', this.clasificados.id.toString());
     formData.append('no', this.clasificados.no.toString());
@@ -152,8 +157,16 @@ export class ModalClasificadosComponent implements OnInit {
         this.lib.error('No se pudo agregar','Error');
       })
     }
+   
+      } 
+   else{
+    this.errorN ="El numero introducido ya existe";
+   }    
+    
+    })
   }
 
+  
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))
     let file = fileInput.target.files[0];
@@ -161,7 +174,7 @@ export class ModalClasificadosComponent implements OnInit {
     this.uploadFiles = fileInput.target.files;
     const reader = new FileReader();
     reader.onload = () => {
-      this.clasificados.imagen = reader.result as string;
+      this.src_documento = reader.result as string;
 
     }
     reader.readAsDataURL(file);

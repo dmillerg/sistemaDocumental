@@ -8,12 +8,20 @@
         </div>
         <p class="text-oscuro">  Clasificados registrados en el sistema</p>
    
-         <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" style="height: 55px;">Nuevo Documento 
-            <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+            <div>
+         <button id="newDoc" class="btn btn-firstcolor1" (click)="addClasificados()" >Nuevo Documento 
+            <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
         </button>
-      
+
+        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor" style="margin-top: 13px; height: 55px;">Eliminar Todo
+            <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
+        </button>
+           </div>
     </div>
-   
+    <div style="margin-top: -30px;">
+    <input type="checkbox" value="Seleccionar todo" (click)="selecc()" />
+    <Label>Seleccionar Todo</Label>
+    </div>
     <table class="tablas">
         <thead class="head">
             <td></td>
@@ -36,8 +44,9 @@
         </thead>
         <app-loading [loading]="loading"></app-loading>
         <p class="server">{{server}}</p>
+           
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-            <td><input type="checkbox"></td>
+             <td><input type="checkbox" (click)="d(item.id)"></td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>
@@ -53,14 +62,11 @@
             <td>{{item.traslado}}</td>
             <td>{{item.fecha_traslado}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
-            <td><button class="btn btn-firstcolor"><i class="bi bi-pencil" (click)="editClasificados(item)"></i></button></td>
+            <td><button class="btn btn-firstcolor"  (click)="editClasificados(item)"><i class="bi bi-pencil"></i></button></td>
             <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i class="bi bi-trash"></i></button></td>
             
         </tr>
     
     </table>
-</div>
-<div class="sidebar-right">
-    <app-detailbar [data]="selected"></app-detailbar>
 </div>
 

@@ -5,6 +5,7 @@ import { Ordinario_personal } from 'src/app/models/ordinario.model.personal';
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-ordinarios-personal',
   templateUrl: './ordinarios-personal.component.html',
@@ -49,7 +50,8 @@ export class OrdinariosPersonalComponent implements OnInit {
 
   server: string = '';
   loading: boolean = false
-  constructor(private api: ApiService, private modalService: NgbModal ) { }
+  seleccionados: number[]=[];
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
   ngOnInit(): void {
     this.loadOrdinariosP();
@@ -103,7 +105,19 @@ export class OrdinariosPersonalComponent implements OnInit {
       this.loadOrdinariosP();
     })
   }
+  d(id:number){
 
+    if(this.seleccionados.filter((n)=>n==id).length>0){
+      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+  
+    }
+    else
+    this.seleccionados.push(id);
+  
+    
+    console.log(this.seleccionados);
+    
+  }
   deleteOrdinariosP(idd: number) {
     let modal = this.modalService.open(DeleteComponent);
     modal.componentInstance.modalHeader = "Ordinario_personal";
@@ -113,5 +127,21 @@ export class OrdinariosPersonalComponent implements OnInit {
       this.loadOrdinariosP();
     })
   }
+
+  deleteAll() {
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados)
+     this.api.deleteOrdinariosP(idd).subscribe(result=>{this.loadOrdinariosP();});
+
+    
+ this.lib.success('Eliminados con exito!','Eliminar');
+
+    }
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
+    }
+}
 
 }

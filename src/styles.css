@@ -24,9 +24,30 @@
     border: none;
     color: var(--theme-color-ligth);
     transition: all .3s;
+
+}
+
+.btn-firstcolor1 {
+    padding: 15px;
+    background-color: var(--firstcolor-hover);
+    border-radius: 0.5em;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(0 0 2px var(--firstcolor-hover-white));
+    border: none;
+    color: var(--theme-color-ligth);
+    transition: all .3s;
+    margin-left: 880px;
+    margin-top: -14px;
+    height: 55px;
+    margin-bottom: -39px;
 }
 
 .btn-firstcolor:hover {
+    background-color: var(--firstcolor);
+    color: var(--theme-color-ligth);
+    transition: all .3s;
+}
+.btn-firstcolor1:hover {
     background-color: var(--firstcolor);
     color: var(--theme-color-ligth);
     transition: all .3s;

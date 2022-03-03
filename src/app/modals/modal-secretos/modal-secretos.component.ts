@@ -14,7 +14,7 @@ export class ModalSecretosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  
+  errorN: string="";
 
   secretos: Secreto = {
     id: -1,
@@ -83,6 +83,11 @@ export class ModalSecretosComponent implements OnInit {
   }
 
   addUpdateSecretos() {
+    this.api.getSecretos().subscribe((result) => {
+    
+      if( result.filter((n)=>n.no==this.secretos.no).length<=0)
+        {
+
     let formData = new FormData();
     formData.append('id', this.secretos.id.toString());
     formData.append('no', this.secretos.no.toString());
@@ -129,8 +134,14 @@ export class ModalSecretosComponent implements OnInit {
       })
       
     }
-
   }
+  else{
+
+    this.errorN ="El numero introducido ya existe";
+}    
+    
+})
+}
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

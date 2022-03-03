@@ -6,10 +6,20 @@
         </div>
         <p class="text-oscuro">Ordinarios Personal registrados en el sistema</p>
  
-        <button id="newDoc" class="btn-firstcolor btn" (click)="addOrdinariosP()"  style="height: 55px;">Nuevo Documento 
-            <i style="margin:5px; font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+        <div>
+        <button id="newDoc" class="btn-firstcolor1 btn" (click)="addOrdinariosP()">Nuevo Documento 
+            <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
+
+            <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor"  style="margin-top: 13px; height: 55px;">Eliminar Todo
+                <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
+            </button>
+               </div>
          </div>
+         <div style="margin-top: -30px;">
+            <input type="checkbox" ngValue="Seleccionar todo"/>
+            <Label>Seleccionar Todo</Label>
+            </div>
     <table class="tablas">
         <thead class="head">
             <td colspan="1"></td>
@@ -21,9 +31,10 @@
             <td colspan="7">destino</td>
             <td colspan="8">procedencia</td>
             <td colspan="9">imagen</td>
+            <td colspan="10">acciones</td>
         </thead>
         <tr *ngFor="let item of ordinario_personal" class="ligth" (click)="detailToggle(item)">
-            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="1"><input type="checkbox" (click)="d(item.id)"></td>
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.no}}</td>
             <td colspan="4">{{item.fecha}}</td>
@@ -31,7 +42,7 @@
             <td colspan="6">{{item.asunto}}</td>
             <td colspan="7">{{item.destino}}</td>
             <td colspan="8">{{item.procedencia}}</td>
-            <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
+            <td colspan="9"><img [src]="item.imagen" alt="" width="80" height="80"></td>
             
             <td colspan="10"><button class="btn btn-firstcolor" (click)="editOrdinariosP(item)"><i class="bi bi-pencil"></i></button></td>
             <td colspan="11"><button (click)="deleteOrdinariosP(item.id)" class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
@@ -39,8 +50,5 @@
         </tr>
     </table>
 </div>
-<div class="sidebar-right">
-    <app-detailbar [data]="selected"></app-detailbar>
-</div> 
 
 

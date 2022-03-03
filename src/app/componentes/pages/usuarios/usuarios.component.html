@@ -6,10 +6,21 @@
         </div>
         <p class="text-oscuro">Usuarios registrados en el sistema</p>
   
-        <button id="newUser" class="btn btn-firstcolor" (click)="addUsuario()"  style="height: 55px;">Nuevo Usuario 
-        <i style="margin:5px; font-size: 20px;" class="bi bi-person-plus"></i>
+        <div>
+        <button id="newUser" class="btn btn-firstcolor1" (click)="addUsuario()"  style="height: 55px;">Nuevo Usuario 
+        <i style="margin:15px; font-size: 20px;" class="bi bi-person-plus"></i>
         </button>
+
+        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor"  style="margin-top: 13px; height: 55px;">Eliminar Todo
+            <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
+        </button>
+       </div>
+
          </div>
+         <div style="margin-top: -30px;">
+            <input type="checkbox" ngValue="Seleccionar todo"/>
+            <Label>  Seleccionar Todo</Label>
+            </div>
     <table class="tablas">
         <thead class="head">
             <td colspan="1"></td>
@@ -22,7 +33,7 @@
         </thead>
         <app-loading [loading]="loading"></app-loading>
         <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
-            <td colspan="1"><input type="checkbox"></td>
+            <td colspan="1"><input type="checkbox" (click)="d(item.id)"></td>
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.usuario}}</td>
             <td colspan="4">{{item.nombre}}</td>
@@ -33,7 +44,4 @@
      
         </tr>
     </table>
-</div>
-<div class="sidebar-right">
-    <app-detailbar [data]="selected"></app-detailbar>
 </div>
