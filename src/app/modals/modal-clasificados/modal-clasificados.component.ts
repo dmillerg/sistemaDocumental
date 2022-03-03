@@ -32,7 +32,7 @@ export class ModalClasificadosComponent implements OnInit {
       destino: 'a',
       traslado: 'a',
       fecha_traslado: 'a',
-      imagen: 'a'
+      imagen: ''
     }
 
   selected: Clasificados = {

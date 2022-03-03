@@ -18,6 +18,7 @@ export class ClasificadosComponent implements OnInit {
 
   clasificados: Clasificados[] = [];
 
+  seleccionados: number[] = [];
   selected: Clasificados = {
     id: 1,
     no: 2,
@@ -108,37 +109,34 @@ export class ClasificadosComponent implements OnInit {
     })
   }
 
+
+d(id:number){
+
+  if(this.seleccionados.filter((n)=>n==id).length>0){
+    this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+
+  }
+  else
+  this.seleccionados.push(id);
+
+  
+  console.log(this.seleccionados);
+  
+}
   deleteAll() {
    
-    var seleccionados = [], ids = [];
-    var i=0, j=0;
+       if(this.seleccionados.length>0){
 
-      
-          var value;
-
-     /*     for (let val of document.querySelector('#tablas').){
-       seleccionados[i]= val;
-       i++;
-          }
-    
-       for (let val of seleccionados){
-          if(val==true){
-            ids[j] = 7;   ///Poner posicion
-            j++;
-          }
-       }
-    
-       if(ids.length>0){
-
-       for (let idd of ids)
-        this.api.deleteClasificados(idd).subscribe(result=>{ });
+       for (let idd of this.seleccionados)
+        this.api.deleteClasificados(idd).subscribe(result=>{this.loadClasificados();});
   
+       
     this.lib.success('Eliminados con exito!','Eliminar');
 
        }
        else{
         this.lib.info('Debe seleccionar un elemento','No es posible');
-       }*/
+       }
   }
 
 

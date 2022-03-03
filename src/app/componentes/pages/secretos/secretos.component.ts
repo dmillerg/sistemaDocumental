@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-secretos',
   templateUrl: './secretos.component.html',
@@ -51,8 +52,8 @@ export class SecretosComponent implements OnInit {
   };
   server: string = '';
   loading: boolean = false;
-
-  constructor(private api: ApiService, private modalService: NgbModal) { }
+seleccionados : number[]=[];
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
     this.loadSecretos();
@@ -97,7 +98,7 @@ export class SecretosComponent implements OnInit {
     let modal = this.modalService.open(ModalSecretosComponent);
     modal.componentInstance.modalHeader = "Secretos";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.usuario = item;
+    modal.componentInstance.secretos = item;
     modal.result.then((e)=>{
       this.loadSecretos();
     })
@@ -112,7 +113,19 @@ export class SecretosComponent implements OnInit {
       e.imagen = error.url
     });
   }
+  d(id:number){
 
+    if(this.seleccionados.filter((n)=>n==id).length>0){
+      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+  
+    }
+    else
+    this.seleccionados.push(id);
+  
+    
+    console.log(this.seleccionados);
+    
+  }
   deleteSecretos(idd:number) {
     let modal = this.modalService.open(DeleteComponent);
     modal.componentInstance.modalHeader = "Secretos";
@@ -122,4 +135,20 @@ export class SecretosComponent implements OnInit {
       this.loadSecretos();
     })
   }
+
+  deleteAll() {
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados)
+     this.api.deleteSecretos(idd).subscribe(result=>{this.loadSecretos();});
+
+    
+ this.lib.success('Eliminados con exito!','Eliminar');
+
+    }
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
+    }
+}
 }

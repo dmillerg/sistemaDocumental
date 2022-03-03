@@ -18,7 +18,10 @@
         </button>
            </div>
     </div>
-   
+    <div style="margin-top: -30px;">
+    <input type="checkbox" value="Seleccionar todo"/>
+    <Label>Seleccionar Todo</Label>
+    </div>
     <table class="tablas">
         <thead class="head">
             <td></td>
@@ -41,8 +44,9 @@
         </thead>
         <app-loading [loading]="loading"></app-loading>
         <p class="server">{{server}}</p>
+           
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-            <td><input id="ch" type="checkbox"></td>
+             <td><input type="checkbox" (click)="d(item.id)"></td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>

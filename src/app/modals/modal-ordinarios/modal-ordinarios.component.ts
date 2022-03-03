@@ -53,9 +53,11 @@ export class ModalOrdinariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rellenarSiEditas();
   }
 
   rellenarSiEditas() {
+    this.src_documento = this.ordinarios.imagen;
     if (this.modalHeader == 'Editar') {
       this.ordinarios_pasado.id = this.ordinarios_pasado.id;
       this.ordinarios_pasado.no = this.ordinarios_pasado.no;
