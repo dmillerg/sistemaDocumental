@@ -19,7 +19,7 @@
            </div>
     </div>
     <div style="margin-top: -30px;">
-    <input type="checkbox" value="Seleccionar todo"/>
+    <input id="checkAll" type="checkbox" value="Seleccionar todo" (click)="selecc()"/>
     <Label>Seleccionar Todo</Label>
     </div>
     <table class="tablas">
@@ -46,7 +46,7 @@
         <p class="server">{{server}}</p>
            
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-             <td><input type="checkbox" (click)="d(item.id)"></td>
+             <td><input name="checkbox" type="checkbox" (click)="d(item.id)" class="checkbox">{{selecionados.filter((e)=>e==item.id).length}}</td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>

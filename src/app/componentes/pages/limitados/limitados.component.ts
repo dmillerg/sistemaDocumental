@@ -60,7 +60,7 @@ export class LimitadosComponent implements OnInit {
   server: string = '';
   loading: boolean = false;
   seleccionados: number[] = [];
-  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
+  constructor(private api: ApiService, private modalService: NgbModal,private lib: ToastrService ) { }
 
   ngOnInit(): void {
     this.loadLimitados();
@@ -120,18 +120,18 @@ export class LimitadosComponent implements OnInit {
     })
   }
 
-  d(id: number) {
+  d(id:number){
 
-    if (this.seleccionados.filter((n) => n == id).length > 0) {
-      this.seleccionados = this.seleccionados.filter((n) => n != id);
-
+    if(this.seleccionados.filter((n)=>n==id).length>0){
+      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+  
     }
     else
-      this.seleccionados.push(id);
-
-
+    this.seleccionados.push(id);
+  
+    
     console.log(this.seleccionados);
-
+    
   }
   getDocumentFoto(e: Limitados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_limitados/', 'documento_limitado').subscribe((result) => {
@@ -143,13 +143,18 @@ export class LimitadosComponent implements OnInit {
   }
 
   deleteAll() {
-    if (this.seleccionados.length > 0) {
-      for (let idd of this.seleccionados)
-        this.api.deleteLimitados(idd).subscribe(result => { this.loadLimitados(); });
-      this.lib.success('Eliminados con exito!', 'Eliminar');
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados)
+     this.api.deleteLimitados(idd).subscribe(result=>{this.loadLimitados();});
+
+    
+ this.lib.success('Eliminados con exito!','Eliminar');
+
     }
-    else {
-      this.lib.info('Debe seleccionar un elemento', 'No es posible');
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
     }
-  }
+}
 }
