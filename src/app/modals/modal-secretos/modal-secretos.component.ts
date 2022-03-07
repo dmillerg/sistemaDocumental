@@ -60,9 +60,11 @@ export class ModalSecretosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rellenarSiEditas();
   }
 
   rellenarSiEditas() {
+    this.src_documento = this.secretos.imagen;
     if (this.modalHeader == 'Editar') {
       this.secretos_pasado.id = this.secretos.id;
       this.secretos_pasado.no = this.secretos.no;

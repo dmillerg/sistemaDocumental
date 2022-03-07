@@ -9,17 +9,17 @@
         <p class="text-oscuro">  Clasificados registrados en el sistema</p>
    
             <div>
-         <button id="newDoc" class="btn btn-firstcolor1" (click)="addClasificados()" >Nuevo Documento 
+         <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
             <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
         </button>
 
-        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor" style="margin-top: 13px; height: 55px;">Eliminar Todo
+        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor" style="margin-right: 200px;">Eliminar Todo
             <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
         </button>
            </div>
     </div>
     <div style="margin-top: -30px;">
-    <input type="checkbox" value="Seleccionar todo" (click)="selecc()" />
+    <input id="chbx" type="checkbox" value="Seleccionar todo" (click)="selecc()"/>
     <Label>Seleccionar Todo</Label>
     </div>
     <table class="tablas">
@@ -46,7 +46,7 @@
         <p class="server">{{server}}</p>
            
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-             <td><input type="checkbox" (click)="d(item.id)"></td>
+             <td><input name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)"></td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>

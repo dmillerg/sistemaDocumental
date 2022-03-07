@@ -8,7 +8,7 @@ import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { Element } from '@angular/compiler/src/render3/r3_ast';
+
 @Component({
   selector: 'app-clasificados',
   templateUrl: './clasificados.component.html',
@@ -18,7 +18,7 @@ export class ClasificadosComponent implements OnInit {
 
 
   clasificados: Clasificados[] = [];
-
+  selec=false;
   seleccionados: number[] = [];
   selected: Clasificados = {
     id: 1,
@@ -142,6 +142,17 @@ d(id:number){
 
   selecc(){
 
+  
+        //Ver si el checkbox esta seleccionado
+    if(this.selec){
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados=des;
+
+    }
+    else{
+
     // Guardar todos los id en seleccionados
     var i=0;
     for(let item of this.clasificados){
@@ -149,16 +160,28 @@ d(id:number){
     i++;
   }
 
-  console.log(this.seleccionados);
+  
+}
+this.selec = !this.selec;
+  console.table(this.seleccionados);
+
   // Marcar todos los checkbox
-/*
-  var tabla = eval(f);  
+  
+  /*
+
+  var tabla = document.querySelector('#tablas'); 
+
+if(tabla?.ariaRowIndex.match("checkbox"))
+console.log('ddd');
+
+
  for (var i=0, len=tabla.elements.length; i<len ; i++)  
   {  
     if (tabla.elements[i].type == "checkbox")  
       tabla.elements[i].checked = tabla.elements[0].checked;  
   } 
-*/
+  */
+
   }
 
 }

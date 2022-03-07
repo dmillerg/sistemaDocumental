@@ -121,7 +121,7 @@ export class OrdinariosComponent implements OnInit {
     let modal = this.modalService.open(ModalOrdinariosComponent);
     modal.componentInstance.modalHeader = "Ordinarios";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.usuario = item;
+    modal.componentInstance.ordinarios = item;
     modal.result.then((e)=>{
       this.loadOrdinarios();
     })

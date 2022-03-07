@@ -45,17 +45,17 @@ export class LimitadosComponent implements OnInit {
   ];
 
   selected: Limitados = {
-      id: -1,
-      no: -1,
-      procedencia: '',
-      titulo: '',
-      fecha: '',
-      movimiento1: '',
-      movimiento2: '',
-      destruccion: '',
-      expediente: '',
-      observacion: '',
-      imagen: '',
+    id: -1,
+    no: -1,
+    procedencia: '',
+    titulo: '',
+    fecha: '',
+    movimiento1: '',
+    movimiento2: '',
+    destruccion: '',
+    expediente: '',
+    observacion: '',
+    imagen: '',
   };
   server: string = '';
   loading: boolean = false;
@@ -66,9 +66,9 @@ export class LimitadosComponent implements OnInit {
     this.loadLimitados();
   }
 
-  loadLimitados(){
+  loadLimitados() {
     this.loading = true;
-    this.api.getLimitados().subscribe((result)=>{
+    this.api.getLimitados().subscribe((result) => {
       if (result.length == 0) {
         this.server = 'No hay documentos';
       }
@@ -85,27 +85,27 @@ export class LimitadosComponent implements OnInit {
     if (this.selected == item) {
       document.querySelector('.sidebar-right')?.classList.toggle('active');
       document.querySelector('.tablas')?.classList.toggle('active');
-    }else{
+    } else {
 
     }
     this.selected = item;
   }
 
-  addLimitados(){
+  addLimitados() {
     let modal = this.modalService.open(ModalLimitadosComponent);
     modal.componentInstance.modalHeader = "Limitados";
     modal.componentInstance.modalAction = "Agregar";
-    modal.result.then((e)=>{
+    modal.result.then((e) => {
       this.loadLimitados();
     })
   }
 
-  editLimitados(item:Limitados){
+  editLimitados(item: Limitados) {
     let modal = this.modalService.open(ModalLimitadosComponent);
     modal.componentInstance.modalHeader = "Limitados";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.usuario = item;
-    modal.result.then((e)=>{
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
       this.loadLimitados();
     })
   }

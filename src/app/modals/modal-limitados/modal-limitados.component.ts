@@ -14,7 +14,7 @@ export class ModalLimitadosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
 
   limitados: Limitados = {
     id: -1,
@@ -52,9 +52,11 @@ export class ModalLimitadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rellenarSiEditas();
   }
 
   rellenarSiEditas() {
+    this.src_documento = this.limitados.imagen;
     if (this.modalHeader == 'Editar') {
       this.limitados_pasado.id = this.limitados.id;
       this.limitados_pasado.no = this.limitados.no;
@@ -73,10 +75,39 @@ export class ModalLimitadosComponent implements OnInit {
   addUpdateLimitados() {
 
     this.api.getLimitados().subscribe((result) => {
-    
-      if( result.filter((n)=>n.no==this.limitados.no).length<=0)
-        {
+      
+      if (this.modalAction == "Editar") {
+        console.table('actual: '+  this.limitados.no);
+        console.table('anterior: '+  this.limitados_pasado.no);
 
+        if (result.filter((n) => n.no == this.limitados.no).length > 0 && this.limitados.no == this.limitados_pasado.no) {
+          this.validarNo();
+        }         
+        else if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
+
+          this.validarNo();
+
+        }
+        else {
+
+          this.errorN = "El numero introducido ya existe";
+        }
+      }
+      else
+        if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
+
+          this.validarNo();
+
+        }
+        else {
+
+          this.errorN = "El numero introducido ya existe";
+        }
+    })
+
+  }
+
+  validarNo() {
     let formData = new FormData();
     formData.append('id', this.limitados.id.toString());
     formData.append('no', this.limitados.no.toString());
@@ -101,31 +132,24 @@ export class ModalLimitadosComponent implements OnInit {
       this.api.updateLimitados(formData, this.limitados.id).subscribe((result) => {
         this.actiModal.close('Limitados');
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
+        this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
         this.actiModal.close('Limitados');
         console.log(error);
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
       });
     } else {
       this.api.addLimitados(formData).subscribe((result) => {
         this.actiModal.close('Limitados');
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
         console.log(result);
       }, (error) => {
         console.log(error);
         this.actiModal.close('Limitados');
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
     }
   }
-  else{
-
-    this.errorN ="El numero introducido ya existe";
-  }
-})
-   
-}
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

@@ -44,6 +44,7 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rellenarSiEditas();
   }
 
   rellenarSiEditas() {

@@ -98,7 +98,7 @@ seleccionados : number[]=[];
     let modal = this.modalService.open(ModalSecretosComponent);
     modal.componentInstance.modalHeader = "Secretos";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.usuario = item;
+    modal.componentInstance.secretos = item;
     modal.result.then((e)=>{
       this.loadSecretos();
     })
