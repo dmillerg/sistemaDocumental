@@ -18,7 +18,7 @@ export class ClasificadosComponent implements OnInit {
 
 
   clasificados: Clasificados[] = [];
-
+  selec = false;
   seleccionados: number[] = [];
   selected: Clasificados = {
     id: 1,
@@ -137,34 +137,46 @@ export class ClasificadosComponent implements OnInit {
 
   selecc() {
 
-    // Guardar todos los id en seleccionados
-    var i = 0;
-    for (let item of this.clasificados) {
-      this.seleccionados[i] = item.id;
-      i++;
-    }
-    document.querySelectorAll('.checkbox').forEach((e)=>{
-     
-    })
 
-    console.log(this.seleccionados);
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.clasificados) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+
+
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
 
     // Marcar todos los checkbox
 
-
-
-    var tabla = document.querySelector('#tablas');
-
-    if (tabla?.ariaRowIndex.match("checkbox"))
-      console.log('ddd');
-
     /*
-     for (var i=0, len=tabla.elements.length; i<len ; i++)  
-      {  
-        if (tabla.elements[i].type == "checkbox")  
-          tabla.elements[i].checked = tabla.elements[0].checked;  
-      } 
-      */
+  
+    var tabla = document.querySelector('#tablas'); 
+  
+  if(tabla?.ariaRowIndex.match("checkbox"))
+  console.log('ddd');
+  
+  
+   for (var i=0, len=tabla.elements.length; i<len ; i++)  
+    {  
+      if (tabla.elements[i].type == "checkbox")  
+        tabla.elements[i].checked = tabla.elements[0].checked;  
+    } 
+    */
+
   }
 
 }

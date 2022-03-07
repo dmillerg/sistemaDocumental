@@ -14,7 +14,7 @@ export class ModalLimitadosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
 
   limitados: Limitados = {
     id: -1,
@@ -75,69 +75,81 @@ export class ModalLimitadosComponent implements OnInit {
   addUpdateLimitados() {
 
     this.api.getLimitados().subscribe((result) => {
+      
+      if (this.modalAction == "Editar") {
+        console.table('actual: '+  this.limitados.no);
+        console.table('anterior: '+  this.limitados_pasado.no);
 
-      if (this.modalAction == "Editar"){ 
-      if(result.filter((n) => n.no == this.limitados.no).length > 0&&result.filter((n) => n.no == this.limitados_pasado.no)){
-        this.validarNo();
+        if (result.filter((n) => n.no == this.limitados.no).length > 0 && this.limitados.no == this.limitados_pasado.no) {
+          this.validarNo();
+        }         
+        else if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
+
+          this.validarNo();
+
+        }
+        else {
+
+          this.errorN = "El numero introducido ya existe";
+        }
       }
-    }
-      else 
-      if (result.filter((n) => n.no == this.limitados.no).length <= 0 ) {
+      else
+        if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
 
-        this.validarNo();
-        
-      }
-      else {
+          this.validarNo();
 
-    this.errorN ="El numero introducido ya existe";
+        }
+        else {
+
+          this.errorN = "El numero introducido ya existe";
+        }
+    })
+
   }
-})
-   
-}
 
-    validarNo(){
-      let formData = new FormData();
-        formData.append('id', this.limitados.id.toString());
-        formData.append('no', this.limitados.no.toString());
-        formData.append('procedencia', this.limitados.procedencia.toString());
-        formData.append('titulo', this.limitados.titulo.toString());
-        formData.append('fecha', this.limitados.fecha.toString());
-        formData.append('movimiento1', this.limitados.movimiento1.toString());
-        formData.append('movimiento2', this.limitados.movimiento2.toString());
-        formData.append('destruccion', this.limitados.destruccion.toString());
-        formData.append('expediente', this.limitados.expediente.toString());
-        formData.append('observacion', this.limitados.observacion.toString());
-        formData.append('imagen', this.limitados.imagen.toString());
-        if (this.uploadFiles != undefined) {
-          for (let i = 0; i < this.uploadFiles.length; i++) {
-            formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
-          }
-        }
-
-
-        console.log(this.modalAction)
-        if (this.modalAction == "Editar") {
-          this.api.updateLimitados(formData, this.limitados.id).subscribe((result) => {
-            this.actiModal.close('Limitados');
-            console.log(result);
-            this.lib.success('Editado con exito!', 'Editar');
-          }, (error) => {
-            this.actiModal.close('Limitados');
-            console.log(error);
-            this.lib.error('No se pudo editar', 'Error');
-          });
-        } else {
-          this.api.addLimitados(formData).subscribe((result) => {
-            this.actiModal.close('Limitados');
-            this.lib.success('Agregado con exito!', 'Agregar');
-            console.log(result);
-          }, (error) => {
-            console.log(error);
-            this.actiModal.close('Limitados');
-            this.lib.error('No se pudo agregar', 'Error');
-          })
-        }
+  validarNo() {
+    let formData = new FormData();
+    formData.append('id', this.limitados.id.toString());
+    formData.append('no', this.limitados.no.toString());
+    formData.append('procedencia', this.limitados.procedencia.toString());
+    formData.append('titulo', this.limitados.titulo.toString());
+    formData.append('fecha', this.limitados.fecha.toString());
+    formData.append('movimiento1', this.limitados.movimiento1.toString());
+    formData.append('movimiento2', this.limitados.movimiento2.toString());
+    formData.append('destruccion', this.limitados.destruccion.toString());
+    formData.append('expediente', this.limitados.expediente.toString());
+    formData.append('observacion', this.limitados.observacion.toString());
+    formData.append('imagen', this.limitados.imagen.toString());
+    if (this.uploadFiles != undefined) {
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
     }
+
+
+    console.log(this.modalAction)
+    if (this.modalAction == "Editar") {
+      this.api.updateLimitados(formData, this.limitados.id).subscribe((result) => {
+        this.actiModal.close('Limitados');
+        console.log(result);
+        this.lib.success('Editado con exito!', 'Editar');
+      }, (error) => {
+        this.actiModal.close('Limitados');
+        console.log(error);
+        this.lib.error('No se pudo editar', 'Error');
+      });
+    } else {
+      this.api.addLimitados(formData).subscribe((result) => {
+        this.actiModal.close('Limitados');
+        this.lib.success('Agregado con exito!', 'Agregar');
+        console.log(result);
+      }, (error) => {
+        console.log(error);
+        this.actiModal.close('Limitados');
+        this.lib.error('No se pudo agregar', 'Error');
+      })
+    }
+  }
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

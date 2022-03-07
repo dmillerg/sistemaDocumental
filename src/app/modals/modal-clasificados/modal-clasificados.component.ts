@@ -11,35 +11,35 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ModalClasificadosComponent implements OnInit {
 
- 
+
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
 
   clasificados: Clasificados = {
     id: 1,
-      no: 2,
-      fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
-      asunto: 'a',
-      doc: 'a',
-      ej: 'a',
-      clasif: 'a',
-      destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
-      imagen: ''
-    }
+    no: 2,
+    fecha: 'a',
+    enviado: 'a',
+    rsb: 'a',
+    rs: 'a',
+    fecha_registro_ctc: 'a',
+    asunto: 'a',
+    doc: 'a',
+    ej: 'a',
+    clasif: 'a',
+    destino: 'a',
+    traslado: 'a',
+    fecha_traslado: 'a',
+    imagen: ''
+  }
 
   selected: Clasificados = {
     id: -1,
     no: -1,
     fecha: '',
-    enviado:'',
+    enviado: '',
     rsb: '',
     rs: '',
     fecha_registro_ctc: '',
@@ -57,7 +57,7 @@ export class ModalClasificadosComponent implements OnInit {
     id: -1,
     no: -1,
     fecha: '',
-    enviado:'',
+    enviado: '',
     rsb: '',
     rs: '',
     fecha_registro_ctc: '',
@@ -85,7 +85,7 @@ export class ModalClasificadosComponent implements OnInit {
   rellenarSiEditas() {
     this.src_documento = this.clasificados.imagen;
     console.log(this.modalAction == 'Editar')
-    if (this.modalHeader == 'Editar') {
+    if (this.modalAction == 'Editar') {
       this.clasificados_pasado.id = this.clasificados.id;
       this.clasificados_pasado.no = this.clasificados.no;
       this.clasificados_pasado.fecha = this.clasificados.fecha;
@@ -105,11 +105,24 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   addUpdateClasificados() {
+    console.log(this.clasificados_pasado.no, this.clasificados.no, this.clasificados_pasado.no == this.clasificados.no)
+    if (this.clasificados_pasado.no == this.clasificados.no) {
+      this.actionUpdateOrRegister();
+    } else {
+      this.api.getClasificados().subscribe((result) => {
+        if (result.filter((n) => n.no == this.clasificados.no).length <= 0) {
+          this.actionUpdateOrRegister();
+        }
+        else {
+          this.errorN = "El numero introducido ya existe";
+        }
 
-    this.api.getClasificados().subscribe((result) => {
-    
-    if( result.filter((n)=>n.no==this.clasificados.no).length<=0)
-      {
+      })
+    }
+
+  }
+
+  actionUpdateOrRegister() {
     let formData = new FormData();
     formData.append('id', this.clasificados.id.toString());
     formData.append('no', this.clasificados.no.toString());
@@ -133,40 +146,30 @@ export class ModalClasificadosComponent implements OnInit {
       }
     }
 
-
-
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateClasificados(formData, this.clasificados.id).subscribe((result) => {
         this.actiModal.close('Clasificados');
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
+        this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
         this.actiModal.close('Clasificados');
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
         console.log(error);
       });
     } else {
       this.api.addClasificados(formData).subscribe((result) => {
         this.actiModal.close('Clasificados');
         console.log(result);
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Clasificados');
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
     }
-   
-      } 
-   else{
-    this.errorN ="El numero introducido ya existe";
-   }    
-    
-    })
   }
 
-  
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))
     let file = fileInput.target.files[0];
