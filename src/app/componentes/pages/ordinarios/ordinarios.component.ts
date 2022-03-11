@@ -16,36 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrdinariosComponent implements OnInit {
 
   
-  ordinarios: Ordinarios[] = [
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
-      asunto: 'a',
-      destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
-      imagen: 'a'
-    },
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
-      asunto: 'a',
-      destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
-      imagen: 'a'
-    }
-  ];
+  ordinarios: Ordinarios[] = [  ];
 
   selected: Ordinarios = {
     id: 1,
@@ -64,6 +35,7 @@ export class OrdinariosComponent implements OnInit {
 
   server: string = '';
   loading: boolean = false;
+  selec=false;
   seleccionados: number[] = [];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
@@ -83,8 +55,8 @@ export class OrdinariosComponent implements OnInit {
         console.log(e);
         this.getDocumentFoto(e);
       })
-
-      
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     })
   }
 
@@ -135,10 +107,8 @@ export class OrdinariosComponent implements OnInit {
     }
     else
     this.seleccionados.push(id);
-  
     
     console.log(this.seleccionados);
-    
   }
 
   deleteAll() {
@@ -167,5 +137,27 @@ export class OrdinariosComponent implements OnInit {
     })
   }
 
+  selecc() {
 
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.ordinarios) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
+
+  }
 }

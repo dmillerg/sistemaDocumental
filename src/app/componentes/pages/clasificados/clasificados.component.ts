@@ -58,7 +58,8 @@ export class ClasificadosComponent implements OnInit {
         this.getDocumentFoto(e);
       })
       this.loading = false;
-
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     });
   }
 
@@ -136,8 +137,6 @@ export class ClasificadosComponent implements OnInit {
   }
 
   selecc() {
-
-
     //Ver si el checkbox esta seleccionado
     if (this.selec) {
 
@@ -159,24 +158,6 @@ export class ClasificadosComponent implements OnInit {
     }
     this.selec = !this.selec;
     console.table(this.seleccionados);
-
-    // Marcar todos los checkbox
-
-    /*
-  
-    var tabla = document.querySelector('#tablas'); 
-  
-  if(tabla?.ariaRowIndex.match("checkbox"))
-  console.log('ddd');
-  
-  
-   for (var i=0, len=tabla.elements.length; i<len ; i++)  
-    {  
-      if (tabla.elements[i].type == "checkbox")  
-        tabla.elements[i].checked = tabla.elements[0].checked;  
-    } 
-    */
-
   }
 
 }

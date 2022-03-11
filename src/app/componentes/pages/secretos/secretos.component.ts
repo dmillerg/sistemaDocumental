@@ -13,25 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SecretosComponent implements OnInit {
 
-  secretos: Secreto[] = [
-    {
-      id: -1,
-    no: -1,
-    lugar: '',
-    reg_no: '',
-    titulo: '',
-    categoria: '',
-    mat_no:-1,
-    folio_no: -1,
-    cant: -1,
-    no_ejemplar: -1,
-    cant_hojas: -1,
-    destruccion: '',
-    destino: '',
-    comp: '',
-    imagen:''
-    }
-  ];
+  secretos: Secreto[] = [  ];
 
   selected: Secreto = {
     id: -1,
@@ -53,6 +35,7 @@ export class SecretosComponent implements OnInit {
   server: string = '';
   loading: boolean = false;
 seleccionados : number[]=[];
+selec=false;
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -71,6 +54,8 @@ seleccionados : number[]=[];
         console.log(e);
         this.getDocumentFoto(e);
       })
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     });
   }
 
@@ -150,5 +135,32 @@ seleccionados : number[]=[];
     else{
      this.lib.info('Debe seleccionar un elemento','No es posible');
     }
+}
+
+selecc() {
+
+
+  //Ver si el checkbox esta seleccionado
+  if (this.selec) {
+
+    // Vaciar arreglo
+    var des: number[] = [];
+    this.seleccionados = des;
+
+  }
+  else {
+
+    // Guardar todos los id en seleccionados
+    var i = 0;
+    for (let item of this.secretos) {
+      this.seleccionados[i] = item.id;
+      i++;
+    }
+
+
+  }
+  this.selec = !this.selec;
+  console.table(this.seleccionados);
+
 }
 }

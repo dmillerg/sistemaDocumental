@@ -14,28 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrdinariosPersonalComponent implements OnInit {
 
  
-  ordinario_personal: Ordinario_personal[] = [
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      procedencia: 'a',
-      asunto: 'a',
-      destino: 'a',
-      archivo: 'a',
-      imagen: 'a'
-    },
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      procedencia: 'a',
-      asunto: 'a',
-      destino: 'a',
-      archivo: 'a',
-      imagen: 'a'
-    }
-  ];
+  ordinario_personal: Ordinario_personal[] = [  ];
 
   selected: Ordinario_personal = {
     id: 1,
@@ -50,6 +29,7 @@ export class OrdinariosPersonalComponent implements OnInit {
 
   server: string = '';
   loading: boolean = false
+  selec=false;
   seleccionados: number[]=[];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
@@ -58,13 +38,19 @@ export class OrdinariosPersonalComponent implements OnInit {
   }
 
   loadOrdinariosP(){
+    this.loading = true;
     this.api.getOrdinariosP().subscribe((result)=>{
+      if (result.length == 0) {
+        this.server = 'No hay documentos';
+      }
       this.ordinario_personal = result;
       this.ordinario_personal.forEach((e) => {
         console.log(e);
         this.getDocumentFoto(e);
       })
       this.loading = false;
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     })
   }
 
@@ -142,6 +128,33 @@ export class OrdinariosPersonalComponent implements OnInit {
     else{
      this.lib.info('Debe seleccionar un elemento','No es posible');
     }
+}
+
+selecc() {
+
+
+  //Ver si el checkbox esta seleccionado
+  if (this.selec) {
+
+    // Vaciar arreglo
+    var des: number[] = [];
+    this.seleccionados = des;
+
+  }
+  else {
+
+    // Guardar todos los id en seleccionados
+    var i = 0;
+    for (let item of this.ordinario_personal) {
+      this.seleccionados[i] = item.id;
+      i++;
+    }
+
+
+  }
+  this.selec = !this.selec;
+  console.table(this.seleccionados);
+
 }
 
 }

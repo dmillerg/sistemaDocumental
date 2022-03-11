@@ -58,30 +58,41 @@ export class ModalOrdinariosComponent implements OnInit {
 
   rellenarSiEditas() {
     this.src_documento = this.ordinarios.imagen;
-    if (this.modalHeader == 'Editar') {
-      this.ordinarios_pasado.id = this.ordinarios_pasado.id;
-      this.ordinarios_pasado.no = this.ordinarios_pasado.no;
-      this.ordinarios_pasado.fecha = this.ordinarios_pasado.fecha;
-      this.ordinarios_pasado.enviado = this.ordinarios_pasado.enviado;
-      this.ordinarios_pasado.rsb = this.ordinarios_pasado.rsb;
-      this.ordinarios_pasado.rs = this.ordinarios_pasado.rs;
-      this.ordinarios_pasado.fecha_registro_ctc = this.ordinarios_pasado.fecha_registro_ctc;
-      this.ordinarios_pasado.asunto = this.ordinarios_pasado.asunto;
-      this.ordinarios_pasado.traslado = this.ordinarios_pasado.traslado;
-      this.ordinarios_pasado.fecha_traslado = this.ordinarios_pasado.fecha_traslado;
-      this.ordinarios_pasado.destino = this.ordinarios_pasado.destino;
-      this.ordinarios_pasado.imagen = this.ordinarios_pasado.imagen;
+    if (this.modalAction == 'Editar') {
+      this.ordinarios_pasado.id = this.ordinarios.id;
+      this.ordinarios_pasado.no = this.ordinarios.no;
+      this.ordinarios_pasado.fecha = this.ordinarios.fecha;
+      this.ordinarios_pasado.enviado = this.ordinarios.enviado;
+      this.ordinarios_pasado.rsb = this.ordinarios.rsb;
+      this.ordinarios_pasado.rs = this.ordinarios.rs;
+      this.ordinarios_pasado.fecha_registro_ctc = this.ordinarios.fecha_registro_ctc;
+      this.ordinarios_pasado.asunto = this.ordinarios.asunto;
+      this.ordinarios_pasado.traslado = this.ordinarios.traslado;
+      this.ordinarios_pasado.fecha_traslado = this.ordinarios.fecha_traslado;
+      this.ordinarios_pasado.destino = this.ordinarios.destino;
+      this.ordinarios_pasado.imagen = this.ordinarios.imagen;
     }
   }
 
   addUpdateOrdinarios() {
+    console.log(this.ordinarios_pasado.no, this.ordinarios.no, this.ordinarios_pasado.no == this.ordinarios.no)
+    if (this.ordinarios_pasado.no == this.ordinarios.no) {
+      this.actionUpdateOrRegister();
+    } else{
+      this.api.getLimitados().subscribe((result) => {
+        if (result.filter((n) => n.no == this.ordinarios.no).length <= 0) {
+          this.actionUpdateOrRegister();
+        }
+        else {
+          this.errorN = "El numero introducido ya existe";
+        }
+      })
+    }
 
-    
-    this.api.getOrdinarios().subscribe((result) => {
-    
-      if( result.filter((n)=>n.no==this.ordinarios.no).length<=0)
-        {
+  }
+  actionUpdateOrRegister() {
 
+  
     let formData = new FormData();
     formData.append('id', this.ordinarios.id.toString());
     formData.append('no', this.ordinarios.no.toString());
@@ -127,13 +138,8 @@ export class ModalOrdinariosComponent implements OnInit {
       
     }
   }
-  else{
 
-    this.errorN ="El numero introducido ya existe";
-}    
-    
-})
-}
+
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

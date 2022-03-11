@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionStorageService } from 'ngx-webstorage';
+import { ModalUsuarioComponent } from 'src/app/modals/modal-usuario/modal-usuario.component';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   see: boolean = false;
   error: string = '';
 
-  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
+  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -36,11 +38,16 @@ export class LoginComponent implements OnInit {
       console.log(result);
       this.storage.store('usuario', result);
       this.router.navigate(['inicio'])
-    },(error)=>{
-this.error = error.error.message;
-console.log(error.error.message);
+    }, (error) => {
+      this.error = error.error.message;
+      console.log(error.error.message);
     }
     );
+  }
+
+  createUser() {
+    let modal = this.modalService.open(ModalUsuarioComponent, { backdrop: 'static' });
+    modal.componentInstance.modalAction = "Agregar";
   }
 
 }

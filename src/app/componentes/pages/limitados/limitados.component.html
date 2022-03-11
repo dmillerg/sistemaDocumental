@@ -17,7 +17,7 @@
                   </div>
          </div>
          <div style="margin-top: -30px;">
-            <input type="checkbox" ngValue="Seleccionar todo"/>
+            <input type="checkbox" ngValue="Seleccionar todo" (click)="selecc()"/>
             <Label>Seleccionar Todo</Label>
             </div>
     <table class="tablas" id="ta" name="tabb">
@@ -36,10 +36,9 @@
             <td colspan="12">imagen</td>
             <td colspan="13">acciones</td>
         </thead>
-        <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{server}}</p>
+        <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of limitados" class="ligth" (click)="detailToggle(item)">
-            <td colspan="1" id="aa"><input type="checkbox" (click)="d(item.id)"></td>
+            <td colspan="1" id="aa"><input type="checkbox" [checked]="selec" (click)="d(item.id)"></td>
             <td colspan="2">{{item.id}}</td>
             <td colspan="3">{{item.no}}</td>
             <td colspan="4">{{item.procedencia}}</td>

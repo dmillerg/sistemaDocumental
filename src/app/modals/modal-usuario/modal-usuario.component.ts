@@ -48,7 +48,7 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   rellenarSiEditas() {
-    if (this.modalHeader == 'Editar') {
+    if (this.modalAction == 'Editar') {
       this.usuario_pasado.id = this.usuario.id;
       this.usuario_pasado.usuario = this.usuario.usuario;
       this.usuario_pasado.password = this.usuario.password;

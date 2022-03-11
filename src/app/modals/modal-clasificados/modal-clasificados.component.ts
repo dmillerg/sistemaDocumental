@@ -83,8 +83,7 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   rellenarSiEditas() {
-    this.src_documento = this.clasificados.imagen;
-    console.log(this.modalAction == 'Editar')
+    this.src_documento = this.clasificados.imagen; 
     if (this.modalAction == 'Editar') {
       this.clasificados_pasado.id = this.clasificados.id;
       this.clasificados_pasado.no = this.clasificados.no;
@@ -130,7 +129,6 @@ export class ModalClasificadosComponent implements OnInit {
     formData.append('enviado', this.clasificados.enviado.toString());
     formData.append('rsb', this.clasificados.rsb.toString());
     formData.append('rs', this.clasificados.rs.toString());
-    formData.append('fecha', this.clasificados.fecha.toString());
     formData.append('asunto', this.clasificados.asunto.toString());
     formData.append('doc', this.clasificados.doc.toString());
     formData.append('ej', this.clasificados.ej.toString());

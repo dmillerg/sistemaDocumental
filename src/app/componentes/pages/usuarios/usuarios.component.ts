@@ -14,26 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios: Usuario[] = [
-    {
-      id: 1,
-      usuario: 'kuroko',
-      nombre: 'Daniel',
-      password: 'Hasd',
-      fecha_registro: '2022021622105000',
-      fecha_ultima_sesion: '2022021622105000',
-      rol: 'admin'
-    },
-    {
-      id: 1,
-      usuario: 'eypalacio',
-      nombre: 'Elaine',
-      password: 'Hasd',
-      fecha_registro: '2022021622105000',
-      fecha_ultima_sesion: '2022021622105000',
-      rol: 'admin'
-    }
-  ];
+  usuarios: Usuario[] = [];
 
   selected: Usuario = {
     id: -1,
@@ -47,6 +28,7 @@ export class UsuariosComponent implements OnInit {
 
   loading: boolean = false;
 seleccionados: number[]=[];
+selec=false;
   server: string = '';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
@@ -57,14 +39,17 @@ seleccionados: number[]=[];
   loadUsuarios(){
     this.loading = true;
     this.api.getUsuarios().subscribe((result)=>{
+      if(result.length==0){
+        this.server = 'No hay usuarios registrados';
+      }
       this.usuarios = result;
       this.loading = false;
       this.usuarios.forEach((e) => {
         console.log(e);
       })
+    }, (error)=>{
+      this.server = "Error comunicandose con el servidor por favor intentelo más tarde";
     })
-
-
   }
 
   detailToggle(item: Usuario) {
@@ -132,5 +117,33 @@ seleccionados: number[]=[];
     else{
      this.lib.info('Debe seleccionar un elemento','No es posible');
     }
+}
+
+
+selecc() {
+
+
+  //Ver si el checkbox esta seleccionado
+  if (this.selec) {
+
+    // Vaciar arreglo
+    var des: number[] = [];
+    this.seleccionados = des;
+
+  }
+  else {
+
+    // Guardar todos los id en seleccionados
+    var i = 0;
+    for (let item of this.usuarios) {
+      this.seleccionados[i] = item.id;
+      i++;
+    }
+
+
+  }
+  this.selec = !this.selec;
+  console.table(this.seleccionados);
+
 }
 }

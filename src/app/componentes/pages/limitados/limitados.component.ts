@@ -15,34 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LimitadosComponent implements OnInit {
 
-  limitados: Limitados[] = [
-    {
-      id: 1,
-      no: 2,
-      procedencia: 'a',
-      titulo: 'a',
-      fecha: 'a',
-      movimiento1: 'a',
-      movimiento2: 'a',
-      destruccion: 'a',
-      expediente: 'a',
-      observacion: 'a',
-      imagen: 'a'
-    },
-    {
-      id: 2,
-      no: 3,
-      procedencia: 'a',
-      titulo: 'a',
-      fecha: 'a',
-      movimiento1: 'a',
-      movimiento2: 'a',
-      destruccion: 'a',
-      expediente: 'a',
-      observacion: 'a',
-      imagen: 'a'
-    }
-  ];
+  limitados: Limitados[] = [  ];
 
   selected: Limitados = {
     id: -1,
@@ -60,6 +33,7 @@ export class LimitadosComponent implements OnInit {
   server: string = '';
   loading: boolean = false;
   seleccionados: number[] = [];
+  selec=false;
   constructor(private api: ApiService, private modalService: NgbModal,private lib: ToastrService ) { }
 
   ngOnInit(): void {
@@ -78,6 +52,8 @@ export class LimitadosComponent implements OnInit {
         console.log(e);
         this.getDocumentFoto(e);
       })
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     })
   }
 
@@ -124,15 +100,13 @@ export class LimitadosComponent implements OnInit {
 
     if(this.seleccionados.filter((n)=>n==id).length>0){
       this.seleccionados =this.seleccionados.filter((n)=>n!=id);
-  
     }
     else
     this.seleccionados.push(id);
-  
-    
     console.log(this.seleccionados);
     
   }
+
   getDocumentFoto(e: Limitados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_limitados/', 'documento_limitado').subscribe((result) => {
       console.log(result);
@@ -140,6 +114,30 @@ export class LimitadosComponent implements OnInit {
       console.log(error.url);
       e.imagen = error.url
     });
+  }
+
+  selecc() {
+
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.limitados) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
+
   }
 
   deleteAll() {
