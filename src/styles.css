@@ -241,8 +241,9 @@
     height: auto;
 }
 
-.server{
-    color: rebeccapurple;
-    font-size: 15px;
-    margin-top: 40px;
+.check{
+    padding: 50px;
+    border: 1px solid red;
+    background-color: red;
+    color: red;
 }
