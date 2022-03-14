@@ -18,7 +18,7 @@ export class ClasificadosComponent implements OnInit {
 
 
   clasificados: Clasificados[] = [];
-  selec=false;
+  selec = false;
   seleccionados: number[] = [];
   selected: Clasificados = {
     id: 1,
@@ -90,7 +90,7 @@ export class ClasificadosComponent implements OnInit {
     })
   }
 
-  editClasificados(item:Clasificados) {
+  editClasificados(item: Clasificados) {
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Editar";
@@ -100,7 +100,7 @@ export class ClasificadosComponent implements OnInit {
     })
   }
 
-  deleteClasificados(idd:number) {
+  deleteClasificados(idd: number) {
     let modal = this.modalService.open(DeleteComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Eliminar";
@@ -111,77 +111,52 @@ export class ClasificadosComponent implements OnInit {
   }
 
 
-d(id:number){
+  d(id: number) {
 
-  if(this.seleccionados.filter((n)=>n==id).length>0){
-    this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+    if (this.seleccionados.filter((n) => n == id).length > 0) {
+      this.seleccionados = this.seleccionados.filter((n) => n != id);
+
+    }
+    else
+      this.seleccionados.push(id);
+
+
+    console.log(this.seleccionados);
 
   }
-  else
-  this.seleccionados.push(id);
-
-  
-  console.log(this.seleccionados);
-  
-}
   deleteAll() {
-   
-       if(this.seleccionados.length>0){
-
-       for (let idd of this.seleccionados)
-        this.api.deleteClasificados(idd).subscribe(result=>{this.loadClasificados();});
-  
-       
-    this.lib.success('Eliminados con exito!','Eliminar');
-
-       }
-       else{
-        this.lib.info('Debe seleccionar un elemento','No es posible');
-       }
+    if (this.seleccionados.length > 0) {
+      for (let idd of this.seleccionados)
+        this.api.deleteClasificados(idd).subscribe(result => { this.loadClasificados(); });
+      this.lib.success('Eliminados con exito!', 'Eliminar');
+    }
+    else {
+      this.lib.info('Debe seleccionar un elemento', 'No es posible');
+    }
   }
 
-  selecc(){
-
-  
-        //Ver si el checkbox esta seleccionado
-    if(this.selec){
+  selecc() {
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
 
       // Vaciar arreglo
       var des: number[] = [];
-      this.seleccionados=des;
+      this.seleccionados = des;
 
     }
-    else{
+    else {
 
-    // Guardar todos los id en seleccionados
-    var i=0;
-    for(let item of this.clasificados){
-    this.seleccionados[i] =item.id;
-    i++;
-  }
-
-  
-}
-this.selec = !this.selec;
-  console.table(this.seleccionados);
-
-  // Marcar todos los checkbox
-  
-  /*
-
-  var tabla = document.querySelector('#tablas'); 
-
-if(tabla?.ariaRowIndex.match("checkbox"))
-console.log('ddd');
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.clasificados) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
 
 
- for (var i=0, len=tabla.elements.length; i<len ; i++)  
-  {  
-    if (tabla.elements[i].type == "checkbox")  
-      tabla.elements[i].checked = tabla.elements[0].checked;  
-  } 
-  */
-
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
   }
 
 }

@@ -53,24 +53,37 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
 
   rellenarSiEditas() {
     this.src_documento = this.ordinario_personal.imagen;
-    if (this.modalHeader == 'Editar') {
-      this.ordinarios_pasado.id = this.ordinarios_pasado.id;
-      this.ordinarios_pasado.no = this.ordinarios_pasado.no;
-      this.ordinarios_pasado.fecha = this.ordinarios_pasado.fecha;
-      this.ordinarios_pasado.procedencia = this.ordinarios_pasado.procedencia;
-      this.ordinarios_pasado.asunto = this.ordinarios_pasado.asunto;
-      this.ordinarios_pasado.destino = this.ordinarios_pasado.destino;
-      this.ordinarios_pasado.archivo = this.ordinarios_pasado.archivo;
-      this.ordinarios_pasado.imagen = this.ordinarios_pasado.imagen;
+    if (this.modalAction == 'Editar') {
+      this.ordinarios_pasado.id = this.ordinario_personal.id;
+      this.ordinarios_pasado.no = this.ordinario_personal.no;
+      this.ordinarios_pasado.fecha = this.ordinario_personal.fecha;
+      this.ordinarios_pasado.procedencia = this.ordinario_personal.procedencia;
+      this.ordinarios_pasado.asunto = this.ordinario_personal.asunto;
+      this.ordinarios_pasado.destino = this.ordinario_personal.destino;
+      this.ordinarios_pasado.archivo = this.ordinario_personal.archivo;
+      this.ordinarios_pasado.imagen = this.ordinario_personal.imagen;
     }
   }
 
-  addUpdateOrdinariosP() {
 
-    this.api.getOrdinariosP().subscribe((result) => {
-    
-      if( result.filter((n)=>n.no==this.ordinario_personal.no).length<=0)
-        {
+  addUpdateOrdinariosP() {
+    console.log(this.ordinarios_pasado.no, this.ordinario_personal.no, this.ordinarios_pasado.no == this.ordinario_personal.no)
+    if (this.ordinarios_pasado.no == this.ordinario_personal.no) {
+      this.actionUpdateOrRegister();
+    } else{
+      this.api.getLimitados().subscribe((result) => {
+        if (result.filter((n) => n.no == this.ordinario_personal.no).length <= 0) {
+          this.actionUpdateOrRegister();
+        }
+        else {
+          this.errorN = "El numero introducido ya existe";
+        }
+      })
+    }
+
+  }
+
+  actionUpdateOrRegister() {
 
     let formData = new FormData();
     formData.append('id', this.ordinario_personal.id.toString());
@@ -112,13 +125,6 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       })
       
     }
-  }
-  else{
-
-    this.errorN ="El numero introducido ya existe";
-}    
-    
-})
 }
 
   fileEvent(fileInput: any) {

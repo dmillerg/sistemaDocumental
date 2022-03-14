@@ -50,6 +50,7 @@ export class OrdinariosPersonalComponent implements OnInit {
 
   server: string = '';
   loading: boolean = false
+  selec=false;
   seleccionados: number[]=[];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
@@ -142,6 +143,33 @@ export class OrdinariosPersonalComponent implements OnInit {
     else{
      this.lib.info('Debe seleccionar un elemento','No es posible');
     }
+}
+
+selecc() {
+
+
+  //Ver si el checkbox esta seleccionado
+  if (this.selec) {
+
+    // Vaciar arreglo
+    var des: number[] = [];
+    this.seleccionados = des;
+
+  }
+  else {
+
+    // Guardar todos los id en seleccionados
+    var i = 0;
+    for (let item of this.ordinario_personal) {
+      this.seleccionados[i] = item.id;
+      i++;
+    }
+
+
+  }
+  this.selec = !this.selec;
+  console.table(this.seleccionados);
+
 }
 
 }

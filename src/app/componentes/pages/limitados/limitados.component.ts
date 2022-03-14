@@ -60,6 +60,7 @@ export class LimitadosComponent implements OnInit {
   server: string = '';
   loading: boolean = false;
   seleccionados: number[] = [];
+  selec=false;
   constructor(private api: ApiService, private modalService: NgbModal,private lib: ToastrService ) { }
 
   ngOnInit(): void {
@@ -124,15 +125,13 @@ export class LimitadosComponent implements OnInit {
 
     if(this.seleccionados.filter((n)=>n==id).length>0){
       this.seleccionados =this.seleccionados.filter((n)=>n!=id);
-  
     }
     else
     this.seleccionados.push(id);
-  
-    
     console.log(this.seleccionados);
     
   }
+
   getDocumentFoto(e: Limitados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_limitados/', 'documento_limitado').subscribe((result) => {
       console.log(result);
@@ -140,6 +139,30 @@ export class LimitadosComponent implements OnInit {
       console.log(error.url);
       e.imagen = error.url
     });
+  }
+
+  selecc() {
+
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.limitados) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
+
   }
 
   deleteAll() {

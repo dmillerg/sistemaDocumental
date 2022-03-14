@@ -57,7 +57,7 @@ export class ModalLimitadosComponent implements OnInit {
 
   rellenarSiEditas() {
     this.src_documento = this.limitados.imagen;
-    if (this.modalHeader == 'Editar') {
+    if (this.modalAction == 'Editar') {
       this.limitados_pasado.id = this.limitados.id;
       this.limitados_pasado.no = this.limitados.no;
       this.limitados_pasado.procedencia = this.limitados.procedencia;
@@ -73,41 +73,23 @@ export class ModalLimitadosComponent implements OnInit {
   }
 
   addUpdateLimitados() {
-
-    this.api.getLimitados().subscribe((result) => {
-      
-      if (this.modalAction == "Editar") {
-        console.table('actual: '+  this.limitados.no);
-        console.table('anterior: '+  this.limitados_pasado.no);
-
-        if (result.filter((n) => n.no == this.limitados.no).length > 0 && this.limitados.no == this.limitados_pasado.no) {
-          this.validarNo();
-        }         
-        else if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
-
-          this.validarNo();
-
-        }
-        else {
-
-          this.errorN = "El numero introducido ya existe";
-        }
-      }
-      else
+    console.log(this.limitados_pasado.no, this.limitados.no, this.limitados_pasado.no == this.limitados.no)
+    if (this.limitados_pasado.no == this.limitados.no) {
+      this.actionUpdateOrRegister();
+    } else{
+      this.api.getLimitados().subscribe((result) => {
         if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
-
-          this.validarNo();
-
+          this.actionUpdateOrRegister();
         }
         else {
-
           this.errorN = "El numero introducido ya existe";
         }
-    })
+      })
+    }
 
   }
 
-  validarNo() {
+  actionUpdateOrRegister() {
     let formData = new FormData();
     formData.append('id', this.limitados.id.toString());
     formData.append('no', this.limitados.no.toString());
@@ -150,6 +132,8 @@ export class ModalLimitadosComponent implements OnInit {
       })
     }
   }
+
+  
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))

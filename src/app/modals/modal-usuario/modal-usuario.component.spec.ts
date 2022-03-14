@@ -12,6 +12,7 @@ describe('ModalUsuarioComponent', () => {
     })
     .compileComponents();
   });
+  
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ModalUsuarioComponent);

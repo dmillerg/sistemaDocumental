@@ -47,6 +47,7 @@ export class UsuariosComponent implements OnInit {
 
   loading: boolean = false;
 seleccionados: number[]=[];
+selec=false;
   server: string = '';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
 
@@ -132,5 +133,33 @@ seleccionados: number[]=[];
     else{
      this.lib.info('Debe seleccionar un elemento','No es posible');
     }
+}
+
+
+selecc() {
+
+
+  //Ver si el checkbox esta seleccionado
+  if (this.selec) {
+
+    // Vaciar arreglo
+    var des: number[] = [];
+    this.seleccionados = des;
+
+  }
+  else {
+
+    // Guardar todos los id en seleccionados
+    var i = 0;
+    for (let item of this.usuarios) {
+      this.seleccionados[i] = item.id;
+      i++;
+    }
+
+
+  }
+  this.selec = !this.selec;
+  console.table(this.seleccionados);
+
 }
 }
