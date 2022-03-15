@@ -40,6 +40,8 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
+  listado: any[]=[];
+  tipos: any[]=[];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -163,4 +165,14 @@ export class ClasificadosComponent implements OnInit {
     console.table(this.seleccionados);
   }
 
+  loadListado(){
+    this.tipos.forEach(e=>{
+      this.api.getDocuments(e).subscribe((result)=>{
+        result.forEach((e) => {
+          this.listado.push(e);
+        })
+      })
+    })
+    console.log(this.listado);
+  }
 }
