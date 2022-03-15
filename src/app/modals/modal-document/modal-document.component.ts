@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-modal-document',
@@ -7,15 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalDocumentComponent implements OnInit {
 
-  seleccionado: number=-1
+  seleccionado: number = -1
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
-  changValue(){
+  changValue() {
     console.log(this.seleccionado);
-    
   }
 }

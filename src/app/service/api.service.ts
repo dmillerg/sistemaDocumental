@@ -299,44 +299,44 @@ export class ApiService {
     return this.http.get<Ordinario_personal[]>(direccion);
   }
 
-/**
- * Agrega un nuevo usuario al sistema
- * @param formData Datos del nuevo usuario
- * @returns 
- */
-addOrdinariosP(formData: FormData) {
-  let direccion = this.url + 'ordinariopersonal';
-  formData.append('token', this.storage.retrieve('usuario').token);
-  return this.http.post(direccion, formData);
-}
+  /**
+   * Agrega un nuevo usuario al sistema
+   * @param formData Datos del nuevo usuario
+   * @returns 
+   */
+  addOrdinariosP(formData: FormData) {
+    let direccion = this.url + 'ordinariopersonal';
+    formData.append('token', this.storage.retrieve('usuario').token);
+    return this.http.post(direccion, formData);
+  }
 
-/**
- * Actualiza los datos de un usuario 
- * @param formData Datos nuevos del usuario
- * @returns 
- */
-updateOrdinariosP(formData: FormData, id: number = -1) {
-  let direccion = this.url + 'ordinariopersonal/' + id.toString();
-  formData.append('token', this.storage.retrieve('usuario').token);
-  return this.http.put(direccion, formData);
-}
+  /**
+   * Actualiza los datos de un usuario 
+   * @param formData Datos nuevos del usuario
+   * @returns 
+   */
+  updateOrdinariosP(formData: FormData, id: number = -1) {
+    let direccion = this.url + 'ordinariopersonal/' + id.toString();
+    formData.append('token', this.storage.retrieve('usuario').token);
+    return this.http.put(direccion, formData);
+  }
 
 
-/**
- * Elimina un usuario
- * @param id del usuario a eliminar
- * @returns 
- */
-deleteOrdinariosP(id: number = -1) {
-  let direccion = this.url + 'ordinariopersonal/' + id.toString();
-  const headers = { 'content-type': 'application/json' };
-  const params = {
-    token: this.storage.retrieve('usuario').token,
-  };
-  return this.http.delete(direccion, {headers: headers, params: params});
-}
+  /**
+   * Elimina un usuario
+   * @param id del usuario a eliminar
+   * @returns 
+   */
+  deleteOrdinariosP(id: number = -1) {
+    let direccion = this.url + 'ordinariopersonal/' + id.toString();
+    const headers = { 'content-type': 'application/json' };
+    const params = {
+      token: this.storage.retrieve('usuario').token,
+    };
+    return this.http.delete(direccion, { headers: headers, params: params });
+  }
 
-  
+
 
 
 
@@ -347,12 +347,25 @@ deleteOrdinariosP(id: number = -1) {
    * @param dir dir del documento en el server
    * @returns 
    */
-   getDocumentsFoto(id: number = -1, dir: string = '', datatable : string = '') {
+  getDocumentsFoto(id: number = -1, dir: string = '', datatable: string = '') {
     let direccion = this.url + 'documentsFoto/' + id.toString();
     let params = {
       dir: dir,
       datatable: datatable,
     }
     return this.http.get(direccion, { params: params });
+  }
+
+  /**
+   * Obtiene cualquier tipo de documento
+   * @param tipo Tipo de documentos a buscar
+   * @returns 
+   */
+  getDocuments(tipo: string): Observable<any[]> {
+    let direccion = this.url + 'documents';
+    let params = {
+      tipo: tipo
+    }
+    return this.http.get<any[]>(direccion, { params: params });
   }
 }
