@@ -15,34 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LimitadosComponent implements OnInit {
 
-  limitados: Limitados[] = [
-    {
-      id: 1,
-      no: 2,
-      procedencia: 'a',
-      titulo: 'a',
-      fecha: 'a',
-      movimiento1: 'a',
-      movimiento2: 'a',
-      destruccion: 'a',
-      expediente: 'a',
-      observacion: 'a',
-      imagen: 'a'
-    },
-    {
-      id: 2,
-      no: 3,
-      procedencia: 'a',
-      titulo: 'a',
-      fecha: 'a',
-      movimiento1: 'a',
-      movimiento2: 'a',
-      destruccion: 'a',
-      expediente: 'a',
-      observacion: 'a',
-      imagen: 'a'
-    }
-  ];
+  limitados: Limitados[] = [  ];
 
   selected: Limitados = {
     id: -1,
@@ -79,6 +52,9 @@ export class LimitadosComponent implements OnInit {
         console.log(e);
         this.getDocumentFoto(e);
       })
+    }, (error) => {
+      console.log('entro');
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     })
   }
 

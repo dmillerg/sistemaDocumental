@@ -13,25 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SecretosComponent implements OnInit {
 
-  secretos: Secreto[] = [
-    {
-      id: -1,
-    no: -1,
-    lugar: '',
-    reg_no: '',
-    titulo: '',
-    categoria: '',
-    mat_no:-1,
-    folio_no: -1,
-    cant: -1,
-    no_ejemplar: -1,
-    cant_hojas: -1,
-    destruccion: '',
-    destino: '',
-    comp: '',
-    imagen:''
-    }
-  ];
+  secretos: Secreto[] = [  ];
 
   selected: Secreto = {
     id: -1,
@@ -72,6 +54,8 @@ selec=false;
         console.log(e);
         this.getDocumentFoto(e);
       })
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     });
   }
 

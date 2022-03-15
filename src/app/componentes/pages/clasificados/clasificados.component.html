@@ -6,7 +6,7 @@
             
            
         </div>
-        <p class="text-oscuro">  Clasificados registrados en el sistema</p>
+        <p class="text-oscuro">Clasificados registrados en el sistema</p>
    
             <div>
          <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
@@ -42,9 +42,7 @@
             <td>imagen</td>
             <td>acciones</td>
         </thead>
-        <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{server}}</p>
-           
+        <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
              <td><input name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)"></td>
             <td>{{item.id}}</td>

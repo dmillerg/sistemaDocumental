@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LoadingComponent implements OnInit {
 
   @Input() loading : boolean = true;
+  @Input() message : string = '';
   constructor() { }
 
   ngOnInit(): void {

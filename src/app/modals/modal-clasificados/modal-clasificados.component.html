@@ -95,7 +95,7 @@
 
              
                 </div>
-        <button id="butt" class="btn btn-firstcolor" (click)="addUpdateClasificados()"> {{modalAction}}</button>
+        <button id="butt" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor" (click)="addUpdateClasificados()"> {{modalAction}}</button>
                
     </form>
 </div>

@@ -58,7 +58,8 @@ export class ClasificadosComponent implements OnInit {
         this.getDocumentFoto(e);
       })
       this.loading = false;
-
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     });
   }
 

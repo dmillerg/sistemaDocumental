@@ -75,17 +75,12 @@
     font-weight: 300;
 }
 
-.contenedor .title-page p{
-    color: rgb(161, 6, 6);
-    font-size: 15px;
-}
-
-.newUserButton{
+.newUserButton {
     border-radius: 10px;
     background-color: var(--firstcolor-hover);
     color: white;
     margin-left: 800px;
     margin-top: -90px;
-    margin-bottom:-10px;
+    margin-bottom: -10px;
     border-color: var(--firstcolor-hover);
-    }
+}

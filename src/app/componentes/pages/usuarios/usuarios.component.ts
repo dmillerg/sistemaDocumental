@@ -14,26 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios: Usuario[] = [
-    {
-      id: 1,
-      usuario: 'kuroko',
-      nombre: 'Daniel',
-      password: 'Hasd',
-      fecha_registro: '2022021622105000',
-      fecha_ultima_sesion: '2022021622105000',
-      rol: 'admin'
-    },
-    {
-      id: 1,
-      usuario: 'eypalacio',
-      nombre: 'Elaine',
-      password: 'Hasd',
-      fecha_registro: '2022021622105000',
-      fecha_ultima_sesion: '2022021622105000',
-      rol: 'admin'
-    }
-  ];
+  usuarios: Usuario[] = [];
 
   selected: Usuario = {
     id: -1,
@@ -58,14 +39,17 @@ selec=false;
   loadUsuarios(){
     this.loading = true;
     this.api.getUsuarios().subscribe((result)=>{
+      if(result.length==0){
+        this.server = 'No hay usuarios registrados';
+      }
       this.usuarios = result;
       this.loading = false;
       this.usuarios.forEach((e) => {
         console.log(e);
       })
+    }, (error)=>{
+      this.server = "Error comunicandose con el servidor por favor intentelo más tarde";
     })
-
-
   }
 
   detailToggle(item: Usuario) {

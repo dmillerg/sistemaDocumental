@@ -16,36 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrdinariosComponent implements OnInit {
 
   
-  ordinarios: Ordinarios[] = [
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
-      asunto: 'a',
-      destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
-      imagen: 'a'
-    },
-    {
-      id: 1,
-      no: 2,
-      fecha: 'a',
-      enviado: 'a',
-      rsb: 'a',
-      rs: 'a',
-      fecha_registro_ctc: 'a',
-      asunto: 'a',
-      destino: 'a',
-      traslado: 'a',
-      fecha_traslado: 'a',
-      imagen: 'a'
-    }
-  ];
+  ordinarios: Ordinarios[] = [  ];
 
   selected: Ordinarios = {
     id: 1,
@@ -84,8 +55,8 @@ export class OrdinariosComponent implements OnInit {
         console.log(e);
         this.getDocumentFoto(e);
       })
-
-      
+    }, (error) => {
+      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
     })
   }
 

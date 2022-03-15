@@ -31,7 +31,7 @@
             <td colspan="5">fecha registro</td>
             <td colspan="6">acciones</td>
         </thead>
-        <app-loading [loading]="loading"></app-loading>
+        <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
             <td colspan="1"><input type="checkbox" [checked]="selec" (click)="d(item.id)"></td>
             <td colspan="2">{{item.id}}</td>

@@ -36,8 +36,7 @@
             <td colspan="12">imagen</td>
             <td colspan="13">acciones</td>
         </thead>
-        <app-loading [loading]="loading"></app-loading>
-        <p class="server">{{server}}</p>
+        <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of limitados" class="ligth" (click)="detailToggle(item)">
             <td colspan="1" id="aa"><input type="checkbox" [checked]="selec" (click)="d(item.id)"></td>
             <td colspan="2">{{item.id}}</td>
