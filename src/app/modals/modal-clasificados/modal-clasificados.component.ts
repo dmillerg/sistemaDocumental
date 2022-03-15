@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Clasificados } from 'src/app/models/clasificados.service';
@@ -14,7 +14,7 @@ export class ModalClasificadosComponent implements OnInit {
 
   actiModal: NgbActiveModal;
   modalHeader: string = '';
-  modalAction: string = '';
+  @Input() modalAction: string = '';
   errorN: string = "";
 
   clasificados: Clasificados = {

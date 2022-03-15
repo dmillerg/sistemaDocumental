@@ -1,0 +1,21 @@
+<div class="contenedor-modals">
+    <div class="seleccionable-modals">
+        <p>Seleccione el tipo de documento que desea agregar</p>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (ngModelChange)="changValue()">
+            <option value="1"></option>
+            <option value="2">Clasificados</option>
+            <option value="3">Limitados</option>
+            <option value="4">Ordinarios</option>
+            <option value="5">Ordinarios Personal</option>
+            <option value="6">Secretos</option>
+          </select>
+    </div>
+    <div class="seleccionado-modals">
+        <app-modal-clasificados *ngIf="seleccionado==2" [modalAction]="'Agregar'"></app-modal-clasificados>
+        <app-modal-limitados *ngIf="seleccionado==3" [modalAction]="'Agregar'"></app-modal-limitados>
+        <app-modal-ordinarios *ngIf="seleccionado==4" [modalAction]="'Agregar'"></app-modal-ordinarios>
+        <app-modal-ordinario-personal *ngIf="seleccionado==5" [modalAction]="'Agregar'"></app-modal-ordinario-personal>
+        <app-modal-secretos *ngIf="seleccionado==6" [modalAction]="'Agregar'"></app-modal-secretos>
+    </div>
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
@@ -13,7 +13,7 @@ export class ModalSecretosComponent implements OnInit {
 
   actiModal: NgbActiveModal;
   modalHeader: string = '';
-  modalAction: string = '';
+  @Input() modalAction: string = '';
   errorN: string="";
 
   secretos: Secreto = {

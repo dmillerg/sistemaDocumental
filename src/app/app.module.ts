@@ -27,6 +27,7 @@ import { ModalOrdinarioPersonalComponent } from './modals/modal-ordinario-person
 import { DeleteComponent } from './modals/delete/delete.component';
 import { ToastrModule } from 'ngx-toastr';
 import{ LayoutModule} from '@angular/cdk/layout';
+import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import{ LayoutModule} from '@angular/cdk/layout';
   LoadingComponent,
   OrdinariosPersonalComponent,
   ModalOrdinarioPersonalComponent,
-  DeleteComponent
+  DeleteComponent,
+  ModalDocumentComponent
 
   ],
   imports: [

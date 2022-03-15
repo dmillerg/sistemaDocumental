@@ -40,11 +40,11 @@ export class AppComponent implements OnInit {
   };
   mode: boolean = false;
   title = 'sistema-documental';
+  fecha = new Date();
   constructor(private storage: SessionStorageService, private router: Router) {
 
   }
   ngOnInit(): void {
-   
     if (this.storage.retrieve('usuario')) {
       this.login = this.storage.retrieve('usuario');
     }
