@@ -45,9 +45,6 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
-   setInterval(()=>{
-     this.fecha = new Date();
-   }, 1000)
     if (this.storage.retrieve('usuario')) {
       this.login = this.storage.retrieve('usuario');
     }
