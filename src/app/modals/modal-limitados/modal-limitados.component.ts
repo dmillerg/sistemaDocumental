@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Limitados } from 'src/app/models/limitados.service';
@@ -13,7 +13,7 @@ export class ModalLimitadosComponent implements OnInit {
 
   actiModal: NgbActiveModal;
   modalHeader: string = '';
-  modalAction: string = '';
+  @Input() modalAction: string = '';
   errorN: string = "";
 
   limitados: Limitados = {

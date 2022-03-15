@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { OrdinariosPersonalComponent } from 'src/app/componentes/pages/ordinarios-personal/ordinarios-personal.component';
@@ -15,7 +15,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
 
   actiModal: NgbActiveModal;
   modalHeader: string = '';
-  modalAction: string = '';
+  @Input() modalAction: string = '';
   errorN: string="";
 
   ordinario_personal: Ordinario_personal = {

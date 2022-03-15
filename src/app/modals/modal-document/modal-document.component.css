@@ -1,0 +1,20 @@
+.contenedor-modals{
+    width: 100%;
+    height: auto;
+    background-color:white;
+    border-radius: 0.5em;
+    border: 1px solid var(--firstcolor);
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+}
+
+.contenedor-modals .seleccionable-modals{
+    padding: 20px;
+}
+
+.contenedor-modals .seleccionable-modals p{
+    color: var(--firstcolor);
+}
+
+.contenedor-modals .seleccionado-modals{
+    margin-top: 10px;
+}

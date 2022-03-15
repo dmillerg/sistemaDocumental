@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
 import { OrdinariosComponent } from 'src/app/componentes/pages/ordinarios/ordinarios.component';
@@ -13,7 +13,7 @@ export class ModalOrdinariosComponent implements OnInit {
 
   actiModal: NgbActiveModal;
   modalHeader: string = '';
-  modalAction: string = '';
+  @Input() modalAction: string = '';
   errorN: string="";
 
   ordinarios: Ordinarios = {

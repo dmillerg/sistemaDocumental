@@ -8,6 +8,7 @@ import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
 
 @Component({
   selector: 'app-clasificados',
@@ -83,12 +84,14 @@ export class ClasificadosComponent implements OnInit {
   }
 
   addClasificados() {
-    let modal = this.modalService.open(ModalClasificadosComponent);
-    modal.componentInstance.modalHeader = "Clasificados";
-    modal.componentInstance.modalAction = "Agregar";
+    let modal = this.modalService.open(ModalDocumentComponent);
+    // modal.componentInstance.modalHeader = "Clasificados";
+    // modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e) => {
       this.loadClasificados();
     })
+
+
   }
 
   editClasificados(item: Clasificados) {
