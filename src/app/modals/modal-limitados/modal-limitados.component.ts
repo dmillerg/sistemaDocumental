@@ -146,6 +146,12 @@ export class ModalLimitadosComponent implements OnInit {
     }
     reader.readAsDataURL(file);
   }
+
+  validarCamposVacios(){
+    return this.limitados.procedencia.length>0&&this.limitados.titulo.length>0&&this.limitados.movimiento1.length>0&&this.limitados.movimiento2.length>0&&
+    this.limitados.destruccion.length>0&&this.limitados.expediente.length>0&&this.limitados.observacion.length>0
+
+  }
 }
 
 

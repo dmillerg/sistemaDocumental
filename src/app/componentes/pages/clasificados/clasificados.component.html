@@ -2,13 +2,18 @@
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
             
            
         </div>
-        <p class="text-oscuro">Clasificados registrados en el sistema</p>
+        <p class="text-oscuro">Documentos registrados en el sistema</p>
    
             <div>
+                <Label style="margin-right: -177px;">Tipo de documento:</Label>
+                <select name="miselect" [(ngModel)]="seleccionado" style="margin-left: 720px; height: 40px;color: white; border-radius: 6px; background-color: var(--firstcolor-hover)" >
+                    <option value="Seleccionar" [value]="item" *ngFor="let item of lista">{{item}}</option>
+                </select>
+
          <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
             <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
         </button>
@@ -27,18 +32,6 @@
             <td></td>
             <td>id</td>
             <td>no</td>
-            <td>fecha</td>
-            <td>enviado</td>
-            <td>rsb</td>
-            <td>rs</td>
-            <td>fecha_registro_ctc</td>
-            <td>asunto</td>
-            <td>doc</td>
-            <td>ej</td>
-            <td>clasif</td>
-            <td>destino</td>
-            <td>traslado</td>
-            <td>fecha_traslado</td>
             <td>imagen</td>
             <td>acciones</td>
         </thead>
@@ -47,18 +40,6 @@
              <td><input name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)"></td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
-            <td>{{item.fecha}}</td>
-            <td>{{item.enviado}}</td>
-            <td>{{item.rsb}}</td>
-            <td>{{item.rs}}</td>
-            <td>{{item.fecha_registro_ctc}}</td>
-            <td>{{item.asunto}}</td>
-            <td>{{item.doc}}</td>
-            <td>{{item.ej}}</td>
-            <td>{{item.clasif}}</td>
-            <td>{{item.destino}}</td>
-            <td>{{item.traslado}}</td>
-            <td>{{item.fecha_traslado}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
             <td><button class="btn btn-firstcolor"  (click)="editClasificados(item)"><i class="bi bi-pencil"></i></button></td>
             <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i class="bi bi-trash"></i></button></td>

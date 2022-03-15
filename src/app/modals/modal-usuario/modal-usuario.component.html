@@ -32,6 +32,6 @@
             <input type="text" class="in" name="rol" id="rol" placeholder="rol" [(ngModel)]="usuario.rol">
         </div>
 
-        <button class="btn btn-firstcolor" (click)="addUpdateUsuario()"> {{modalAction}}</button>
+        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios()" (click)="addUpdateUsuario()"> {{modalAction}}</button>
     </form>
 </div>

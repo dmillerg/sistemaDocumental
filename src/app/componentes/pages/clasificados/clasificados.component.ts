@@ -20,6 +20,8 @@ export class ClasificadosComponent implements OnInit {
   clasificados: Clasificados[] = [];
   selec = false;
   seleccionados: number[] = [];
+  lista:string[]=["Clasificado","Limitado","Ordinario", "Ordinario personal", "Secreto"];
+  seleccionado:string[]=[];
   selected: Clasificados = {
     id: 1,
     no: 2,

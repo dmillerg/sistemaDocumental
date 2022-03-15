@@ -139,6 +139,10 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  validarCamposVacios(){
+    return this.ordinario_personal.procedencia.length>0&&this.ordinario_personal.asunto.length>0&&this.ordinario_personal.archivo.length>0&&
+    this.ordinario_personal.destino.length>0
+  }
 
 
 }
