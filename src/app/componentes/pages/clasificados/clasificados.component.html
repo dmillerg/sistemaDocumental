@@ -3,70 +3,54 @@
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
             <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
-            
-           
         </div>
-        <p class="text-oscuro">Clasificados registrados en el sistema</p>
-   
-            <div>
-         <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
-            <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
-        </button>
+        <p class="text-oscuro"(click)="onChange()">Clasificados registrados en el sistema </p>
 
-        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor" style="margin-right: 200px;">Eliminar Todo
-            <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
-        </button>
-           </div>
+        <div>
+            <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()">Nuevo Documento
+                <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+            </button>
+
+            <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor"
+                style="margin-right: 200px;">Eliminar Todo
+                <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
+            </button>
+        </div>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
-        <label class="form-check-label" for="flexCheckDefault">
-          Seleccionar Todo
+        <label class="form-check-label" for="flexCheckDefault" >
+            Seleccionar Todo
         </label>
-      </div>
+    </div>
+    <div class="form-selec">
+        <select class="form-select" multiple aria-label="multiple select example" [(ngModel)]="tipos" (ngModelChange)="onChange()">
+            <option *ngFor="let item of opciones" [value]="item.value" (click)="addORRemove(item)">{{item.name}}</option>
+        </select>
+    </div>
     <table class="tablas">
         <thead class="head">
             <td></td>
             <td>id</td>
             <td>no</td>
             <td>fecha</td>
-            <td>enviado</td>
-            <td>rsb</td>
-            <td>rs</td>
-            <td>fecha_registro_ctc</td>
-            <td>asunto</td>
-            <td>doc</td>
-            <td>ej</td>
-            <td>clasif</td>
-            <td>destino</td>
-            <td>traslado</td>
-            <td>fecha_traslado</td>
             <td>imagen</td>
             <td>acciones</td>
         </thead>
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-             <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)"></td>
+            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)">
+            </td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>
-            <td>{{item.enviado}}</td>
-            <td>{{item.rsb}}</td>
-            <td>{{item.rs}}</td>
-            <td>{{item.fecha_registro_ctc}}</td>
-            <td>{{item.asunto}}</td>
-            <td>{{item.doc}}</td>
-            <td>{{item.ej}}</td>
-            <td>{{item.clasif}}</td>
-            <td>{{item.destino}}</td>
-            <td>{{item.traslado}}</td>
-            <td>{{item.fecha_traslado}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
-            <td><button class="btn btn-firstcolor"  (click)="editClasificados(item)"><i class="bi bi-pencil"></i></button></td>
-            <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i class="bi bi-trash"></i></button></td>
-            
+            <td><button class="btn btn-firstcolor" (click)="editClasificados(item)"><i
+                        class="bi bi-pencil"></i></button></td>
+            <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i
+                        class="bi bi-trash"></i></button></td>
+
         </tr>
-    
+
     </table>
 </div>
-

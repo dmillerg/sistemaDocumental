@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
-import { SecretosComponent } from 'src/app/componentes/pages/secretos/secretos.component';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-modal-secretos',

@@ -5,7 +5,7 @@
 .sidebar {
     position: fixed;
     background: rgb(200,2,2);
-    background: linear-gradient(180deg, rgb(161, 2, 2) 0%, rgba(255,255,255,1) 41%, rgb(33, 38, 104) 89%);
+    background: linear-gradient(330deg,var(--firstcolor-hover) 40%,rgb(161, 2, 2) 80%,rgba(255,255,255,1) 100%);
     font-style: black;
     width: 260px;
     height: 100%;
@@ -59,18 +59,17 @@
     color: var(--firstcolor);
     position: relative;
     line-height: 30px;
-    width: 100%;
+    width: auto;
     padding: 12px;
-    min-width: 50px;
+    min-width: 100px;
     list-style: none;
-    white-space: nowrap;
     display: flex;
     align-items: center;
     margin-left: -30px;
     padding-left: 12.5px;
     transition: all .3s ease;
-    width: 100%;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .sidebar ul {
@@ -86,7 +85,7 @@
 }
 
 .sidebar ul li:hover {
-    background-color: rgb(250, 220, 220);
+    background-color: rgba(0, 0, 0, 0.1);
     color: var(--theme-color-ligth);
     transition: all .3s ease;
     border-radius: 12px;
@@ -108,12 +107,12 @@
     margin-right: 20px;
     font-size: 25px;
     font-weight: 450;
-    color: black;
+    color: white;
 }
 
 .sidebar ul li span {
     font-weight: 450;
-    color: black;
+    color: white;
 }
 
 .sidebar.active ul li span {

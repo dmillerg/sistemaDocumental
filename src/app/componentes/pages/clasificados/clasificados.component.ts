@@ -40,12 +40,20 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
-  listado: any[]=[];
-  tipos: any[]=[];
+  listado: any[] = [];
+  opciones: any[] = [];
+  tipos: any[] = [];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
-    this.loadClasificados();
+    this.loadListado();
+    this.opciones = [
+      { value: 1, name: 'Clasificados', tipo: 'documento_clasificado' },
+      { value: 2, name: 'Limitados', tipo: 'documento_limitado' },
+      { value: 3, name: 'Ordinarios', tipo: 'documento_ordinario' },
+      { value: 4, name: 'Ordinarios Personales', tipo: 'documento_ordinario_personal' },
+      { value: 5, name: 'Secretos', tipo: 'documento_secreto' },
+    ];
   }
 
   loadClasificados() {
@@ -165,14 +173,29 @@ export class ClasificadosComponent implements OnInit {
     console.table(this.seleccionados);
   }
 
-  loadListado(){
-    this.tipos.forEach(e=>{
-      this.api.getDocuments(e).subscribe((result)=>{
+  loadListado() {
+    this.clasificados = []
+    this.tipos.forEach(e => {
+      this.api.getDocuments(this.opciones[e-1].tipo).subscribe((result) => {
         result.forEach((e) => {
-          this.listado.push(e);
+          this.clasificados.push(e);
         })
       })
     })
     console.log(this.listado);
+  }
+
+  onChange() {
+    console.log(this.tipos);
+  }
+
+  addORRemove(item: any) {
+    if (this.listado.indexOf(item.value) != 1) {
+      this.listado.push(item.value)
+    }else{
+      this.listado = this.listado.filter((e)=>e!=item.value);
+    }
+    this.tipos = this.listado
+    this.loadListado();
   }
 }
