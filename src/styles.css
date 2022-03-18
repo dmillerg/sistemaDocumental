@@ -36,10 +36,7 @@
     border: none;
     color: var(--theme-color-ligth);
     transition: all .3s;
-    margin-left: 880px;
-    margin-top: -14px;
     height: 55px;
-    margin-bottom: -39px;
 }
 
 .btn-firstcolor:hover {

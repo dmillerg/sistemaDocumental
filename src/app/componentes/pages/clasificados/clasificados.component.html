@@ -1,32 +1,34 @@
-<div class="contenedor" id="cont">
+<div class="contenedor" id="cont" (click)="onChange($event.target)">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
             <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
         </div>
-        <p class="text-oscuro"(click)="onChange()">Clasificados registrados en el sistema </p>
+        <p class="text-oscuro" >Clasificados registrados en el sistema </p>
 
-        <div>
-            <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()">Nuevo Documento
+        <div class="actions">
+            <div class="mi-select">
+                <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="tipos"
+                    placeholder="seleccionar tipo(s)">
+                <div class="listado" *ngIf="mostrarListado">
+                    <li *ngFor="let item of opciones" (click)="onChange($event.target)">{{item.name}}</li>
+                </div>
+            </div>
+
+            <button class="btn btn-firstcolor1" (click)="addClasificados()">Nuevo Documento
                 <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
             </button>
 
-            <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor"
-                style="margin-right: 200px;">Eliminar Todo
+            <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">Eliminar Todo
                 <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
             </button>
         </div>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
-        <label class="form-check-label" for="flexCheckDefault" >
+        <label class="form-check-label" for="flexCheckDefault">
             Seleccionar Todo
         </label>
-    </div>
-    <div class="form-selec">
-        <select class="form-select" multiple aria-label="multiple select example" [(ngModel)]="tipos" (ngModelChange)="onChange()">
-            <option *ngFor="let item of opciones" [value]="item.value" (click)="addORRemove(item)">{{item.name}}</option>
-        </select>
     </div>
     <table class="tablas">
         <thead class="head">

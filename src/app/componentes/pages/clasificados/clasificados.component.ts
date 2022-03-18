@@ -43,6 +43,7 @@ export class ClasificadosComponent implements OnInit {
   listado: any[] = [];
   opciones: any[] = [];
   tipos: any[] = [];
+  mostrarListado = false;
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -176,7 +177,7 @@ export class ClasificadosComponent implements OnInit {
   loadListado() {
     this.clasificados = []
     this.tipos.forEach(e => {
-      this.api.getDocuments(this.opciones[e-1].tipo).subscribe((result) => {
+      this.api.getDocuments(this.opciones[e - 1].tipo).subscribe((result) => {
         result.forEach((e) => {
           this.clasificados.push(e);
         })
@@ -185,17 +186,24 @@ export class ClasificadosComponent implements OnInit {
     console.log(this.listado);
   }
 
-  onChange() {
-    console.log(this.tipos);
+  onChange(target: any) {
+    if (target.id == 'seleccionado') {
+      console.log('adasdasdas', target);
+      this.mostrarListado = true;
+    }else{
+      this.mostrarListado = false;
+    }
   }
 
   addORRemove(item: any) {
     if (this.listado.indexOf(item.value) != 1) {
       this.listado.push(item.value)
-    }else{
-      this.listado = this.listado.filter((e)=>e!=item.value);
+    } else {
+      this.listado = this.listado.filter((e) => e != item.value);
     }
     this.tipos = this.listado
     this.loadListado();
+    console.log(this.tipos);
+
   }
 }
