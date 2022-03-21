@@ -43,28 +43,22 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
-  listado: any[]=['Clasificados','Limitados','Ordinario','Ordinario Personal','Secretos']; //a mostrar
-  countries: any[] = [  
-    {  
-      "name": "Afghanistan",  
-      "phoneCode": "+93",  
-      "alpha2code": "AF",  
-      "alpha3code": "AFG"  
-    },  
-    {  
-      "name": "Albania",  
-      "phoneCode": "+355",  
-      "alpha2code": "AL",  
-      "alpha3code": "ALB"  
-    }];
-
-  tipos: any[]=[]; //tipos selecc
-  selectedOption: any;
-  selectedV: string=''; 
+  listado: any[] = [];
+  opciones: any[] = [];
+  tipos: any[] = [];
+  mostrarListado = false;
+  inputExit: string='';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
-    this.loadClasificados();
+    this.loadListado();
+    this.opciones = [
+      { value: 1, name: 'Clasificados', tipo: 'documento_clasificado' },
+      { value: 2, name: 'Limitados', tipo: 'documento_limitado' },
+      { value: 3, name: 'Ordinarios', tipo: 'documento_ordinario' },
+      { value: 4, name: 'Ordinarios Personales', tipo: 'documento_ordinario_personal' },
+      { value: 5, name: 'Secretos', tipo: 'documento_secreto' },
+    ];
   }
 
   loadClasificados() {
@@ -137,18 +131,14 @@ export class ClasificadosComponent implements OnInit {
 
 
   d(id: number) {
-
     if (this.seleccionados.filter((n) => n == id).length > 0) {
       this.seleccionados = this.seleccionados.filter((n) => n != id);
-
     }
     else
       this.seleccionados.push(id);
-
-
     console.log(this.seleccionados);
-
   }
+
   deleteAll() {
     if (this.seleccionados.length > 0) {
       for (let idd of this.seleccionados)
@@ -184,19 +174,40 @@ export class ClasificadosComponent implements OnInit {
     console.table(this.seleccionados);
   }
 
-  loadListado(){
-    this.tipos.forEach(e=>{
-      this.api.getDocuments(e).subscribe((result)=>{
+  loadListado() {
+    this.clasificados = []
+    this.tipos.forEach(e => {
+      this.api.getDocuments(this.opciones[e - 1].tipo).subscribe((result) => {
         result.forEach((e) => {
-          this.listado.push(e);
+          this.clasificados.push(e);
         })
       })
     })
     console.log(this.listado);
   }
 
-  
-  onSelect(){
+  onChange(target: any) {
+    if (target.id == 'seleccionado' || target.id == 'itemlist') {
+      this.mostrarListado = true;
+    } else {
+      this.mostrarListado = false;
+    }
+  }
 
+  addORRemove(item: any) {
+    if (this.listado.indexOf(item.value) != -1) {
+      this.listado = this.listado.filter((e) => e != item.value);
+    } else {
+      this.listado.push(item.value)
+    }
+    this.tipos = this.listado
+    this.loadListado();
+    console.log(this.tipos);
+this.inputExit = '';
+    this.opciones.forEach((e)=>{
+      if(this.tipos.indexOf(e.value)!=-1){
+        this.inputExit += e.name + ' , ';
+      }
+    })
   }
 }

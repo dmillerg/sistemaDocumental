@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { OrdinariosPersonalComponent } from 'src/app/componentes/pages/ordinarios-personal/ordinarios-personal.component';
 import { Ordinario_personal } from 'src/app/models/ordinario.model.personal';
 import { ApiService } from 'src/app/service/api.service';
 

@@ -9,12 +9,12 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px 2px var(--firstcolor-hover);
     transform: translateX(280px);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .sidebar-right.active {
     transform: translateX(0);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .contenedor {
@@ -33,7 +33,7 @@
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
     background-color: var(--firstcolor-hover);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .tablas thead {
@@ -51,13 +51,12 @@
 
 .tablas tr:hover {
     background-color: var(--firstcolor-hover-white);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .tablas tr.active {
     background-color: var(--firstcolor-hover-white);
 }
-
 
 .contenedor .title-page .title-logo {
     display: flex;
@@ -75,7 +74,67 @@
     font-weight: 300;
 }
 
-.contenedor .tablas tr td img{
-width: 60px;
-height: 60px;
+.contenedor .tablas tr td img {
+    width: 60px;
+    height: 60px;
+}
+
+.mi-select {
+    position: relative;
+}
+
+.mi-select .btn-firstcolor1{
+    margin-right: 10px;
+}
+
+.mi-select .input-seleccion{
+    margin-right: 10px;
+    line-height: 40px;
+    border-radius: 0.5em;
+    padding: 10px;
+    border: 1px solid var(--firstcolor-hover);
+    outline: none;
+}
+
+.mi-select .listado {
+    position: absolute;
+    background-color: white;
+    border: 1px solid var(--firstcolor-hover);
+    border-radius: 0.5em;
+    box-shadow:  0 0 5px 2px var(--firstcolor-hover-white);
+    z-index: 999;
+    text-align: center;
+    transition: all .3s ease;
+}
+
+
+
+.mi-select .listado li{
+    list-style: none;
+    padding: 10px;
+}
+
+.mi-select .listado li:hover{
+    background-color: var(--firstcolor-hover-white);
+    color: white;
+    transition: all .3s ease;
+}
+
+.mi-select .listado li.active{
+    background-color: var(--firstcolor-hover-white);
+    color: white;
+}
+
+
+
+.actions {
+    height: 60px;
+    width: auto;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
