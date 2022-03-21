@@ -22,6 +22,7 @@ export class ClasificadosComponent implements OnInit {
   selec = false;
   seleccionados: number[] = [];
   lista:string[]=["Clasificado","Limitado","Ordinario", "Ordinario personal", "Secreto"];
+  
   seleccionado:string[]=[];
   selected: Clasificados = {
     id: 1,
@@ -42,8 +43,24 @@ export class ClasificadosComponent implements OnInit {
   };
   loading: boolean = false;
   server: string = '';
-  listado: any[]=[];
-  tipos: any[]=[];
+  listado: any[]=['Clasificados','Limitados','Ordinario','Ordinario Personal','Secretos']; //a mostrar
+  countries: any[] = [  
+    {  
+      "name": "Afghanistan",  
+      "phoneCode": "+93",  
+      "alpha2code": "AF",  
+      "alpha3code": "AFG"  
+    },  
+    {  
+      "name": "Albania",  
+      "phoneCode": "+355",  
+      "alpha2code": "AL",  
+      "alpha3code": "ALB"  
+    }];
+
+  tipos: any[]=[]; //tipos selecc
+  selectedOption: any;
+  selectedV: string=''; 
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -176,5 +193,10 @@ export class ClasificadosComponent implements OnInit {
       })
     })
     console.log(this.listado);
+  }
+
+  
+  onSelect(){
+
   }
 }

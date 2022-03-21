@@ -28,6 +28,8 @@ import { DeleteComponent } from './modals/delete/delete.component';
 import { ToastrModule } from 'ngx-toastr';
 import{ LayoutModule} from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
+import { NgxBootstrapTypeheadComponent } from './ngx-bootstrap-typehead/ngx-bootstrap-typehead.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { ModalDocumentComponent } from './modals/modal-document/modal-document.c
   OrdinariosPersonalComponent,
   ModalOrdinarioPersonalComponent,
   DeleteComponent,
-  ModalDocumentComponent
+  ModalDocumentComponent,
+  NgxBootstrapTypeheadComponent
 
   ],
   imports: [

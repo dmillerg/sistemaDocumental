@@ -7,13 +7,20 @@
            
         </div>
         <p class="text-oscuro">Documentos registrados en el sistema</p>
-   
+      
             <div>
                 <Label style="margin-right: -177px;">Tipo de documento:</Label>
-                <select name="miselect" [(ngModel)]="seleccionado" style="margin-left: 720px; height: 40px;color: white; border-radius: 6px; background-color: var(--firstcolor-hover)" >
-                    <option value="Seleccionar" [value]="item" *ngFor="let item of lista">{{item}}</option>
+                <select name="miselect" [(ngModel)]="seleccionado" style="margin-left: 720px; height: 40px;color: white; border-radius: 6px; background-color: var(--firstcolor-hover)">
+                    <option value="Seleccionar" [value]="item" *ngFor="let item of lista">
+                       <input type="checkbox"/> {{item}}</option>
                 </select>
+                 
 
+                <!--ng g c ngx-bootstrap-typehead   <ngx-multiselect [(ngModel)]="tipos" [options]="listado" [displayName]="'name'" [trackBy]="'id'" [multiple]="true"></ngx-multiselect> -->
+                <!-- <pre style="background-color: antiquewhite;" class="card card-block card-header mb-3">Selected option: {{selectedOption | json}}</pre>  
+                <input [(ngModel)]="selectedV"  typeaheadOptionField="name" [typeahead]="countries"
+                (typeaheadOnSelect)="onSelect()" class="form-control" width="20px">   -->
+                
          <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
             <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
         </button>

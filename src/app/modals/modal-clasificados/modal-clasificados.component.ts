@@ -190,5 +190,5 @@ export class ModalClasificadosComponent implements OnInit {
   //&&this.clasificados.imagen!=''
   }
 
-
+ 
 }
