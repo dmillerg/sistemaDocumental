@@ -8,10 +8,10 @@
 
         <div class="actions">
             <div class="mi-select">
-                <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="tipos"
+                <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="inputExit"
                     placeholder="seleccionar tipo(s)">
                 <div class="listado" *ngIf="mostrarListado">
-                    <li *ngFor="let item of opciones" (click)="onChange($event.target)">{{item.name}}</li>
+                    <li id="itemlist" [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones" (click)="addORRemove(item)">{{item.name}}</li>
                 </div>
             </div>
 

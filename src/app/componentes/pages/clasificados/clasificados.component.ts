@@ -44,6 +44,7 @@ export class ClasificadosComponent implements OnInit {
   opciones: any[] = [];
   tipos: any[] = [];
   mostrarListado = false;
+  inputExit: string='';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -127,18 +128,14 @@ export class ClasificadosComponent implements OnInit {
 
 
   d(id: number) {
-
     if (this.seleccionados.filter((n) => n == id).length > 0) {
       this.seleccionados = this.seleccionados.filter((n) => n != id);
-
     }
     else
       this.seleccionados.push(id);
-
-
     console.log(this.seleccionados);
-
   }
+
   deleteAll() {
     if (this.seleccionados.length > 0) {
       for (let idd of this.seleccionados)
@@ -187,23 +184,27 @@ export class ClasificadosComponent implements OnInit {
   }
 
   onChange(target: any) {
-    if (target.id == 'seleccionado') {
-      console.log('adasdasdas', target);
+    if (target.id == 'seleccionado' || target.id == 'itemlist') {
       this.mostrarListado = true;
-    }else{
+    } else {
       this.mostrarListado = false;
     }
   }
 
   addORRemove(item: any) {
-    if (this.listado.indexOf(item.value) != 1) {
-      this.listado.push(item.value)
-    } else {
+    if (this.listado.indexOf(item.value) != -1) {
       this.listado = this.listado.filter((e) => e != item.value);
+    } else {
+      this.listado.push(item.value)
     }
     this.tipos = this.listado
     this.loadListado();
     console.log(this.tipos);
-
+this.inputExit = '';
+    this.opciones.forEach((e)=>{
+      if(this.tipos.indexOf(e.value)!=-1){
+        this.inputExit += e.name + ' , ';
+      }
+    })
   }
 }
