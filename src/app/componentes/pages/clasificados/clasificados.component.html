@@ -1,60 +1,58 @@
-<div class="contenedor" id="cont">
+<div class="contenedor" id="cont" (click)="onChange($event.target)">
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
-            
-           
+            <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
         </div>
-        <p class="text-oscuro">Documentos registrados en el sistema</p>
-      
-            <div>
-                <Label style="margin-right: -177px;">Tipo de documento:</Label>
-                <select name="miselect" [(ngModel)]="seleccionado" style="margin-left: 720px; height: 40px;color: white; border-radius: 6px; background-color: var(--firstcolor-hover)">
-                    <option value="Seleccionar" [value]="item" *ngFor="let item of lista">
-                       <input type="checkbox"> {{item}}</option>
-                </select>
-                 
+        <p class="text-oscuro" >Clasificados registrados en el sistema </p>
 
-                <!--ng g c ngx-bootstrap-typehead   <ngx-multiselect [(ngModel)]="tipos" [options]="listado" [displayName]="'name'" [trackBy]="'id'" [multiple]="true"></ngx-multiselect> -->
-                <!-- <pre style="background-color: antiquewhite;" class="card card-block card-header mb-3">Selected option: {{selectedOption | json}}</pre>  
-                <input [(ngModel)]="selectedV"  typeaheadOptionField="name" [typeahead]="countries"
-                (typeaheadOnSelect)="onSelect()" class="form-control" width="20px">   -->
-                
-         <button id="newDoc" class="btn btn-firstcolor" (click)="addClasificados()" >Nuevo Documento 
-            <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
-        </button>
+        <div class="actions">
+            <div class="mi-select">
+                <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="inputExit"
+                    placeholder="Seleccionar tipo(s)">
+                <div class="listado input-seleccion" *ngIf="mostrarListado" >
+                    <li id="itemlist" [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones" (click)="addORRemove(item)">{{item.name}}</li>
+                </div>
+            </div>
 
-        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor" style="margin-right: 200px;">Eliminar Todo
-            <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
-        </button>
-           </div>
+            <button class="btn btn-firstcolor1" (click)="addClasificados()">Nuevo Documento
+                <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
+            </button>
+
+            <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">Eliminar Todo
+                <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
+            </button>
+        </div>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
         <label class="form-check-label" for="flexCheckDefault">
-          Seleccionar Todo
+            Seleccionar Todo
         </label>
-      </div>
+    </div>
     <table class="tablas">
         <thead class="head">
             <td></td>
             <td>id</td>
             <td>no</td>
+            <td>fecha</td>
             <td>imagen</td>
             <td>acciones</td>
         </thead>
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-             <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)"></td>
+            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)">
+            </td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
+            <td>{{item.fecha}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
-            <td><button class="btn btn-firstcolor"  (click)="editClasificados(item)"><i class="bi bi-pencil"></i></button></td>
-            <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i class="bi bi-trash"></i></button></td>
-            
+            <td><button class="btn btn-firstcolor" (click)="editClasificados(item)"><i
+                        class="bi bi-pencil"></i></button></td>
+            <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i
+                        class="bi bi-trash"></i></button></td>
+
         </tr>
-    
+
     </table>
 </div>
-

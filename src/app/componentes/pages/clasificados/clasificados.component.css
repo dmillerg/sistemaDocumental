@@ -94,11 +94,14 @@
     padding: 10px;
     border: 1px solid var(--firstcolor-hover);
     outline: none;
+    background-color: var(--firstcolor-hover);
+    color: white;
 }
 
 .mi-select .listado {
     position: absolute;
-    background-color: white;
+    background-color: var(--firstcolor-hover);
+    color: white;
     border: 1px solid var(--firstcolor-hover);
     border-radius: 0.5em;
     box-shadow:  0 0 5px 2px var(--firstcolor-hover-white);
@@ -131,7 +134,7 @@
     height: 60px;
     width: auto;
     position: absolute;
-    top: 50px;
+    top: 90px;
     right: 20px;
     display: flex;
     flex-direction: row;
