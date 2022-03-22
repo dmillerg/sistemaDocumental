@@ -11,13 +11,21 @@ export class MultiselectComponent implements OnInit {
 
   @Input() opciones: any[] = []
   @Input() placeholder: string = 'seleccionar tipo(s)';
+  @Input() borderColor: string = 'var(--firstcolor-hover)';  
+  @Input() selectedColor: string = 'seleccionar tipo(s)';  
+
   lista: boolean = false;
   tipos: any[] = [];
   inputExit: string = '';
   listado: any[] = [];
+  opciones2: any[] = [];
+  search: string = '';
   constructor() { }
 
   ngOnInit(): void {
+    this.opciones.forEach(e=>{
+      this.opciones2.push(e);
+    })
   }
 
   addORRemove(item: any) {
@@ -30,7 +38,9 @@ export class MultiselectComponent implements OnInit {
     this.inputExit = '';
     this.opciones.forEach((e) => {
       if (this.tipos.indexOf(e.value) != -1) {
-        this.inputExit += e.name + ', ';
+        if(this.inputExit.length>0){
+          this.inputExit += ', ' + e.name;
+        }else this.inputExit = e.name;
       }
     });
     this.salida();
@@ -38,5 +48,9 @@ export class MultiselectComponent implements OnInit {
 
   salida(){
     this.emisor.emit(this.tipos);
+  }
+
+  onChange(item: any){
+    this.opciones = this.opciones2.filter((e)=>e.name.toString().toLowerCase().includes(item.toString().toLowerCase()))
   }
 }

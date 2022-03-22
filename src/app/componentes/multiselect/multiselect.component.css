@@ -61,6 +61,7 @@
 
 .mi-select .btn-arrow-listado:focus~.listado,
 .mi-select .input-seleccion:focus~.listado,
+.mi-select .listado .active .input-search:focus~.listado,
 .mi-select .listado:hover{
     opacity: 1;
     pointer-events: all;
@@ -83,4 +84,12 @@
 .mi-select .listado li.active{
     background-color: var(--firstcolor-hover);
     color: white;
+}
+
+.input-search{
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border-bottom: 2px solid var(--firstcolor);
 }
