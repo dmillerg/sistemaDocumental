@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
 import { NgxBootstrapMultiselectModule } from 'ngx-bootstrap-multiselect';
+import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { NgxBootstrapMultiselectModule } from 'ngx-bootstrap-multiselect';
     ModalOrdinarioPersonalComponent,
     DeleteComponent,
     ModalDocumentComponent,
+    MultiselectComponent,
   ],
   imports: [
     BrowserModule,

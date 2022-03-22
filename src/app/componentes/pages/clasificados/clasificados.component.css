@@ -79,53 +79,6 @@
     height: 60px;
 }
 
-.mi-select {
-    position: relative;
-}
-
-.mi-select .btn-firstcolor1{
-    margin-right: 10px;
-}
-
-.mi-select .input-seleccion{
-    margin-right: 10px;
-    line-height: 40px;
-    border-radius: 0.5em;
-    padding: 10px;
-    border: 1px solid var(--firstcolor-hover);
-    outline: none;
-}
-
-.mi-select .listado {
-    position: absolute;
-    background-color: white;
-    border: 1px solid var(--firstcolor-hover);
-    border-radius: 0.5em;
-    box-shadow:  0 0 5px 2px var(--firstcolor-hover-white);
-    z-index: 999;
-    text-align: center;
-    transition: all .3s ease;
-}
-
-
-
-.mi-select .listado li{
-    list-style: none;
-    padding: 10px;
-}
-
-.mi-select .listado li:hover{
-    background-color: var(--firstcolor-hover-white);
-    color: white;
-    transition: all .3s ease;
-}
-
-.mi-select .listado li.active{
-    background-color: var(--firstcolor-hover-white);
-    color: white;
-}
-
-
 
 .actions {
     height: 60px;

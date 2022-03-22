@@ -18,7 +18,7 @@ import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-docu
 export class ClasificadosComponent implements OnInit {
 
 
-  clasificados: Clasificados[] = [];
+  clasificados: any[] = [];
   selec = false;
   seleccionados: number[] = [];
   selected: Clasificados = {
@@ -43,8 +43,6 @@ export class ClasificadosComponent implements OnInit {
   listado: any[] = [];
   opciones: any[] = [];
   tipos: any[] = [];
-  mostrarListado = false;
-  inputExit: string='';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -68,7 +66,7 @@ export class ClasificadosComponent implements OnInit {
       console.log(this.clasificados);
       this.clasificados.forEach((e) => {
         // console.log(e);
-        this.getDocumentFoto(e);
+
       })
       this.loading = false;
     }, (error) => {
@@ -172,39 +170,33 @@ export class ClasificadosComponent implements OnInit {
   }
 
   loadListado() {
+    this.loading = true;
     this.clasificados = []
-    this.tipos.forEach(e => {
-      this.api.getDocuments(this.opciones[e - 1].tipo).subscribe((result) => {
-        result.forEach((e) => {
-          this.clasificados.push(e);
-        })
-      })
-    })
-    console.log(this.listado);
-  }
-
-  onChange(target: any) {
-    if (target.id == 'seleccionado' || target.id == 'itemlist') {
-      this.mostrarListado = true;
+    if (this.tipos.length > 0) {
+      this.tipos.forEach(i => {
+        this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
+          result.forEach((e) => {
+            e.tipo_doc = this.opciones[i-1].name
+            this.getDocumentFoto(e);
+            this.clasificados.push(e);
+          });
+          this.loading = false
+        }, (error) => {
+          this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
+        });
+        // if (this.clasificados.length == 0) {
+        //   this.server = 'No hay documentos';
+        // }else this.loading = false;
+      });
+      
     } else {
-      this.mostrarListado = false;
+      this.loading = false;
     }
   }
 
-  addORRemove(item: any) {
-    if (this.listado.indexOf(item.value) != -1) {
-      this.listado = this.listado.filter((e) => e != item.value);
-    } else {
-      this.listado.push(item.value)
-    }
-    this.tipos = this.listado
+  salida(result: any) {
+    this.tipos = result;
     this.loadListado();
-    console.log(this.tipos);
-this.inputExit = '';
-    this.opciones.forEach((e)=>{
-      if(this.tipos.indexOf(e.value)!=-1){
-        this.inputExit += e.name + ' , ';
-      }
-    })
   }
+
 }
