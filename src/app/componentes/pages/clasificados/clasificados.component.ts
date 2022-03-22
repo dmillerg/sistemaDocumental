@@ -56,23 +56,6 @@ export class ClasificadosComponent implements OnInit {
     ];
   }
 
-  loadClasificados() {
-    this.loading = true;
-    this.api.getClasificados().subscribe((result) => {
-      if (result.length == 0) {
-        this.server = 'No hay documentos';
-      }
-      this.clasificados = result;
-      console.log(this.clasificados);
-      this.clasificados.forEach((e) => {
-        // console.log(e);
-
-      })
-      this.loading = false;
-    }, (error) => {
-      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
-    });
-  }
 
   getDocumentFoto(e: Clasificados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_clasificados/', 'documento_clasificado').subscribe((result) => {
@@ -98,7 +81,7 @@ export class ClasificadosComponent implements OnInit {
     // modal.componentInstance.modalHeader = "Clasificados";
     // modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado()
     })
 
 
@@ -110,7 +93,7 @@ export class ClasificadosComponent implements OnInit {
     modal.componentInstance.modalAction = "Editar";
     modal.componentInstance.clasificados = item;
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado();
     })
   }
 
@@ -120,7 +103,7 @@ export class ClasificadosComponent implements OnInit {
     modal.componentInstance.modalAction = "Eliminar";
     modal.componentInstance.id = idd;
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado();
     })
   }
 
@@ -137,7 +120,7 @@ export class ClasificadosComponent implements OnInit {
   deleteAll() {
     if (this.seleccionados.length > 0) {
       for (let idd of this.seleccionados)
-        this.api.deleteClasificados(idd).subscribe(result => { this.loadClasificados(); });
+        this.api.deleteClasificados(idd).subscribe(result => { this.loadListado(); });
       this.lib.success('Eliminados con exito!', 'Eliminar');
     }
     else {
@@ -176,7 +159,7 @@ export class ClasificadosComponent implements OnInit {
       this.tipos.forEach(i => {
         this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
           result.forEach((e) => {
-            e.tipo_doc = this.opciones[i-1].name
+            e.tipo_doc = this.opciones[i - 1].name
             this.getDocumentFoto(e);
             this.clasificados.push(e);
           });
@@ -188,7 +171,7 @@ export class ClasificadosComponent implements OnInit {
         //   this.server = 'No hay documentos';
         // }else this.loading = false;
       });
-      
+
     } else {
       this.loading = false;
     }
