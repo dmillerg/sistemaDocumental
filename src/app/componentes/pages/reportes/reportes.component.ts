@@ -9,6 +9,10 @@ import { DeleteComponent } from 'src/app/modals/delete/delete.component';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
+import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
+import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
+import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
+import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 
 @Component({
   selector: 'app-reportes',
@@ -88,9 +92,7 @@ export class ReportesComponent implements OnInit {
   }
 
   editReport(item: any) {
-
-    console.log(item.tipo_doc.name+'nammm');
-    if (item.tipo_doc.name=="documento_clasificado") {
+    if (item.tipo_doc.tipo=="documento_clasificado") {
 
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
@@ -100,7 +102,46 @@ export class ReportesComponent implements OnInit {
       this.loadListado();
     })
   }
+   else if (item.tipo_doc.tipo=="documento_limitado") {
 
+    let modal = this.modalService.open(ModalLimitadosComponent);
+    modal.componentInstance.modalHeader = "Limitados";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.clasificados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if (item.tipo_doc.tipo=="documento_ordinario") {
+
+    let modal = this.modalService.open(ModalOrdinariosComponent);
+    modal.componentInstance.modalHeader = "Ordinarios";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.clasificados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if (item.tipo_doc.tipo=="documento_ordinario_personal") {
+
+    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+    modal.componentInstance.modalHeader = "Ordinario_personal";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.clasificados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if (item.tipo_doc.tipo=="documento_secreto") {
+
+    let modal = this.modalService.open(ModalSecretosComponent);
+    modal.componentInstance.modalHeader = "Secretos";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.clasificados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
   }
 
   deleteReportes(item: any) {
