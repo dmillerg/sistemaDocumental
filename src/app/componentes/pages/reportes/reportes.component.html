@@ -7,13 +7,10 @@
         <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
 
         <div class="actions">
-            <!-- <div class="mi-select">
-                <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="inputExit"
-                    placeholder="Seleccionar tipo(s)">
-                <div class="listado input-seleccion" *ngIf="mostrarListado" >
-                    <li id="itemlist" [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones" (click)="addORRemove(item)">{{item.name}}</li>
-                </div>
-            </div> -->
+          
+            <label class="form-check-label" style="margin: 10px;">
+                Documentos:
+            </label>
             <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
 
             <button class="btn btn-firstcolor1" (click)="addClasificados()">Nuevo Documento
@@ -34,12 +31,12 @@
     <table class="tablas">
         <thead class="head">
             <td></td>
-            <td>id</td>
-            <td>no</td>
-            <td>fecha</td>
-            <td>imagen</td>
-            <td>tipo</td>
-            <td>acciones</td>
+            <td>Id</td>
+            <td>No</td>
+            <td>Fecha</td>
+            <td>Imagen</td>
+            <td>Tipo</td>
+            <td>Acciones</td>
         </thead>
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of reportes" class="ligth" (click)="detailToggle(item)">
@@ -52,6 +49,7 @@
             <td>{{item.tipo_doc.name}}</td>
             <td><button class="btn btn-firstcolor" (click)="editReport(item)"><i
                         class="bi bi-pencil"></i></button>
+                       &nbsp;
             <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i
                         class="bi bi-trash"></i></button></td>
 
