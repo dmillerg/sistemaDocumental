@@ -24,6 +24,7 @@ import { DeleteComponent } from './modals/delete/delete.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
+import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { ModalDocumentComponent } from './modals/modal-document/modal-document.c
     ModalOrdinarioPersonalComponent,
     DeleteComponent,
     ModalDocumentComponent,
+    MultiselectComponent,
   ],
   imports: [
     BrowserModule,

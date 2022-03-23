@@ -1,4 +1,4 @@
-<div class="contenedor" id="cont" (click)="onChange($event.target)">
+<div class="contenedor" id="cont" >
     <div class="title-page">
         <div class="title-logo">
             <i class="bi bi-person text-oscuro"></i>
@@ -7,13 +7,14 @@
         <p class="text-oscuro" >Clasificados registrados en el sistema </p>
 
         <div class="actions">
-            <div class="mi-select">
+            <!-- <div class="mi-select">
                 <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" (click)="onChange($event.target)" [(ngModel)]="inputExit"
                     placeholder="Seleccionar tipo(s)">
                 <div class="listado input-seleccion" *ngIf="mostrarListado" >
                     <li id="itemlist" [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones" (click)="addORRemove(item)">{{item.name}}</li>
                 </div>
-            </div>
+            </div> -->
+            <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
 
             <button class="btn btn-firstcolor1" (click)="addClasificados()">Nuevo Documento
                 <i style="font-size: 20px;" class="bi bi-file-earmark-plus"></i>
@@ -37,6 +38,7 @@
             <td>no</td>
             <td>fecha</td>
             <td>imagen</td>
+            <td>tipo</td>
             <td>acciones</td>
         </thead>
         <app-loading [loading]="loading" [message]="server"></app-loading>
@@ -47,6 +49,7 @@
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
+            <td>{{item.tipo_doc}}</td>
             <td><button class="btn btn-firstcolor" (click)="editClasificados(item)"><i
                         class="bi bi-pencil"></i></button></td>
             <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i

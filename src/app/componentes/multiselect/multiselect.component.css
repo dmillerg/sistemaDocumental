@@ -1,0 +1,86 @@
+.mi-select {
+    cursor: pointer;
+    position: relative;
+}
+
+.mi-select .btn-firstcolor1{
+    margin-right: 10px;
+}
+
+.mi-select .input-seleccion{
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    line-height: 40px;
+    border-radius: 0.5em;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 35px;
+    border: 1px solid var(--firstcolor-hover);
+    outline: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.mi-select .input-seleccion:hover{
+    background-color: var(--firstcolor-hover-white);
+    transition: all .3s ease;
+}
+
+.mi-select .btn-arrow-listado{
+    padding: 10px;
+    border: none;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    bottom: 0;
+    right: 10px;
+    color: var(--firstcolor-hover);
+}
+
+.mi-select .input-seleccion:read-only{
+    background-color: transparent;
+    color: var(--firstcolor-hover);
+}
+
+.mi-select .listado {
+    position: absolute;
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid var(--firstcolor-hover);
+    border-radius: 0.5em;
+    pointer-events: none;
+    box-shadow:  0 0 5px 2px var(--firstcolor-hover);
+    z-index: 999;
+    width: 95%;
+    opacity: 0;
+    text-align: center;
+    transition: all .3s ease;
+}
+
+.mi-select .btn-arrow-listado:focus~.listado,
+.mi-select .input-seleccion:focus~.listado,
+.mi-select .listado:hover{
+    opacity: 1;
+    pointer-events: all;
+    transition: all .3s ease;
+}
+
+.mi-select .listado li{
+    color: var(--firstcolor-hover);
+    list-style: none;
+    padding: 10px;
+    border-bottom:  1px dotted var(--firstcolor-hover);
+}
+
+.mi-select .listado li:hover{
+    background-color: var(--firstcolor-hover-white);
+    color: white;
+    transition: all .3s ease;
+}
+
+.mi-select .listado li.active{
+    background-color: var(--firstcolor-hover);
+    color: white;
+}

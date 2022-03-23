@@ -18,7 +18,7 @@ import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-docu
 export class ClasificadosComponent implements OnInit {
 
 
-  clasificados: Clasificados[] = [];
+  clasificados: any[] = [];
   selec = false;
   seleccionados: number[] = [];
   lista:string[]=["Clasificado","Limitado","Ordinario", "Ordinario personal", "Secreto"];
@@ -46,8 +46,6 @@ export class ClasificadosComponent implements OnInit {
   listado: any[] = [];
   opciones: any[] = [];
   tipos: any[] = [];
-  mostrarListado = false;
-  inputExit: string='';
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -61,23 +59,6 @@ export class ClasificadosComponent implements OnInit {
     ];
   }
 
-  loadClasificados() {
-    this.loading = true;
-    this.api.getClasificados().subscribe((result) => {
-      if (result.length == 0) {
-        this.server = 'No hay documentos';
-      }
-      this.clasificados = result;
-      console.log(this.clasificados);
-      this.clasificados.forEach((e) => {
-        // console.log(e);
-        this.getDocumentFoto(e);
-      })
-      this.loading = false;
-    }, (error) => {
-      this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
-    });
-  }
 
   getDocumentFoto(e: Clasificados) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_clasificados/', 'documento_clasificado').subscribe((result) => {
@@ -103,7 +84,7 @@ export class ClasificadosComponent implements OnInit {
     // modal.componentInstance.modalHeader = "Clasificados";
     // modal.componentInstance.modalAction = "Agregar";
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado()
     })
 
 
@@ -115,7 +96,7 @@ export class ClasificadosComponent implements OnInit {
     modal.componentInstance.modalAction = "Editar";
     modal.componentInstance.clasificados = item;
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado();
     })
   }
 
@@ -125,7 +106,7 @@ export class ClasificadosComponent implements OnInit {
     modal.componentInstance.modalAction = "Eliminar";
     modal.componentInstance.id = idd;
     modal.result.then((e) => {
-      this.loadClasificados();
+      this.loadListado();
     })
   }
 
@@ -142,7 +123,7 @@ export class ClasificadosComponent implements OnInit {
   deleteAll() {
     if (this.seleccionados.length > 0) {
       for (let idd of this.seleccionados)
-        this.api.deleteClasificados(idd).subscribe(result => { this.loadClasificados(); });
+        this.api.deleteClasificados(idd).subscribe(result => { this.loadListado(); });
       this.lib.success('Eliminados con exito!', 'Eliminar');
     }
     else {
@@ -175,39 +156,33 @@ export class ClasificadosComponent implements OnInit {
   }
 
   loadListado() {
+    this.loading = true;
     this.clasificados = []
-    this.tipos.forEach(e => {
-      this.api.getDocuments(this.opciones[e - 1].tipo).subscribe((result) => {
-        result.forEach((e) => {
-          this.clasificados.push(e);
-        })
-      })
-    })
-    console.log(this.listado);
-  }
+    if (this.tipos.length > 0) {
+      this.tipos.forEach(i => {
+        this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
+          result.forEach((e) => {
+            e.tipo_doc = this.opciones[i - 1].name
+            this.getDocumentFoto(e);
+            this.clasificados.push(e);
+          });
+          this.loading = false
+        }, (error) => {
+          this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
+        });
+        // if (this.clasificados.length == 0) {
+        //   this.server = 'No hay documentos';
+        // }else this.loading = false;
+      });
 
-  onChange(target: any) {
-    if (target.id == 'seleccionado' || target.id == 'itemlist') {
-      this.mostrarListado = true;
     } else {
-      this.mostrarListado = false;
+      this.loading = false;
     }
   }
 
-  addORRemove(item: any) {
-    if (this.listado.indexOf(item.value) != -1) {
-      this.listado = this.listado.filter((e) => e != item.value);
-    } else {
-      this.listado.push(item.value)
-    }
-    this.tipos = this.listado
+  salida(result: any) {
+    this.tipos = result;
     this.loadListado();
-    console.log(this.tipos);
-this.inputExit = '';
-    this.opciones.forEach((e)=>{
-      if(this.tipos.indexOf(e.value)!=-1){
-        this.inputExit += e.name + ' , ';
-      }
-    })
   }
+
 }
