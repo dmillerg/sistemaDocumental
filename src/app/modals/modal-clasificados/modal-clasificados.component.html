@@ -1,5 +1,5 @@
 <div class="form-content">
-    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
     <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
         <i *ngIf="src_documento==''" class="bi bi-person"></i>
         <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" *ngIf="src_documento!=''" class="img-fluid"> 
@@ -90,7 +90,7 @@
         <div class="input-content">
             <label for="clasificados">Fecha traslado</label>
             <i class="bi bi-calendar-date prefix"></i>
-            <input type="text" class="in" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
+            <input type="date" class="in" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
         </div>
 
              

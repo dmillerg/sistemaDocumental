@@ -18,20 +18,20 @@ export class ModalClasificadosComponent implements OnInit {
   errorN: string = "";
 
   clasificados: Clasificados = {
-    id: 1,
-    no: 2,
-    fecha: 'a',
-    enviado: 'a',
-    rsb: 'a',
-    rs: 'a',
-    fecha_registro_ctc: 'a',
-    asunto: 'a',
-    doc: 'a',
-    ej: 'a',
-    clasif: 'a',
-    destino: 'a',
-    traslado: 'a',
-    fecha_traslado: 'a',
+    id: -1,
+    no: -1,
+    fecha: '',
+    enviado: '',
+    rsb: '',
+    rs: '',
+    fecha_registro_ctc: '',
+    asunto: '',
+    doc: '',
+    ej: '',
+    clasif: '',
+    destino: '',
+    traslado: '',
+    fecha_traslado: '',
     imagen: ''
   }
 
@@ -182,7 +182,7 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   validarCamposVacios(){
-    console.log('heree '+this.clasificados.imagen);
+    // console.log('heree '+this.clasificados.imagen);
     return this.clasificados.destino.length>0&&this.clasificados.clasif.length>0&&this.clasificados.asunto.length>0&&
     this.clasificados.rsb.length>0&&this.clasificados.rs.length>0&&this.clasificados.doc.length>0
     &&this.clasificados.ej.length>0&&this.clasificados.traslado.length>0&&this.clasificados.enviado.length>0&&this.clasificados.no!=null

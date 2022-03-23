@@ -1,4 +1,5 @@
 <div class="contenedor-modals">
+    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
     <div class="seleccionable-modals">
         <p>Seleccione el tipo de documento que desea agregar</p>
         <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (ngModelChange)="changValue()">

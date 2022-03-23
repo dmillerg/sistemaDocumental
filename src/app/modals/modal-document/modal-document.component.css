@@ -18,3 +18,9 @@
 .contenedor-modals .seleccionado-modals{
     margin-top: 10px;
 }
+
+.contenedor-modals .btn-fab-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
