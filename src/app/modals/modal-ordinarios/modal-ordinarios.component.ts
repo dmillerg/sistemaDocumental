@@ -152,4 +152,9 @@ export class ModalOrdinariosComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  validarCamposVacios(){
+    return this.ordinarios.enviado.length>0&&this.ordinarios.rs.length>0&&this.ordinarios.rsb.length>0&&
+    this.ordinarios.destino.length>0&&this.ordinarios.asunto.length>0&&this.ordinarios.traslado.length>0
+  }
+
 }

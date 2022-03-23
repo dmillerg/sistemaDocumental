@@ -30,6 +30,7 @@
     "ngx-bootstrap-multiselect": "^2.1.1",
     "ngx-dropdown-multiselect": "^1.7.1",
     "ngx-toastr": "^14.2.1",
+    "ngx-type-ahead": "^2.0.1",
     "ngx-webstorage": "^9.0.0",
     "rxjs": "~7.4.0",
     "toast": "^0.3.47",

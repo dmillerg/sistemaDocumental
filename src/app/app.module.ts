@@ -24,7 +24,6 @@ import { DeleteComponent } from './modals/delete/delete.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
-import { NgxBootstrapMultiselectModule } from 'ngx-bootstrap-multiselect';
 import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
 @NgModule({
   declarations: [
@@ -54,8 +53,7 @@ import { MultiselectComponent } from './componentes/multiselect/multiselect.comp
     NgxWebstorageModule.forRoot(),
     NgbModule,
     LayoutModule,
-    ToastrModule.forRoot(),
-    NgxBootstrapMultiselectModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

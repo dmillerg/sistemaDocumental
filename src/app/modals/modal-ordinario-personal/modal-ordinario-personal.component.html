@@ -48,7 +48,7 @@
         </div>
   
     </div>
-        <button style="width: 450px;" class="btn btn-firstcolor" (click)="addUpdateOrdinariosP()"> {{modalAction}}</button>
+        <button style="width: 450px;" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor" (click)="addUpdateOrdinariosP()"> {{modalAction}}</button>
     </form>
 
   </div>

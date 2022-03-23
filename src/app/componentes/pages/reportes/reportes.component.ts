@@ -87,7 +87,11 @@ export class ReportesComponent implements OnInit {
 
   }
 
-  editClasificados(item: Clasificados) {
+  editReport(item: any) {
+
+    console.log(item.tipo_doc.name+'nammm');
+    if (item.tipo_doc.name=="documento_clasificado") {
+
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Editar";
@@ -95,6 +99,8 @@ export class ReportesComponent implements OnInit {
     modal.result.then((e) => {
       this.loadListado();
     })
+  }
+
   }
 
   deleteReportes(item: any) {

@@ -71,7 +71,7 @@
 
              
                 </div>
-        <button class="btn btn-firstcolor" (click)="addUpdateLimitados()"> {{modalAction}}</button>
+        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios()" (click)="addUpdateLimitados()"> {{modalAction}}</button>
                
     </form>
 </div>

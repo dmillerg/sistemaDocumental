@@ -94,4 +94,9 @@ export class ModalUsuarioComponent implements OnInit {
 
   }
 
+  validarCamposVacios(){
+    return this.usuario.usuario.length>0&&this.usuario.password.length>0&&this.usuario.nombre.length>0
+  }
+
+
 }
