@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
 import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
-import { ClasificadosComponent } from './componentes/pages/clasificados/clasificados.component';
+import { ReportesComponent } from './componentes/pages/reportes/reportes.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
 import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 import { LoadingComponent } from './componentes/loading/loading.component';
@@ -32,7 +32,7 @@ import { MultiselectComponent } from './componentes/multiselect/multiselect.comp
     UsuariosComponent,
     DetailbarComponent,
     LoginComponent,
-    ClasificadosComponent,
+    ReportesComponent,
     ModalUsuarioComponent,
     ModalOrdinariosComponent,
     ModalClasificadosComponent,

@@ -38,6 +38,8 @@
     color: var(--theme-color-ligth);
     transition: all .3s;
     height: 55px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .btn-firstcolor:hover {

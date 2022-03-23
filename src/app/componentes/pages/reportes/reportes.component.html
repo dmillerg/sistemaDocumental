@@ -1,10 +1,10 @@
-<div class="contenedor" id="cont" >
+<div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
-            <i class="bi bi-person text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Clasificados</h1>
+            <i class="bi bi-archive text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
         </div>
-        <p class="text-oscuro" >Clasificados registrados en el sistema </p>
+        <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
 
         <div class="actions">
             <!-- <div class="mi-select">
@@ -42,17 +42,17 @@
             <td>acciones</td>
         </thead>
         <app-loading [loading]="loading" [message]="server"></app-loading>
-        <tr *ngFor="let item of clasificados" class="ligth" (click)="detailToggle(item)">
-            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item.id)">
+        <tr *ngFor="let item of reportes" class="ligth" (click)="detailToggle(item)">
+            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
             </td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>
             <td><img [src]="item.imagen" alt="" width="80" height="80"></td>
-            <td>{{item.tipo_doc}}</td>
+            <td>{{item.tipo_doc.name}}</td>
             <td><button class="btn btn-firstcolor" (click)="editClasificados(item)"><i
-                        class="bi bi-pencil"></i></button></td>
-            <td><button class="btn btn-firstcolor" (click)="deleteClasificados(item.id)"><i
+                        class="bi bi-pencil"></i></button>
+            <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i
                         class="bi bi-trash"></i></button></td>
 
         </tr>

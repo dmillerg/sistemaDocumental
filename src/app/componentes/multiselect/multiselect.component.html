@@ -1,9 +1,10 @@
 <div class="mi-select">
-    <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" [(ngModel)]="inputExit"
+    <input type="text" name="seleccionado" id="seleccionado" class="input-seleccion" [(ngModel)]="inputExit" [style.border]="'1px solid'+borderColor"
         [placeholder]="placeholder" readonly>
     <button class="btn-arrow-listado"><i class="bi bi-caret-down-fill"></i></button>
-    <div class="listado">
-        <li id="itemlist" [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones"
+    <div class="listado" [style.border]="'1px solid'+borderColor">
+        <li class="active"><input type="text" class="input-search" placeholder="buscar" name="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"></li>
+        <li id="itemlist"  [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones"
             (click)="addORRemove(item)">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" [id]="item.value" [checked]="tipos.indexOf(item.value)!=-1">

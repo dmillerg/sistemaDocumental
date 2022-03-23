@@ -11,19 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
 
 @Component({
-  selector: 'app-clasificados',
-  templateUrl: './clasificados.component.html',
-  styleUrls: ['./clasificados.component.css']
+  selector: 'app-reportes',
+  templateUrl: './reportes.component.html',
+  styleUrls: ['./reportes.component.css']
 })
-export class ClasificadosComponent implements OnInit {
+export class ReportesComponent implements OnInit {
 
 
-  clasificados: any[] = [];
+  reportes: any[] = [];
   selec = false;
-  seleccionados: number[] = [];
-  lista:string[]=["Clasificado","Limitado","Ordinario", "Ordinario personal", "Secreto"];
-  
-  seleccionado:string[]=[];
+  seleccionados: any[] = [];
   selected: Clasificados = {
     id: 1,
     no: 2,
@@ -51,17 +48,17 @@ export class ClasificadosComponent implements OnInit {
   ngOnInit(): void {
     this.loadListado();
     this.opciones = [
-      { value: 1, name: 'Clasificados', tipo: 'documento_clasificado' },
-      { value: 2, name: 'Limitados', tipo: 'documento_limitado' },
-      { value: 3, name: 'Ordinarios', tipo: 'documento_ordinario' },
-      { value: 4, name: 'Ordinarios Personales', tipo: 'documento_ordinario_personal' },
-      { value: 5, name: 'Secretos', tipo: 'documento_secreto' },
+      { value: 1, name: 'Clasificados', carpeta: 'documentos_clasificados/', tipo: 'documento_clasificado' },
+      { value: 2, name: 'Limitados', carpeta: 'documentos_limitados/', tipo: 'documento_limitado' },
+      { value: 3, name: 'Ordinarios', carpeta: 'documentos_ordinarios/', tipo: 'documento_ordinario' },
+      { value: 4, name: 'Ordinarios Personales', carpeta: 'documentos_ordinarios_personales/', tipo: 'documento_ordinario_personal' },
+      { value: 5, name: 'Secretos', carpeta: 'documentos_secretos/', tipo: 'documento_secreto' },
     ];
   }
 
 
-  getDocumentFoto(e: Clasificados) {
-    this.api.getDocumentsFoto(e.id, environment.dir_foto + 'documentos_clasificados/', 'documento_clasificado').subscribe((result) => {
+  getDocumentFoto(e: any) {
+    this.api.getDocumentsFoto(e.id, environment.dir_foto + e.tipo_doc.carpeta, e.tipo_doc.tipo).subscribe((result) => {
       // console.log(result);
     }, (error) => {
       // console.log(error.url);
@@ -100,31 +97,34 @@ export class ClasificadosComponent implements OnInit {
     })
   }
 
-  deleteClasificados(idd: number) {
+  deleteReportes(item: any) {
     let modal = this.modalService.open(DeleteComponent);
-    modal.componentInstance.modalHeader = "Clasificados";
+    modal.componentInstance.modalHeader = item.tipo_doc.name;
     modal.componentInstance.modalAction = "Eliminar";
-    modal.componentInstance.id = idd;
+    modal.componentInstance.id = item.id;
     modal.result.then((e) => {
       this.loadListado();
     })
   }
 
 
-  d(id: number) {
-    if (this.seleccionados.filter((n) => n == id).length > 0) {
-      this.seleccionados = this.seleccionados.filter((n) => n != id);
+  d(item: any) {
+    if (this.seleccionados.filter((n) => n.id == item.id).length > 0) {
+      this.seleccionados = this.seleccionados.filter((n) => n.id != item.id);
     }
     else
-      this.seleccionados.push(id);
+      this.seleccionados.push(item);
     console.log(this.seleccionados);
   }
 
   deleteAll() {
     if (this.seleccionados.length > 0) {
-      for (let idd of this.seleccionados)
-        this.api.deleteClasificados(idd).subscribe(result => { this.loadListado(); });
-      this.lib.success('Eliminados con exito!', 'Eliminar');
+      for (let item of this.seleccionados) {
+        console.log(item);
+        
+        this.deleteReportes(item);
+        this.lib.success('Eliminados con exito!', 'Eliminar');
+      }
     }
     else {
       this.lib.info('Debe seleccionar un elemento', 'No es posible');
@@ -134,22 +134,17 @@ export class ClasificadosComponent implements OnInit {
   selecc() {
     //Ver si el checkbox esta seleccionado
     if (this.selec) {
-
       // Vaciar arreglo
-      var des: number[] = [];
+      var des: any[] = [];
       this.seleccionados = des;
-
     }
     else {
-
       // Guardar todos los id en seleccionados
       var i = 0;
-      for (let item of this.clasificados) {
-        this.seleccionados[i] = item.id;
+      for (let item of this.reportes) {
+        this.seleccionados[i] = item;
         i++;
       }
-
-
     }
     this.selec = !this.selec;
     console.table(this.seleccionados);
@@ -157,14 +152,14 @@ export class ClasificadosComponent implements OnInit {
 
   loadListado() {
     this.loading = true;
-    this.clasificados = []
+    this.reportes = []
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
         this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
           result.forEach((e) => {
-            e.tipo_doc = this.opciones[i - 1].name
+            e.tipo_doc = this.opciones[i - 1]
             this.getDocumentFoto(e);
-            this.clasificados.push(e);
+            this.reportes.push(e);
           });
           this.loading = false
         }, (error) => {

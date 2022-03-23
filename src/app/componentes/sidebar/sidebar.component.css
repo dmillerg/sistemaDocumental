@@ -82,6 +82,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    transition: all .3s ease;
 }
 
 .sidebar ul li:hover {
@@ -255,6 +256,7 @@
 
 .sidebar.active ul{
     margin-left: 2px;
+    transition: all .3s ease;
 }
 
 .sidebar.active ul li:hover .tooltips {
