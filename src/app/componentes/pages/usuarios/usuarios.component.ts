@@ -27,19 +27,19 @@ export class UsuariosComponent implements OnInit {
   };
 
   loading: boolean = false;
-seleccionados: number[]=[];
-selec=false;
+  seleccionados: number[] = [];
+  selec = false;
   server: string = '';
-  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService ) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
     this.loadUsuarios();
   }
 
-  loadUsuarios(){
+  loadUsuarios() {
     this.loading = true;
-    this.api.getUsuarios().subscribe((result)=>{
-      if(result.length==0){
+    this.api.getUsuarios().subscribe((result) => {
+      if (result.length == 0) {
         this.server = 'No hay usuarios registrados';
       }
       this.usuarios = result;
@@ -47,7 +47,7 @@ selec=false;
       this.usuarios.forEach((e) => {
         console.log(e);
       })
-    }, (error)=>{
+    }, (error) => {
       this.server = "Error comunicandose con el servidor por favor intentelo más tarde";
     })
   }
@@ -56,32 +56,32 @@ selec=false;
     if (this.selected == item) {
       document.querySelector('.sidebar-right')?.classList.toggle('active');
       document.querySelector('.tablas')?.classList.toggle('active');
-    }else{
+    } else {
 
     }
     this.selected = item;
   }
 
-  addUsuario(){
+  addUsuario() {
     let modal = this.modalService.open(ModalUsuarioComponent);
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Agregar";
-    modal.result.then((e)=>{
+    modal.result.then((e) => {
       this.loadUsuarios();
     })
   }
 
-  editUsuario(item:Usuario){
+  editUsuario(item: Usuario) {
     let modal = this.modalService.open(ModalUsuarioComponent);
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Editar";
     modal.componentInstance.usuario = item;
-    modal.result.then((e)=>{
+    modal.result.then((e) => {
       this.loadUsuarios();
     })
   }
 
-  deleteUsuario(idd:number) {
+  deleteUsuario(idd: number) {
     let modal = this.modalService.open(DeleteComponent);
     modal.componentInstance.modalHeader = "Usuarios";
     modal.componentInstance.modalAction = "Eliminar";
@@ -90,60 +90,60 @@ selec=false;
       this.loadUsuarios();
     })
   }
-  d(id:number){
+  d(id: number) {
 
-    if(this.seleccionados.filter((n)=>n==id).length>0){
-      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
-  
+    if (this.seleccionados.filter((n) => n == id).length > 0) {
+      this.seleccionados = this.seleccionados.filter((n) => n != id);
+
     }
     else
-    this.seleccionados.push(id);
-  
-    
+      this.seleccionados.push(id);
+
+
     console.log(this.seleccionados);
-    
+
   }
   deleteAll() {
-   
-    if(this.seleccionados.length>0){
 
-    for (let idd of this.seleccionados)
-     this.api.deleteUsuario(idd).subscribe(result=>{this.loadUsuarios();});
+    if (this.seleccionados.length > 0) {
 
-    
- this.lib.success('Eliminados con exito!','Eliminar');
+      for (let idd of this.seleccionados)
+        this.api.deleteUsuario(idd).subscribe(result => { this.loadUsuarios(); });
+
+
+      this.lib.success('Eliminados con exito!', 'Eliminar');
 
     }
-    else{
-     this.lib.info('Debe seleccionar un elemento','No es posible');
+    else {
+      this.lib.info('Debe seleccionar un elemento', 'No es posible');
     }
-}
+  }
 
 
-selecc() {
+  selecc() {
 
 
-  //Ver si el checkbox esta seleccionado
-  if (this.selec) {
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
 
-    // Vaciar arreglo
-    var des: number[] = [];
-    this.seleccionados = des;
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.usuarios) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+
+
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
 
   }
-  else {
-
-    // Guardar todos los id en seleccionados
-    var i = 0;
-    for (let item of this.usuarios) {
-      this.seleccionados[i] = item.id;
-      i++;
-    }
-
-
-  }
-  this.selec = !this.selec;
-  console.table(this.seleccionados);
-
-}
 }
