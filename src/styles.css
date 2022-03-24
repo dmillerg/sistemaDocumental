@@ -28,8 +28,10 @@
 }
 
 .btn-firstcolor1 {
+    min-width: 50px;
+    min-height: 55px;
     padding: 15px;
-    margin: 10px;
+    margin: 5px;
     background-color: var(--firstcolor-hover);
     border-radius: 0.5em;
     text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
@@ -38,8 +40,10 @@
     color: var(--theme-color-ligth);
     transition: all .3s;
     height: 55px;
+    width: 98%;
     white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .btn-firstcolor:hover {

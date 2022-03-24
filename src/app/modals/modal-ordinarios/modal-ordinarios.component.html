@@ -1,10 +1,11 @@
 <div class="form-content">
-    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
     <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
-        <i *ngIf="src_documento==''" class="bi bi-file-earmark-arrow-up"></i>
+        <i *ngIf="src_documento==''" class="bi bi-file-arrow-up"></i>
         <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" *ngIf="src_documento!=''" class="img-fluid">
         <input #img type="file" accept="image/*" (change)="fileEvent($event)" hidden>
     </div>
+    <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el documento presionado sobre la imagen de arriba</p>
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
           

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -9,13 +10,16 @@ import { ApiService } from 'src/app/service/api.service';
 export class ModalDocumentComponent implements OnInit {
 
   seleccionado: number = -1
+  actiModal: NgbActiveModal;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private activeModal: NgbActiveModal) { 
+    this.actiModal = activeModal;
+  }
 
   ngOnInit(): void {
   }
 
   changValue() {
-    console.log(this.seleccionado);
+    // console.log(this.seleccionado);
   }
 }

@@ -1,4 +1,8 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
+import localEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localEs, 'es');
+
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';

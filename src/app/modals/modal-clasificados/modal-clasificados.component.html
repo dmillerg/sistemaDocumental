@@ -1,102 +1,113 @@
 <div class="form-content">
-    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i
+            class="bi bi-x"></i></button>
     <div (click)="img.click()" [ngClass]="{'transparente': src_documento!='', 'image-content': src_documento==''}">
-        <i *ngIf="src_documento==''" class="bi bi-person"></i>
-        <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" *ngIf="src_documento!=''" class="img-fluid"> 
+        <i *ngIf="src_documento==''" class="bi bi-file-arrow-up"></i>
+        <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" *ngIf="src_documento!=''"
+            class="img-fluid">
         <input #img type="file" accept="image/*" (change)="fileEvent($event)" hidden>
     </div>
+    <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
+        documento presionado sobre la imagen de arriba</p>
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
-          
-        <div class="input-content">
-            <label for="clasificados">No</label>
-            <i class="bi bi-123 prefix"></i>
-            <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="clasificados.no">
-       <p style="color: red;">{{errorN}}</p>
-        </div>
-   
-        <div class="input-content">
-            <label for="clasificados">Fecha</label>
-            <i class="bi bi-calendar-date prefix"></i>
-            <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha">
-        </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Enviado</label>
-            <i class="bi bi-send prefix"></i>
-            <input type="text" class="in" name="enviado" id="enviado" placeholder="enviado" [(ngModel)]="clasificados.enviado">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">No</label>
+                <i class="bi bi-123 prefix"></i>
+                <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="clasificados.no">
+                <p style="color: red;">{{errorN}}</p>
+            </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Rsb</label>
-            <i class="bi bi-file-earmark prefix"></i>
-            <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="clasificados.rsb">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Fecha</label>
+                <i class="bi bi-calendar-date prefix"></i>
+                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha">
+            </div>
 
-        <div class="input-content">
-            <label for="clasificados">Rs</label>
-            <i class="bi bi-file-earmark prefix"></i>
-            <input type="text" class="in" name="rs" id="rs" placeholder="rs" [(ngModel)]="clasificados.rs">
-        </div>
 
-        <div class="input-content">
-            <label for="clasificados">Fecha registro ctc</label>
-            <i class="bi bi-calendar-date prefix"></i>
-            <input type="date" class="in" name="fechaRegistroCtc" id="fechaRegistroCtc" [(ngModel)]="clasificados.fecha_registro_ctc">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Enviado</label>
+                <i class="bi bi-send prefix"></i>
+                <input type="text" class="in" name="enviado" id="enviado" placeholder="enviado"
+                    [(ngModel)]="clasificados.enviado">
+            </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Asunto</label>
-            <i class="bi bi-file-font prefix"></i>
-            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="clasificados.asunto">
-        </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Doc</label>
-            <i class="bi bi-file-earmark-text prefix"></i>
-            <input type="text" class="in" name="doc" id="doc" placeholder="doc" [(ngModel)]="clasificados.doc">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Rsb</label>
+                <i class="bi bi-file-earmark prefix"></i>
+                <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="clasificados.rsb">
+            </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Ej</label>
-            <i class="bi bi-file-earmark prefix"></i>
-            <input type="text" class="in" name="ej" id="ej" placeholder="ej" [(ngModel)]="clasificados.ej">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Rs</label>
+                <i class="bi bi-file-earmark prefix"></i>
+                <input type="text" class="in" name="rs" id="rs" placeholder="rs" [(ngModel)]="clasificados.rs">
+            </div>
 
-        
-        <div class="input-content">
-            <label for="clasificados">Clasif</label>
-            <i class="bi bi-file-earmark prefix"></i>
-            <input type="text" class="in" name="clasif" id="clasif" placeholder="clasif" [(ngModel)]="clasificados.clasif">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Fecha registro ctc</label>
+                <i class="bi bi-calendar-date prefix"></i>
+                <input type="date" class="in" name="fechaRegistroCtc" id="fechaRegistroCtc"
+                    [(ngModel)]="clasificados.fecha_registro_ctc">
+            </div>
 
-        <div class="input-content">
-            <label for="clasificados">Destino</label>
-            <i class="bi bi-signpost prefix"></i>
-            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="clasificados.destino">
-        </div>
 
-        <div class="input-content">
-            <label for="clasificados">Traslado</label>
-            <i class="bi bi-truck prefix"></i>
-            <input type="text" class="in" name="traslado" id="traslado" placeholder="traslado" [(ngModel)]="clasificados.traslado">
-        </div>
+            <div class="input-content">
+                <label for="clasificados">Asunto</label>
+                <i class="bi bi-file-font prefix"></i>
+                <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto"
+                    [(ngModel)]="clasificados.asunto">
+            </div>
 
-        <div class="input-content">
-            <label for="clasificados">Fecha traslado</label>
-            <i class="bi bi-calendar-date prefix"></i>
-            <input type="text" class="in" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
-        </div>
 
-             
-                </div>
-        <button id="butt" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor" (click)="addUpdateClasificados()"> {{modalAction}}</button>
-               
+            <div class="input-content">
+                <label for="clasificados">Doc</label>
+                <i class="bi bi-file-earmark-text prefix"></i>
+                <input type="text" class="in" name="doc" id="doc" placeholder="doc" [(ngModel)]="clasificados.doc">
+            </div>
+
+
+            <div class="input-content">
+                <label for="clasificados">Ej</label>
+                <i class="bi bi-file-earmark prefix"></i>
+                <input type="text" class="in" name="ej" id="ej" placeholder="ej" [(ngModel)]="clasificados.ej">
+            </div>
+
+
+            <div class="input-content">
+                <label for="clasificados">Clasif</label>
+                <i class="bi bi-file-earmark prefix"></i>
+                <input type="text" class="in" name="clasif" id="clasif" placeholder="clasif"
+                    [(ngModel)]="clasificados.clasif">
+            </div>
+
+            <div class="input-content">
+                <label for="clasificados">Destino</label>
+                <i class="bi bi-signpost prefix"></i>
+                <input type="text" class="in" name="destino" id="destino" placeholder="destino"
+                    [(ngModel)]="clasificados.destino">
+            </div>
+
+            <div class="input-content">
+                <label for="clasificados">Traslado</label>
+                <i class="bi bi-truck prefix"></i>
+                <input type="text" class="in" name="traslado" id="traslado" placeholder="traslado"
+                    [(ngModel)]="clasificados.traslado">
+            </div>
+
+            <div class="input-content">
+                <label for="clasificados">Fecha traslado</label>
+                <i class="bi bi-calendar-date prefix"></i>
+                <input type="date" class="in" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado"
+                    [(ngModel)]="clasificados.fecha_traslado">
+            </div>
+
+
+        </div>
+        <button id="butt" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor"
+            (click)="addUpdateClasificados()"> {{modalAction}}</button>
+
     </form>
 </div>
-
