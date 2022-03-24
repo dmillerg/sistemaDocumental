@@ -41,10 +41,9 @@
             <td colspan="3">{{item.usuario}}</td>
             <td colspan="4">{{item.nombre}}</td>
             <td colspan="4">{{item.rol}}</td>
-            <td colspan="5">{{item.fecha_registro}}</td>
-            <td colspan="6"><button class="btn btn-firstcolor" (click)="editUsuario(item)"><i
-                        class="bi bi-pencil"></i></button></td>
-            <td colspan="7"><button (click)="deleteUsuario(item.id)" class="btn btn-firstcolor"><i
+            <td colspan="5">{{item.fecha_registro | date: 'short'}}</td>
+            <td colspan="1"><button class="btn btn-firstcolor" (click)="editUsuario(item)"><i
+                        class="bi bi-pencil"></i></button><button (click)="deleteUsuario(item.id)" class="btn btn-firstcolor"><i
                         class="bi bi-trash"></i></button></td>
 
         </tr>
