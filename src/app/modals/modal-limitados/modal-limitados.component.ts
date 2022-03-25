@@ -152,6 +152,13 @@ export class ModalLimitadosComponent implements OnInit {
     this.limitados.destruccion.length>0&&this.limitados.expediente.length>0&&this.limitados.observacion.length>0
 
   }
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
 }
 
 

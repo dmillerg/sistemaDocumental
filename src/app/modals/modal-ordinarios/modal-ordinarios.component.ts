@@ -157,4 +157,11 @@ export class ModalOrdinariosComponent implements OnInit {
     this.ordinarios.destino.length>0&&this.ordinarios.asunto.length>0&&this.ordinarios.traslado.length>0
   }
 
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
 }

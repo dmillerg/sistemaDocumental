@@ -168,6 +168,13 @@ export class ModalSecretosComponent implements OnInit {
     this.secretos.categoria.length>0&&this.secretos.destino.length>0&&this.secretos.destruccion.length>0&&this.secretos.comp.length>0
   }
 
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
 }
 
 

@@ -144,4 +144,11 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   }
 
 
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
+
 }
