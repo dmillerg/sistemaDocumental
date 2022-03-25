@@ -65,8 +65,8 @@ export class ReportesComponent implements OnInit {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + e.tipo_doc.carpeta, e.tipo_doc.tipo).subscribe((result) => {
       // console.log(result);
     }, (error) => {
-      // console.log(error.url);
-      e.imagen = error.url
+      console.log(error.url);
+      e.image = error.url
     });
   }
 

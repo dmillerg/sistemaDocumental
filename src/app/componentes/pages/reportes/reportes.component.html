@@ -52,7 +52,7 @@
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
             <td>{{item.fecha}}</td>
-            <td>
+            <td style="display: flex;align-items: center;justify-content: center;">
                 <pdf-viewer [src]="item.image" [render-text]="true" [original-size]="false"
                     style="width: 100px; height: 100px"></pdf-viewer>
             </td>
