@@ -83,7 +83,7 @@
 
 
 .actions {
-    height: 60px;
+    height: 70px;
     width: 70%;
     position: absolute;
     top: 120px;
@@ -91,6 +91,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     overflow-wrap: hidden;
 }

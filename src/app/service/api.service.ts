@@ -368,4 +368,11 @@ export class ApiService {
     }
     return this.http.get<any[]>(direccion, { params: params });
   }
+
+  /**
+   * Mandar a escanear
+   */
+  Scan(){
+    return this.http.get(this.url + 'scan');
+  }
 }

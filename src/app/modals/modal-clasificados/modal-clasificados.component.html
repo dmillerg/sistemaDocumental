@@ -15,7 +15,7 @@
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
         documento presionado sobre la imagen de arriba</p> -->
         <div style="display:flex; margin-bottom: 20px;" >
-        <button class="btn btn-firstcolor" >Escanear documento</button>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
         <button class="btn btn-firstcolor" (click)="img.click()">Subir documento</button>
         </div>
     <form action="" class="form-complete">
