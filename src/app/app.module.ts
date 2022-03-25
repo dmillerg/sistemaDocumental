@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
 import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { MultiselectComponent } from './componentes/multiselect/multiselect.comp
     NgxWebstorageModule.forRoot(),
     NgbModule,
     LayoutModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    PdfViewerModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
