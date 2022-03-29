@@ -15,6 +15,7 @@ export class ModalLimitadosComponent implements OnInit {
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string = "";
+  exito: string = "";
 
   limitados: Limitados = {
     id: -1,
@@ -150,12 +151,20 @@ export class ModalLimitadosComponent implements OnInit {
     console.log(this.src_documento);
     
     reader.readAsDataURL(file);
+    this.exito = "Subido con exito";
   }
 
   validarCamposVacios(){
     return this.limitados.procedencia.length>0&&this.limitados.titulo.length>0&&this.limitados.movimiento1.length>0&&this.limitados.movimiento2.length>0&&
     this.limitados.destruccion.length>0&&this.limitados.expediente.length>0&&this.limitados.observacion.length>0
 
+  }
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
   }
 }
 

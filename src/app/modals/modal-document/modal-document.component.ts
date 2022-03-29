@@ -22,4 +22,11 @@ export class ModalDocumentComponent implements OnInit {
   changValue() {
     // console.log(this.seleccionado);
   }
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
 }

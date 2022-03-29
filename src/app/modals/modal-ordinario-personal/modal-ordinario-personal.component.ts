@@ -16,6 +16,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string="";
+  exito: string = "";
 
   ordinario_personal: Ordinario_personal = {
       id: -1,
@@ -136,6 +137,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       this.src_documento = reader.result as string;
     }
     reader.readAsDataURL(file);
+    this.exito = "Subido con exito";
   }
 
   validarCamposVacios(){
@@ -143,5 +145,12 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     this.ordinario_personal.destino.length>0
   }
 
+
+  loadScanner(){
+    this.api.Scan().subscribe((result)=>{
+      console.log(result);
+      
+    })
+  }
 
 }

@@ -35,35 +35,36 @@
             Seleccionar Todo
         </label>
     </div>
+    <div class="scrollbar3" id="style-1">
     <table class="tablas">
+          
         <thead class="head">
             <td></td>
-            <td>Id</td>
-            <td>No</td>
-            <td>Fecha</td>
-            <td>Imagen</td>
-            <td>Tipo</td>
-            <td>Acciones</td>
+            <td colspan="1">Id</td>
+            <td colspan="1">No</td>
+            <td colspan="2">Fecha</td>
+            <td colspan="2">Tipo</td>
+            <td colspan="1">Acciones</td>
         </thead>
+   
+    
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of reportes" class="ligth" (click)="detailToggle(item)">
-            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
+              <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
             </td>
-            <td>{{item.id}}</td>
-            <td>{{item.no}}</td>
-            <td>{{item.fecha}}</td>
-            <td style="display: flex;align-items: center;justify-content: center;">
-                <pdf-viewer [src]="item.image" [render-text]="true" [original-size]="false"
-                    style="width: 100px; height: 100px"></pdf-viewer>
-            </td>
-            <td>{{item.tipo_doc.name}}</td>
-            <td><button class="btn btn-firstcolor" (click)="editReport(item)"><i class="bi bi-pencil"></i></button>
+            <td colspan="1">{{item.id}}</td>
+            <td colspan="1">{{item.no}}</td>
+            <td colspan="2">{{item.fecha}}</td>
+            <td colspan="2">{{item.tipo_doc.name}}</td>
+            <td colspan="1"><button class="btn btn-firstcolor" (click)="editReport(item)"><i class="bi bi-pencil"></i></button>
                 &nbsp;
                 <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
-                <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-person"></i></button>
+                &nbsp;
+                <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
             </td>
 
         </tr>
-
+    
     </table>
+    </div>
 </div>
