@@ -70,6 +70,17 @@ export class ReportesComponent implements OnInit {
     });
   }
 
+  openPdf(e: any){
+    console.log('asda');
+    
+    this.api.openPdf(e.id, environment.dir_foto + e.tipo_doc.carpeta, e.tipo_doc.tipo).subscribe((result) => {
+      console.log('sasda',result);
+    }, (error) => {
+      console.log(error);
+      // e.image = error.url
+    });
+  }
+
   detailToggle(item: Clasificados) {
     if (this.selected == item) {
       document.querySelector('.sidebar-right')?.classList.toggle('active');

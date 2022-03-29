@@ -15,7 +15,7 @@ import { Ordinario_personal } from '../models/ordinario.model.personal';
 })
 export class ApiService {
 
-  url: string = 'http://172.40.3.14:9706/apis/';
+  url: string = 'http://localhost:9706/apis/';
 
   constructor(
     private http: HttpClient,
@@ -374,5 +374,14 @@ export class ApiService {
    */
   Scan(){
     return this.http.get(this.url + 'scan');
+  }
+
+  openPdf(id: number = -1, dir: string = '', datatable: string = ''){
+    let direccion = this.url + 'openpdf/' + id.toString();
+    let params = {
+      dir: dir,
+      datatable: datatable,
+    }
+    return this.http.get(direccion, { params: params });
   }
 }

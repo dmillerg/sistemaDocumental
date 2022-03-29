@@ -28,6 +28,7 @@
     "dwt": "^14.0.3",
     "jquery": "^3.6.0",
     "ng2-pdf-viewer": "^8.0.1",
+    "ng2-pdfjs-viewer": "^13.2.2",
     "ngx-bootstrap-multiselect": "^2.1.1",
     "ngx-childprocess": "0.0.6",
     "ngx-dropdown-multiselect": "^1.7.1",

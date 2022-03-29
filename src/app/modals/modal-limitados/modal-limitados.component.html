@@ -4,11 +4,30 @@
         <i *ngIf="src_documento==''" class="bi bi-file-arrow-up"></i>
         <!-- <img style="width:150px; height:150px; margin-top:10px;" [src]="src_documento" *ngIf="src_documento!=''"
             class="img-fluid"> -->
-            <pdf-viewer [src]="src_documento"
+            <!-- <pdf-viewer [src]="src_documento"
               [render-text]="true"
               [original-size]="false"
               style="width: 400px; height: 400px"
-  ></pdf-viewer>
+  ></pdf-viewer> -->
+  <object
+	[data]="src_documento"
+	type="application/pdf"
+	width="100%"
+	height="100%"
+>
+	<iframe
+    [src]="src_documento"
+		width="100%"
+		height="100%"
+		style="border: none;"
+	>
+		<p>
+			Your browser does not support PDFs.
+			<a [href]="src_documento">Download the PDF</a>
+			.
+		</p>
+	</iframe>
+</object>
         <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
     </div>
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el

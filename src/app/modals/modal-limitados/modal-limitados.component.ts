@@ -140,10 +140,15 @@ export class ModalLimitadosComponent implements OnInit {
     let file = fileInput.target.files[0];
     //  console.log(fileInput);
     this.uploadFiles = fileInput.target.files;
+    console.log(this.uploadFiles);
     const reader = new FileReader();
     reader.onload = () => {
+      console.log(reader.result);
+      
       this.src_documento = reader.result as string;
     }
+    console.log(this.src_documento);
+    
     reader.readAsDataURL(file);
   }
 
