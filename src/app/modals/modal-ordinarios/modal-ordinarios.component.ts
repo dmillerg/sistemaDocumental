@@ -14,6 +14,7 @@ export class ModalOrdinariosComponent implements OnInit {
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string="";
+  exito: string = "";
 
   ordinarios: Ordinarios = {
     id: -1,
@@ -150,6 +151,8 @@ export class ModalOrdinariosComponent implements OnInit {
       this.src_documento = reader.result as string;
     }
     reader.readAsDataURL(file);
+    this.exito = "Subido con exito";
+   
   }
 
   validarCamposVacios(){

@@ -15,6 +15,7 @@ export class ModalLimitadosComponent implements OnInit {
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string = "";
+  exito: string = "";
 
   limitados: Limitados = {
     id: -1,
@@ -145,6 +146,7 @@ export class ModalLimitadosComponent implements OnInit {
       this.src_documento = reader.result as string;
     }
     reader.readAsDataURL(file);
+    this.exito = "Subido con exito";
   }
 
   validarCamposVacios(){

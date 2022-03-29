@@ -35,7 +35,9 @@
             Seleccionar Todo
         </label>
     </div>
+    <div class="scrollbar3" id="style-1">
     <table class="tablas">
+          
         <thead class="head">
             <td></td>
             <td>Id</td>
@@ -45,9 +47,11 @@
             <td>Tipo</td>
             <td>Acciones</td>
         </thead>
+   
+    
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of reportes" class="ligth" (click)="detailToggle(item)">
-            <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
+              <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
             </td>
             <td>{{item.id}}</td>
             <td>{{item.no}}</td>
@@ -63,6 +67,7 @@
             </td>
 
         </tr>
-
+    
     </table>
+    </div>
 </div>

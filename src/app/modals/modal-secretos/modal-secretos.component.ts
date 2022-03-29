@@ -14,6 +14,7 @@ export class ModalSecretosComponent implements OnInit {
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string="";
+  exito: string = "";
 
   secretos: Secreto = {
     id: -1,
@@ -160,6 +161,7 @@ export class ModalSecretosComponent implements OnInit {
       this.src_documento = reader.result as string;
     }
     reader.readAsDataURL(file);
+    this.exito = "Subido con exito";
   }
 
 
@@ -174,10 +176,5 @@ export class ModalSecretosComponent implements OnInit {
       console.log(result);
       
     })
-  }
 }
-
-
-
-
-
+}
