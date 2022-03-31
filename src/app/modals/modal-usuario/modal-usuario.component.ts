@@ -38,6 +38,7 @@ export class ModalUsuarioComponent implements OnInit {
     rol: ''
   }
 
+  usuarios_existentes: Usuario[] = [];
   
   constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
@@ -45,7 +46,14 @@ export class ModalUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.rellenarSiEditas();
+    this.loadUsuarios();
+    
   }
+
+  validarUsuarioExistente(){
+    return this.usuarios_existentes.filter((e)=>e.usuario == this.usuario.usuario).length>0
+  }
+
 
   rellenarSiEditas() {
     if (this.modalAction == 'Editar') {
@@ -57,6 +65,12 @@ export class ModalUsuarioComponent implements OnInit {
       this.usuario_pasado.fecha_ultima_sesion = this.usuario.fecha_ultima_sesion;
       this.usuario_pasado.rol = this.usuario.rol;
     }
+  }
+
+  loadUsuarios(){
+    this.api.getUsuarios().subscribe((result)=>{
+      this.usuarios_existentes = result;
+    });
   }
 
   addUpdateUsuario() {
@@ -95,7 +109,7 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   validarCamposVacios(){
-    return this.usuario.usuario.length>0&&this.usuario.password.length>0&&this.usuario.nombre.length>0
+    return this.usuario.usuario.length>0&&this.usuario.password.length>0&&this.usuario.nombre.length>0&&this.usuario.rol.length>0;
   }
 
 

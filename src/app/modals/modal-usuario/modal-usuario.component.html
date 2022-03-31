@@ -9,6 +9,7 @@
             <label for="usuario">Usuario</label>
             <i class="bi bi-person prefix"></i>
             <input type="text" class="in" name="usuario" id="usuario" placeholder="usuario" [(ngModel)]="usuario.usuario">
+            <p *ngIf="validarUsuarioExistente()" class="text-danger" style="font-size: 12px;">Este usuario ya esta en uso por favor elija otro</p>
         </div>
         <div class="input-content">
             <label for="usuario">Nombre</label>
@@ -26,6 +27,7 @@
             <i class="bi bi-arrow-repeat prefix"></i>
             <i class="bi suffix" [ngClass]="{'bi-eye': hide_password, 'bi-eye-slash': !hide_password}" (click)="hide_password = !hide_password"></i>
             <input [type]="hide_password ? 'text' : 'password'" class="in" name="confirm" id="confirm" placeholder="repita su contraseña" [(ngModel)]="password2">
+            <p *ngIf="usuario.password!=password2" class="text-danger" style="font-size: 12px;">Las contraseñas no coinciden por favor verifiquelas</p>
         </div>
         <div class="input-content">
             <label for="usuario">rol</label>
@@ -33,6 +35,6 @@
             <input type="text" class="in" name="rol" id="rol" placeholder="rol" [(ngModel)]="usuario.rol">
         </div>
 
-        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios()" (click)="addUpdateUsuario()"> {{modalAction}}</button>
+        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios() || usuario.password!=password2 || validarUsuarioExistente()" (click)="addUpdateUsuario()"> {{modalAction}}</button>
     </form>
 </div>
