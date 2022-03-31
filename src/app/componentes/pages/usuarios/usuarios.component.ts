@@ -44,9 +44,6 @@ export class UsuariosComponent implements OnInit {
       }
       this.usuarios = result;
       this.loading = false;
-      this.usuarios.forEach((e) => {
-        console.log(e);
-      })
     }, (error) => {
       this.server = "Error comunicandose con el servidor por favor intentelo más tarde";
     })

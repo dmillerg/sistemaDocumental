@@ -27,7 +27,7 @@
             <i class="bi bi-arrow-repeat prefix"></i>
             <i class="bi suffix" [ngClass]="{'bi-eye': hide_password, 'bi-eye-slash': !hide_password}" (click)="hide_password = !hide_password"></i>
             <input [type]="hide_password ? 'text' : 'password'" class="in" name="confirm" id="confirm" placeholder="repita su contraseña" [(ngModel)]="password2">
-            <p *ngIf="usuario.password!=password2" class="text-danger" style="font-size: 12px;">Las contraseñas no coinciden por favor verifiquelas</p>
+            <p *ngIf="modalAction!='Editar'?usuario.password!=password2: false" class="text-danger" style="font-size: 12px;">Las contraseñas no coinciden por favor verifiquelas</p>
         </div>
         <div class="input-content">
             <label for="usuario">rol</label>

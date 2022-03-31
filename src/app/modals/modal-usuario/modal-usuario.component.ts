@@ -15,7 +15,7 @@ export class ModalUsuarioComponent implements OnInit {
   modalAction: string = '';
   hide_pass: boolean = false;
   hide_password: boolean = false;
-  errorN: string="";
+  errorN: string = "";
   usuario: Usuario = {
     id: -1,
     usuario: '',
@@ -39,7 +39,7 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   usuarios_existentes: Usuario[] = [];
-  
+
   constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
@@ -47,11 +47,16 @@ export class ModalUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.rellenarSiEditas();
     this.loadUsuarios();
-    
+
   }
 
-  validarUsuarioExistente(){
-    return this.usuarios_existentes.filter((e)=>e.usuario == this.usuario.usuario).length>0
+  validarUsuarioExistente() {
+    if (this.modalAction != 'Editar') {
+      return this.usuarios_existentes.filter((e) => e.usuario == this.usuario.usuario).length > 0
+    } else {
+      this.usuarios_existentes = this.usuarios_existentes.filter((e) => e.usuario != this.usuario_pasado.usuario);
+      return this.usuarios_existentes.filter((e) => e.usuario == this.usuario.usuario).length > 0;
+    }
   }
 
 
@@ -67,8 +72,8 @@ export class ModalUsuarioComponent implements OnInit {
     }
   }
 
-  loadUsuarios(){
-    this.api.getUsuarios().subscribe((result)=>{
+  loadUsuarios() {
+    this.api.getUsuarios().subscribe((result) => {
       this.usuarios_existentes = result;
     });
   }
@@ -88,28 +93,28 @@ export class ModalUsuarioComponent implements OnInit {
       this.api.updateUsuario(formData, this.usuario.id).subscribe((result) => {
         this.actiModal.close('Usuarios');
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
+        this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
         this.actiModal.close('Usuarios');
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
         console.log(error);
       });
     } else {
       this.api.addUsuario(formData).subscribe((result) => {
         this.actiModal.close('Usuarios');
         console.log(result);
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Usuarios');
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
     }
 
   }
 
-  validarCamposVacios(){
-    return this.usuario.usuario.length>0&&this.usuario.password.length>0&&this.usuario.nombre.length>0&&this.usuario.rol.length>0;
+  validarCamposVacios() {
+    return this.usuario.usuario.length > 0 && this.usuario.password.length > 0 && this.usuario.nombre.length > 0 && this.usuario.rol.length > 0;
   }
 
 
