@@ -32,7 +32,9 @@
         <div class="input-content">
             <label for="usuario">rol</label>
             <i class="bi bi-person-rolodex prefix"></i>
-            <input type="text" class="in" name="rol" id="rol" placeholder="rol" [(ngModel)]="usuario.rol">
+            <select type="text" class="in" name="rol" style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="rol" placeholder="rol" [(ngModel)]="usuario.rol">
+                <option>admin</option>
+            </select>
         </div>
 
         <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios() || usuario.password!=password2 || validarUsuarioExistente()" (click)="addUpdateUsuario()"> {{modalAction}}</button>
