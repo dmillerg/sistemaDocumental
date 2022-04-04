@@ -168,6 +168,7 @@ export class ModalSecretosComponent implements OnInit {
   validarCamposVacios(){
     return this.secretos.lugar.length>0&&this.secretos.reg_no.length>0&&this.secretos.titulo.length>0&&
     this.secretos.categoria.length>0&&this.secretos.destino.length>0&&this.secretos.destruccion.length>0&&this.secretos.comp.length>0
+    &&this.exito=="Subido con exito"
   }
 
 
