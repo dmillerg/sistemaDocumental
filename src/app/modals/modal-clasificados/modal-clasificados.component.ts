@@ -184,12 +184,16 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   validarCamposVacios(){
+    //console.log(this.clasificados.imagen.toString());
+
     // console.log('heree '+this.clasificados.imagen);
     return this.clasificados.destino.length>0&&this.clasificados.clasif.length>0&&this.clasificados.asunto.length>0&&
     this.clasificados.rsb.length>0&&this.clasificados.rs.length>0&&this.clasificados.doc.length>0
     &&this.clasificados.ej.length>0&&this.clasificados.traslado.length>0&&this.clasificados.enviado.length>0
-  //&&this.clasificados.fecha.toString()!='dd/mm/aaaa' &&this.clasificados.fecha_traslado.toString()!='dd/mm/aaaa' &&this.clasificados.fecha_registro_ctc.toString()!='dd/mm/aaaa'
-  //&&this.clasificados.imagen!=''
+    &&this.clasificados.fecha.toString()!=''&&this.clasificados.fecha_traslado.toString()!=''
+    &&this.clasificados.fecha_registro_ctc.toString()!=''&&this.exito=="Subido con exito"
+
+ 
   }
 
   loadScanner(){

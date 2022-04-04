@@ -143,6 +143,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   validarCamposVacios(){
     return this.ordinario_personal.procedencia.length>0&&this.ordinario_personal.asunto.length>0&&this.ordinario_personal.archivo.length>0&&
     this.ordinario_personal.destino.length>0
+    &&this.ordinario_personal.fecha.toString()!=''&&this.exito=="Subido con exito"
   }
 
 
