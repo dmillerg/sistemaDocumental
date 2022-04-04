@@ -30,6 +30,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ModalDocumentComponent } from './modals/modal-document/modal-document.component';
 import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { InicioComponent } from './componentes/pages/inicio/inicio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     LoadingComponent,
     ModalOrdinarioPersonalComponent,
     DeleteComponent,
+    InicioComponent,
     ModalDocumentComponent,
     MultiselectComponent,
   ],

@@ -1,4 +1,4 @@
-.container .row * .seccion{
+.container .row * .seccion {
     width: 100%;
     height: 300px;
     border-radius: 1em;
@@ -9,6 +9,30 @@
     margin-top: 20px;
 }
 
-.container{
+.container {
     margin-top: 80px;
-   }
+}
+
+.container .tips-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container .tips-container .card .tree-points{
+    position: absolute;
+    right: 0;
+    width: 40px;
+}
+
+.card-title{
+    color: black;
+}
+
+.card-text{
+    color: rgb(87, 87, 87);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 150px;
+}
+

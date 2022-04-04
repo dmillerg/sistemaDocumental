@@ -1,4 +1,18 @@
 <div class="container">
-   
-  <img src="assets/img/ByN.jpg" width="1300" height="660"/>
+   <div class="perfil-container">
+
+   </div>
+   <div class="tips-container" >
+    <div class="card" *ngFor="let item of tips" style="width: 18rem;margin: 10px;">
+      <button class="btn tree-points"><i class="bi bi-three-dots-vertical"></i></button>
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{item.subtitle}}</h6>
+        <p class="card-text">{{item.description}}.</p>
+        <!-- <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+   </div>
+  <!-- <img src="assets/img/ByN.jpg" width="1300" height="660"/> -->
 </div>
