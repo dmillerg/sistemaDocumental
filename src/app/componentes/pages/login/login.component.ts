@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   see: boolean = false;
   error: string = '';
 
-  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router, private modalService: NgbModal) { }
+  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -44,10 +44,4 @@ export class LoginComponent implements OnInit {
     }
     );
   }
-
-  createUser() {
-    let modal = this.modalService.open(ModalUsuarioComponent, { backdrop: 'static' });
-    modal.componentInstance.modalAction = "Agregar";
-  }
-
 }

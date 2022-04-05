@@ -9,6 +9,10 @@
     --dimen-tooltip: -70px;
 }
 
+*{
+    image-rendering: -webkit-optimize-contrast;
+}
+
 .btn:hover .tips.tips-show {
     visibility: visible;
     transform: translate(0);

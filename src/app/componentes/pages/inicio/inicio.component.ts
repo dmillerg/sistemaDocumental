@@ -9,6 +9,16 @@ export class InicioComponent implements OnInit {
 
 tips: any[]= [
   {
+    title: "Autenticacion",
+    subtitle: "permisos para administrar la app",
+    description: "Para autenticarse usted debe presionar el boton rojo en la esquina superior derecha y rellenar el formulario que le sale a continuacion con su usuario y contrasenna"
+  },
+  {
+    title: "Cerrar aplicacion",
+    subtitle: "peligro de seguridad",
+    description: "En caso de terminar de trabajar con la aplicacion por favor asegurese de cerrar la aplicacion o al menos presionar el boton que se encuentra en la esquina inferior izquierda"
+  },
+  {
     title: "Tipos de documentos",
     subtitle: "",
     description: "Hay 5 tipos de documentos que usted puede elegir para realizar las operaciones de registrar, editar, eliminar o visualizar. Estos son: clasificados, limitados, ordinarios, ordinarios personales y secretos"

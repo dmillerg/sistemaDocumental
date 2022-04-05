@@ -8,7 +8,7 @@
     background: linear-gradient(330deg,var(--firstcolor-hover) 40%,rgb(161, 2, 2) 80%,rgba(255,255,255,1) 100%);
     font-style: black;
     width: 260px;
-    height: 98%;
+    height: 97%;
     margin-top: 2%;
     transition: all .3s ease;
 }
@@ -149,7 +149,7 @@
 }
 
 .content {
-    height: 99%;
+    height: calc(100%-32px);
     margin-top: 32px;
     position: fixed;
     margin-left: 260px;

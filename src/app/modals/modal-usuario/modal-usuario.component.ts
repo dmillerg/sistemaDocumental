@@ -74,7 +74,10 @@ export class ModalUsuarioComponent implements OnInit {
 
   loadUsuarios() {
     this.api.getUsuarios().subscribe((result) => {
-      this.usuarios_existentes = result;
+      if(result.length>0){
+      this.usuarios_existentes = result;}else{
+        this.usuarios_existentes = [];
+      }
     });
   }
 
