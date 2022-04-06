@@ -14,6 +14,7 @@ import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 
+
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
@@ -21,31 +22,15 @@ import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-li
 })
 export class ReportesComponent implements OnInit {
 
-
-  reportes: any[] = [];
+  documentos: any[] = [];
   selec = false;
   seleccionados: any[] = [];
-  selected: Clasificados = {
-    id: 1,
-    no: 2,
-    fecha: 'a',
-    enviado: 'a',
-    rsb: 'a',
-    rs: 'a',
-    fecha_registro_ctc: 'a',
-    asunto: 'a',
-    doc: 'a',
-    ej: 'a',
-    clasif: 'a',
-    destino: 'a',
-    traslado: 'a',
-    fecha_traslado: 'a',
-    imagen: 'a',
-  };
+  
   loading: boolean = false;
   server: string = '';
   listado: any[] = [];
   opciones: any[] = [];
+  values: any[] = [];
   tipos: any[] = [];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
@@ -56,10 +41,13 @@ export class ReportesComponent implements OnInit {
       { value: 2, name: 'Limitados', carpeta: 'documentos_limitados/', tipo: 'documento_limitado' },
       { value: 3, name: 'Ordinarios', carpeta: 'documentos_ordinarios/', tipo: 'documento_ordinario' },
       { value: 4, name: 'Ordinarios Personales', carpeta: 'documentos_ordinarios_personales/', tipo: 'documento_ordinario_personal' },
-      { value: 5, name: 'Secretos', carpeta: 'documentos_secretos/', tipo: 'documento_secreto' },
+     { value: 5, name: 'Secretos', carpeta: 'documentos_secretos/', tipo: 'documento_secreto' },
+    ];
+    this.values = [
+      { value: 1, name: 'TipoA'},
+      { value: 2, name: 'TipoB'}
     ];
   }
-
 
   getDocumentFoto(e: any) {
     this.api.getDocumentsFoto(e.id, environment.dir_foto + e.tipo_doc.carpeta, e.tipo_doc.tipo).subscribe((result) => {
@@ -81,151 +69,22 @@ export class ReportesComponent implements OnInit {
     });
   }
 
-  detailToggle(item: Clasificados) {
-    if (this.selected == item) {
-      document.querySelector('.sidebar-right')?.classList.toggle('active');
-      document.querySelector('.tablas')?.classList.toggle('active');
-    } else {
-
-    }
-    this.selected = item;
-  }
-
-  addClasificados() {
-    let modal = this.modalService.open(ModalDocumentComponent);
-    // modal.componentInstance.modalHeader = "Clasificados";
-    // modal.componentInstance.modalAction = "Agregar";
-    modal.result.then((e) => {
-      this.loadListado()
-    })
-
-
-  }
-
-  editReport(item: any) {
-    if (item.tipo_doc.tipo=="documento_clasificado") {
-
-    let modal = this.modalService.open(ModalClasificadosComponent);
-    modal.componentInstance.modalHeader = "Clasificados";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-   else if (item.tipo_doc.tipo=="documento_limitado") {
-
-    let modal = this.modalService.open(ModalLimitadosComponent);
-    modal.componentInstance.modalHeader = "Limitados";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_ordinario") {
-
-    let modal = this.modalService.open(ModalOrdinariosComponent);
-    modal.componentInstance.modalHeader = "Ordinarios";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_ordinario_personal") {
-
-    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
-    modal.componentInstance.modalHeader = "Ordinario_personal";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_secreto") {
-
-    let modal = this.modalService.open(ModalSecretosComponent);
-    modal.componentInstance.modalHeader = "Secretos";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  }
-
-  deleteReportes(item: any) {
-    let modal = this.modalService.open(DeleteComponent);
-    modal.componentInstance.modalHeader = item.tipo_doc.name;
-    modal.componentInstance.modalAction = "Eliminar";
-    modal.componentInstance.id = item.id;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-
-
-  d(item: any) {
-    if (this.seleccionados.filter((n) => n.id == item.id).length > 0) {
-      this.seleccionados = this.seleccionados.filter((n) => n.id != item.id);
-    }
-    else
-      this.seleccionados.push(item);
-    console.log(this.seleccionados);
-  }
-
-  deleteAll() {
-    if (this.seleccionados.length > 0) {
-      for (let item of this.seleccionados) {
-        console.log(item);
-        
-        this.deleteReportes(item);
-        this.lib.success('Eliminados con exito!', 'Eliminar');
-      }
-    }
-    else {
-      this.lib.info('Debe seleccionar un elemento', 'No es posible');
-    }
-  }
-
-  selecc() {
-    //Ver si el checkbox esta seleccionado
-    if (this.selec) {
-      // Vaciar arreglo
-      var des: any[] = [];
-      this.seleccionados = des;
-    }
-    else {
-      // Guardar todos los id en seleccionados
-      var i = 0;
-      for (let item of this.reportes) {
-        this.seleccionados[i] = item;
-        i++;
-      }
-    }
-    this.selec = !this.selec;
-    console.table(this.seleccionados);
-  }
-
   loadListado() {
     this.loading = true;
-    this.reportes = []
+    this.documentos = []
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
         this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
           result.forEach((e) => {
             e.tipo_doc = this.opciones[i - 1]
             this.getDocumentFoto(e);
-            this.reportes.push(e);
+            this.documentos.push(e);
+          console.log(new Date(Date.parse(e.fecha)) + "  aaaa");
           });
           this.loading = false
         }, (error) => {
           this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
         });
-        // if (this.clasificados.length == 0) {
-        //   this.server = 'No hay documentos';
-        // }else this.loading = false;
       });
 
     } else {
@@ -236,6 +95,23 @@ export class ReportesComponent implements OnInit {
   salida(result: any) {
     this.tipos = result;
     this.loadListado();
+  }
+
+  getDocuments(fechaInicio:Date, fechaFin:Date){
+   //2017-06-01
+      this.api.getDocuments('documento_clasificado').subscribe((result) => {
+        result.forEach((e) => {
+       //   Date fechaDoc = e.Fecha;
+       
+    //   Date.create().format('{Weekday} {Month} {dd}, {yyyy}');
+          this.getDocumentFoto(e);
+          this.documentos.push(e);
+        });
+        this.loading = false
+      }, (error) => {
+        this.server = 'Error';
+      });
+
   }
 
 }

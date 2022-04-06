@@ -6,65 +6,63 @@
         </div>
         <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
 
-        <div
-         class="actions">
-            <div style="width: 40%;display: flex;flex-direction: row;">
-                <label class="form-check-label"
-                    style="margin: 10px; width: 30%;overflow: hidden;text-overflow: ellipsis;">
-                    Documentos:
-                </label>
-                <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
+        <div class="login-page">
+            <div class="form">
+              <form class="login-form">
+                <h2 style="text-align:center">Filtrar documentos:</h2>
+                <br/> <br/>
+                <div style="display:flex">
+                <Label style="margin-top:12px;margin:10px">Desde:</Label>
+              <input type="text" placeholder="2022-12-02"/>
+              
+                
+                <Label style="margin-top:12px;margin:10px">Hasta:</Label>
+              <input type="text" placeholder="2022-12-02"/>
+                  
+                   <Label style="margin-top:12px;margin:10px">Tipo:</Label>
+                   <app-multiselect [opciones]="values" (emisor)="salida($event)"></app-multiselect>
+                  </div>
+             
+                
+                 <Label style="margin-top:12px;margin:10px;width:10%">Clasificacion:</Label>
+                 <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
+                <br/>
+                  <Label style="margin-top:12px;margin:10px">Procedencia:</Label>
+              <input type="text" placeholder="Todos" style="width:50%"/>
+                
+                 <br/> <br/> 
+                <button style="margin-left: 35%;">Listar</button>
+          
+              </form>
             </div>
-            <div style="width: 23%;">
-                <button class="btn btn-firstcolor1" (click)="addClasificados()"><i style="font-size: 20px;"
-                        class="bi bi-file-earmark-plus"></i>
-                    Nuevo Documento
-                </button>
-            </div>
-            <div style="width: 23%;">
-                <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
-                    <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
-                    Eliminar Todo
-                </button>
-            </div>
-        </div>
+          </div>
+
+
     </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
-        <label class="form-check-label" for="flexCheckDefault">
-            Seleccionar Todo
-        </label>
-    </div>
+    <br/>
     <div class="scrollbar3" id="style-1">
     <table class="tablas">
           
         <thead class="head">
             <td></td>
             <td colspan="1">Id</td>
-            <td colspan="1">No</td>
-            <td colspan="2">Fecha</td>
-            <td colspan="2">Tipo</td>
-            <td colspan="1">Acciones</td>
+            <td colspan="2">No</td>
+            <td colspan="3">Fecha</td>
+            <td colspan="4">Tipo</td>
+            <td colspan="5">Ver documento</td>
         </thead>
    
-    
         <app-loading [loading]="loading" [message]="server"></app-loading>
-        <tr *ngFor="let item of reportes" class="ligth" (click)="detailToggle(item)">
-              <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
-            </td>
+        <tr *ngFor="let item of documentos" class="ligth">
+             
             <td colspan="1">{{item.id}}</td>
-            <td colspan="1">{{item.no}}</td>
-            <td colspan="2">{{item.fecha}}</td>
-            <td colspan="2">{{item.tipo_doc.name}}</td>
-            <td colspan="1"><button class="btn btn-firstcolor" (click)="editReport(item)"><i class="bi bi-pencil"></i></button>
-                &nbsp;
-                <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
-                &nbsp;
+            <td colspan="2">{{item.no}}</td>
+            <td colspan="3">{{item.fecha}}</td>
+            <td colspan="4">{{item.tipo_doc.tipo}}</td>
+            <td colspan="5">
                 <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
             </td>
-
-        </tr>
-    
+        </tr> 
     </table>
     </div>
 </div>
