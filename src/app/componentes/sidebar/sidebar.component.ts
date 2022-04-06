@@ -30,6 +30,13 @@ export class SidebarComponent implements OnInit {
     },
     {
       active: false,
+      nombre: 'Documentos',
+      icono: 'bi bi-file-earmark-text',
+      link: 'clasificados',
+      permiso: false,
+    },
+    {
+      active: false,
       nombre: 'Reportes',
       icono: 'bi bi-file-earmark-text',
       link: 'clasificados',
@@ -50,6 +57,13 @@ export class SidebarComponent implements OnInit {
       nombre: 'Usuario',
       icono: 'bi bi-person',
       link: 'usuarios',
+      permiso: false,
+    },
+    {
+      active: false,
+      nombre: 'Documentos',
+      icono: 'bi bi-file-earmark-text',
+      link: 'clasificados',
       permiso: false,
     },
     {
