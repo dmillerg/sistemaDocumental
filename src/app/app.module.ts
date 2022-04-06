@@ -19,7 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
 import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
-import { ReportesComponent } from './componentes/pages/reportes/reportes.component';
+import { DocumentosComponent } from './componentes/pages/documentos/documentos.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
 import { ModalOrdinariosComponent } from './modals/modal-ordinarios/modal-ordinarios.component';
 import { LoadingComponent } from './componentes/loading/loading.component';
@@ -31,6 +31,7 @@ import { ModalDocumentComponent } from './modals/modal-document/modal-document.c
 import { MultiselectComponent } from './componentes/multiselect/multiselect.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InicioComponent } from './componentes/pages/inicio/inicio.component';
+import { ReportesComponent } from './componentes/pages/reportes/reportes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { InicioComponent } from './componentes/pages/inicio/inicio.component';
     UsuariosComponent,
     DetailbarComponent,
     LoginComponent,
-    ReportesComponent,
+    DocumentosComponent,
     ModalUsuarioComponent,
     ModalOrdinariosComponent,
     ModalClasificadosComponent,
@@ -50,6 +51,7 @@ import { InicioComponent } from './componentes/pages/inicio/inicio.component';
     InicioComponent,
     ModalDocumentComponent,
     MultiselectComponent,
+    ReportesComponent,
   ],
   imports: [
     BrowserModule,
