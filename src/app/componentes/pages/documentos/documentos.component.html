@@ -1,8 +1,8 @@
 <div class="contenedor" id="cont">
     <div class="title-page">
         <div class="title-logo">
-            <i class="bi bi-archive text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
+            <i class="bi bi-journal-text text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Documentos</h1>
         </div>
         <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
 
@@ -22,7 +22,7 @@
                 </button>
             </div>
             <div style="width: 23%;">
-                <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
+                <button *ngIf="storage.retrieve('usuario').usuario.rol=='admin'" (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
                     <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
                     Eliminar Todo
                 </button>
@@ -58,7 +58,7 @@
             <td colspan="2">{{item.tipo_doc.name}}</td>
             <td colspan="1"><button class="btn btn-firstcolor" (click)="editReport(item)"><i class="bi bi-pencil"></i></button>
                 &nbsp;
-                <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
+                <button *ngIf="storage.retrieve('usuario').usuario.rol=='admin'" class="btn btn-firstcolor" (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
                 &nbsp;
                 <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
             </td>
