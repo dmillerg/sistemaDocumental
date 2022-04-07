@@ -8,7 +8,7 @@
                 <br/> 
                 <div style="display:flex">
                 <Label style="margin-top:12px;margin:10px">Desde:</Label>
-              <input name="fechaInicio" type="date" style="color: gray;" [(ngModel)]="inicio" [max]="fin"  (ngModelChange)="salida2()"/> <!-- (change)="getDocuments(this)"-->
+              <input name="fechaInicio" type="date" style="color: gray;" [(ngModel)]="inicio" [min]="minDate" [max]="fin"  (ngModelChange)="salida2()"/> <!-- (change)="getDocuments(this)"-->
            
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Label style="margin-top:12px;margin:10px">Hasta:</Label>
