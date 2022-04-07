@@ -159,7 +159,7 @@
 	height: 400px;
 	width: 90%;
 	background: transparent;
-	overflow-y: scroll;
+	overflow-y: auto;
     margin-left: 5%;
     border-color: var(--firstcolor-hover);
     border-width: 10px;

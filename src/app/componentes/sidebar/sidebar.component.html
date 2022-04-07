@@ -22,9 +22,9 @@
             <div *ngIf="item.permiso" class="tooltips">{{item.nombre}}</div>
         </li>
     </ul>
-    <div class="sidebar-footer" id="foot" (click)="logout()">
+    <div class="sidebar-footer" id="foot" (click)="logout()" *ngIf="storage.retrieve('usuario')">
         <i class="bi bi-box-arrow-left" style="color: white;"></i>
-        <span id="spn">Logout</span>
-        <div class="tooltips">Cerrar Sesión</div>
+        <span id="spn">Cerrar sesion</span>
+        <!-- <div class="tooltips">Cerrar Sesión</div> -->
     </div>
 </div>

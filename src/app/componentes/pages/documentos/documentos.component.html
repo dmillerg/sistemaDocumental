@@ -6,8 +6,7 @@
         </div>
         <p class="text-oscuro">Todos los tipos de documentos </p>
 
-        <div
-         class="actions">
+        <div class="actions">
             <div style="width: 40%;display: flex;flex-direction: row;">
                 <label class="form-check-label"
                     style="margin: 10px; width: 30%;overflow: hidden;text-overflow: ellipsis;">
@@ -22,7 +21,8 @@
                 </button>
             </div>
             <div style="width: 23%;">
-                <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
+                <button *ngIf="storage.retrieve('usuario').usuario.rol=='admin'" (click)="deleteAll()" id="deleteAll"
+                    class="btn btn-firstcolor1">
                     <i style="margin:5px; font-size: 20px;" class="bi bi-trash"></i>
                     Eliminar Todo
                 </button>
@@ -36,35 +36,38 @@
         </label>
     </div>
     <div class="scrollbar3" id="style-1">
-    <table class="tablas">
-          
-        <thead class="head">
-            <td></td>
-            <td colspan="1">Id</td>
-            <td colspan="1">No</td>
-            <td colspan="2">Fecha</td>
-            <td colspan="2">Tipo</td>
-            <td colspan="1">Acciones</td>
-        </thead>
-   
-    
-        <app-loading [loading]="loading" [message]="server"></app-loading>
-        <tr *ngFor="let item of documentos" class="ligth">
-              <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
-            </td>
-            <td colspan="1">{{item.id}}</td>
-            <td colspan="1">{{item.no}}</td>
-            <td colspan="2">{{item.fecha}}</td>
-            <td colspan="2">{{item.tipo_doc.name}}</td>
-            <td colspan="1"><button class="btn btn-firstcolor" (click)="editReport(item)"><i class="bi bi-pencil"></i></button>
-                &nbsp;
-                <button class="btn btn-firstcolor" (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
-                &nbsp;
-                <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
-            </td>
+        <table class="tablas">
 
-        </tr>
-    
-    </table>
+            <thead class="head">
+                <td></td>
+                <td colspan="1">Id</td>
+                <td colspan="1">No</td>
+                <td colspan="2">Fecha</td>
+                <td colspan="2">Tipo</td>
+                <td colspan="1">Acciones</td>
+            </thead>
+
+
+            <app-loading [loading]="loading" [message]="server"></app-loading>
+            <tr *ngFor="let item of documentos" class="ligth">
+                <td><input class="form-check-input" name="checkbox" [checked]="selec" type="checkbox" (click)="d(item)">
+                </td>
+                <td colspan="1">{{item.id}}</td>
+                <td colspan="1">{{item.no}}</td>
+                <td colspan="2">{{item.fecha}}</td>
+                <td colspan="2">{{item.tipo_doc.name}}</td>
+                <td colspan="1"><button class="btn btn-firstcolor" (click)="editReport(item)"><i
+                            class="bi bi-pencil"></i></button>
+                    &nbsp;
+                    <button *ngIf="storage.retrieve('usuario').usuario.rol=='admin'" class="btn btn-firstcolor"
+                        (click)="deleteReportes(item)"><i class="bi bi-trash"></i></button>
+                    &nbsp;
+                    <button class="btn btn-firstcolor" (click)="openPdf(item)"><i
+                            class="bi bi-file-earmark-pdf"></i></button>
+                </td>
+
+            </tr>
+
+        </table>
     </div>
 </div>

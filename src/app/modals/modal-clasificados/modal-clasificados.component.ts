@@ -80,7 +80,15 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    
     this.rellenarSiEditas();
+  }
+
+  change(){
+    console.log(Date.parse(this.clasificados.fecha));
+    console.log(new Date(Date.parse(this.clasificados.fecha)));
+    
   }
 
   rellenarSiEditas() {
@@ -124,6 +132,8 @@ export class ModalClasificadosComponent implements OnInit {
 
   actionUpdateOrRegister() {
     let formData = new FormData();
+    console.log(this.clasificados.fecha);
+    
     formData.append('id', this.clasificados.id.toString());
     formData.append('no', this.clasificados.no.toString());
     formData.append('fecha', this.clasificados.fecha.toString());

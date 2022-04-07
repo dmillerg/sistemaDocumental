@@ -40,22 +40,25 @@
     <table class="tablas">
           
         <thead class="head">
-            <td></td>
-            <td colspan="1">Id</td>
-            <td colspan="2">No</td>
-            <td colspan="3">Fecha</td>
-            <td colspan="4">Tipo</td>
-            <td colspan="5">Ver documento</td>
+            <td colspan="1">No</td>
+            <td colspan="1">Fecha</td>
+            <td colspan="2">Tipo</td>
+            <td colspan="3">Clasificacion</td>
+            <td colspan="2">Origen</td>
+            <td colspan="5">Titulo o Asunto</td>
+            <td colspan="2">Acciones</td>
         </thead>
    
         <app-loading [loading]="loading" [message]="server"></app-loading>
         <tr *ngFor="let item of documentos" class="ligth">
              
-            <td colspan="1">{{item.id}}</td>
-            <td colspan="2">{{item.no}}</td>
-            <td colspan="3">{{item.fecha}}</td>
-            <td colspan="4">{{item.tipo_doc.tipo}}</td>
-            <td colspan="5">
+            <td colspan="1">{{item.no}}</td>
+            <td colspan="1">{{item.fecha}}</td>
+            <td colspan="2">{{item.tipo}}</td>
+            <td colspan="3">{{item.tipo_doc.tipo}}</td>
+            <td colspan="2">{{item.procedencia || item.enviado}}</td>
+            <td colspan="5">{{item.titulo || item.asunto}}</td>
+            <td colspan="2">
                 <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
             </td>
         </tr> 

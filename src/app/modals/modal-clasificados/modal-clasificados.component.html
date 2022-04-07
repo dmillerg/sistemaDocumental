@@ -23,7 +23,7 @@
             <div class="input-content">
                 <label for="clasificados">Fecha</label>
                 <i class="bi bi-calendar-date prefix"></i>
-                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha">
+                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha" (ngModelChange)="change()">
             </div>
 
 

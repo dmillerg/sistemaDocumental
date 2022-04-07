@@ -40,3 +40,14 @@
     overflow-y: auto;
 }
 
+.container .actions{
+    display: flex;
+    flex-direction: column;
+}
+
+.container .actions .action-buttons{
+    display: flex;
+    flex-direction: row;
+    padding-right: 30px;
+}
+

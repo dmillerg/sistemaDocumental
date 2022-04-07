@@ -13,6 +13,7 @@ import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secr
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-documentos',
@@ -47,7 +48,7 @@ export class DocumentosComponent implements OnInit {
   listado: any[] = [];
   opciones: any[] = [];
   tipos: any[] = [];
-  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService, public storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.loadListado();
@@ -208,6 +209,8 @@ export class DocumentosComponent implements OnInit {
             e.tipo_doc = this.opciones[i - 1]
             this.getDocumentFoto(e);
             this.documentos.push(e);
+            console.log(new Date(Date.parse(e.fecha)));
+            
           });
           this.loading = false
         }, (error) => {
