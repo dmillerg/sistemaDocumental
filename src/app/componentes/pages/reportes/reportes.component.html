@@ -8,15 +8,15 @@
                 <br/> 
                 <div style="display:flex">
                 <Label style="margin-top:12px;margin:10px">Desde:</Label>
-              <input type="date" style="color: gray;"/> <!-- (change)="getDocuments(this)"-->
+              <input name="fechaInicio" type="date" style="color: gray;" [(ngModel)]="inicio" (ngModelChange)="salida2()"/> <!-- (change)="getDocuments(this)"-->
+           
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                
                 <Label style="margin-top:12px;margin:10px">Hasta:</Label>
-              <input type="date" style="color: gray;"/>
+              <input name="fechaFin" type="date" style="color: gray;" [(ngModel)]="fin"  (ngModelChange)="salida2()" [min]="inicio" />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;
                    <Label style="margin-top:12px;margin:10px">Tipo:</Label>
-                   <app-multiselect [opciones]="values" (emisor)="salida2($event)"></app-multiselect>
+                   <app-multiselect [opciones]="values" (emisor)="salida($event)"></app-multiselect>
                   </div>
              
 

@@ -13,6 +13,7 @@ import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secr
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
+import { LocalizedString } from '@angular/compiler';
 
 
 @Component({
@@ -25,17 +26,20 @@ export class ReportesComponent implements OnInit {
   documentos: any[] = [];
   selec = false;
   seleccionados: any[] = [];
-  
+
+  inicio:string = '';
+  fin:string = '';
+
   loading: boolean = false;
   server: string = '';
   listado: any[] = [];
   opciones: any[] = [];
   values: any[] = [];
-  tipos: any[] = [];
+  tipos: any[] = [1,2,3,4,5];
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
-    this.loadListado();
+
     this.opciones = [
       { value: 1, name: 'Clasificados', carpeta: 'documentos_clasificados/', tipo: 'documento_clasificado' },
       { value: 2, name: 'Limitados', carpeta: 'documentos_limitados/', tipo: 'documento_limitado' },
@@ -47,6 +51,7 @@ export class ReportesComponent implements OnInit {
       { value: 1, name: 'Emitido'},
       { value: 2, name: 'Recibido'}
     ];
+    this.loadListado();
   }
 
   getDocumentFoto(e: any) {
@@ -74,12 +79,13 @@ export class ReportesComponent implements OnInit {
     this.documentos = []
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
-        this.api.getDocuments(this.opciones[i - 1].tipo).subscribe((result) => {
+        console.log(this.inicio+"dsdddd");
+        this.api.getDocuments(this.opciones[i - 1].tipo,this.inicio,this.fin).subscribe((result) => {
+          console.log(result+"result");
           result.forEach((e) => {
             e.tipo_doc = this.opciones[i - 1]
             this.getDocumentFoto(e);
             this.documentos.push(e);
-          console.log(new Date(Date.parse(e.fecha)) + "  aaaa");
           });
           this.loading = false
         }, (error) => {
@@ -97,31 +103,9 @@ export class ReportesComponent implements OnInit {
     this.loadListado();
   }
 
-  salida2(result: any) {
-    this.tipos = result;
+  salida2() {
     this.loadListado();
   }
 
-  getDocuments(inicio:string, fin:string){
-   //2017-06-01
-   var fechaInicio = new Date(Date.parse(inicio));
-   var fechaFin = new Date(Date.parse(fin));
-
-      this.api.getDocuments('documento_clasificado').subscribe((result) => {
-        result.forEach((e) => {
-       var fechaDoc = new Date(Date.parse(e.fecha));
-       
-       if(fechaDoc>=fechaInicio&&fechaDoc<=fechaFin){
-          this.getDocumentFoto(e);
-          this.documentos.push(e);
-       }
-
-        });
-        this.loading = false
-      }, (error) => {
-        this.server = 'Error';
-      });
-
-  }
 
 }
