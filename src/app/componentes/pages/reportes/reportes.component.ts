@@ -20,8 +20,8 @@ export class ReportesComponent implements OnInit {
   inicio: string = '';
   fin: string = '';
   proceder: string = '';
-  time: number = Date.now();
-  today: string = new Date().toDateString();
+  mes: string = '';
+  dia: string = '';
 
   loading: boolean = false;
   server: string = '';
@@ -30,6 +30,7 @@ export class ReportesComponent implements OnInit {
   values: any[] = [];
   tipos: any[] = [1, 2, 3, 4, 5];
   minDate: string = ''
+  today: string = ''
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -45,7 +46,22 @@ export class ReportesComponent implements OnInit {
       { value: 1, name: 'Emitido' },
       { value: 2, name: 'Recibido' }
     ];
+    if (new Date().getMonth() + 1 < 10)
+      this.mes = "0" + (new Date().getMonth() + 1).toString();
+    else
+      this.mes = (new Date().getMonth() + 1).toString();
+
+    if (new Date().getDate() < 10)
+      this.dia = "0" + new Date().getDate().toString();
+    else
+      this.dia = new Date().getDate().toString();
+
+    this.today = new Date().getFullYear().toString() + "-" + this.mes + "-" + this.dia;
+
+    this.fin = this.today;
+
     this.loadListado();
+
   }
 
   getDocumentFoto(e: any) {
@@ -73,7 +89,7 @@ export class ReportesComponent implements OnInit {
     this.documentos = []
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
-        this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, this.values[i - 1].name).subscribe((result) => {
+        this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, ).subscribe((result) => {
           result.forEach((e) => {
             e.tipo_doc = this.opciones[i - 1]
             this.getDocumentFoto(e);
@@ -103,10 +119,11 @@ export class ReportesComponent implements OnInit {
     });
     let day: string = '';
     let month: string = '';
-    if (d.getMonth() + 1 < 10) month = '0' + d.getMonth() + 1; else (d.getMonth() + 1).toString();
-    if (d.getDate() < 10) month = '0' + d.getMonth(); else d.getMonth().toString();
+    if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
+    if (d.getDate() < 10) day = '0' + d.getDate(); else day =d.getDate().toString();
+    this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+    console.log(this.minDate);
 
-    this.minDate = d.getFullYear() + '-' + month + '-' + day;
     this.inicio = this.minDate;
   }
 
