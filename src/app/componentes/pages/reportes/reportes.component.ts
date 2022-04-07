@@ -100,7 +100,14 @@ export class ReportesComponent implements OnInit {
       if (d > dd) {
         d = dd;
       }
-    })
+    });
+    let day: string = '';
+    let month: string = '';
+    if (d.getMonth() + 1 < 10) month = '0' + d.getMonth() + 1; else (d.getMonth() + 1).toString();
+    if (d.getDate() < 10) month = '0' + d.getMonth(); else d.getMonth().toString();
+
+    this.minDate = d.getFullYear() + '-' + month + '-' + day;
+    this.inicio = this.minDate;
   }
 
   salida(result: any) {
