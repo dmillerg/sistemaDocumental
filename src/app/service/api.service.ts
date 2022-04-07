@@ -361,10 +361,12 @@ export class ApiService {
    * @param tipo Tipo de documentos a buscar
    * @returns 
    */
-  getDocuments(tipo: string): Observable<any[]> {
+  getDocuments(tipo: string = '', inicio: string = '2022-03-23', fin: string = ''): Observable<any[]> {
     let direccion = this.url + 'documents';
     let params = {
-      tipo: tipo
+      tipo: tipo,
+      inicio: inicio,
+      fin: fin,
     }
     return this.http.get<any[]>(direccion, { params: params });
   }
