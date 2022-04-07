@@ -30,6 +30,8 @@ export class ReportesComponent implements OnInit {
   inicio:string = '';
   fin:string = '';
   proceder:string = '';
+  time:number = Date.now();
+  today:string = new Date().toDateString();
 
   loading: boolean = false;
   server: string = '';
@@ -80,8 +82,8 @@ export class ReportesComponent implements OnInit {
     this.documentos = []
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
-        console.log(this.inicio+"dsdddd");
-        this.api.getDocuments(this.opciones[i - 1].tipo,this.inicio,this.fin, this.proceder).subscribe((result) => {
+        console.log(this.proceder+'procccc');
+        this.api.getDocuments(this.opciones[i - 1].tipo,this.inicio,this.fin, this.proceder,this.values[i-1].name).subscribe((result) => {
           console.log(result+"result");
           result.forEach((e) => {
             e.tipo_doc = this.opciones[i - 1]
@@ -105,12 +107,12 @@ export class ReportesComponent implements OnInit {
   }
 
   salida2() {
-    var fechaInicio = new Date(Date.parse(this.inicio));
-    var fechaFin = new Date(Date.parse(this.fin));
+    // var fechaInicio = new Date(Date.parse(this.inicio));
+    // var fechaFin = new Date(Date.parse(this.fin));
 
-    if(fechaFin<fechaInicio)
-    this.lib.warning('La fecha final debe ser mayor a la inicial', 'Datos mal!');
-    else
+    // if(fechaFin<fechaInicio)
+    // this.lib.warning('La fecha final debe ser mayor a la inicial', 'Datos mal!');
+    // else
     this.loadListado();
   }
 
