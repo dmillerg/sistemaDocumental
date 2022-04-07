@@ -30,9 +30,11 @@ export class ReportesComponent implements OnInit {
   inicio:string = '';
   fin:string = '';
   proceder:string = '';
-  time:number = Date.now();
-  today:string = new Date().toDateString();
+  mes:string = '';
+  dia:string = '';
 
+  today:string = '';
+ 
   loading: boolean = false;
   server: string = '';
   listado: any[] = [];
@@ -54,7 +56,21 @@ export class ReportesComponent implements OnInit {
       { value: 1, name: 'Emitido'},
       { value: 2, name: 'Recibido'}
     ];
-    this.loadListado();
+    if(new Date().getMonth()<10)
+    this.mes =  "0"+new Date().getMonth().toString();
+   else
+   this.mes =  new Date().getMonth().toString();
+
+   if(new Date().getDay()<10)
+    this.dia =  "0"+new Date().getDay().toString();
+   else
+   this.dia =  new Date().getDay().toString();
+
+   this.today = new Date().getFullYear().toString() +"-"+ this.mes+"-"+this.dia;
+
+
+   this.loadListado();
+
   }
 
   getDocumentFoto(e: any) {
@@ -78,6 +94,8 @@ export class ReportesComponent implements OnInit {
   }
 
   loadListado() {
+    
+    console.log(this.today);
     this.loading = true;
     this.documentos = []
     if (this.tipos.length > 0) {
