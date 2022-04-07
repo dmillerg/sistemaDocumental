@@ -29,6 +29,7 @@ export class ReportesComponent implements OnInit {
 
   inicio:string = '';
   fin:string = '';
+  proceder:string = '';
 
   loading: boolean = false;
   server: string = '';
@@ -80,7 +81,7 @@ export class ReportesComponent implements OnInit {
     if (this.tipos.length > 0) {
       this.tipos.forEach(i => {
         console.log(this.inicio+"dsdddd");
-        this.api.getDocuments(this.opciones[i - 1].tipo,this.inicio,this.fin).subscribe((result) => {
+        this.api.getDocuments(this.opciones[i - 1].tipo,this.inicio,this.fin, this.proceder).subscribe((result) => {
           console.log(result+"result");
           result.forEach((e) => {
             e.tipo_doc = this.opciones[i - 1]
@@ -104,6 +105,17 @@ export class ReportesComponent implements OnInit {
   }
 
   salida2() {
+    var fechaInicio = new Date(Date.parse(this.inicio));
+    var fechaFin = new Date(Date.parse(this.fin));
+
+    if(fechaFin<fechaInicio)
+    this.lib.warning('La fecha final debe ser mayor a la inicial', 'Datos mal!');
+    else
+    this.loadListado();
+  }
+
+  salida3() {
+   
     this.loadListado();
   }
 
