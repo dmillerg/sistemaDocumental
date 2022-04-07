@@ -30,13 +30,6 @@ export class SidebarComponent implements OnInit {
     },
     {
       active: false,
-      nombre: 'Documentos',
-      icono: 'bi bi-journal-text',
-      link: 'documentos',
-      permiso: false,
-    },
-    {
-      active: false,
       nombre: 'Reportes',
       icono: 'bi bi-file-earmark-text',
       link: 'reportes',
@@ -57,13 +50,6 @@ export class SidebarComponent implements OnInit {
       nombre: 'Usuario',
       icono: 'bi bi-person',
       link: 'usuarios',
-      permiso: false,
-    },
-    {
-      active: false,
-      nombre: 'Documentos',
-      icono: 'bi bi-journal-text',
-      link: 'documentos',
       permiso: false,
     },
     {
@@ -95,7 +81,7 @@ export class SidebarComponent implements OnInit {
       if (e.link != 'inicio') {
         e.permiso = permiso;
       }
-      if(e.link == 'documentos' || e.link == 'reportes'){
+      if(e.link == 'reportes'){
         e.permiso = true
       }
     })
@@ -103,7 +89,7 @@ export class SidebarComponent implements OnInit {
       if (e.link != 'inicio') {
         e.permiso = permiso;
       }
-      if(e.link == 'documentos' || e.link == 'reportes'){
+      if(e.link == 'reportes'){
         e.permiso = true
       }
     });

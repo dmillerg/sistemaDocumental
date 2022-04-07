@@ -1,1 +1,68 @@
-<p>reportes works!</p>
+<div class="contenedor" id="cont">
+    <div class="title-page">
+        <div class="title-logo">
+            <i class="bi bi-archive text-oscuro"></i>
+            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
+        </div>
+        <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
+
+        <div class="login-page">
+            <div class="form">
+              <form class="login-form">
+                <h2 style="text-align:center">Filtrar documentos:</h2>
+                <br/> <br/>
+                <div style="display:flex">
+                <Label style="margin-top:12px;margin:10px">Desde:</Label>
+              <input type="text" placeholder="2022-12-02"/>
+              
+                
+                <Label style="margin-top:12px;margin:10px">Hasta:</Label>
+              <input type="text" placeholder="2022-12-02"/>
+                  
+                   <Label style="margin-top:12px;margin:10px">Tipo:</Label>
+                   <app-multiselect [opciones]="values" (emisor)="salida($event)"></app-multiselect>
+                  </div>
+             
+                
+                 <Label style="margin-top:12px;margin:10px;width:10%">Clasificacion:</Label>
+                 <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
+                <br/>
+                  <Label style="margin-top:12px;margin:10px">Procedencia:</Label>
+              <input type="text" placeholder="Todos" style="width:50%"/>
+                
+                 <br/> <br/> 
+                <button style="margin-left: 35%;">Listar</button>
+          
+              </form>
+            </div>
+          </div>
+
+
+    </div>
+    <br/>
+    <div class="scrollbar3" id="style-1">
+    <table class="tablas">
+          
+        <thead class="head">
+            <td></td>
+            <td colspan="1">Id</td>
+            <td colspan="2">No</td>
+            <td colspan="3">Fecha</td>
+            <td colspan="4">Tipo</td>
+            <td colspan="5">Ver documento</td>
+        </thead>
+   
+        <app-loading [loading]="loading" [message]="server"></app-loading>
+        <tr *ngFor="let item of documentos" class="ligth">
+             
+            <td colspan="1">{{item.id}}</td>
+            <td colspan="2">{{item.no}}</td>
+            <td colspan="3">{{item.fecha}}</td>
+            <td colspan="4">{{item.tipo_doc.tipo}}</td>
+            <td colspan="5">
+                <button class="btn btn-firstcolor" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
+            </td>
+        </tr> 
+    </table>
+    </div>
+</div>
