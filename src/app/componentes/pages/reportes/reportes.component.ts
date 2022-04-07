@@ -17,14 +17,12 @@ export class ReportesComponent implements OnInit {
   selec = false;
   seleccionados: any[] = [];
 
-  inicio:string = '';
-  fin:string = '';
-  proceder:string = '';
-  mes:string = '';
-  dia:string = '';
+  inicio: string = '';
+  fin: string = '';
+  proceder: string = '';
+  mes: string = '';
+  dia: string = '';
 
-  today:string = '';
- 
   loading: boolean = false;
   server: string = '';
   listado: any[] = [];
@@ -33,6 +31,7 @@ export class ReportesComponent implements OnInit {
   tipos: any[] = [1, 2, 3, 4, 5];
   tipos2: any[] = [0,1];
   minDate: string = ''
+  today: string = ''
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
   ngOnInit(): void {
@@ -48,21 +47,21 @@ export class ReportesComponent implements OnInit {
       { value: 1, name: 'Emitido' },
       { value: 2, name: 'Recibido' }
     ];
-    if(new Date().getMonth()+1<10)
-    this.mes =  "0"+(new Date().getMonth()+1).toString();
-   else
-   this.mes =  (new Date().getMonth()+1).toString();
+    if (new Date().getMonth() + 1 < 10)
+      this.mes = "0" + (new Date().getMonth() + 1).toString();
+    else
+      this.mes = (new Date().getMonth() + 1).toString();
 
-   if(new Date().getDate()<10)
-    this.dia =  "0"+new Date().getDate().toString();
-   else
-   this.dia =  new Date().getDate().toString();
+    if (new Date().getDate() < 10)
+      this.dia = "0" + new Date().getDate().toString();
+    else
+      this.dia = new Date().getDate().toString();
 
-   this.today = new Date().getFullYear().toString() +"-"+ this.mes+"-"+this.dia;
+    this.today = new Date().getFullYear().toString() + "-" + this.mes + "-" + this.dia;
 
-   this.fin = this.today;
+    this.fin = this.today;
 
-   this.loadListado();
+    this.loadListado();
 
   }
 
@@ -87,8 +86,6 @@ export class ReportesComponent implements OnInit {
   }
 
   loadListado() {
-    
-    console.log(this.today);
     this.loading = true;
     this.documentos = []
     if (this.tipos.length > 0&&this.tipos2.length > 0) {
@@ -104,7 +101,6 @@ export class ReportesComponent implements OnInit {
               });
            
           
-     
           if (this.minDate == "") {
             this.recogerMinDate(result);
           }
@@ -126,7 +122,15 @@ export class ReportesComponent implements OnInit {
       if (d > dd) {
         d = dd;
       }
-    })
+    });
+    let day: string = '';
+    let month: string = '';
+    if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
+    if (d.getDate() < 10) day = '0' + d.getDate(); else day =d.getDate().toString();
+    this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+    console.log(this.minDate);
+
+    this.inicio = this.minDate;
   }
 
   salida(result: any) {
