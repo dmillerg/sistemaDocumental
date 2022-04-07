@@ -68,6 +68,7 @@ export class ReportesComponent implements OnInit {
 
    this.today = new Date().getFullYear().toString() +"-"+ this.mes+"-"+this.dia;
 
+   this.fin = this.today;
 
    this.loadListado();
 
