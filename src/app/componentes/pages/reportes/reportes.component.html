@@ -1,46 +1,42 @@
 <div class="contenedor" id="cont">
     <div class="title-page">
-        <div class="title-logo">
-            <i class="bi bi-archive text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Reportes</h1>
-        </div>
-        <p class="text-oscuro">Reportes de todos los tipos de documentos </p>
-
+       
         <div class="login-page">
             <div class="form">
               <form class="login-form">
-                <h2 style="text-align:center">Filtrar documentos:</h2>
-                <br/> <br/>
+                <h2 style="text-align:left">Criterios de busqueda:</h2>
+                <br/> 
                 <div style="display:flex">
                 <Label style="margin-top:12px;margin:10px">Desde:</Label>
-              <input type="text" placeholder="2022-12-02"/>
-              
+              <input type="date" style="color: gray;"/> <!-- (change)="getDocuments(this)"-->
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
                 <Label style="margin-top:12px;margin:10px">Hasta:</Label>
-              <input type="text" placeholder="2022-12-02"/>
-                  
+              <input type="date" style="color: gray;"/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;
                    <Label style="margin-top:12px;margin:10px">Tipo:</Label>
-                   <app-multiselect [opciones]="values" (emisor)="salida($event)"></app-multiselect>
+                   <app-multiselect [opciones]="values" (emisor)="salida2($event)"></app-multiselect>
                   </div>
              
-                
-                 <Label style="margin-top:12px;margin:10px;width:10%">Clasificacion:</Label>
-                 <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
-                <br/>
+
+                  <br/>
+                  <div style="display:flex">
+                 <Label style="margin-top:13%;margin:1%;width:10%">Clasificacion:</Label>
+                 <div style="margin-top:-1%;width:60%; margin-left:0%;">
+                 <app-multiselect [opciones]="opciones" (emisor)="salida($event)" ></app-multiselect>
+                 </div>
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Label style="margin-top:12px;margin:10px">Procedencia:</Label>
-              <input type="text" placeholder="Todos" style="width:50%"/>
-                
-                 <br/> <br/> 
-                <button style="margin-left: 35%;">Listar</button>
+              <input type="text" placeholder="Todos" style="width:27%;margin-right: 1%;"/>
+            </div>
+                <!--button>Listar</button-->
           
               </form>
             </div>
           </div>
-
-
     </div>
-    <br/>
-    <div class="scrollbar3" id="style-1">
+    <div class="scrollbar4" id="style-1">
     <table class="tablas">
           
         <thead class="head">

@@ -44,8 +44,8 @@ export class ReportesComponent implements OnInit {
      { value: 5, name: 'Secretos', carpeta: 'documentos_secretos/', tipo: 'documento_secreto' },
     ];
     this.values = [
-      { value: 1, name: 'TipoA'},
-      { value: 2, name: 'TipoB'}
+      { value: 1, name: 'Emitido'},
+      { value: 2, name: 'Recibido'}
     ];
   }
 
@@ -97,15 +97,25 @@ export class ReportesComponent implements OnInit {
     this.loadListado();
   }
 
-  getDocuments(fechaInicio:Date, fechaFin:Date){
+  salida2(result: any) {
+    this.tipos = result;
+    this.loadListado();
+  }
+
+  getDocuments(inicio:string, fin:string){
    //2017-06-01
+   var fechaInicio = new Date(Date.parse(inicio));
+   var fechaFin = new Date(Date.parse(fin));
+
       this.api.getDocuments('documento_clasificado').subscribe((result) => {
         result.forEach((e) => {
-       //   Date fechaDoc = e.Fecha;
+       var fechaDoc = new Date(Date.parse(e.fecha));
        
-    //   Date.create().format('{Weekday} {Month} {dd}, {yyyy}');
+       if(fechaDoc>=fechaInicio&&fechaDoc<=fechaFin){
           this.getDocumentFoto(e);
           this.documentos.push(e);
+       }
+
         });
         this.loading = false
       }, (error) => {

@@ -153,13 +153,16 @@
 	
 }
 
-.scrollbar3
+.scrollbar4
 {
 	float: left;
-	height: 500px;
-	width: 100%;
+	height: 400px;
+	width: 90%;
 	background: transparent;
 	overflow-y: scroll;
+    margin-left: 5%;
+    border-color: var(--firstcolor-hover);
+    border-width: 10px;
 } 
 
 .force-overflow
