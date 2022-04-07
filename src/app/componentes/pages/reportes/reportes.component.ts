@@ -29,7 +29,7 @@ export class ReportesComponent implements OnInit {
   opciones: any[] = [];
   values: any[] = [];
   tipos: any[] = [1, 2, 3, 4, 5];
-  tipos2: any[] = [0,1];
+  tipos2: any[] = [1,2];
   minDate: string = ''
   today: string = ''
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
@@ -88,12 +88,18 @@ export class ReportesComponent implements OnInit {
   loadListado() {
     this.loading = true;
     this.documentos = []
-    if (this.tipos.length > 0&&this.tipos2.length > 0) {
+    var listaNew ='';
+    if (this.tipos.length > 0) {
+      listaNew +="(";
+      if(this.tipos2.length > 0){
+        this.tipos2.forEach(i => {
+      listaNew += i;
+    });
+      }
+      listaNew +=")";
       this.tipos.forEach(i => {
-
-        this.tipos2.forEach(j => {
-
-            this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, this.values[j].name).subscribe((result) => {
+          
+            this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, listaNew).subscribe((result) => {
               result.forEach((e) => {
                 e.tipo_doc = this.opciones[i - 1]
                 this.getDocumentFoto(e);
@@ -109,7 +115,7 @@ export class ReportesComponent implements OnInit {
           this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
         });
       });
-    });
+  
     } else {
       this.loading = false;
     }
