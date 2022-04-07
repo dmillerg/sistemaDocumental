@@ -15,7 +15,7 @@ import { Ordinario_personal } from '../models/ordinario.model.personal';
 })
 export class ApiService {
 
-  url: string = 'http://localhost:9706/apis/';
+  url: string = 'http://172.40.3.14:9706/apis/';
 
   constructor(
     private http: HttpClient,
@@ -361,10 +361,13 @@ export class ApiService {
    * @param tipo Tipo de documentos a buscar
    * @returns 
    */
-  getDocuments(tipo: string): Observable<any[]> {
+  getDocuments(tipo: string='', inicio:string='', fin:string=''): Observable<any[]> {
     let direccion = this.url + 'documents';
+    console.log(inicio);
     let params = {
-      tipo: tipo
+      tipo: tipo,
+      inicio:inicio,
+      fin:fin
     }
     return this.http.get<any[]>(direccion, { params: params });
   }
@@ -384,4 +387,6 @@ export class ApiService {
     }
     return this.http.get(direccion, { params: params });
   }
+
+
 }
