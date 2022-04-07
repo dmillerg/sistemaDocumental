@@ -31,6 +31,7 @@ export class ReportesComponent implements OnInit {
   opciones: any[] = [];
   values: any[] = [];
   tipos: any[] = [1, 2, 3, 4, 5];
+  tipos2: any[] = [0,1];
   minDate: string = ''
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
 
@@ -90,14 +91,20 @@ export class ReportesComponent implements OnInit {
     console.log(this.today);
     this.loading = true;
     this.documentos = []
-    if (this.tipos.length > 0) {
+    if (this.tipos.length > 0&&this.tipos2.length > 0) {
       this.tipos.forEach(i => {
-        this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, this.values[i - 1].name).subscribe((result) => {
-          result.forEach((e) => {
-            e.tipo_doc = this.opciones[i - 1]
-            this.getDocumentFoto(e);
-            this.documentos.push(e);
-          });
+
+        this.tipos2.forEach(j => {
+
+            this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, this.values[j].name).subscribe((result) => {
+              result.forEach((e) => {
+                e.tipo_doc = this.opciones[i - 1]
+                this.getDocumentFoto(e);
+                this.documentos.push(e);
+              });
+           
+          
+     
           if (this.minDate == "") {
             this.recogerMinDate(result);
           }
@@ -106,7 +113,7 @@ export class ReportesComponent implements OnInit {
           this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
         });
       });
-
+    });
     } else {
       this.loading = false;
     }
@@ -142,5 +149,8 @@ export class ReportesComponent implements OnInit {
     this.loadListado();
   }
 
-
+  salida4(result: any) {
+    this.tipos2 = result;
+    this.loadListado();
+  }
 }
