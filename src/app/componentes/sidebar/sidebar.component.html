@@ -3,24 +3,26 @@
 </div>
 <div class="sidebar"  (click)="createUser($event.target)">
    <!-- <div class="burbuja"></div>
-    <div class="burbuja-2"></div>-->
+    <div class="burbuja-2"></div>--><br/>
     <div class="sidebar-header">
         <div class="logo">
             <img width="50" height="50" style="margin-left: auto; margin-right: auto;" src="assets/img/ctc1.png"  id="logo"/>
             <span>Sistema Documental</span>
         </div>
         <button id="btn" class="btn " (click)="toggleSidebar()"><i class="bi bi-list svg-shadow"></i></button>
-    </div>
+    </div>   <br/>
     <div class="search">
         <input type="text" name="search" [(ngModel)]="search" (ngModelChange)="filterMenu()" class="search-in" placeholder="Buscar...">
         <button class="btn-search"><i class="bi bi-search"></i></button>
     </div>
-    <ul class="scrollbar1" id="style-2">
-        <li *ngFor="let item of menu" [ngClass]="{'active': item.active, 'nav-disable' : !item.permiso}" (click)="changePage(item)" >
+    
+    <ul class="scrollbar1" id="style-2" style="margin-top:25%; ">
+        <li *ngFor="let item of menu" [ngClass]="{'active': item.active, 'nav-disable' : !item.permiso}" (click)="changePage(item)" style="margin-top:15%; " >
             <i *ngIf="item.permiso" [class]="item.icono"></i>
             <span *ngIf="item.permiso">{{item.nombre}}</span>
             <div *ngIf="item.permiso" class="tooltips">{{item.nombre}}</div>
         </li>
+     
     </ul>
     <div class="sidebar-footer" id="foot" (click)="logout()" *ngIf="storage.retrieve('usuario')">
         <i class="bi bi-box-arrow-left" style="color: white;"></i>
