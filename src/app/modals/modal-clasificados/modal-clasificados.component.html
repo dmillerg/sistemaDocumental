@@ -2,28 +2,38 @@
     <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i
             class="bi bi-x"></i></button>
 
-        <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
-        <p style="color: green;">{{exito}}</p>
+    <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
+    <p style="color: green;">{{exito}}</p>
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
         documento presionado sobre la imagen de arriba</p> -->
-        <div style="display:flex; margin-bottom: 20px;" >
-        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    <div style="display:flex; margin-bottom: 20px;">
+        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button> &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;
         <button class="btn btn-firstcolor" (click)="img.click()">Subir documento</button>
-        </div>
+    </div>
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
-
+            <div class="input-content">
+                <label for="usuario">Tipo de documento</label>
+                <i class="bi bi-files prefix"></i>
+                <select type="text" class="in" name="rol" style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="tipo" placeholder="tipo" [(ngModel)]="clasificados.tipo">
+                    <option value="1">emitido</option>
+                    <option value="2">recibido</option>
+                </select>
+            </div>
             <div class="input-content">
                 <label for="clasificados">No</label>
                 <i class="bi bi-123 prefix"></i>
-                <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="clasificados.no">
+                <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="clasificados.no"
+                    readonly>
                 <p style="color: red;">{{errorN}}</p>
             </div>
 
             <div class="input-content">
                 <label for="clasificados">Fecha</label>
                 <i class="bi bi-calendar-date prefix"></i>
-                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha" (ngModelChange)="change()">
+                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="clasificados.fecha"
+                    (ngModelChange)="change()">
             </div>
 
 

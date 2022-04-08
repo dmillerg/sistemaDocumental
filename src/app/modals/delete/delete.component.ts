@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Clasificados } from 'src/app/models/clasificados.service';
+import { Clasificados } from 'src/app/models/clasificados.model';
 import { ApiService } from 'src/app/service/api.service';
 
 

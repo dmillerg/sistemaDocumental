@@ -14,4 +14,6 @@ export interface Secreto {
     destino: string;
     comp: string;
     imagen: string;
+    tipo: string;
+    procedencia: string;
 }

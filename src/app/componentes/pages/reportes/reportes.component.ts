@@ -11,6 +11,7 @@ import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-li
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-reportes',
@@ -38,7 +39,7 @@ export class ReportesComponent implements OnInit {
   tipos2: any[] = [1, 2];
   minDate: string = ''
   today: string = ''
-  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
+  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService, public storage: SessionStorageService) { }
 
   ngOnInit(): void {
 
@@ -94,9 +95,9 @@ export class ReportesComponent implements OnInit {
       listaNew += "(";
       if (this.tipos2.length > 0) {
         this.tipos2.forEach(i => {
-          if (i == 1) {
-            listaNew += "'" + i + "'" + ',';
-          } else
+          if (i == 2&& listaNew.length>1) {
+            listaNew += ', '+"'" + i + "'";
+          }else
             listaNew += "'" + i + "'";
         });
       }

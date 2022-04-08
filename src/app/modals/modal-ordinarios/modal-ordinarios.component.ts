@@ -29,6 +29,7 @@ export class ModalOrdinariosComponent implements OnInit {
     traslado: '',
     fecha_traslado: '',
     imagen: '',
+    tipo: '',
   }
   ordinarios_pasado: Ordinarios = {
     id: -1,
@@ -43,6 +44,7 @@ export class ModalOrdinariosComponent implements OnInit {
     traslado: '',
     fecha_traslado: '',
     imagen: '',
+    tipo: '',
   }
 
   src_documento: string = '';
@@ -53,6 +55,13 @@ export class ModalOrdinariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_ordinario').subscribe((result) => {
+        this.ordinarios.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 
@@ -71,6 +80,7 @@ export class ModalOrdinariosComponent implements OnInit {
       this.ordinarios_pasado.fecha_traslado = this.ordinarios.fecha_traslado;
       this.ordinarios_pasado.destino = this.ordinarios.destino;
       this.ordinarios_pasado.imagen = this.ordinarios.imagen;
+      this.ordinarios_pasado.tipo = this.ordinarios.tipo;
     }
   }
 
@@ -106,6 +116,7 @@ export class ModalOrdinariosComponent implements OnInit {
     formData.append('fecha_traslado', this.ordinarios.fecha_traslado.toString());
     formData.append('destino', this.ordinarios.destino.toString());
     formData.append('imagen', this.ordinarios.imagen.toString());
+    formData.append('tipo', this.ordinarios.tipo.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);

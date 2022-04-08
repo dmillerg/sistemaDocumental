@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Limitados } from 'src/app/models/limitados.service';
+import { Limitados } from 'src/app/models/limitados.model';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -28,7 +28,8 @@ export class ModalLimitadosComponent implements OnInit {
     destruccion: '',
     expediente: '',
     observacion: '',
-    imagen: ''
+    imagen: '',
+    tipo: '',
   }
 
   limitados_pasado: Limitados = {
@@ -42,7 +43,8 @@ export class ModalLimitadosComponent implements OnInit {
     destruccion: '',
     expediente: '',
     observacion: '',
-    imagen: ''
+    imagen: '',
+    tipo: '',
   }
 
   src_documento: string = '';
@@ -53,6 +55,13 @@ export class ModalLimitadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_limitado').subscribe((result) => {
+        this.limitados.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 
@@ -70,6 +79,7 @@ export class ModalLimitadosComponent implements OnInit {
       this.limitados_pasado.expediente = this.limitados.expediente;
       this.limitados_pasado.observacion = this.limitados.observacion;
       this.limitados_pasado.imagen = this.limitados.imagen;
+      this.limitados_pasado.tipo = this.limitados.tipo;
     }
   }
 
@@ -103,6 +113,7 @@ export class ModalLimitadosComponent implements OnInit {
     formData.append('expediente', this.limitados.expediente.toString());
     formData.append('observacion', this.limitados.observacion.toString());
     formData.append('imagen', this.limitados.imagen.toString());
+    formData.append('tipo', this.limitados.tipo.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);

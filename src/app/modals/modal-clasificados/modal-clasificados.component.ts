@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Clasificados } from 'src/app/models/clasificados.service';
+import { Clasificados } from 'src/app/models/clasificados.model';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -33,7 +33,8 @@ export class ModalClasificadosComponent implements OnInit {
     destino: '',
     traslado: '',
     fecha_traslado: '',
-    imagen: ''
+    imagen: '',
+    tipo: '',
   }
 
   selected: Clasificados = {
@@ -51,7 +52,8 @@ export class ModalClasificadosComponent implements OnInit {
     destino: '',
     traslado: '',
     fecha_traslado: '',
-    imagen: ''
+    imagen: '',
+    tipo: '',
   }
 
   clasificados_pasado: Clasificados = {
@@ -69,7 +71,8 @@ export class ModalClasificadosComponent implements OnInit {
     destino: '',
     traslado: '',
     fecha_traslado: '',
-    imagen: ''
+    imagen: '',
+    tipo: '',
   }
 
   src_documento: string = '';
@@ -80,19 +83,23 @@ export class ModalClasificadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_clasificado').subscribe((result) => {
+        this.clasificados.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 
-  change(){
+  change() {
     console.log(Date.parse(this.clasificados.fecha));
     console.log(new Date(Date.parse(this.clasificados.fecha)));
-    
   }
 
   rellenarSiEditas() {
-    this.src_documento = this.clasificados.imagen; 
+    this.src_documento = this.clasificados.imagen;
     if (this.modalAction == 'Editar') {
       this.clasificados_pasado.id = this.clasificados.id;
       this.clasificados_pasado.no = this.clasificados.no;
@@ -109,6 +116,7 @@ export class ModalClasificadosComponent implements OnInit {
       this.clasificados_pasado.traslado = this.clasificados.traslado;
       this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
       this.clasificados_pasado.imagen = this.clasificados.imagen;
+      this.clasificados_pasado.tipo = this.clasificados.tipo;
     }
   }
 
@@ -133,7 +141,7 @@ export class ModalClasificadosComponent implements OnInit {
   actionUpdateOrRegister() {
     let formData = new FormData();
     console.log(this.clasificados.fecha);
-    
+
     formData.append('id', this.clasificados.id.toString());
     formData.append('no', this.clasificados.no.toString());
     formData.append('fecha', this.clasificados.fecha.toString());
@@ -149,6 +157,7 @@ export class ModalClasificadosComponent implements OnInit {
     formData.append('fecha_registro_ctc', this.clasificados.fecha_registro_ctc.toString());
     formData.append('fecha_traslado', this.clasificados.fecha_traslado.toString());
     formData.append('imagen', this.clasificados.imagen.toString());
+    formData.append('tipo', this.clasificados.tipo.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
@@ -193,25 +202,25 @@ export class ModalClasificadosComponent implements OnInit {
     this.exito = "Subido con exito";
   }
 
-  validarCamposVacios(){
+  validarCamposVacios() {
     //console.log(this.clasificados.imagen.toString());
 
     // console.log('heree '+this.clasificados.imagen);
-    return this.clasificados.destino.length>0&&this.clasificados.clasif.length>0&&this.clasificados.asunto.length>0&&
-    this.clasificados.rsb.length>0&&this.clasificados.rs.length>0&&this.clasificados.doc.length>0
-    &&this.clasificados.ej.length>0&&this.clasificados.traslado.length>0&&this.clasificados.enviado.length>0
-    &&this.clasificados.fecha.toString()!=''&&this.clasificados.fecha_traslado.toString()!=''
-    &&this.clasificados.fecha_registro_ctc.toString()!=''&&this.exito=="Subido con exito"
+    return this.clasificados.destino.length > 0 && this.clasificados.clasif.length > 0 && this.clasificados.asunto.length > 0 &&
+      this.clasificados.rsb.length > 0 && this.clasificados.rs.length > 0 && this.clasificados.doc.length > 0
+      && this.clasificados.ej.length > 0 && this.clasificados.traslado.length > 0 && this.clasificados.enviado.length > 0
+      && this.clasificados.fecha.toString() != '' && this.clasificados.fecha_traslado.toString() != ''
+      && this.clasificados.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
 
- 
+
   }
 
-  loadScanner(){
-    this.api.Scan().subscribe((result)=>{
+  loadScanner() {
+    this.api.Scan().subscribe((result) => {
       console.log(result);
-      
+
     })
   }
 
- 
+
 }

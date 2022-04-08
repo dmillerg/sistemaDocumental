@@ -14,4 +14,5 @@ export interface Clasificados{
       traslado: string;
       fecha_traslado: string;
       imagen: string;
+      tipo: string;
   }

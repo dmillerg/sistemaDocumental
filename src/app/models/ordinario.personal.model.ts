@@ -7,4 +7,5 @@ export interface Ordinario_personal{
     destino: string;
     procedencia: string;
     archivo: String;
+    tipo: String;
   }

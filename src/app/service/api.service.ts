@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.models';
-import { Limitados } from '../models/limitados.service';
-import { Clasificados } from '../models/clasificados.service';
-import { Login } from '../models/login';
+import { Limitados } from '../models/limitados.model';
+import { Clasificados } from '../models/clasificados.model';
+import { Login } from '../models/login.model';
 import { Secreto } from '../models/secreto.model';
 import { Ordinarios } from '../models/ordinarios.model';
-import { Ordinario_personal } from '../models/ordinario.model.personal';
+import { Ordinario_personal } from '../models/ordinario.personal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -381,6 +381,13 @@ export class ApiService {
     return this.http.get(this.url + 'scan');
   }
 
+  /**
+   * Manda a abrir el pdf asociado a ese reporte
+   * @param id del documento
+   * @param dir direccion donde se encuentra
+   * @param datatable tabla de la db
+   * @returns 
+   */
   openPdf(id: number = -1, dir: string = '', datatable: string = ''){
     let direccion = this.url + 'openpdf/' + id.toString();
     let params = {
@@ -390,5 +397,16 @@ export class ApiService {
     return this.http.get(direccion, { params: params });
   }
 
-
+  /**
+   * Obtiene el ultimo numero de la db de un tipo de documento
+   * @param tipo tipo de documento o tabla de la db
+   * @returns 
+   */
+  getLastNumberDocument(tipo: string='documento_clasificado'): Observable<string>{
+    let direccion = this.url + 'lastnumber';
+    let params = {
+      tipo: tipo,
+    }
+    return this.http.get<string>(direccion, { params: params });
+  }
 }
