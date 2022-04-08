@@ -5,6 +5,12 @@ import { ApiService } from 'src/app/service/api.service';
 
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteComponent } from 'src/app/modals/delete/delete.component';
+import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
+import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
+import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
+import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
+import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
 
 @Component({
   selector: 'app-reportes',
@@ -161,4 +167,116 @@ export class ReportesComponent implements OnInit {
     this.tipos2 = result;
     this.loadListado();
   }
+
+
+
+  edit(item: any) {
+    if(item.tipo_doc.tipo=="documento_clasificado"){
+    let modal = this.modalService.open(ModalClasificadosComponent);
+    modal.componentInstance.modalHeader = "Clasificados";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if(item.tipo_doc.tipo=="documento_limitado"){
+    let modal = this.modalService.open(ModalLimitadosComponent);
+    modal.componentInstance.modalHeader = "Limitados";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if(item.tipo_doc.tipo=="documento_ordinario"){
+    let modal = this.modalService.open(ModalOrdinariosComponent);
+    modal.componentInstance.modalHeader = "Ordinarios";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if(item.tipo_doc.tipo=="documento_ordinario_personal"){
+    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+    modal.componentInstance.modalHeader = "Ordinarios Personales";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  else if(item.tipo_doc.tipo=="documento_secreto"){
+    let modal = this.modalService.open(ModalSecretosComponent);
+    modal.componentInstance.modalHeader = "Secretos";
+    modal.componentInstance.modalAction = "Editar";
+    modal.componentInstance.limitados = item;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  }
+  }
+
+  delete(idd: number, item:any) {
+    let modal = this.modalService.open(DeleteComponent);
+    modal.componentInstance.modalHeader = item.tipo_doc.name;
+    modal.componentInstance.modalAction = "Eliminar";
+    modal.componentInstance.id = idd;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
+  
+  }
+
+  d(id:number){
+
+    if(this.seleccionados.filter((n)=>n==id).length>0){
+      this.seleccionados =this.seleccionados.filter((n)=>n!=id);
+    }
+    else
+    this.seleccionados.push(id);
+    console.log(this.seleccionados);
+    
+  }
+
+  selecc() {
+
+    //Ver si el checkbox esta seleccionado
+    if (this.selec) {
+
+      // Vaciar arreglo
+      var des: number[] = [];
+      this.seleccionados = des;
+
+    }
+    else {
+
+      // Guardar todos los id en seleccionados
+      var i = 0;
+      for (let item of this.documentos) {
+        this.seleccionados[i] = item.id;
+        i++;
+      }
+    }
+    this.selec = !this.selec;
+    console.table(this.seleccionados);
+
+  }
+
+  deleteAll() {
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados)
+     this.api.deleteLimitados(idd).subscribe(result=>{this.loadListado();});
+
+    
+ this.lib.success('Eliminados con exito!','Eliminar');
+
+    }
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
+    }
+}
 }

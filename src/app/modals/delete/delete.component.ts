@@ -26,7 +26,8 @@ export class DeleteComponent implements OnInit {
   }
 
   eliminar() {
-
+console.log(this.modalHeader);
+console.log(this.id);
     switch (this.modalHeader) {
       case 'Limitados':
         this.api.deleteLimitados(this.id).subscribe(result => {
