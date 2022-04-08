@@ -172,10 +172,11 @@ export class ReportesComponent implements OnInit {
 
   edit(item: any) {
     if(item.tipo_doc.tipo=="documento_clasificado"){
+      console.log('ggg');
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.limitados = item;
+    modal.componentInstance.clasificados = item;
     modal.result.then((e) => {
       this.loadListado();
     })
@@ -193,7 +194,7 @@ export class ReportesComponent implements OnInit {
     let modal = this.modalService.open(ModalOrdinariosComponent);
     modal.componentInstance.modalHeader = "Ordinarios";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.limitados = item;
+    modal.componentInstance.ordinarios = item;
     modal.result.then((e) => {
       this.loadListado();
     })
@@ -202,7 +203,7 @@ export class ReportesComponent implements OnInit {
     let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
     modal.componentInstance.modalHeader = "Ordinarios Personales";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.limitados = item;
+    modal.componentInstance.ordinario_personal = item;
     modal.result.then((e) => {
       this.loadListado();
     })
@@ -211,7 +212,7 @@ export class ReportesComponent implements OnInit {
     let modal = this.modalService.open(ModalSecretosComponent);
     modal.componentInstance.modalHeader = "Secretos";
     modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.limitados = item;
+    modal.componentInstance.secretos = item;
     modal.result.then((e) => {
       this.loadListado();
     })
