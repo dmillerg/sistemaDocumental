@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
 
 @Component({
   selector: 'app-inicio',
@@ -35,9 +38,19 @@ tips: any[]= [
   }
 ]
 
-  constructor() { }
+  constructor(private router: Router,private modalService: NgbModal) { }
 
   ngOnInit(): void {
+
+  }
+
+  changePage() {
+    this.router.navigate(['reportes'])
+  }
+
+  insert() {
+    let modal = this.modalService.open(ModalDocumentComponent);
+    modal.componentInstance.modalAction = "Agregar";
   }
 
 }

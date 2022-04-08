@@ -165,6 +165,18 @@
     border-width: 10px;
 } 
 
+.scrollbar5
+{
+	float: left;
+	height: 400px;
+	width: 1000px;
+	background: transparent;
+	overflow-y: auto;
+    margin-left: 25%;
+    border-color: var(--firstcolor-hover);
+    border-width: 10px;
+}
+
 .force-overflow
 {
 	min-height: 450px;
