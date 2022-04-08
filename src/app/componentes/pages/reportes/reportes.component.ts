@@ -29,7 +29,7 @@ export class ReportesComponent implements OnInit {
   opciones: any[] = [];
   values: any[] = [];
   tipos: any[] = [1, 2, 3, 4, 5];
-  tipos2: any[] = [1,2];
+  tipos2: any[] = [1, 2];
   minDate: string = ''
   today: string = ''
   constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService) { }
@@ -51,18 +51,13 @@ export class ReportesComponent implements OnInit {
       this.mes = "0" + (new Date().getMonth() + 1).toString();
     else
       this.mes = (new Date().getMonth() + 1).toString();
-
     if (new Date().getDate() < 10)
       this.dia = "0" + new Date().getDate().toString();
     else
       this.dia = new Date().getDate().toString();
-
     this.today = new Date().getFullYear().toString() + "-" + this.mes + "-" + this.dia;
-
     this.fin = this.today;
-
     this.loadListado();
-
   }
 
   getDocumentFoto(e: any) {
@@ -88,25 +83,28 @@ export class ReportesComponent implements OnInit {
   loadListado() {
     this.loading = true;
     this.documentos = []
-    var listaNew ='';
+    var listaNew = '';
     if (this.tipos.length > 0) {
-      listaNew +="(";
-      if(this.tipos2.length > 0){
+      listaNew += "(";
+      if (this.tipos2.length > 0) {
         this.tipos2.forEach(i => {
-      listaNew += i;
-    });
+          if (i == 1) {
+            listaNew += "'" + i + "'" + ',';
+          } else
+            listaNew += "'" + i + "'";
+        });
       }
-      listaNew +=")";
+      listaNew += ")";
       this.tipos.forEach(i => {
-          
-            this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, listaNew).subscribe((result) => {
-              result.forEach((e) => {
-                e.tipo_doc = this.opciones[i - 1]
-                this.getDocumentFoto(e);
-                this.documentos.push(e);
-              });
-           
-          
+
+        this.api.getDocuments(this.opciones[i - 1].tipo, this.inicio, this.fin, this.proceder, listaNew).subscribe((result) => {
+          result.forEach((e) => {
+            e.tipo_doc = this.opciones[i - 1]
+            this.getDocumentFoto(e);
+            this.documentos.push(e);
+          });
+
+
           if (this.minDate == "") {
             this.recogerMinDate(result);
           }
@@ -115,7 +113,7 @@ export class ReportesComponent implements OnInit {
           this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
         });
       });
-  
+
     } else {
       this.loading = false;
     }
@@ -132,7 +130,7 @@ export class ReportesComponent implements OnInit {
     let day: string = '';
     let month: string = '';
     if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
-    if (d.getDate() < 10) day = '0' + d.getDate(); else day =d.getDate().toString();
+    if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
     this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
     console.log(this.minDate);
 
