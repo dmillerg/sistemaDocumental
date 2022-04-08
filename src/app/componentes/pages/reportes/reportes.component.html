@@ -18,7 +18,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
             <Label style="margin-top:12px;margin:10px">Tipo:</Label>
-            <app-multiselect [opciones]="values" (emisor)="salida4($event)"></app-multiselect>
+            <app-multiselect [opciones]="values" [ifSearch]="false" (emisor)="salida4($event)"></app-multiselect>
           </div>
 
 
@@ -73,7 +73,7 @@
           &nbsp;
           <button class="btn btn-firstcolor" (click)="edit(item)"><i class="bi bi-pencil"></i></button>
           &nbsp;
-          <button class="btn btn-firstcolor" (click)="delete(item.id,item)"><i class="bi bi-trash"></i></button>
+          <button class="btn btn-firstcolor" (click)="delete(item.id,item)" *ngIf="storage.retrieve('usuario').usuario.rol=='admin'"><i class="bi bi-trash"></i></button>
         </td>
       </tr>
     </table>

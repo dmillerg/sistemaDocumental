@@ -13,6 +13,7 @@ export class MultiselectComponent implements OnInit {
   @Input() placeholder: string = 'seleccionar tipo(s)';
   @Input() borderColor: string = 'var(--firstcolor-hover)';  
   @Input() selectedColor: string = 'seleccionar tipo(s)';  
+  @Input() ifSearch: boolean = true;  
 
   lista: boolean = false;
   tipos: any[] = [];

@@ -93,9 +93,14 @@
 }
 
 .input-search{
+    width: 100%;
     border: none;
     background-color: transparent;
     color: white;
     outline: none;
     border-bottom: 2px solid var(--firstcolor);
+}
+
+.input-search::placeholder{
+    color: white;
 }

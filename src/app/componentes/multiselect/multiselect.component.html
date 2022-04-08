@@ -3,7 +3,7 @@
         [placeholder]="placeholder" readonly>
     <button class="btn-arrow-listado"><i class="bi bi-caret-down-fill"></i></button>
     <div class="listado" [style.border]="'1px solid'+borderColor">
-        <li class="active"><input type="text" class="input-search" placeholder="buscar" name="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"></li>
+        <li class="active" *ngIf="ifSearch"><input type="text" class="input-search" placeholder="buscar" name="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"></li>
         <li id="itemlist"  [ngClass]="{'active': tipos.indexOf(item.value)!=-1}" *ngFor="let item of opciones"
             (click)="addORRemove(item)">
             <div class="form-check">
