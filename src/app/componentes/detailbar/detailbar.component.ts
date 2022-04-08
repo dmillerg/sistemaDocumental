@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.models';
-import { Clasificados } from 'src/app/models/clasificados.service';
-import { Limitados } from 'src/app/models/limitados.service';
+import { Clasificados } from 'src/app/models/clasificados.model';
+import { Limitados } from 'src/app/models/limitados.model';
 import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/service/api.service';
 

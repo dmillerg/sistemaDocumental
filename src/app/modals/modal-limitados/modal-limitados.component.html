@@ -1,83 +1,102 @@
 <div class="form-content">
-    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
-   
-        <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
-        <p style="color: green;">{{exito}}</p>
+    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i
+            class="bi bi-x"></i></button>
+
+    <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
+    <p style="color: green;">{{exito}}</p>
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
         documento presionado sobre la imagen de arriba</p> -->
-        <div style="display:flex; margin-bottom: 20px;" >
-        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    <div style="display:flex; margin-bottom: 20px;">
+        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button> &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;
         <button class="btn btn-firstcolor" (click)="img.click()">Subir documento</button>
-        </div> 
-            
-            <form action="" class="form-complete">
-        <div class="scrollbar" id="style-1">
+    </div>
 
-       <!--  <div class="input-content">
+    <form action="" class="form-complete">
+        <div class="scrollbar" id="style-1">
+            <div class="input-content">
+                <label for="usuario">Tipo de documento</label>
+                <i class="bi bi-files prefix"></i>
+                <select type="text" class="in" name="rol"
+                    style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="tipo"
+                    placeholder="tipo" [(ngModel)]="limitados.tipo">
+                    <option value="1">emitido</option>
+                    <option value="2">recibido</option>
+                </select>
+            </div>
+
+            <!--  <div class="input-content">
             <label for="limitados">Id</label>
             <i class="bi bi-person prefix"></i>
             <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="limitados.id">
         </div>-->
 
-        <div class="input-content">
-            <label for="limitados">No</label>
-            <i class="bi bi-123 prefix"></i>
-            <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="limitados.no" readonly>
-            <p style="color: red;">{{errorN}}</p>
-        </div>
-   
-        <div class="input-content">
-            <label for="limitados">Procedencia</label>
-            <i class="bi bi-house prefix"></i>
-            <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia" [(ngModel)]="limitados.procedencia" onkeyup="validate(this)">
-        </div>
+            <div class="input-content">
+                <label for="limitados">No</label>
+                <i class="bi bi-123 prefix"></i>
+                <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="limitados.no" readonly>
+                <p style="color: red;">{{errorN}}</p>
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Titulo</label>
-            <i class="bi bi-file-font prefix"></i>
-            <input type="text" class="in" name="titulo" id="titulo" placeholder="titulo" [(ngModel)]="limitados.titulo">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Procedencia</label>
+                <i class="bi bi-house prefix"></i>
+                <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia"
+                    [(ngModel)]="limitados.procedencia" onkeyup="validate(this)">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Fecha</label>
-            <i class="bi bi-calendar-date prefix"></i>
-            <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="limitados.fecha">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Titulo</label>
+                <i class="bi bi-file-font prefix"></i>
+                <input type="text" class="in" name="titulo" id="titulo" placeholder="titulo"
+                    [(ngModel)]="limitados.titulo">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Movimiento 1</label>
-            <i class="bi bi-file-earmark-arrow-up prefix"></i>
-            <input type="text" class="in" name="movimiento1" id="movimiento1" placeholder="movimiento1" [(ngModel)]="limitados.movimiento1">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Fecha</label>
+                <i class="bi bi-calendar-date prefix"></i>
+                <input type="date" class="in" name="fecha" id="fecha" [(ngModel)]="limitados.fecha">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Movimiento 2</label>
-            <i class="bi bi-file-earmark-arrow-down prefix"></i>
-            <input type="text" class="in" name="movimiento2" id="movimiento2" placeholder="movimiento2" [(ngModel)]="limitados.movimiento2">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Movimiento 1</label>
+                <i class="bi bi-file-earmark-arrow-up prefix"></i>
+                <input type="text" class="in" name="movimiento1" id="movimiento1" placeholder="movimiento1"
+                    [(ngModel)]="limitados.movimiento1">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Destruccion</label>
-            <i class="bi bi-dash-circle prefix"></i>
-            <input type="text" class="in" name="destruccion" id="destruccion" placeholder="destruccion" [(ngModel)]="limitados.destruccion">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Movimiento 2</label>
+                <i class="bi bi-file-earmark-arrow-down prefix"></i>
+                <input type="text" class="in" name="movimiento2" id="movimiento2" placeholder="movimiento2"
+                    [(ngModel)]="limitados.movimiento2">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Expediente</label>
-            <i class="bi bi-file-earmark prefix"></i>
-            <input type="text" class="in" name="expediente" id="expediente" placeholder="expediente" [(ngModel)]="limitados.expediente">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Destruccion</label>
+                <i class="bi bi-dash-circle prefix"></i>
+                <input type="text" class="in" name="destruccion" id="destruccion" placeholder="destruccion"
+                    [(ngModel)]="limitados.destruccion">
+            </div>
 
-        <div class="input-content">
-            <label for="limitados">Observacion</label>
-            <i class="bi bi-eye prefix"></i>
-            <input type="text" class="in" name="observacion" id="observacion" placeholder="observacion" [(ngModel)]="limitados.observacion">
-        </div>
+            <div class="input-content">
+                <label for="limitados">Expediente</label>
+                <i class="bi bi-file-earmark prefix"></i>
+                <input type="text" class="in" name="expediente" id="expediente" placeholder="expediente"
+                    [(ngModel)]="limitados.expediente">
+            </div>
 
-             
-                </div>
-        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios()" (click)="addUpdateLimitados()"> {{modalAction}}</button>
-               
+            <div class="input-content">
+                <label for="limitados">Observacion</label>
+                <i class="bi bi-eye prefix"></i>
+                <input type="text" class="in" name="observacion" id="observacion" placeholder="observacion"
+                    [(ngModel)]="limitados.observacion">
+            </div>
+
+
+        </div>
+        <button class="btn btn-firstcolor" [disabled]="!validarCamposVacios()" (click)="addUpdateLimitados()">
+            {{modalAction}}</button>
+
     </form>
 </div>
-

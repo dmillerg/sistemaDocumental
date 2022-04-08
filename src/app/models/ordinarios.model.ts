@@ -11,4 +11,5 @@ export interface Ordinarios{
   traslado: string;
   fecha_traslado: string;
   imagen: string;
+  tipo: string;
 }

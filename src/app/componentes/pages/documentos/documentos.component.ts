@@ -1,7 +1,7 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
-import { Clasificados } from 'src/app/models/clasificados.service';
+import { Clasificados } from 'src/app/models/clasificados.model';
 import { ApiService } from 'src/app/service/api.service';
 
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';

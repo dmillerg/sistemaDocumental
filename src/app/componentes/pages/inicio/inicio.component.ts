@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SessionStorageService } from 'ngx-webstorage';
 import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
 
 @Component({
@@ -37,9 +39,19 @@ tips: any[]= [
   }
 ]
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private router: Router,private modalService: NgbModal, public storage: SessionStorageService) { }
 
   ngOnInit(): void {
+
+  }
+
+  changePage() {
+    this.router.navigate(['reportes'])
+  }
+
+  insert() {
+    let modal = this.modalService.open(ModalDocumentComponent);
+    modal.componentInstance.modalAction = "Agregar";
   }
 
   newDocument(){

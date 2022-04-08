@@ -1,59 +1,79 @@
 <div class="form-content">
-    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
-   
-        <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
-        <p style="color: green;">{{exito}}</p>
+    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i
+            class="bi bi-x"></i></button>
+
+    <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
+    <p style="color: green;">{{exito}}</p>
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
         documento presionado sobre la imagen de arriba</p> -->
-        <div style="display:flex; margin-bottom: 20px;" >
-        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+    <div style="display:flex; margin-bottom: 20px;">
+        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button> &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;
         <button class="btn btn-firstcolor" (click)="img.click()">Subir documento</button>
-        </div>
-            
-            <form action="" class="form-complete">
+    </div>
+
+    <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
-       
-       <!--  <div class="input-content">
+
+            <div class="input-content">
+                <label for="usuario">Tipo de documento</label>
+                <i class="bi bi-files prefix"></i>
+                <select type="text" class="in" name="rol"
+                    style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="tipo"
+                    placeholder="tipo" [(ngModel)]="ordinario_personal.tipo">
+                    <option value="1">emitido</option>
+                    <option value="2">recibido</option>
+                </select>
+            </div>
+
+            <!--  <div class="input-content">
         
             <label for="ordinario_personal">Id</label>
             <i class="bi bi-person prefix"></i>
             <input type="text" class="in" name="id" id="id" placeholder="id" [(ngModel)]="ordinario_personal.id">
         </div>
     -->
-        <div class="input-content">
-            <label for="ordinario_personal">No</label>
-            <i class="bi bi-123 prefix"></i>
-            <input type="text" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinario_personal.no" readonly>
-            <p style="color: red;">{{errorN}}</p>
+            <div class="input-content">
+                <label for="ordinario_personal">No</label>
+                <i class="bi bi-123 prefix"></i>
+                <input type="text" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinario_personal.no"
+                    readonly>
+                <p style="color: red;">{{errorN}}</p>
+            </div>
+            <div class="input-content">
+                <label for="ordinario_personal">Fecha</label>
+                <i class="bi bi-calendar prefix"></i>
+                <input type="date" class="in" name="fecha" id="fecha" placeholder="Fecha"
+                    [(ngModel)]="ordinario_personal.fecha">
+            </div>
+            <div class="input-content">
+                <label for="ordinario_personal">Procedencia</label>
+                <i class="bi bi-send prefix"></i>
+                <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia"
+                    [(ngModel)]="ordinario_personal.procedencia">
+            </div>
+            <div class="input-content">
+                <label for="ordinario_personal">Asunto</label>
+                <i class="bi bi-chat-square-dots prefix"></i>
+                <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto"
+                    [(ngModel)]="ordinario_personal.asunto">
+            </div>
+            <div class="input-content">
+                <label for="ordinario_personal">Destino</label>
+                <i class="bi bi-shop prefix"></i>
+                <input type="text" class="in" name="destino" id="destino" placeholder="destino"
+                    [(ngModel)]="ordinario_personal.destino">
+            </div>
+            <div class="input-content">
+                <label for="ordinario_personal">Archivo</label>
+                <i class="bi bi-calendar-event prefix"></i>
+                <input type="text" class="in" name="archivo" id="archivo" placeholder="archivo"
+                    [(ngModel)]="ordinario_personal.archivo">
+            </div>
+
         </div>
-        <div class="input-content">
-            <label for="ordinario_personal">Fecha</label>
-            <i class="bi bi-calendar prefix"></i>
-            <input type="date" class="in" name="fecha" id="fecha" placeholder="Fecha" [(ngModel)]="ordinario_personal.fecha">
-        </div>
-        <div class="input-content">
-            <label for="ordinario_personal">Procedencia</label>
-            <i class="bi bi-send prefix"></i>
-            <input type="text" class="in" name="procedencia" id="procedencia" placeholder="procedencia" [(ngModel)]="ordinario_personal.procedencia">
-        </div>
-        <div class="input-content">
-            <label for="ordinario_personal">Asunto</label>
-            <i class="bi bi-chat-square-dots prefix"></i>
-            <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto" [(ngModel)]="ordinario_personal.asunto">
-        </div>
-        <div class="input-content">
-            <label for="ordinario_personal">Destino</label>
-            <i class="bi bi-shop prefix"></i>
-            <input type="text" class="in" name="destino" id="destino" placeholder="destino" [(ngModel)]="ordinario_personal.destino">
-        </div>
-        <div class="input-content">
-            <label for="ordinario_personal">Archivo</label>
-            <i class="bi bi-calendar-event prefix"></i>
-            <input type="text" class="in" name="archivo" id="archivo" placeholder="archivo" [(ngModel)]="ordinario_personal.archivo">
-        </div>
-  
-    </div>
-        <button style="width: 450px;" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor" (click)="addUpdateOrdinariosP()"> {{modalAction}}</button>
+        <button style="width: 450px;" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor"
+            (click)="addUpdateOrdinariosP()"> {{modalAction}}</button>
     </form>
 
-  </div>
+</div>

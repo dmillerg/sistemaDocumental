@@ -10,4 +10,5 @@ export interface Limitados{
     expediente: string;
     observacion: string;
     imagen: string;
+    tipo: string;
   }

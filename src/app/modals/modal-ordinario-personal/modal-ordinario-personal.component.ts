@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Ordinario_personal } from 'src/app/models/ordinario.model.personal';
+import { Ordinario_personal } from 'src/app/models/ordinario.personal.model';
 import { ApiService } from 'src/app/service/api.service';
 
 
@@ -27,6 +27,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       destino: '',
       archivo: '',
       imagen: '',
+      tipo: '',
   }
   ordinarios_pasado: Ordinario_personal = {
     id: -1,
@@ -37,6 +38,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       destino: '',
       archivo: '',
       imagen: '',
+      tipo: '',
   }
 
   src_documento: string = '';
@@ -69,6 +71,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       this.ordinarios_pasado.destino = this.ordinario_personal.destino;
       this.ordinarios_pasado.archivo = this.ordinario_personal.archivo;
       this.ordinarios_pasado.imagen = this.ordinario_personal.imagen;
+      this.ordinarios_pasado.tipo = this.ordinario_personal.tipo;
     }
   }
 
@@ -101,6 +104,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     formData.append('archivo', this.ordinario_personal.archivo.toString());
     formData.append('destino', this.ordinario_personal.destino.toString());
     formData.append('imagen', this.ordinario_personal.imagen.toString());
+    formData.append('tipo', this.ordinario_personal.tipo.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);

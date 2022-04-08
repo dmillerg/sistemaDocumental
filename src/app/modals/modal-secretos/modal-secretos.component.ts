@@ -32,6 +32,8 @@ export class ModalSecretosComponent implements OnInit {
     destino: '',
     comp: '',
     imagen:'',
+    tipo: '',
+    procedencia: '',
   }
 
   secretos_pasado: Secreto = {
@@ -50,6 +52,8 @@ export class ModalSecretosComponent implements OnInit {
     destino: '',
     comp: '',
     imagen:'',
+    tipo: '',
+    procedencia: '',
   }
 
   src_documento: string = '';
@@ -88,6 +92,8 @@ export class ModalSecretosComponent implements OnInit {
       this.secretos_pasado.destino = this.secretos.destino;
       this.secretos_pasado.comp = this.secretos.comp;
       this.secretos_pasado.imagen = this.secretos.imagen;
+      this.secretos_pasado.tipo = this.secretos.tipo;
+      this.secretos_pasado.procedencia = this.secretos.procedencia;
     }
   }
 
@@ -125,6 +131,8 @@ export class ModalSecretosComponent implements OnInit {
     formData.append('destino', this.secretos.destino.toString());
     formData.append('comp', this.secretos.comp.toString());
     formData.append('imagen', this.secretos.imagen.toString());
+    formData.append('tipo', this.secretos.tipo.toString());
+    formData.append('procedencia', this.secretos.procedencia.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);

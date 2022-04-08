@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.models';
-import { Limitados } from '../models/limitados.service';
-import { Clasificados } from '../models/clasificados.service';
-import { Login } from '../models/login';
+import { Limitados } from '../models/limitados.model';
+import { Clasificados } from '../models/clasificados.model';
+import { Login } from '../models/login.model';
 import { Secreto } from '../models/secreto.model';
 import { Ordinarios } from '../models/ordinarios.model';
-import { Ordinario_personal } from '../models/ordinario.model.personal';
+import { Ordinario_personal } from '../models/ordinario.personal.model';
 
 @Injectable({
   providedIn: 'root'
