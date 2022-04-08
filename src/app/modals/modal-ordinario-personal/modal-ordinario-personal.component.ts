@@ -48,6 +48,13 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_ordinario_personal').subscribe((result) => {
+        this.ordinario_personal.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 

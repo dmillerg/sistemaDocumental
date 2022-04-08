@@ -53,6 +53,13 @@ export class ModalLimitadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_limitado').subscribe((result) => {
+        this.limitados.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 

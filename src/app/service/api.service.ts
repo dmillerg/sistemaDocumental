@@ -381,6 +381,13 @@ export class ApiService {
     return this.http.get(this.url + 'scan');
   }
 
+  /**
+   * Manda a abrir el pdf asociado a ese reporte
+   * @param id del documento
+   * @param dir direccion donde se encuentra
+   * @param datatable tabla de la db
+   * @returns 
+   */
   openPdf(id: number = -1, dir: string = '', datatable: string = ''){
     let direccion = this.url + 'openpdf/' + id.toString();
     let params = {
@@ -390,5 +397,16 @@ export class ApiService {
     return this.http.get(direccion, { params: params });
   }
 
-
+  /**
+   * Obtiene el ultimo numero de la db de un tipo de documento
+   * @param tipo tipo de documento o tabla de la db
+   * @returns 
+   */
+  getLastNumberDocument(tipo: string='documento_clasificado'): Observable<string>{
+    let direccion = this.url + 'lastnumber';
+    let params = {
+      tipo: tipo,
+    }
+    return this.http.get<string>(direccion, { params: params });
+  }
 }

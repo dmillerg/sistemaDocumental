@@ -60,6 +60,13 @@ export class ModalSecretosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_secreto').subscribe((result) => {
+        this.secretos.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 

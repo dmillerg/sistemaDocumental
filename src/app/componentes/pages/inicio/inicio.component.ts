@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDocumentComponent } from 'src/app/modals/modal-document/modal-document.component';
 
 @Component({
   selector: 'app-inicio',
@@ -35,9 +37,12 @@ tips: any[]= [
   }
 ]
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
+  newDocument(){
+    let modal = this.modalService.open(ModalDocumentComponent);
+  }
 }

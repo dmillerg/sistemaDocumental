@@ -53,6 +53,13 @@ export class ModalOrdinariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.modalAction != 'Editar') {
+      this.api.getLastNumberDocument('documento_ordinario').subscribe((result) => {
+        this.ordinarios.no = parseInt(result) + 1;
+      }, (error) => {
+        console.log(error)
+      })
+    }
     this.rellenarSiEditas();
   }
 
