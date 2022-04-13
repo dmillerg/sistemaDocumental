@@ -409,4 +409,16 @@ export class ApiService {
     }
     return this.http.get<string>(direccion, { params: params });
   }
+
+
+  deleteDocument(id: number = -1, tipoDoc:string='') {
+    var tipo = tipoDoc.substring(10,tipoDoc.length);
+    console.log(tipo);
+    let direccion = this.url + tipo+"/" + id.toString();
+    const headers = { 'content-type': 'application/json' };
+    const params = {
+      token: this.storage.retrieve('usuario').token,
+    };
+    return this.http.delete(direccion, { headers: headers, params: params });
+  }
 }

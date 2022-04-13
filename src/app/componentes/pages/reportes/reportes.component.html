@@ -6,30 +6,30 @@
         <form class="login-form">
           <h2 style="text-align:left">Criterios de busqueda:</h2>
           <br />
-          <div style="display:flex">
-            <Label style="margin-top:1%;margin:1%">Desde:</Label>
-            <input name="fechaInicio" type="date" style="color: gray;" [(ngModel)]="inicio" [min]="minDate" [max]="fin"
-              (ngModelChange)="salida2()" /> <!-- (change)="getDocuments(this)"-->
+          <div class="rowForm">
+            <Label class="labels">Desde:</Label>
+            <input name="fechaInicio" type="date" [(ngModel)]="inicio" [min]="minDate" [max]="fin"
+              (ngModelChange)="salida2()" /> 
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Label style="margin-top:1%;margin:1%">Hasta:</Label>
-            <input name="fechaFin" type="date" style="color: gray;" [(ngModel)]="fin" [min]="inicio" [max]="today"
+            <Label class="labels">Hasta:</Label>
+            <input name="fechaFin" type="date" [(ngModel)]="fin" [min]="inicio" [max]="today"
               (ngModelChange)="salida2()" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <Label style="margin-top:1%;margin:1%">Tipo:</Label>
+            <Label class="labels">Tipo:</Label>
             <app-multiselect [opciones]="values" [ifSearch]="false" (emisor)="salida4($event)"></app-multiselect>
           </div>
 
 
           <br />
-          <div style="display:flex">
-            <Label style="margin-top:13%;margin:1%;width:10%">Clasificacion:</Label>
+          <div class="rowForm">
+            <Label class="label1">Clasificacion:</Label>
             <div style="margin-top:-1%;width:60%; margin-left:0%;">
               <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
             </div>
             <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Label style="margin-top:1%;margin:1%">Procedencia:</Label>
+            <Label class="labels">Procedencia:</Label>
             <input name="proc" type="text" placeholder="Todos" style="width:27%;margin-right: 1%;"
               [(ngModel)]="proceder" (ngModelChange)="salida3()" />
           </div>
@@ -38,6 +38,8 @@
         </form>
       </div>
     </div>
+
+ 
   </div>
   <div class="form-check" style="margin-left:5%">
     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
@@ -45,6 +47,21 @@
       Seleccionar Todo
     </label>
   </div>
+
+  <div class="actions">
+    <div style="width: 50%;">
+        <button id="newUser" class="btn btn-firstcolor1" style="height: 55px;">
+            <i style=" font-size: 20px;" class="bi bi-printer"></i>
+            Imprimir reporte
+        </button>
+    </div>
+    <div style="width: 50%;">
+        <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
+            <i style=" font-size: 20px;" class="bi bi-trash"></i>
+            Eliminar Todo
+        </button>
+    </div>
+</div>
   <div class="scrollbar4" id="style-1">
     <table class="tablas">
 

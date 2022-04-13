@@ -150,12 +150,6 @@ export class ReportesComponent implements OnInit {
   }
 
   salida2() {
-    // var fechaInicio = new Date(Date.parse(this.inicio));
-    // var fechaFin = new Date(Date.parse(this.fin));
-
-    // if(fechaFin<fechaInicio)
-    // this.lib.warning('La fecha final debe ser mayor a la inicial', 'Datos mal!');
-    // else
     this.loadListado();
   }
 
@@ -169,11 +163,8 @@ export class ReportesComponent implements OnInit {
     this.loadListado();
   }
 
-
-
   edit(item: any) {
     if(item.tipo_doc.tipo=="documento_clasificado"){
-      console.log('ggg');
     let modal = this.modalService.open(ModalClasificadosComponent);
     modal.componentInstance.modalHeader = "Clasificados";
     modal.componentInstance.modalAction = "Editar";
@@ -231,6 +222,27 @@ export class ReportesComponent implements OnInit {
   
   }
 
+  deleteAll() {
+   
+    if(this.seleccionados.length>0){
+
+    for (let idd of this.seleccionados){
+
+      for (let tipo of this.documentos){
+        console.log(tipo.tipo_doc.tipo);
+        if(tipo.id == idd)
+     this.api.deleteDocument(idd, tipo.tipo_doc.tipo).subscribe(result=>{this.loadListado();});
+
+      }
+    }
+ this.lib.success('Eliminados con exito!','Eliminar');
+
+    }
+    else{
+     this.lib.info('Debe seleccionar un elemento','No es posible');
+    }
+}
+
   d(id:number){
 
     if(this.seleccionados.filter((n)=>n==id).length>0){
@@ -266,19 +278,5 @@ export class ReportesComponent implements OnInit {
 
   }
 
-  deleteAll() {
-   
-    if(this.seleccionados.length>0){
-
-    for (let idd of this.seleccionados)
-     this.api.deleteLimitados(idd).subscribe(result=>{this.loadListado();});
-
-    
- this.lib.success('Eliminados con exito!','Eliminar');
-
-    }
-    else{
-     this.lib.info('Debe seleccionar un elemento','No es posible');
-    }
-}
+  
 }
