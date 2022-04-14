@@ -13,7 +13,7 @@ export class ModalSecretosComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
   exito: string = "";
 
   secretos: Secreto = {
@@ -23,7 +23,7 @@ export class ModalSecretosComponent implements OnInit {
     reg_no: '',
     titulo: '',
     categoria: '',
-    mat_no:-1,
+    mat_no: -1,
     folio_no: -1,
     cant: -1,
     no_ejemplar: -1,
@@ -31,9 +31,10 @@ export class ModalSecretosComponent implements OnInit {
     destruccion: '',
     destino: '',
     comp: '',
-    imagen:'',
+    imagen: '',
     tipo: '',
     procedencia: '',
+    fecha: '',
   }
 
   secretos_pasado: Secreto = {
@@ -43,7 +44,7 @@ export class ModalSecretosComponent implements OnInit {
     reg_no: '',
     titulo: '',
     categoria: '',
-    mat_no:-1,
+    mat_no: -1,
     folio_no: -1,
     cant: -1,
     no_ejemplar: -1,
@@ -51,14 +52,16 @@ export class ModalSecretosComponent implements OnInit {
     destruccion: '',
     destino: '',
     comp: '',
-    imagen:'',
+    imagen: '',
     tipo: '',
     procedencia: '',
+    fecha: '',
   }
+  minDate: string = '';
 
   src_documento: string = '';
   uploadFiles: Array<File> = [];
-  
+
   constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
     this.actiModal = activeModal;
   }
@@ -94,6 +97,7 @@ export class ModalSecretosComponent implements OnInit {
       this.secretos_pasado.imagen = this.secretos.imagen;
       this.secretos_pasado.tipo = this.secretos.tipo;
       this.secretos_pasado.procedencia = this.secretos.procedencia;
+      this.secretos_pasado.fecha = this.secretos.fecha;
     }
   }
 
@@ -101,7 +105,7 @@ export class ModalSecretosComponent implements OnInit {
     console.log(this.secretos_pasado.no, this.secretos.no, this.secretos_pasado.no == this.secretos.no)
     if (this.secretos_pasado.no == this.secretos.no) {
       this.actionUpdateOrRegister();
-    } else{
+    } else {
       this.api.getLimitados().subscribe((result) => {
         if (result.filter((n) => n.no == this.secretos.no).length <= 0) {
           this.actionUpdateOrRegister();
@@ -114,7 +118,7 @@ export class ModalSecretosComponent implements OnInit {
 
   }
   actionUpdateOrRegister() {
-  
+
     let formData = new FormData();
     formData.append('id', this.secretos.id.toString());
     formData.append('no', this.secretos.no.toString());
@@ -133,6 +137,7 @@ export class ModalSecretosComponent implements OnInit {
     formData.append('imagen', this.secretos.imagen.toString());
     formData.append('tipo', this.secretos.tipo.toString());
     formData.append('procedencia', this.secretos.procedencia.toString());
+    formData.append('fecha', this.secretos.fecha.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);
@@ -144,27 +149,27 @@ export class ModalSecretosComponent implements OnInit {
       this.api.updateSecretos(formData, this.secretos.id).subscribe((result) => {
         this.actiModal.close('Secretos');
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
-        
+        this.lib.success('Editado con exito!', 'Editar');
+
       }, (error) => {
         this.actiModal.close('Secretos');
         console.log(error);
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
       });
     } else {
       this.api.addSecretos(formData).subscribe((result) => {
         this.actiModal.close('Secretos');
         console.log(result);
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
         this.actiModal.close('Secretos');
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
-      
+
     }
-  
-}
+
+  }
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))
@@ -180,17 +185,26 @@ export class ModalSecretosComponent implements OnInit {
   }
 
 
-  validarCamposVacios(){
-    return this.secretos.lugar.length>0&&this.secretos.reg_no.length>0&&this.secretos.titulo.length>0&&
-    this.secretos.categoria.length>0&&this.secretos.destino.length>0&&this.secretos.destruccion.length>0&&this.secretos.comp.length>0
-    &&this.exito=="Subido con exito"
+  validarCamposVacios() {
+    return this.secretos.lugar.length > 0 && this.secretos.reg_no.length > 0 && this.secretos.titulo.length > 0 &&
+      this.secretos.categoria.length > 0 && this.secretos.destino.length > 0 && this.secretos.destruccion.length > 0 && this.secretos.comp.length > 0
+      && this.exito == "Subido con exito" && this.secretos.fecha.length > 0
   }
 
 
-  loadScanner(){
-    this.api.Scan().subscribe((result)=>{
+  loadScanner() {
+    this.api.Scan().subscribe((result) => {
       console.log(result);
-      
+
     })
-}
+  }
+
+  minDateS(){
+    let d = new Date();
+    let day: string = '';
+    let month: string = '';
+    if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
+    if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
+    this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+  }
 }

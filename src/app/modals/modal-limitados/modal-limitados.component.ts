@@ -46,6 +46,7 @@ export class ModalLimitadosComponent implements OnInit {
     imagen: '',
     tipo: '',
   }
+  minDate: string = '';
 
   src_documento: string = '';
   uploadFiles: Array<File> = [];
@@ -176,6 +177,15 @@ export class ModalLimitadosComponent implements OnInit {
       console.log(result);
       
     })
+  }
+
+  minDateS(){
+    let d = new Date();
+    let day: string = '';
+    let month: string = '';
+    if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
+    if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
+    this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
   }
 }
 

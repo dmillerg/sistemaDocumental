@@ -154,11 +154,13 @@
 
 .scrollbar4 {
     float: left;
-    height: 400px;
+    height: 70%;
     width: 90%;
     background: transparent;
     overflow-y: auto;
     margin-left: 5%;
+    position: absolute;
+    margin-top: 10px;
     border-color: var(--firstcolor-hover);
     border-width: 10px;
 }
