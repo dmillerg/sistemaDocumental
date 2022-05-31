@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ordinarios } from 'src/app/models/ordinarios.model';
 import { ApiService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-modal-ordinarios',
   templateUrl: './modal-ordinarios.component.html',
@@ -10,13 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ModalOrdinariosComponent implements OnInit {
 
-  actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
   exito: string = "";
 
-  ordinarios: Ordinarios = {
+  @Input() ordinarios: Ordinarios = {
     id: -1,
     no: -1,
     fecha: '',
@@ -31,7 +31,7 @@ export class ModalOrdinariosComponent implements OnInit {
     imagen: '',
     tipo: '',
   }
-  ordinarios_pasado: Ordinarios = {
+  @Input() ordinarios_pasado: Ordinarios = {
     id: -1,
     no: -1,
     fecha: '',
@@ -50,13 +50,13 @@ export class ModalOrdinariosComponent implements OnInit {
 
   src_documento: string = '';
   uploadFiles: Array<File> = [];
-  
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
-    this.actiModal = activeModal;
+
+  constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
     if (this.modalAction != 'Editar') {
+      if (this.ordinarios == undefined) this.ordinarios = this.ordinarios_pasado;
       this.api.getLastNumberDocument('documento_ordinario').subscribe((result) => {
         this.ordinarios.no = parseInt(result) + 1;
       }, (error) => {
@@ -89,7 +89,7 @@ export class ModalOrdinariosComponent implements OnInit {
     console.log(this.ordinarios_pasado.no, this.ordinarios.no, this.ordinarios_pasado.no == this.ordinarios.no)
     if (this.ordinarios_pasado.no == this.ordinarios.no) {
       this.actionUpdateOrRegister();
-    } else{
+    } else {
       this.api.getLimitados().subscribe((result) => {
         if (result.filter((n) => n.no == this.ordinarios.no).length <= 0) {
           this.actionUpdateOrRegister();
@@ -103,7 +103,7 @@ export class ModalOrdinariosComponent implements OnInit {
   }
   actionUpdateOrRegister() {
 
-  
+
     let formData = new FormData();
     formData.append('id', this.ordinarios.id.toString());
     formData.append('no', this.ordinarios.no.toString());
@@ -127,27 +127,25 @@ export class ModalOrdinariosComponent implements OnInit {
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateOrdinarios(formData, this.ordinarios.id).subscribe((result) => {
-        this.actiModal.close('Ordinarios');
+        this.router.navigate(['reportes']);
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
+        this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
-        this.actiModal.close('Ordinarios');
         console.log(error);
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
 
       });
     } else {
-      
+
       this.api.addOrdinarios(formData).subscribe((result) => {
-        this.actiModal.close('Ordinarios');
+        this.router.navigate(['inicio']);
         console.log(result);
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
-        this.actiModal.close('Ordinarios');
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
-      
+
     }
   }
 
@@ -164,30 +162,38 @@ export class ModalOrdinariosComponent implements OnInit {
     }
     reader.readAsDataURL(file);
     this.exito = "Subido con exito";
-   
+
   }
 
-  validarCamposVacios(){
-    return this.ordinarios.enviado.length>0&&this.ordinarios.rs.length>0&&this.ordinarios.rsb.length>0&&
-    this.ordinarios.destino.length>0&&this.ordinarios.asunto.length>0&&this.ordinarios.traslado.length>0
-    &&this.ordinarios.fecha.toString()!=''&&this.ordinarios.fecha_traslado.toString()!=''
-    &&this.ordinarios.fecha_registro_ctc.toString()!=''&&this.exito=="Subido con exito"
+  validarCamposVacios() {
+    return this.ordinarios.enviado.length > 0 && this.ordinarios.rs.length > 0 && this.ordinarios.rsb.length > 0 &&
+      this.ordinarios.destino.length > 0 && this.ordinarios.asunto.length > 0 && this.ordinarios.traslado.length > 0
+      && this.ordinarios.fecha.toString() != '' && this.ordinarios.fecha_traslado.toString() != ''
+      && this.ordinarios.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
   }
 
 
-  loadScanner(){
-    this.api.Scan().subscribe((result)=>{
+  loadScanner() {
+    this.api.Scan().subscribe((result) => {
       console.log(result);
-      
+
     })
   }
 
-  minDateS(){
+  minDateS() {
     let d = new Date();
     let day: string = '';
     let month: string = '';
     if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
     if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
     this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+  }
+
+  cancelar() {
+    if (this.modalAction == "Editar") {
+      this.router.navigate(['reportes']);
+    } else {
+      this.router.navigate(['inicio']);
+    }
   }
 }

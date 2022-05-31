@@ -1,6 +1,6 @@
 <div class="form-content">
-    <button *ngIf="modalAction!='Agregar'" class="btn btn-fab-close" (click)="actiModal.close()"><i
-            class="bi bi-x"></i></button>
+    <!-- <button  class="btn btn-fab-close" (click)="actiModal.close()"><i
+            class="bi bi-x"></i></button> -->
 
     <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
     <p style="color: green;">{{exito}}</p>
@@ -16,7 +16,9 @@
             <div class="input-content">
                 <label for="usuario">Tipo de documento</label>
                 <i class="bi bi-files prefix"></i>
-                <select type="text" class="in" name="rol" style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="tipo" placeholder="tipo" [(ngModel)]="clasificados.tipo">
+                <select type="text" class="in" name="rol"
+                    style="height: 50px;color: var(--firstcolor-hover);background-color: white;" id="tipo"
+                    placeholder="tipo" [(ngModel)]="clasificados.tipo">
                     <option value="1">emitido</option>
                     <option value="2">recibido</option>
                 </select>
@@ -60,7 +62,7 @@
             <div class="input-content">
                 <label for="clasificados">Fecha registro ctc</label>
                 <i class="bi bi-calendar-date prefix"></i>
-                <input type="date" class="in"  [min]="clasificados.fecha" name="fechaRegistroCtc" id="fechaRegistroCtc"
+                <input type="date" class="in" [min]="clasificados.fecha" name="fechaRegistroCtc" id="fechaRegistroCtc"
                     [(ngModel)]="clasificados.fecha_registro_ctc">
             </div>
 
@@ -111,14 +113,17 @@
             <div class="input-content">
                 <label for="clasificados">Fecha traslado</label>
                 <i class="bi bi-calendar-date prefix"></i>
-                <input type="date" class="in" [min]="clasificados.fecha_registro_ctc" name="fechaTraslado" id="fechaTraslado" placeholder="fechaTraslado"
-                    [(ngModel)]="clasificados.fecha_traslado">
+                <input type="date" class="in" [min]="clasificados.fecha_registro_ctc" name="fechaTraslado"
+                    id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
             </div>
 
 
         </div>
-        <button id="butt" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor"
-            (click)="addUpdateClasificados()"> {{modalAction}}</button>
-
+        <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width: 100%;gap: 5px;">
+            <button id="butt" style="width: 50%;" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor"
+                (click)="addUpdateClasificados()"> {{modalAction}}</button>
+            <button id="cancel" style="width: 50%;" class="btn btn-firstcolor"
+                (click)="cancelar()"> Cancelar</button>
+        </div>
     </form>
 </div>

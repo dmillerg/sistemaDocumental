@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  dir_foto: 'public/documents/',
 };

@@ -1,8 +1,9 @@
 <div class="contenedor-modals">
-    <button class="btn btn-fab-close" (click)="actiModal.close()"><i class="bi bi-x"></i></button>
+    <button class="btn btn-fab-close" ><i class="bi bi-x"></i></button>
     <div class="seleccionable-modals">
-        <p>Seleccione el tipo de documento que desea agregar</p>
-        <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (ngModelChange)="changValue()">
+        <p *ngIf="type==-1" class="title-section">Seleccione el tipo de documento que desea agregar</p>
+        <p *ngIf="type>-1" class="title-section">Editar el documento</p>
+        <select *ngIf="type==-1" class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (ngModelChange)="changValue()">
             <option value="1"></option>
             <option value="2">Clasificados</option>
             <option value="3">Limitados</option>
@@ -12,11 +13,11 @@
           </select>
     </div>
     <div class="seleccionado-modals">
-        <app-modal-clasificados *ngIf="seleccionado==2" [modalAction]="'Agregar'"></app-modal-clasificados>
-        <app-modal-limitados *ngIf="seleccionado==3" [modalAction]="'Agregar'"></app-modal-limitados>
-        <app-modal-ordinarios *ngIf="seleccionado==4" [modalAction]="'Agregar'"></app-modal-ordinarios>
-        <app-modal-ordinario-personal *ngIf="seleccionado==5" [modalAction]="'Agregar'"></app-modal-ordinario-personal>
-        <app-modal-secretos *ngIf="seleccionado==6" [modalAction]="'Agregar'"></app-modal-secretos>
+        <app-modal-clasificados *ngIf="seleccionado==2" [modalAction]="type==-1?'Agregar':'Editar'" [clasificados]="documento"></app-modal-clasificados>
+        <app-modal-limitados *ngIf="seleccionado==3" [modalAction]="type==-1?'Agregar':'Editar'" [limitados]="documento"></app-modal-limitados>
+        <app-modal-ordinarios *ngIf="seleccionado==4" [modalAction]="type==-1?'Agregar':'Editar'" [ordinarios]="documento"></app-modal-ordinarios>
+        <app-modal-ordinario-personal *ngIf="seleccionado==5" [modalAction]="type==-1?'Agregar':'Editar'" [ordinario_personal]="documento"></app-modal-ordinario-personal>
+        <app-modal-secretos *ngIf="seleccionado==6" [modalAction]="type==-1?'Agregar':'Editar'" [secretos]="documento"></app-modal-secretos>
     </div>
 
 </div>

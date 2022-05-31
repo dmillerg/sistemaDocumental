@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Limitados } from 'src/app/models/limitados.model';
@@ -11,13 +12,13 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ModalLimitadosComponent implements OnInit {
 
-  actiModal: NgbActiveModal;
+  // actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string = "";
   exito: string = "";
 
-  limitados: Limitados = {
+  @Input() limitados: Limitados = {
     id: -1,
     no: -1,
     procedencia: '',
@@ -32,7 +33,7 @@ export class ModalLimitadosComponent implements OnInit {
     tipo: '',
   }
 
-  limitados_pasado: Limitados = {
+  @Input() limitados_pasado: Limitados = {
     id: -1,
     no: -1,
     procedencia: '',
@@ -51,12 +52,12 @@ export class ModalLimitadosComponent implements OnInit {
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
-    this.actiModal = activeModal;
+  constructor( private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
     if (this.modalAction != 'Editar') {
+      if (this.limitados == undefined) this.limitados = this.limitados_pasado;
       this.api.getLastNumberDocument('documento_limitado').subscribe((result) => {
         this.limitados.no = parseInt(result) + 1;
       }, (error) => {
@@ -125,22 +126,20 @@ export class ModalLimitadosComponent implements OnInit {
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateLimitados(formData, this.limitados.id).subscribe((result) => {
-        this.actiModal.close('Limitados');
+        this.router.navigate(['reportes']);
         console.log(result);
         this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
-        this.actiModal.close('Limitados');
         console.log(error);
         this.lib.error('No se pudo editar', 'Error');
       });
     } else {
       this.api.addLimitados(formData).subscribe((result) => {
-        this.actiModal.close('Limitados');
+        this.router.navigate(['inicio']);
         this.lib.success('Agregado con exito!', 'Agregar');
         console.log(result);
       }, (error) => {
         console.log(error);
-        this.actiModal.close('Limitados');
         this.lib.error('No se pudo agregar', 'Error');
       })
     }
@@ -186,6 +185,14 @@ export class ModalLimitadosComponent implements OnInit {
     if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
     if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
     this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+  }
+
+  cancelar() {
+    if (this.modalAction == "Editar") {
+      this.router.navigate(['reportes']);
+    } else {
+      this.router.navigate(['inicio']);
+    }
   }
 }
 

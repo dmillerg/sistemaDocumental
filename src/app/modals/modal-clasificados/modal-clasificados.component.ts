@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Clasificados } from 'src/app/models/clasificados.model';
@@ -12,13 +13,13 @@ import { ApiService } from 'src/app/service/api.service';
 export class ModalClasificadosComponent implements OnInit {
 
 
-  actiModal: NgbActiveModal;
+  // actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string = "";
   exito: string = "";
 
-  clasificados: Clasificados = {
+  @Input() clasificados: Clasificados = {
     id: -1,
     no: -1,
     fecha: '',
@@ -37,7 +38,7 @@ export class ModalClasificadosComponent implements OnInit {
     tipo: '',
   }
 
-  selected: Clasificados = {
+  @Input() selected: Clasificados = {
     id: -1,
     no: -1,
     fecha: '',
@@ -56,7 +57,7 @@ export class ModalClasificadosComponent implements OnInit {
     tipo: '',
   }
 
-  clasificados_pasado: Clasificados = {
+  @Input() clasificados_pasado: Clasificados = {
     id: -1,
     no: -1,
     fecha: '',
@@ -80,23 +81,28 @@ export class ModalClasificadosComponent implements OnInit {
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
-    this.actiModal = activeModal;
+  constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
+    // this.actiModal = activeModal;
   }
 
   ngOnInit(): void {
     if (this.modalAction != 'Editar') {
+      if (this.clasificados == undefined) this.clasificados = this.clasificados_pasado;
       this.api.getLastNumberDocument('documento_clasificado').subscribe((result) => {
         this.clasificados.no = parseInt(result) + 1;
+        console.log(result);
+
       }, (error) => {
         console.log(error)
       })
     }
-    this.rellenarSiEditas();
+    if (this.modalAction == 'Editar') {
+      this.rellenarSiEditas();
+    }
     this.minDateS();
   }
 
-  minDateS(){
+  minDateS() {
     let d = new Date();
     let day: string = '';
     let month: string = '';
@@ -112,24 +118,22 @@ export class ModalClasificadosComponent implements OnInit {
 
   rellenarSiEditas() {
     this.src_documento = this.clasificados.imagen;
-    if (this.modalAction == 'Editar') {
-      this.clasificados_pasado.id = this.clasificados.id;
-      this.clasificados_pasado.no = this.clasificados.no;
-      this.clasificados_pasado.fecha = this.clasificados.fecha;
-      this.clasificados_pasado.enviado = this.clasificados.enviado;
-      this.clasificados_pasado.rsb = this.clasificados.rsb;
-      this.clasificados_pasado.rs = this.clasificados.rs;
-      this.clasificados_pasado.fecha_registro_ctc = this.clasificados.fecha_registro_ctc;
-      this.clasificados_pasado.asunto = this.clasificados.asunto;
-      this.clasificados_pasado.doc = this.clasificados.doc;
-      this.clasificados_pasado.ej = this.clasificados.ej;
-      this.clasificados_pasado.clasif = this.clasificados.clasif;
-      this.clasificados_pasado.destino = this.clasificados.destino;
-      this.clasificados_pasado.traslado = this.clasificados.traslado;
-      this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
-      this.clasificados_pasado.imagen = this.clasificados.imagen;
-      this.clasificados_pasado.tipo = this.clasificados.tipo;
-    }
+    this.clasificados_pasado.id = this.clasificados.id;
+    this.clasificados_pasado.no = this.clasificados.no;
+    this.clasificados_pasado.fecha = this.clasificados.fecha;
+    this.clasificados_pasado.enviado = this.clasificados.enviado;
+    this.clasificados_pasado.rsb = this.clasificados.rsb;
+    this.clasificados_pasado.rs = this.clasificados.rs;
+    this.clasificados_pasado.fecha_registro_ctc = this.clasificados.fecha_registro_ctc;
+    this.clasificados_pasado.asunto = this.clasificados.asunto;
+    this.clasificados_pasado.doc = this.clasificados.doc;
+    this.clasificados_pasado.ej = this.clasificados.ej;
+    this.clasificados_pasado.clasif = this.clasificados.clasif;
+    this.clasificados_pasado.destino = this.clasificados.destino;
+    this.clasificados_pasado.traslado = this.clasificados.traslado;
+    this.clasificados_pasado.fecha_traslado = this.clasificados.fecha_traslado;
+    this.clasificados_pasado.imagen = this.clasificados.imagen;
+    this.clasificados_pasado.tipo = this.clasificados.tipo;
   }
 
   addUpdateClasificados() {
@@ -179,22 +183,20 @@ export class ModalClasificadosComponent implements OnInit {
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateClasificados(formData, this.clasificados.id).subscribe((result) => {
-        this.actiModal.close('Clasificados');
+        this.router.navigate(['reportes']);
         console.log(result);
         this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
-        this.actiModal.close('Clasificados');
         this.lib.error('No se pudo editar', 'Error');
         console.log(error);
       });
     } else {
       this.api.addClasificados(formData).subscribe((result) => {
-        this.actiModal.close('Clasificados');
+        this.router.navigate(['inicio']);
         console.log(result);
         this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
-        this.actiModal.close('Clasificados');
         this.lib.error('No se pudo agregar', 'Error');
       })
     }
@@ -232,6 +234,14 @@ export class ModalClasificadosComponent implements OnInit {
       console.log(result);
 
     })
+  }
+
+  cancelar() {
+    if (this.modalAction == "Editar") {
+      this.router.navigate(['reportes']);
+    } else {
+      this.router.navigate(['inicio']);
+    }
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, OnDestroy, OnInit, Type } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -12,13 +12,14 @@ import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
 import { SessionStorageService } from 'ngx-webstorage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.css']
 })
-export class ReportesComponent implements OnInit {
+export class ReportesComponent implements OnInit, OnDestroy {
 
   documentos: any[] = [];
   selec = false;
@@ -39,7 +40,16 @@ export class ReportesComponent implements OnInit {
   tipos2: any[] = [1, 2];
   minDate: string = ''
   today: string = ''
-  constructor(private api: ApiService, private modalService: NgbModal, private lib: ToastrService, public storage: SessionStorageService) { }
+  constructor(private api: ApiService,
+    private modalService: NgbModal,
+    private lib: ToastrService,
+    public storage: SessionStorageService,
+    private router: Router) { }
+
+  ngOnDestroy(): void {
+    // this.storage.clear('type');
+    // this.storage.clear('documento');
+  }
 
   ngOnInit(): void {
 
@@ -105,7 +115,7 @@ export class ReportesComponent implements OnInit {
             this.getDocumentFoto(e);
             this.documentos.push(e);
           });
-          if (this.minDate.length==0 && k == this.tipos.length-1) {
+          if (this.minDate.length == 0 && k == this.tipos.length - 1) {
             this.recogerMinDate(this.documentos);
           }
           this.loading = false
@@ -156,51 +166,72 @@ export class ReportesComponent implements OnInit {
   }
 
   edit(item: any) {
-    if (item.tipo_doc.tipo == "documento_clasificado") {
-      let modal = this.modalService.open(ModalClasificadosComponent);
-      modal.componentInstance.modalHeader = "Clasificados";
-      modal.componentInstance.modalAction = "Editar";
-      modal.componentInstance.clasificados = item;
-      modal.result.then((e) => {
-        this.loadListado();
-      })
+    //   if (item.tipo_doc.tipo == "documento_clasificado") {
+    //     let modal = this.modalService.open(ModalClasificadosComponent);
+    //     modal.componentInstance.modalHeader = "Clasificados";
+    //     modal.componentInstance.modalAction = "Editar";
+    //     modal.componentInstance.clasificados = item;
+    //     modal.result.then((e) => {
+    //       this.loadListado();
+    //     })
+    //   }
+    //   else if (item.tipo_doc.tipo == "documento_limitado") {
+    //     let modal = this.modalService.open(ModalLimitadosComponent);
+    //     modal.componentInstance.modalHeader = "Limitados";
+    //     modal.componentInstance.modalAction = "Editar";
+    //     modal.componentInstance.limitados = item;
+    //     modal.result.then((e) => {
+    //       this.loadListado();
+    //     })
+    //   }
+    //   else if (item.tipo_doc.tipo == "documento_ordinario") {
+    //     let modal = this.modalService.open(ModalOrdinariosComponent);
+    //     modal.componentInstance.modalHeader = "Ordinarios";
+    //     modal.componentInstance.modalAction = "Editar";
+    //     modal.componentInstance.ordinarios = item;
+    //     modal.result.then((e) => {
+    //       this.loadListado();
+    //     })
+    //   }
+    //   else if (item.tipo_doc.tipo == "documento_ordinario_personal") {
+    //     let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+    //     modal.componentInstance.modalHeader = "Ordinarios Personales";
+    //     modal.componentInstance.modalAction = "Editar";
+    //     modal.componentInstance.ordinario_personal = item;
+    //     modal.result.then((e) => {
+    //       this.loadListado();
+    //     })
+    //   }
+    //   else if (item.tipo_doc.tipo == "documento_secreto") {
+    //     let modal = this.modalService.open(ModalSecretosComponent);
+    //     modal.componentInstance.modalHeader = "Secretos";
+    //     modal.componentInstance.modalAction = "Editar";
+    //     modal.componentInstance.secretos = item;
+    //     modal.result.then((e) => {
+    //       this.loadListado();
+    //     })
+    //   }
+    let type = -1;
+    switch (item.tipo_doc.tipo) {
+      case "documento_clasificado":
+        type = 2;
+        break;
+      case "documento_limitado":
+        type = 3;
+        break;
+      case "documento_ordinario":
+        type = 4;
+        break;
+      case "documento_ordinario_personal":
+        type = 5;
+        break;
+      case "documento_secreto":
+        type = 6;
+        break;
     }
-    else if (item.tipo_doc.tipo == "documento_limitado") {
-      let modal = this.modalService.open(ModalLimitadosComponent);
-      modal.componentInstance.modalHeader = "Limitados";
-      modal.componentInstance.modalAction = "Editar";
-      modal.componentInstance.limitados = item;
-      modal.result.then((e) => {
-        this.loadListado();
-      })
-    }
-    else if (item.tipo_doc.tipo == "documento_ordinario") {
-      let modal = this.modalService.open(ModalOrdinariosComponent);
-      modal.componentInstance.modalHeader = "Ordinarios";
-      modal.componentInstance.modalAction = "Editar";
-      modal.componentInstance.ordinarios = item;
-      modal.result.then((e) => {
-        this.loadListado();
-      })
-    }
-    else if (item.tipo_doc.tipo == "documento_ordinario_personal") {
-      let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
-      modal.componentInstance.modalHeader = "Ordinarios Personales";
-      modal.componentInstance.modalAction = "Editar";
-      modal.componentInstance.ordinario_personal = item;
-      modal.result.then((e) => {
-        this.loadListado();
-      })
-    }
-    else if (item.tipo_doc.tipo == "documento_secreto") {
-      let modal = this.modalService.open(ModalSecretosComponent);
-      modal.componentInstance.modalHeader = "Secretos";
-      modal.componentInstance.modalAction = "Editar";
-      modal.componentInstance.secretos = item;
-      modal.result.then((e) => {
-        this.loadListado();
-      })
-    }
+    this.storage.store('documento', item);
+    this.storage.store('type', type);
+    this.router.navigate(['documentos'])
   }
 
   delete(idd: number, item: any) {
@@ -211,55 +242,44 @@ export class ReportesComponent implements OnInit {
     modal.result.then((e) => {
       this.loadListado();
     })
-
   }
 
   deleteAll() {
-    if (this.seleccionados.length > 0) {
-      for (let idd of this.seleccionados) {
-        for (let tipo of this.documentos) {
-          if (tipo.id == idd)
-            this.api.deleteDocument(idd, tipo.tipo_doc.tipo).subscribe(result => { this.loadListado(); });
-
-        }
-      }
-      this.lib.success('Eliminados con exito!', 'Eliminar');
-    }
-    else {
-      this.lib.info('Debe seleccionar un elemento', 'No es posible');
-    }
+    let modal = this.modalService.open(DeleteComponent);
+    modal.componentInstance.modalHeader = 'Todo';
+    modal.componentInstance.modalAction = "Eliminar";
+    // modal.componentInstance.id = idd;
+    modal.componentInstance.seleccionados = this.seleccionados;
+    modal.result.then((e) => {
+      this.loadListado();
+    })
   }
 
-  d(id: number) {
-    if (this.seleccionados.filter((n) => n == id).length > 0) {
-      this.seleccionados = this.seleccionados.filter((n) => n != id);
+  d(item: any) {
+    if (this.seleccionados.filter((n) => n == item.id).length > 0) {
+      this.seleccionados = this.seleccionados.filter((n) => n != item.id);
     }
     else
-      this.seleccionados.push(id);
+      this.seleccionados.push({ id: item.id, tipo_doc: item.tipo_doc.tipo });
   }
 
   selecc() {
-
     //Ver si el checkbox esta seleccionado
     if (this.selec) {
-
       // Vaciar arreglo
       var des: number[] = [];
       this.seleccionados = des;
-
     }
     else {
-
       // Guardar todos los id en seleccionados
       var i = 0;
       for (let item of this.documentos) {
-        this.seleccionados[i] = item.id;
+        this.seleccionados[i] = { id: item.id, tipo_doc: item.tipo_doc.tipo };
         i++;
       }
     }
     this.selec = !this.selec;
     console.table(this.seleccionados);
-
   }
 
 

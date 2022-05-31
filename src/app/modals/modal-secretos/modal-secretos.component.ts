@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Secreto } from 'src/app/models/secreto.model';
 import { ApiService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-modal-secretos',
   templateUrl: './modal-secretos.component.html',
@@ -10,13 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ModalSecretosComponent implements OnInit {
 
-  actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string = "";
   exito: string = "";
 
-  secretos: Secreto = {
+  @Input() secretos: Secreto = {
     id: -1,
     no: -1,
     lugar: '',
@@ -37,7 +37,7 @@ export class ModalSecretosComponent implements OnInit {
     fecha: '',
   }
 
-  secretos_pasado: Secreto = {
+  @Input() secretos_pasado: Secreto = {
     id: -1,
     no: -1,
     lugar: '',
@@ -62,12 +62,12 @@ export class ModalSecretosComponent implements OnInit {
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
-    this.actiModal = activeModal;
+  constructor( private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
     if (this.modalAction != 'Editar') {
+      if (this.secretos == undefined) this.secretos = this.secretos_pasado;
       this.api.getLastNumberDocument('documento_secreto').subscribe((result) => {
         this.secretos.no = parseInt(result) + 1;
       }, (error) => {
@@ -147,23 +147,21 @@ export class ModalSecretosComponent implements OnInit {
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateSecretos(formData, this.secretos.id).subscribe((result) => {
-        this.actiModal.close('Secretos');
+        this.router.navigate(['reportes']);
         console.log(result);
         this.lib.success('Editado con exito!', 'Editar');
 
       }, (error) => {
-        this.actiModal.close('Secretos');
         console.log(error);
         this.lib.error('No se pudo editar', 'Error');
       });
     } else {
       this.api.addSecretos(formData).subscribe((result) => {
-        this.actiModal.close('Secretos');
+        this.router.navigate(['inicio']);
         console.log(result);
         this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
-        this.actiModal.close('Secretos');
         this.lib.error('No se pudo agregar', 'Error');
       })
 
@@ -206,5 +204,13 @@ export class ModalSecretosComponent implements OnInit {
     if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
     if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
     this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+  }
+
+  cancelar() {
+    if (this.modalAction == "Editar") {
+      this.router.navigate(['reportes']);
+    } else {
+      this.router.navigate(['inicio']);
+    }
   }
 }

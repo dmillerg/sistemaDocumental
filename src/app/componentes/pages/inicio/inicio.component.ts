@@ -39,7 +39,9 @@ tips: any[]= [
   }
 ]
 
-  constructor(private router: Router,private modalService: NgbModal, public storage: SessionStorageService) { }
+  constructor(private router: Router,
+    private modalService: NgbModal,
+     public storage: SessionStorageService) { }
 
   ngOnInit(): void {
 
@@ -55,6 +57,8 @@ tips: any[]= [
   }
 
   newDocument(){
-    let modal = this.modalService.open(ModalDocumentComponent);
+    this.storage.clear('documento');
+    this.storage.clear('type');
+    this.router.navigate(['documentos']);
   }
 }

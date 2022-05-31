@@ -12,8 +12,10 @@
 
 .form-content form{
     width: 90%;
-    height: 400px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-content .image-content{
@@ -87,8 +89,8 @@
     cursor: pointer;
 }
 
-.form-content .btn-aceptar{
-    width: 80%;
+.form-content form .btn{
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
 }

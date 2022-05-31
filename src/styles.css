@@ -153,8 +153,7 @@
 }
 
 .scrollbar4 {
-    float: left;
-    height: 70%;
+    
     width: 90%;
     background: transparent;
     overflow-y: auto;
@@ -163,6 +162,16 @@
     margin-top: 10px;
     border-color: var(--firstcolor-hover);
     border-width: 10px;
+}
+
+.title-section{
+    font-size: 25px;
+    /* font-weight: 900; */
+    /* white-space: 5px; */
+    word-spacing: 0px;
+    color: var(--firstcolor);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 input:read-only {
@@ -239,7 +248,7 @@ input:read-only {
 
 
 .contenedor .title-page {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .contenedor .title-page .btn-firstcolor {

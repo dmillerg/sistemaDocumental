@@ -16,6 +16,7 @@ export class DeleteComponent implements OnInit {
   actiModal: NgbActiveModal;
   modalHeader: string = '';
   modalAction: string = '';
+  seleccionados: any[] = [];
   id: number = -1;
 
   constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
@@ -26,59 +27,66 @@ export class DeleteComponent implements OnInit {
   }
 
   eliminar() {
-console.log(this.modalHeader);
-console.log(this.id);
-    switch (this.modalHeader) {
-      case 'Limitados':
-        this.api.deleteLimitados(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
+    if (this.seleccionados.length > 0) {
+      this.seleccionados.forEach((e, i) => {
+        this.api.deleteDocument(e.id, e.tipo_doc).subscribe((result) => {
+          if (i == this.seleccionados.length - 1) {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }
+        })
+      })
+    } else {
+      switch (this.modalHeader) {
+        case 'Limitados':
+          this.api.deleteLimitados(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
 
-      case 'Clasificados':
-        this.api.deleteClasificados(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
+        case 'Clasificados':
+          this.api.deleteClasificados(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
 
-      case 'Ordinarios':
-        this.api.deleteOrdinarios(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
+        case 'Ordinarios':
+          this.api.deleteOrdinarios(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
 
-      case 'Ordinarios Personales':
-        this.api.deleteOrdinariosP(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
+        case 'Ordinarios Personales':
+          this.api.deleteOrdinariosP(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
 
-      case 'Secretos':
-        this.api.deleteSecretos(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
+        case 'Secretos':
+          this.api.deleteSecretos(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
 
-      case 'Usuarios':
-        this.api.deleteUsuario(this.id).subscribe(result => {
-          this.actiModal.close();
-          this.lib.success('Eliminado con exito!', 'Eliminar');
-        }, error => { this.lib.error('No se pudo eliminar', 'Error') }
-        );
-        break;
-
+        case 'Usuarios':
+          this.api.deleteUsuario(this.id).subscribe(result => {
+            this.actiModal.close();
+            this.lib.success('Eliminado con exito!', 'Eliminar');
+          }, error => { this.lib.error('No se pudo eliminar', 'Error') }
+          );
+          break;
+      }
     }
-
 
   }
 

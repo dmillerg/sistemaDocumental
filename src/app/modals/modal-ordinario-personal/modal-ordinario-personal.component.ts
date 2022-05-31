@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Ordinario_personal } from 'src/app/models/ordinario.personal.model';
@@ -12,13 +13,13 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ModalOrdinarioPersonalComponent implements OnInit {
 
-  actiModal: NgbActiveModal;
+  // actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
   errorN: string="";
   exito: string = "";
 
-  ordinario_personal: Ordinario_personal = {
+  @Input() ordinario_personal: Ordinario_personal = {
       id: -1,
       no: -1,
       fecha: '',
@@ -29,7 +30,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       imagen: '',
       tipo: '',
   }
-  ordinarios_pasado: Ordinario_personal = {
+  @Input() ordinarios_pasado: Ordinario_personal = {
     id: -1,
       no: -1,
       fecha: '',
@@ -46,12 +47,12 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   uploadFiles: Array<File> = [];
 
   
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private lib: ToastrService) {
-    this.actiModal = activeModal;
+  constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
     if (this.modalAction != 'Editar') {
+      if (this.ordinario_personal == undefined) this.ordinario_personal = this.ordinarios_pasado;
       this.api.getLastNumberDocument('documento_ordinario_personal').subscribe((result) => {
         this.ordinario_personal.no = parseInt(result) + 1;
       }, (error) => {
@@ -115,11 +116,10 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     console.log(this.modalAction)
     if (this.modalAction == "Editar") {
       this.api.updateOrdinariosP(formData, this.ordinario_personal.id).subscribe((result) => {
-        this.actiModal.close('Ordinario_personal');
+        this.router.navigate(['reportes']);
         console.log(result);
         this.lib.success('Editado con exito!','Editar');
       }, (error) => {
-        this.actiModal.close('Ordinario_personal');
         console.log(error);
         this.lib.error('No se pudo editar','Error');
 
@@ -127,12 +127,11 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     } else {
       
       this.api.addOrdinariosP(formData).subscribe((result) => {
-        this.actiModal.close('Ordinario_personal');
+        this.router.navigate(['inicio']);
         console.log(result);
         this.lib.success('Agregado con exito!','Agregar');
       }, (error) => {
         console.log(error);
-        this.actiModal.close('Ordinario_personal');
         this.lib.error('No se pudo agregar','Error');
       })
       
@@ -173,5 +172,13 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     if (d.getMonth() + 1 < 10) month = '0' + (d.getMonth() + 1); else (d.getMonth() + 1).toString();
     if (d.getDate() < 10) day = '0' + d.getDate(); else day = d.getDate().toString();
     this.minDate = d.getFullYear().toString() + '-' + month + '-' + day;
+  }
+
+  cancelar() {
+    if (this.modalAction == "Editar") {
+      this.router.navigate(['reportes']);
+    } else {
+      this.router.navigate(['inicio']);
+    }
   }
 }
