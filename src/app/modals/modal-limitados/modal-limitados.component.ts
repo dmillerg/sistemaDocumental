@@ -65,6 +65,7 @@ export class ModalLimitadosComponent implements OnInit {
       })
     }
     this.rellenarSiEditas();
+    this.minDateS();
   }
 
   rellenarSiEditas() {

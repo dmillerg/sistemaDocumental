@@ -28,7 +28,23 @@
     border: none;
     color: var(--theme-color-ligth);
     transition: all .3s;
+}
 
+.btn-action-mine{
+    padding: 10px;
+    width: fit-content;
+    color: var(--theme-color-ligth);
+    background-color: var(--firstcolor-hover);
+    border: none;
+    border-radius: 0.5em;
+    margin: 2px;
+    transition: all .3s ease-in-out;
+}
+
+.btn-action-mine:hover{
+    color: var(--theme-color-ligth);
+    background-color: var(--firstcolor);
+    transition: all .3s ease-in-out;
 }
 
 .btn-firstcolor1 {
@@ -169,7 +185,7 @@
     /* font-weight: 900; */
     /* white-space: 5px; */
     word-spacing: 0px;
-    color: var(--firstcolor);
+    color: var(--firstcolor-hover);
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }

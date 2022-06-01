@@ -1,4 +1,4 @@
-<div class="contenedor" id="cont">
+<!-- <div class="contenedor" id="cont">
   <div class="title-page">
 
     <div class="login-page">
@@ -33,7 +33,6 @@
             <input name="proc" type="text" placeholder="Todos" style="width:27%;margin-right: 1%;"
               [(ngModel)]="proceder" (ngModelChange)="salida3()" />
           </div>
-          <!--button>Listar</button-->
 
         </form>
       </div>
@@ -83,7 +82,7 @@
           <td colspan="3">Acciones</td>
         </thead>
 
-        <app-loading [loading]="loading" [message]="server"></app-loading>
+        
         <tbody>
           <tr *ngFor="let item of documentos" class="ligth">
             <td colspan="1"><input class="form-check-input" type="checkbox" [checked]="selec" (click)="d(item)"></td>
@@ -105,5 +104,89 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div> -->
+<div class="container-fluid p-4">
+  <div class="row p-1">
+    <h1 class="h1 title-section"><i class="bi bi-file-earmark-pdf"></i><strong> Reportes</strong></h1>
+  </div>
+  <div class="row p-2">
+    <div class="filter-box p-4">
+      <h4 class="h4 title-filter"><i class="bi bi-search"></i> Criterios de búsqueda: </h4>
+      <div class="form-content">
+        <Label class="labels">Desde:</Label>
+        <input name="fechaInicio" type="date" [(ngModel)]="inicio" [min]="minDate" [max]="fin"
+          (ngModelChange)="salida2()" />
+      </div>
+      <div class="form-content">
+        <Label class="labels">Hasta:</Label>
+        <input name="fechaFin" type="date" [(ngModel)]="fin" [min]="inicio" [max]="today" (ngModelChange)="salida2()" />
+      </div>
+      <div class="form-content">
+        <Label class="labels">Tipo:</Label>
+        <app-multiselect [opciones]="values" [ifSearch]="false" (emisor)="salida4($event)"></app-multiselect>
+      </div>
+      <div class="form-content">
+        <Label class="labels">Clasificacion:</Label>
+        <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
+      </div>
+      <div class="form-content">
+        <Label class="labels">Procedencia:</Label>
+        <input name="proc" type="text" placeholder="Todos" [(ngModel)]="proceder" (ngModelChange)="salida3()" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end p-4" style="position: relative;">
+      <div class="form-check" style="position: absolute;left: 10px;top: 40px;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
+        <label class="form-check-label labels" for="flexCheckDefault">
+            Seleccionar Todo
+        </label>
+    </div>
+      <button id="newUser" class="btn btn-firstcolor">
+        <i style=" font-size: 20px;" class="bi bi-printer"></i>
+        Imprimir reporte
+      </button>
+      <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor">
+        <i style=" font-size: 20px;" class="bi bi-trash"></i>
+        Eliminar Todo
+      </button>
+    </div>
+
+  </div>
+  <div class="row">
+    <table class="table text-center table-striped">
+      <thead>
+        <tr style="background-color: var(--firstcolor-hover);color: var(--theme-color-ligth);">
+          <th></th>
+          <th>No</th>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Clasificacion</th>
+          <th>Origen</th>
+          <th>Titulo o Asunto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <!-- <app-loading [loading]="loading" [message]="server"></app-loading> -->
+      <tbody>
+        <tr *ngFor="let item of documentos">
+          <td><input class="form-check-input" type="checkbox" [checked]="selec" (click)="d(item)"></td>
+          <td>{{item.no}}</td>
+          <td>{{item.fecha}}</td>
+          <td>{{item.tipo==1?'Enviado':'Recibido'}}</td>
+          <td>{{item.tipo_doc.tipo}}</td>
+          <td>{{item.procedencia || item.enviado}}</td>
+          <td>{{item.titulo || item.asunto}}</td>
+          <td>
+            <button class="btn btn-action-mine" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
+            <button class="btn btn-action-mine" (click)="edit(item)"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-action-mine" (click)="delete(item.id,item)"
+              *ngIf="storage.retrieve('usuario').usuario.rol=='admin'"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

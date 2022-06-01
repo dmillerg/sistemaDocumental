@@ -149,11 +149,12 @@
 }
 
 .content {
-    height: calc(100%-32px);
+    overflow: auto;
     margin-top: 32px;
     position: fixed;
     margin-left: 260px;
     width: calc(100% - 260px);
+    height: 100%;
     transition: all .3s ease;
 }
 

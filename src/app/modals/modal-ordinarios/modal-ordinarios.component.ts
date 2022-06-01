@@ -64,6 +64,7 @@ export class ModalOrdinariosComponent implements OnInit {
       })
     }
     this.rellenarSiEditas();
+    this.minDateS();
   }
 
   rellenarSiEditas() {

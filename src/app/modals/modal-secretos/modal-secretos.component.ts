@@ -75,6 +75,7 @@ export class ModalSecretosComponent implements OnInit {
       })
     }
     this.rellenarSiEditas();
+    this.minDateS();
   }
 
   rellenarSiEditas() {

@@ -1,162 +1,65 @@
-.sidebar-right {
-    position: fixed;
-    right: 5px;
-    height: 70%;
-    padding: 20px;
-    top: 80px;
-    width: 250px;
-    background: var(--firstcolor-hover);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px 2px var(--firstcolor-hover);
-    transform: translateX(280px);
-    transition: all 0.3s ease;
+.filter-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 1px solid var(--firstcolor-hover);
+  border-radius: 0.5em;
+  gap: 10px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.4);
 }
 
-.sidebar-right.active {
-    transform: translateX(0);
-    transition: all 0.3s ease;
+.form-content {
+  display: flex;
+  flex-direction: column;
 }
 
-.contenedor {
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    /* position: fixed; */
+.form-content .labels {
+  color: var(--firstcolor-hover);
+  font-weight: 800;
 }
 
-.contenedor .tablas {
-    width: 100%;
-    position: relative;
-    text-align: center;
-    margin-top: 20px;
-    box-shadow: 0 0 10px 0 var(--firstcolor-hover);
-    border-top-left-radius: 0.5em;
-    border-top-right-radius: 0.5em;
-    background-color: var(--firstcolor-hover);
-    transition: all 0.3s ease;
-    margin-top: 10px;
+.form-content input {
+  outline: none;
+  border: 1px solid var(--firstcolor-hover);
+  border-radius: 0.5em;
+  padding: 15px;
+  color: var(--firstcolor-hover);
 }
 
-.tablas thead {
-    color: var(--theme-color-ligth);
-    font-size: 15px;
-    font-weight: 500;
-    height: 50px;
-    top: 0;
-    width: 100%;
-    z-index: 999;
+.form-content input::placeholder {
+  color: var(--firstcolor-hover);
 }
 
-.tablas tr {
-    font-size: 15px;
-    font-weight: 300;
-    /* border-radius: 0.5em; */
+.tableFixHead {
+  overflow: auto;
+  /* height: 400px; */
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.4);
 }
 
-.tablas tr:hover {
-    background-color: var(--firstcolor-hover-white);
-    transition: all 0.3s ease;
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.tablas tr.active {
-    background-color: var(--firstcolor-hover-white);
+/* Just common table stuff. Really. */
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.tablas tbody{
-  margin-top: 50px;
+th,
+td {
+  padding: 8px 16px;
 }
 
-.contenedor .title-page .title-logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+th {
+  background: var(--firstcolor-hover);
 }
 
-.contenedor .title-page i {
-    font-size: 45px;
-    font-weight: 900;
-    margin-right: 10px;
+.title-filter{
+  width: 100%;
+  font-weight: 900;
+  color: var(--firstcolor-hover);
 }
-
-.contenedor .title-page h1 {
-    font-size: 45px;
-    font-weight: 300;
-}
-
-.contenedor .tablas tr td img {
-    width: 60px;
-    height: 60px;
-}
-
-
-.actions {
-    height: fit-content;
-    width: 40%;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    margin-left: 40%;
-}
-
-
-
-/*FILTRAR DOCUMENTOS*/
-
-
-.login-page {
-    width:90%;
-    padding: 0px;
-    height: auto;
-    margin: auto;
-  }
-  .form h2{
-     color: var(--firstcolor-hover);
-     font-size: 100%;
-     margin-top: -1%;
-  }
-  .form label{
-    color: var(--firstcolor-hover);
- }
-  .form {
-    position: relative;
-    z-index: 1;
-    background: #FFFFFF;
-    max-width: 90%;
-    max-height: 80%;
-    padding: 15px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  }
-  .form input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 20%;
-    border: 0;
-    margin: 0 0 2%;
-    padding: 2%;
-    box-sizing: border-box;
-    font-size: 84%;
-    color: gray;
-  }
-
-  .labels{
-    margin-top:1%;
-    margin:1%; 
-    text-overflow: ellipsis
-  }
-
-  .label1{
-    margin-top:13%;
-    margin:1%;
-    width:10%; 
-    text-overflow: ellipsis
-  }
-
-  .rowForm{
-    display:flex;
-  }
-
-  body {
-    font-family: "Roboto", sans-serif;
-  }

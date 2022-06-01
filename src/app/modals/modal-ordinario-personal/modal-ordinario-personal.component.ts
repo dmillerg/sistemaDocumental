@@ -60,6 +60,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       })
     }
     this.rellenarSiEditas();
+    this.minDateS();
   }
 
   rellenarSiEditas() {
