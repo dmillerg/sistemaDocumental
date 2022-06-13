@@ -1,59 +1,5 @@
-<!-- <div class="contenedor" id="cont">
-    <div class="title-page">
-        <div class="title-logo">
-            <i class="bi bi-person text-oscuro"></i>
-            <h1 class="title text-oscuro" style="margin-top:-15px">Usuarios</h1>
-        </div>
-        <p class="text-oscuro">Usuarios registrados en el sistema</p>
 
-        <div class="actions">
-            <div style="width: 50%;">
-                <button id="newUser" class="btn btn-firstcolor1" (click)="addUsuario()" style="height: 55px;">
-                    <i style=" font-size: 20px;" class="bi bi-person-plus"></i>
-                    Nuevo Usuario
-                </button>
-            </div>
-            <div style="width: 50%;">
-                <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor1">
-                    <i style=" font-size: 20px;" class="bi bi-trash"></i>
-                    Eliminar Todo
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
-        <label class="form-check-label" for="flexCheckDefault">
-            Seleccionar Todo
-        </label>
-    </div>
-    <div class="scrollbar3" id="style-1">
-    <table class="tablas">
-        <thead class="head">
-            <td colspan="1"></td>
-            <td colspan="2">id</td>
-            <td colspan="3">usuario</td>
-            <td colspan="4">nombre</td>
-            <td colspan="4">rol</td>
-            <td colspan="5">fecha registro</td>
-            <td colspan="6">acciones</td>
-        </thead>
-        <app-loading [loading]="loading" [message]="server"></app-loading>
-        <tr *ngFor="let item of usuarios" class="ligth" (click)="detailToggle(item)">
-            <td colspan="1"><input class="form-check-input" type="checkbox" [checked]="selec" (click)="d(item.id)"></td>
-            <td colspan="2">{{item.id}}</td>
-            <td colspan="3">{{item.usuario}}</td>
-            <td colspan="4">{{item.nombre}}</td>
-            <td colspan="4">{{item.rol}}</td>
-            <td colspan="5">{{item.fecha_registro | date: 'short'}}</td>
-            <td colspan="1"><button class="btn btn-firstcolor" (click)="editUsuario(item)"><i
-                        class="bi bi-pencil"></i></button>  &nbsp;<button (click)="deleteUsuario(item.id)"
-                    class="btn btn-firstcolor"><i class="bi bi-trash"></i></button></td>
-
-        </tr>
-    </table>
-</div></div> -->
-<div class="content-fluid p-4">
+<div class="content-fluid p-4" [@scaleAnimation]="'enter'">
     <div class="row p-1">
         <h1 class="h1 title-section"><i class="bi bi-person-fill"></i><strong> Usuarios</strong></h1>
     </div>
@@ -90,7 +36,7 @@
                     <th colspan="2">acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody [@listAnimation]="usuarios.length">
                 <tr *ngFor="let item of usuarios">
                     <td colspan="1"><input class="form-check-input" type="checkbox" [checked]="selec" (click)="d(item.id)"></td>
                     <td colspan="1">{{item.id}}</td>

@@ -52,7 +52,7 @@ export class ModalLimitadosComponent implements OnInit {
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  constructor( private api: ApiService, private lib: ToastrService, private router: Router) {
+  constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -90,7 +90,7 @@ export class ModalLimitadosComponent implements OnInit {
     console.log(this.limitados_pasado.no, this.limitados.no, this.limitados_pasado.no == this.limitados.no)
     if (this.limitados_pasado.no == this.limitados.no) {
       this.actionUpdateOrRegister();
-    } else{
+    } else {
       this.api.getLimitados().subscribe((result) => {
         if (result.filter((n) => n.no == this.limitados.no).length <= 0) {
           this.actionUpdateOrRegister();
@@ -146,7 +146,7 @@ export class ModalLimitadosComponent implements OnInit {
     }
   }
 
-  
+
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))
@@ -157,29 +157,34 @@ export class ModalLimitadosComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       console.log(reader.result);
-      
+
       this.src_documento = reader.result as string;
     }
     console.log(this.src_documento);
-    
+
     reader.readAsDataURL(file);
     this.exito = "Subido con exito";
   }
 
-  validarCamposVacios(){
-    return this.limitados.procedencia.length>0&&this.limitados.titulo.length>0&&this.limitados.movimiento1.length>0&&this.limitados.movimiento2.length>0&&
-    this.limitados.destruccion.length>0&&this.limitados.expediente.length>0&&this.limitados.observacion.length>0
-    &&this.limitados.fecha.toString()!=''&&this.exito=="Subido con exito"
+  validarCamposVacios() {
+    if (this.modalAction == 'Editar') {
+      return this.limitados.procedencia.length > 0 && this.limitados.titulo.length > 0 && this.limitados.movimiento1.length > 0 && this.limitados.movimiento2.length > 0 &&
+        this.limitados.destruccion.length > 0 && this.limitados.expediente.length > 0 && this.limitados.observacion.length > 0
+        && this.limitados.fecha.toString() != ''
+    }else
+    return this.limitados.procedencia.length > 0 && this.limitados.titulo.length > 0 && this.limitados.movimiento1.length > 0 && this.limitados.movimiento2.length > 0 &&
+      this.limitados.destruccion.length > 0 && this.limitados.expediente.length > 0 && this.limitados.observacion.length > 0
+      && this.limitados.fecha.toString() != '' && this.exito == "Subido con exito"
   }
 
-  loadScanner(){
-    this.api.Scan().subscribe((result)=>{
+  loadScanner() {
+    this.api.Scan().subscribe((result) => {
       console.log(result);
-      
+
     })
   }
 
-  minDateS(){
+  minDateS() {
     let d = new Date();
     let day: string = '';
     let month: string = '';

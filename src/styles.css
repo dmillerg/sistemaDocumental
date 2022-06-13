@@ -66,6 +66,10 @@
     overflow: hidden;
 }
 
+.text-firstcolor{
+    color: var(--firstcolor-hover);
+}
+
 .btn-firstcolor:hover {
     background-color: var(--firstcolor);
     color: var(--theme-color-ligth);

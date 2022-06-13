@@ -14,11 +14,38 @@ import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 import { SessionStorageService } from 'ngx-webstorage';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
+
+const listAnimation = trigger('listAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ transform: 'translateX(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateX(0%)', opacity: 1 })))],
+      { optional: true }
+    ),
+    query(':leave',
+      animate('200ms', style({ opacity: 0 })),
+      { optional: true }
+    )
+  ])
+]);
+
+const scaleAnimation = trigger('scaleAnimation', [
+  transition(':enter', [
+    style({ transform: 'translateX(50%)', opacity: 0 }),
+    animate('500ms', style({ transform: 'translateX(0%)', opacity: 1 })),
+  ]),
+  transition(':leave', [
+    style({ transform: 'scale(1)', opacity: 1 }),
+    animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+  ]),
+]);
+
 
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',
-  styleUrls: ['./documentos.component.css']
+  styleUrls: ['./documentos.component.css'],
+  animations: [listAnimation, scaleAnimation]
 })
 export class DocumentosComponent implements OnInit {
 
@@ -71,11 +98,11 @@ export class DocumentosComponent implements OnInit {
     });
   }
 
-  openPdf(e: any){
+  openPdf(e: any) {
     console.log('asda');
-    
+
     this.api.openPdf(e.id, environment.dir_foto + e.tipo_doc.carpeta, e.tipo_doc.tipo).subscribe((result) => {
-      console.log('sasda',result);
+      console.log('sasda', result);
     }, (error) => {
       console.log(error);
       // e.image = error.url
@@ -94,56 +121,56 @@ export class DocumentosComponent implements OnInit {
   }
 
   editReport(item: any) {
-    if (item.tipo_doc.tipo=="documento_clasificado") {
+    if (item.tipo_doc.tipo == "documento_clasificado") {
 
-    let modal = this.modalService.open(ModalClasificadosComponent);
-    modal.componentInstance.modalHeader = "Clasificados";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-   else if (item.tipo_doc.tipo=="documento_limitado") {
+      let modal = this.modalService.open(ModalClasificadosComponent);
+      modal.componentInstance.modalHeader = "Clasificados";
+      modal.componentInstance.modalAction = "Editar";
+      modal.componentInstance.clasificados = item;
+      modal.result.then((e) => {
+        this.loadListado();
+      })
+    }
+    else if (item.tipo_doc.tipo == "documento_limitado") {
 
-    let modal = this.modalService.open(ModalLimitadosComponent);
-    modal.componentInstance.modalHeader = "Limitados";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_ordinario") {
+      let modal = this.modalService.open(ModalLimitadosComponent);
+      modal.componentInstance.modalHeader = "Limitados";
+      modal.componentInstance.modalAction = "Editar";
+      modal.componentInstance.clasificados = item;
+      modal.result.then((e) => {
+        this.loadListado();
+      })
+    }
+    else if (item.tipo_doc.tipo == "documento_ordinario") {
 
-    let modal = this.modalService.open(ModalOrdinariosComponent);
-    modal.componentInstance.modalHeader = "Ordinarios";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_ordinario_personal") {
+      let modal = this.modalService.open(ModalOrdinariosComponent);
+      modal.componentInstance.modalHeader = "Ordinarios";
+      modal.componentInstance.modalAction = "Editar";
+      modal.componentInstance.clasificados = item;
+      modal.result.then((e) => {
+        this.loadListado();
+      })
+    }
+    else if (item.tipo_doc.tipo == "documento_ordinario_personal") {
 
-    let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
-    modal.componentInstance.modalHeader = "Ordinario_personal";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
-  else if (item.tipo_doc.tipo=="documento_secreto") {
+      let modal = this.modalService.open(ModalOrdinarioPersonalComponent);
+      modal.componentInstance.modalHeader = "Ordinario_personal";
+      modal.componentInstance.modalAction = "Editar";
+      modal.componentInstance.clasificados = item;
+      modal.result.then((e) => {
+        this.loadListado();
+      })
+    }
+    else if (item.tipo_doc.tipo == "documento_secreto") {
 
-    let modal = this.modalService.open(ModalSecretosComponent);
-    modal.componentInstance.modalHeader = "Secretos";
-    modal.componentInstance.modalAction = "Editar";
-    modal.componentInstance.clasificados = item;
-    modal.result.then((e) => {
-      this.loadListado();
-    })
-  }
+      let modal = this.modalService.open(ModalSecretosComponent);
+      modal.componentInstance.modalHeader = "Secretos";
+      modal.componentInstance.modalAction = "Editar";
+      modal.componentInstance.clasificados = item;
+      modal.result.then((e) => {
+        this.loadListado();
+      })
+    }
   }
 
   deleteReportes(item: any) {
@@ -170,7 +197,7 @@ export class DocumentosComponent implements OnInit {
     if (this.seleccionados.length > 0) {
       for (let item of this.seleccionados) {
         console.log(item);
-        
+
         this.deleteReportes(item);
         this.lib.success('Eliminados con exito!', 'Eliminar');
       }
@@ -210,7 +237,7 @@ export class DocumentosComponent implements OnInit {
             this.getDocumentFoto(e);
             this.documentos.push(e);
             console.log(new Date(Date.parse(e.fecha)));
-            
+
           });
           this.loading = false
         }, (error) => {

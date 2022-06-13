@@ -167,10 +167,16 @@ export class ModalOrdinariosComponent implements OnInit {
   }
 
   validarCamposVacios() {
-    return this.ordinarios.enviado.length > 0 && this.ordinarios.rs.length > 0 && this.ordinarios.rsb.length > 0 &&
-      this.ordinarios.destino.length > 0 && this.ordinarios.asunto.length > 0 && this.ordinarios.traslado.length > 0
-      && this.ordinarios.fecha.toString() != '' && this.ordinarios.fecha_traslado.toString() != ''
-      && this.ordinarios.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
+    if (this.modalAction == 'Editar') {
+      return this.ordinarios.enviado.length > 0 && this.ordinarios.rs.length > 0 && this.ordinarios.rsb.length > 0 &&
+        this.ordinarios.destino.length > 0 && this.ordinarios.asunto.length > 0 && this.ordinarios.traslado.length > 0
+        && this.ordinarios.fecha.toString() != '' && this.ordinarios.fecha_traslado.toString() != ''
+        && this.ordinarios.fecha_registro_ctc.toString() != ''
+    } else
+      return this.ordinarios.enviado.length > 0 && this.ordinarios.rs.length > 0 && this.ordinarios.rsb.length > 0 &&
+        this.ordinarios.destino.length > 0 && this.ordinarios.asunto.length > 0 && this.ordinarios.traslado.length > 0
+        && this.ordinarios.fecha.toString() != '' && this.ordinarios.fecha_traslado.toString() != ''
+        && this.ordinarios.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
   }
 
 

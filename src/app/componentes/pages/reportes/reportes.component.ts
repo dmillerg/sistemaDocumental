@@ -13,11 +13,37 @@ import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-
 import { ModalSecretosComponent } from 'src/app/modals/modal-secretos/modal-secretos.component';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 
+
+const listAnimation = trigger('listAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ transform: 'translateX(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateX(0%)', opacity: 1 })))],
+      { optional: true }
+    ),
+    query(':leave',
+      animate('200ms', style({ opacity: 0 })),
+      { optional: true }
+    )
+  ])
+]);
+
+const scaleAnimation = trigger('scaleAnimation', [
+  transition(':enter', [
+    style({ transform: 'translateX(50%)', opacity: 0 }),
+    animate('500ms', style({ transform: 'translateX(0%)', opacity: 1 })),
+  ]),
+  transition(':leave', [
+    style({ transform: 'scale(1)', opacity: 1 }),
+    animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+  ]),
+]);
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
-  styleUrls: ['./reportes.component.css']
+  styleUrls: ['./reportes.component.css'],
+  animations: [listAnimation, scaleAnimation]
 })
 export class ReportesComponent implements OnInit, OnDestroy {
 
@@ -282,5 +308,21 @@ export class ReportesComponent implements OnInit, OnDestroy {
     console.table(this.seleccionados);
   }
 
+  createReporte() {
+    let formData = new FormData();
 
+    formData.append('reportes', this.documentos.toString());
+    this.api.createReporte(this.documentos).subscribe(result => {
+      console.log(result);
+      let filename = result.headers.get('content-disposition')?.split(';')[1].split('=')[1];
+      let blob: Blob = result.body as Blob;
+      let a = document.createElement('a');
+      let date = new Date();
+      let fecha = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()).toString() +'/' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()).toString() +'/'+ date.getFullYear().toString();
+      a.download = 'reportes-' + fecha + '.xlsx';
+      a.href = window.URL.createObjectURL(blob)
+      a.target = "_blank"
+      a.click();
+    })
+  }
 }

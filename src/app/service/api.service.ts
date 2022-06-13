@@ -421,4 +421,15 @@ export class ApiService {
     };
     return this.http.delete(direccion, { headers: headers, params: params });
   }
+
+  /**
+   * Genera un excel con el reporte 
+   * @param formData reportes
+   * @returns 
+   */
+  createReporte(documentos: any[]){
+    let direccion = this.url + 'reporte';
+    // formData.append('token', this.storage.retrieve('token'));
+    return this.http.post(direccion, {reportes: documentos}, { observe: 'response', responseType: 'blob' });
+  }
 }

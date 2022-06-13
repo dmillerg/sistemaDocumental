@@ -104,3 +104,7 @@
 .input-search::placeholder{
     color: white;
 }
+
+.input-seleccion::placeholder{
+    color: var(--firstcolor-hover);
+}

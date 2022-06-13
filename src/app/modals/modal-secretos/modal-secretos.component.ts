@@ -62,7 +62,7 @@ export class ModalSecretosComponent implements OnInit {
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  constructor( private api: ApiService, private lib: ToastrService, private router: Router) {
+  constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -185,9 +185,14 @@ export class ModalSecretosComponent implements OnInit {
 
 
   validarCamposVacios() {
-    return this.secretos.lugar.length > 0 && this.secretos.reg_no.length > 0 && this.secretos.titulo.length > 0 &&
-      this.secretos.categoria.length > 0 && this.secretos.destino.length > 0 && this.secretos.destruccion.length > 0 && this.secretos.comp.length > 0
-      && this.exito == "Subido con exito" && this.secretos.fecha.length > 0
+    if (this.modalAction == 'Editar') {
+      return this.secretos.lugar.length > 0 && this.secretos.reg_no.length > 0 && this.secretos.titulo.length > 0 &&
+        this.secretos.categoria.length > 0 && this.secretos.destino.length > 0 && this.secretos.destruccion.length > 0 && this.secretos.comp.length > 0
+        && this.secretos.fecha.length > 0
+    } else
+      return this.secretos.lugar.length > 0 && this.secretos.reg_no.length > 0 && this.secretos.titulo.length > 0 &&
+        this.secretos.categoria.length > 0 && this.secretos.destino.length > 0 && this.secretos.destruccion.length > 0 && this.secretos.comp.length > 0
+        && this.exito == "Subido con exito" && this.secretos.fecha.length > 0
   }
 
 
@@ -198,7 +203,7 @@ export class ModalSecretosComponent implements OnInit {
     })
   }
 
-  minDateS(){
+  minDateS() {
     let d = new Date();
     let day: string = '';
     let month: string = '';

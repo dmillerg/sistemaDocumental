@@ -16,37 +16,37 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
   // actiModal: NgbActiveModal;
   modalHeader: string = '';
   @Input() modalAction: string = '';
-  errorN: string="";
+  errorN: string = "";
   exito: string = "";
 
   @Input() ordinario_personal: Ordinario_personal = {
-      id: -1,
-      no: -1,
-      fecha: '',
-      procedencia: '',
-      asunto: '',
-      destino: '',
-      archivo: '',
-      imagen: '',
-      tipo: '',
+    id: -1,
+    no: -1,
+    fecha: '',
+    procedencia: '',
+    asunto: '',
+    destino: '',
+    archivo: '',
+    imagen: '',
+    tipo: '',
   }
   @Input() ordinarios_pasado: Ordinario_personal = {
     id: -1,
-      no: -1,
-      fecha: '',
-      procedencia: '',
-      asunto: '',
-      destino: '',
-      archivo: '',
-      imagen: '',
-      tipo: '',
+    no: -1,
+    fecha: '',
+    procedencia: '',
+    asunto: '',
+    destino: '',
+    archivo: '',
+    imagen: '',
+    tipo: '',
   }
   minDate: string = '';
 
   src_documento: string = '';
   uploadFiles: Array<File> = [];
 
-  
+
   constructor(private api: ApiService, private lib: ToastrService, private router: Router) {
   }
 
@@ -83,7 +83,7 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     console.log(this.ordinarios_pasado.no, this.ordinario_personal.no, this.ordinarios_pasado.no == this.ordinario_personal.no)
     if (this.ordinarios_pasado.no == this.ordinario_personal.no) {
       this.actionUpdateOrRegister();
-    } else{
+    } else {
       this.api.getLimitados().subscribe((result) => {
         if (result.filter((n) => n.no == this.ordinario_personal.no).length <= 0) {
           this.actionUpdateOrRegister();
@@ -119,25 +119,25 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
       this.api.updateOrdinariosP(formData, this.ordinario_personal.id).subscribe((result) => {
         this.router.navigate(['reportes']);
         console.log(result);
-        this.lib.success('Editado con exito!','Editar');
+        this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
         console.log(error);
-        this.lib.error('No se pudo editar','Error');
+        this.lib.error('No se pudo editar', 'Error');
 
       });
     } else {
-      
+
       this.api.addOrdinariosP(formData).subscribe((result) => {
         this.router.navigate(['inicio']);
         console.log(result);
-        this.lib.success('Agregado con exito!','Agregar');
+        this.lib.success('Agregado con exito!', 'Agregar');
       }, (error) => {
         console.log(error);
-        this.lib.error('No se pudo agregar','Error');
+        this.lib.error('No se pudo agregar', 'Error');
       })
-      
+
     }
-}
+  }
 
   fileEvent(fileInput: any) {
     // console.log(typeof('s'))
@@ -152,21 +152,26 @@ export class ModalOrdinarioPersonalComponent implements OnInit {
     this.exito = "Subido con exito";
   }
 
-  validarCamposVacios(){
-    return this.ordinario_personal.procedencia.length>0&&this.ordinario_personal.asunto.length>0&&this.ordinario_personal.archivo.length>0&&
-    this.ordinario_personal.destino.length>0
-    &&this.ordinario_personal.fecha.toString()!=''&&this.exito=="Subido con exito"
+  validarCamposVacios() {
+    if (this.modalAction == 'Editar') {
+      return this.ordinario_personal.procedencia.length > 0 && this.ordinario_personal.asunto.length > 0 && this.ordinario_personal.archivo.length > 0 &&
+        this.ordinario_personal.destino.length > 0
+        && this.ordinario_personal.fecha.toString() != ''
+    } else
+      return this.ordinario_personal.procedencia.length > 0 && this.ordinario_personal.asunto.length > 0 && this.ordinario_personal.archivo.length > 0 &&
+        this.ordinario_personal.destino.length > 0
+        && this.ordinario_personal.fecha.toString() != '' && this.exito == "Subido con exito"
   }
 
 
-  loadScanner(){
-    this.api.Scan().subscribe((result)=>{
+  loadScanner() {
+    this.api.Scan().subscribe((result) => {
       console.log(result);
-      
+
     })
   }
 
-  minDateS(){
+  minDateS() {
     let d = new Date();
     let day: string = '';
     let month: string = '';
