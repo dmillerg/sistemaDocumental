@@ -141,12 +141,17 @@ export class ReportesComponent implements OnInit, OnDestroy {
             this.getDocumentFoto(e);
             this.documentos.push(e);
           });
+          console.log('k ',k,'tipos ',this.tipos.length,' mindate ',this.minDate.length);
+          
           if (this.minDate.length == 0 && k == this.tipos.length - 1) {
             this.recogerMinDate(this.documentos);
           }
           this.loading = false
         }, (error) => {
-          // console.log('ERROR', error);
+          if(this.minDate.length == 0 && this.documentos.length>0){
+            this.recogerMinDate(this.documentos);
+          }
+          console.log('ERROR', error);
           this.server = 'Error comunicandose con el servidor por favor intentelo más tarde';
         });
       });
@@ -159,7 +164,7 @@ export class ReportesComponent implements OnInit, OnDestroy {
     let d = new Date();
     result.forEach((e) => {
       let dd = new Date(Date.parse(e.fecha));
-      console.log(dd);
+      console.log('fecha'+dd);
       if (d > dd) {
         d = dd;
       }
