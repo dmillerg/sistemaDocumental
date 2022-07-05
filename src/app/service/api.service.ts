@@ -15,7 +15,7 @@ import { Ordinario_personal } from '../models/ordinario.personal.model';
 })
 export class ApiService {
 
-  url: string = 'http://localhost:9706/apis/';
+  url: string = 'http://172.40.3.14:9706/apis/';
 
   constructor(
     private http: HttpClient,
