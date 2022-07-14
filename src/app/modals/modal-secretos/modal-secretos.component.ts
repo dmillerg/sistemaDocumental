@@ -66,12 +66,16 @@ export class ModalSecretosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('secretos', this.modalAction);
+    
     if (this.modalAction != 'Editar') {
       if (this.secretos == undefined) this.secretos = this.secretos_pasado;
       this.api.getLastNumberDocument('documento_secreto').subscribe((result) => {
-        this.secretos.no = parseInt(result) + 1;
+        console.log('secretos dio error', result);
+        
+        this.secretos.no = result.length +1;
       }, (error) => {
-        console.log(error)
+        console.log('secretos dio error',error)
       })
     }
     this.rellenarSiEditas();

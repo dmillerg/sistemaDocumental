@@ -20,7 +20,7 @@
     justify-content: center;
     flex-wrap: wrap;
     position: fixed;
-    height: 60%;
+    height: 54%;
     overflow-y: auto;
 }
 
@@ -31,8 +31,7 @@
 }
 
 .container .tips-container .card{
-    height: 250px;
-    -webKit-app-region: drag;
+ width: 120px;
 }
 
 .card-title{

@@ -1,28 +1,31 @@
-<div class="container"  [@scaleAnimation]="'enter'">
+<div class="container" [@scaleAnimation]="'enter'">
   <div class="perfil-container">
 
   </div>
-  <div class="actions seccion" *ngIf="storage.retrieve('usuario')">
-    <h5 class="h5 title-section" style="text-align: center;">Acciones</h5>
-    <div class="action-buttons">
-      <button class="btn btn-firstcolor1" style="width: 20%;height: 15%; margin-left: 21%;" (click)="newDocument()">Nuevo
+  <div class="row p-4" *ngIf="storage.retrieve('usuario')">
+    <div class="col-lg-12 d-flex flex-column justify-content-start align-items-center text-center">
+      <h1 class="title-section"><strong>Acciones</strong></h1>
+      <button class="btn-firstcolor w-50 my-1" (click)="newDocument()">Nuevo
         Documento</button>
-      <button class="btn btn-firstcolor1" style="width: 20%;height: 15%; margin-left: 20%;"
-        (click)="changePage()">Editar Documento</button>
+      <button class="btn-firstcolor w-50 my-1" (click)="changePage()">Editar
+        Documento</button>
     </div>
-  </div>
-  <br /> <br />
-  <h5 for="" class="title-section" style="text-align: center;">Instrucciones de uso</h5>
-  <div class="tips-container " [@listAnimation]="tips.length">
-    <!-- <div class="scrollbar5" id="style-1" > -->
-    <div class="card" *ngFor="let item of tips" style="width: 18rem;margin: 10px;">
-      <button class="btn tree-points"><i class="bi bi-three-dots-vertical"></i></button>
-      <div class="card-body" style=" box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);">
-        <h5 class="card-title">{{item.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.subtitle}}</h6>
-        <p class="card-text">{{item.description}}.</p>
-        <!-- </div> -->
+    <div class="col-lg-12 d-lg-flex flex-column">
+      <h1 for="" class="title-section" style="text-align: center;"><strong>Instrucciones de uso</strong></h1>
+      <div class="d-flex flex-row flex-wrap w-100 justify-content-center mt-2" [@listAnimation]="tips.length">
+        <!-- <div class="scrollbar5" id="style-1" > -->
+        <div class="border m-2" style="width: 350px;" *ngFor="let item of tips" >
+          <!-- <button class="btn tree-points"><i class="bi bi-three-dots-vertical"></i></button> -->
+          <div class="p-4">
+            <h5 class="title-section">{{item.title}}</h5>
+            <h6 class="mb-2 text-muted">{{item.subtitle}}</h6>
+            <p class="text-muted">{{item.description}}.</p>
+            <!-- </div> -->
+          </div>
+        </div>
       </div>
     </div>
+    
   </div>
+
 </div>

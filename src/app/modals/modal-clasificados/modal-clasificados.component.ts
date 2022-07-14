@@ -89,9 +89,7 @@ export class ModalClasificadosComponent implements OnInit {
     if (this.modalAction != 'Editar') {
       if (this.clasificados == undefined) this.clasificados = this.clasificados_pasado;
       this.api.getLastNumberDocument('documento_clasificado').subscribe((result) => {
-        this.clasificados.no = parseInt(result) + 1;
-        console.log(result);
-
+        this.clasificados.no = result.length+1;
       }, (error) => {
         console.log(error)
       })

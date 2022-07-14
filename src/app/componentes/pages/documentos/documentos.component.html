@@ -1,13 +1,15 @@
 <!--  -->
-<div class="container-fluid" [@scaleAnimation]="'enter'">
+<div class="container" [@scaleAnimation]="'enter'">
     <div class="row">
         <div class="col-sm-6">
             <app-modal-document></app-modal-document>
         </div>
-        <div class="col-sm-6">
-            <!-- <h3 class="h3 text-center">Vista Previa</h3>
-            <pdf-viewer src="assets/pdfs/Bootstrap-vs-Material-Design-vs-Prime-vs-Tailwind.pdf" [render-text]="true"
-                [original-size]="false" style="width: 100%; height: 500px"></pdf-viewer> -->
+        <div class="col-sm-6 d-none d-lg-flex flex-column justify-content-center align-items-center p-4 border shadow-md rounded">
+            <img src="assets/img/add-or-edit.png" alt="" class="img-fluid">
+            <h1 class="h1 title-section">Información</h1>
+            <p class="text">
+                Cuando necesite ingresar un documento por favor asegurese de rellenar todos y cada uno de los campos con la informacion adecuada, en caso de errores puede ser editado mas adelante. Revise bien las fechas introducidas para que coincidan con el dia de entrega de este documento. 
+            </p>
         </div>
     </div>
 </div>
