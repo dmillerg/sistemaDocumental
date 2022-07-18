@@ -25,6 +25,7 @@ export class ModalUsuarioComponent implements OnInit {
     fecha_ultima_sesion: '',
     rol: ''
   }
+  disabled: boolean = false;
 
   password2: string = '';
 

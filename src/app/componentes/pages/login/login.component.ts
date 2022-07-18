@@ -82,6 +82,11 @@ export class LoginComponent implements OnInit {
 
   adminCreate() {
     let modal = this.modalService.open(ModalUsuarioComponent);
-    modal.componentInstance.modalAction='Agregar'
+    modal.componentInstance.modalAction='Agregar';
+    modal.componentInstance.disabled = true;
+    modal.componentInstance.usuario.rol = 'admin';
+    modal.result.then((result)=>{
+      this.comprobarUsuario();
+    })
   }
 }
