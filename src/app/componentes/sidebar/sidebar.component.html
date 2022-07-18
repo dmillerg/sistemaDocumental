@@ -21,10 +21,13 @@
             <span *ngIf="item.permiso">{{item.nombre}}</span>
             <div *ngIf="item.permiso" class="tooltips">{{item.nombre}}</div>
         </li>
+        <li (click)="logout()" *ngIf="storage.retrieve('usuario')">
+            <i class="bi bi-box-arrow-left" style="color: white;"></i>
+            <span >Cerrar Sesión</span>
+        </li>
     </ul>
-    <div class="sidebar-footer" id="foot" (click)="logout()" *ngIf="storage.retrieve('usuario')">
-        <i class="bi bi-box-arrow-left" style="color: white;"></i>
-        <span id="spn" style="white-space: nowrap;text-overflow: ellipsis;">Cerrar sesion</span>
-        <!-- <div class="tooltips">Cerrar Sesión</div> -->
+    <div class="sidebar-footer p-2 text-center" id="foot" >
+       <p class="text-muted">Todos los derechos reservados por la CTC Nacional © 2022</p>
+       <p class="text-muted" style="margin-top: -20px;">elizabeth, kuroko</p>
     </div>
 </div>
