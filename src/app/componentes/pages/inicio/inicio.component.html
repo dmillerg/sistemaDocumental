@@ -1,4 +1,4 @@
-<div class="container" [@scaleAnimation]="'enter'">
+<!-- <div class="container" [@scaleAnimation]="'enter'">
   <div class="perfil-container">
 
   </div>
@@ -13,14 +13,11 @@
     <div class="col-lg-12 d-lg-flex flex-column">
       <h1 for="" class="title-section" style="text-align: center;"><strong>Instrucciones de uso</strong></h1>
       <div class="d-flex flex-row flex-wrap w-100 justify-content-center mt-2" [@listAnimation]="tips.length">
-        <!-- <div class="scrollbar5" id="style-1" > -->
         <div class="border m-2" style="width: 350px;" *ngFor="let item of tips" >
-          <!-- <button class="btn tree-points"><i class="bi bi-three-dots-vertical"></i></button> -->
           <div class="p-4">
             <h5 class="title-section">{{item.title}}</h5>
             <h6 class="mb-2 text-muted">{{item.subtitle}}</h6>
             <p class="text-muted">{{item.description}}.</p>
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -28,4 +25,28 @@
     
   </div>
 
+</div> -->
+
+<div class="container">
+<div class="row">
+  <div class="col-lg-12 d-flex flex-column justify-content-start align-items-center text-center">
+    <h1 class="title-section"><strong>Acciones</strong></h1>
+    <button class="btn-firstcolor w-50 my-1" (click)="newDocument()">Nuevo
+      Documento</button>
+    <button class="btn-firstcolor w-50 my-1" (click)="changePage()">Editar
+      Documento</button>
+  </div>
+</div>
+  <div class="row" >
+    <div class="col-lg-12">
+      <h1 for="" class="title-section" style="text-align: center;"><strong>Instrucciones de uso</strong></h1>
+    </div>
+    <div class="border m-2" style="width: 350px;max-height: 350px;overflow: auto;" *ngFor="let item of tips" >
+      <div class="p-4">
+        <h5 class="title-section">{{item.title}}</h5>
+        <h6 class="mb-2 text-muted">{{item.subtitle}}</h6>
+        <p class="text-muted">{{item.description}}.</p>
+      </div>
+    </div>
+  </div>
 </div>

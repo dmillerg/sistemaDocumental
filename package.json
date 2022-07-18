@@ -28,6 +28,7 @@
     "bootstrap-icons": "^1.7.2",
     "dwt": "^14.0.3",
     "jquery": "^3.6.0",
+    "moment": "^2.29.4",
     "ng2-pdf-viewer": "^8.0.1",
     "ng2-pdfjs-viewer": "^13.2.2",
     "ngx-bootstrap-multiselect": "^2.1.1",

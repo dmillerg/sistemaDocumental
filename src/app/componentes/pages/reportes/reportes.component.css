@@ -23,7 +23,9 @@
   outline: none;
   border: 1px solid var(--firstcolor-hover);
   border-radius: 0.5em;
-  padding: 15px;
+  padding: 10px;
+  margin: 2px;
+  font-size: small;
   color: var(--firstcolor-hover);
 }
 
