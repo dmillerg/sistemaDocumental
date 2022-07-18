@@ -54,7 +54,7 @@
             <div class="input-content">
                 <label for="limitados">Fecha</label>
                 <i class="bi bi-calendar-date prefix"></i>
-                <input type="date" class="in" [max]="minDate" name="fecha" id="fecha" [(ngModel)]="limitados.fecha">
+                <input type="date" class="in" [max]="minDate" name="fecha" id="fecha" [(ngModel)]="limitados.fecha" onkeydown="return false">
             </div>
 
             <div class="input-content">

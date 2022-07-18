@@ -35,7 +35,7 @@
                 <label for="clasificados">Fecha</label>
                 <i class="bi bi-calendar-date prefix"></i>
                 <input type="date" class="in" name="fecha" [max]="minDate" id="fecha" [(ngModel)]="clasificados.fecha"
-                    (ngModelChange)="change()">
+                    (ngModelChange)="change()" onkeydown="return false">
             </div>
 
 
@@ -63,7 +63,7 @@
                 <label for="clasificados">Fecha registro ctc</label>
                 <i class="bi bi-calendar-date prefix"></i>
                 <input type="date" class="in" [min]="clasificados.fecha" name="fechaRegistroCtc" id="fechaRegistroCtc"
-                    [(ngModel)]="clasificados.fecha_registro_ctc">
+                    [(ngModel)]="clasificados.fecha_registro_ctc" onkeydown="return false">
             </div>
 
 
@@ -114,7 +114,7 @@
                 <label for="clasificados">Fecha traslado</label>
                 <i class="bi bi-calendar-date prefix"></i>
                 <input type="date" class="in" [min]="clasificados.fecha_registro_ctc" name="fechaTraslado"
-                    id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado">
+                    id="fechaTraslado" placeholder="fechaTraslado" [(ngModel)]="clasificados.fecha_traslado" onkeydown="return false">
             </div>
 
 
