@@ -59,7 +59,7 @@ export class ModalLimitadosComponent implements OnInit {
     if (this.modalAction != 'Editar') {
       if (this.limitados == undefined) this.limitados = this.limitados_pasado;
       this.api.getLastNumberDocument('documento_limitado').subscribe((result) => {
-        this.limitados.no = parseInt(result) + 1;
+        this.limitados.no = result.length +1;
       }, (error) => {
         console.log(error)
       })

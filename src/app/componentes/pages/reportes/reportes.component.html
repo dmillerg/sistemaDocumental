@@ -3,26 +3,26 @@
     <h1 class="h1 title-section"><i class="bi bi-file-earmark-pdf-fill"></i><strong> Reportes</strong></h1>
   </div>
   <div class="row p-2">
-    <div class="filter-box p-4">
+    <div class="d-flex flex-wrap shadow-sm border p-2 small-font-size">
       <h4 class="h4 title-filter"><i class="bi bi-search"></i> Criterios de búsqueda: </h4>
-      <div class="form-content">
+      <div class="form-content mx-1">
         <Label class="labels">Desde:</Label>
         <input name="fechaInicio" type="date" [(ngModel)]="inicio" [min]="minDate" [max]="fin"
           (ngModelChange)="salida2()" />
       </div>
-      <div class="form-content">
+      <div class="form-content mx-1">
         <Label class="labels">Hasta:</Label>
         <input name="fechaFin" type="date" [(ngModel)]="fin" [min]="inicio" [max]="today" (ngModelChange)="salida2()" />
       </div>
-      <div class="form-content">
+      <div class="form-content mx-1">
         <Label class="labels">Tipo:</Label>
         <app-multiselect [opciones]="values" [ifSearch]="false" (emisor)="salida4($event)"></app-multiselect>
       </div>
-      <div class="form-content">
+      <div class="form-content mx-1">
         <Label class="labels">Clasificacion:</Label>
         <app-multiselect [opciones]="opciones" (emisor)="salida($event)"></app-multiselect>
       </div>
-      <div class="form-content">
+      <div class="form-content mx-1">
         <Label class="labels">Procedencia:</Label>
         <input name="proc" type="text" placeholder="Todos" [(ngModel)]="proceder" (ngModelChange)="salida3()" />
       </div>
@@ -32,15 +32,15 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end p-4" style="position: relative;">
       <div class="form-check" style="position: absolute;left: 10px;top: 40px;">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="selecc()">
-        <label class="form-check-label text-firstcolor labels" for="flexCheckDefault">
+        <label class="form-check-label  labels" style="color: var(--firstcolor-hover);" for="flexCheckDefault">
           Seleccionar Todo
         </label>
       </div>
-      <button id="newUser" class="btn btn-firstcolor" (click)="createReporte()" [disabled]="documentos.length==0">
+      <button id="newUser" class="btn-firstcolor" (click)="createReporte()" [disabled]="documentos.length==0">
         <i style=" font-size: 20px;" class="bi bi-printer"></i>
         Generar reporte
       </button>
-      <button (click)="deleteAll()" id="deleteAll" class="btn btn-firstcolor">
+      <button (click)="deleteAll()" id="deleteAll" class="btn-firstcolor" [disabled]="storage.retrieve('usuario') && storage.retrieve('usuario').usuario.rol!='admin'">
         <i style=" font-size: 20px;" class="bi bi-trash"></i>
         Eliminar Todo
       </button>
@@ -73,8 +73,8 @@
           <td>{{item.fecha}}</td>
           <td>{{item.tipo==1?'Enviado':'Recibido'}}</td>
           <td>{{item.tipo_doc.name}}</td>
-          <td>{{item.procedencia || item.enviado}}</td>
-          <td>{{item.titulo || item.asunto}}</td>
+          <td><p class="text-resumen">{{item.procedencia || item.enviado}}</p></td>
+          <td><p class="text-resumen">{{item.titulo || item.asunto}}</p></td>
           <td>
             <button class="btn btn-action-mine" (click)="openPdf(item)"><i class="bi bi-file-earmark-pdf"></i></button>
             <button class="btn btn-action-mine" (click)="edit(item)"><i class="bi bi-pencil"></i></button>

@@ -25,10 +25,27 @@
     border-radius: 0.5em;
     text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
     filter: drop-shadow(0 0 2px var(--firstcolor-hover-white));
-    box-shadow: 0 5px 5px 0 var(--firstcolor-hover);
+    /* box-shadow: 0 5px 5px 0 var(--firstcolor-hover); */
     border: none;
     color: var(--theme-color-ligth);
     transition: all .3s;
+}
+
+.btn-firstcolor:disabled{
+    background-color: var(--firstcolor-hover-white);
+    cursor: not-allowed;
+    transition: all .3s ease-in-out;
+}
+
+.btn-firstcolor:hover:disabled{
+    background-color: var(--firstcolor-hover-white);
+    cursor: not-allowed;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 0 0 0 var(--firstcolor-hover);
+}
+
+.text{
+    color: #585858;
 }
 
 .btn-action-mine{
@@ -149,17 +166,14 @@
 /*Scroll dentro del Form*/
 
 .scrollbar {
-    margin-left: 22px;
     float: left;
     height: 300px;
     width: 420px;
-    background: #F5F5F5;
     overflow-y: scroll;
     margin-bottom: 25px;
 }
 
 .scrollbar1 {
-    margin-left: 22px;
     float: left;
 
     overflow-y: scroll;
@@ -304,4 +318,19 @@ input:read-only {
     border: 1px solid red;
     background-color: red;
     color: red;
+}
+
+.text-resumen{
+    font-size: small;
+    /* max-height: 200px; */
+    word-wrap: break-word;
+    /* overflow: hidden; */
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    height: 3.9em; /* Fallback for non-webkit, line-height * 2 */
+    line-height: 1.3em;
+    -webkit-line-clamp: 3; /* if you change this, make sure to change the fallback line-height and height */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

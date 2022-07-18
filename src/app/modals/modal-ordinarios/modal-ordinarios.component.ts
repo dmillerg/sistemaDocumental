@@ -58,7 +58,7 @@ export class ModalOrdinariosComponent implements OnInit {
     if (this.modalAction != 'Editar') {
       if (this.ordinarios == undefined) this.ordinarios = this.ordinarios_pasado;
       this.api.getLastNumberDocument('documento_ordinario').subscribe((result) => {
-        this.ordinarios.no = parseInt(result) + 1;
+        this.ordinarios.no = result.length +1;
       }, (error) => {
         console.log(error)
       })

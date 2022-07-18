@@ -5,7 +5,7 @@
 .sidebar {
     position: fixed;
     background: rgb(200,2,2);
-    background: linear-gradient(330deg,var(--firstcolor-hover) 40%,rgb(161, 2, 2) 80%,rgba(255,255,255,1) 100%);
+    background: radial-gradient(circle at 0% 0%,#ffffff, rgba(230, 7, 7, 1), var(--firstcolor-hover),var(--firstcolor-hover));
     font-style: black;
     width: 260px;
     height: 97%;

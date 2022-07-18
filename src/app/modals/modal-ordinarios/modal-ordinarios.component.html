@@ -1,15 +1,16 @@
-<div class="form-content">
+<div class="form-content w-100 d-flex flex-column justify-content-center align-items-center">
+    <!-- <button  class="btn btn-fab-close" (click)="actiModal.close()"><i
+            class="bi bi-x"></i></button> -->
 
     <input #img type="file" accept=".pdf" (change)="fileEvent($event)" hidden>
     <p style="color: green;">{{exito}}</p>
     <!-- <p *ngIf="src_documento==''" class="text-info" style="margin-inline: 30px;text-align: center;">Por favor cargue el
         documento presionado sobre la imagen de arriba</p> -->
     <div style="display:flex; margin-bottom: 20px;">
-        <button class="btn btn-firstcolor" (click)="loadScanner()">Escanear documento</button> &nbsp; &nbsp; &nbsp;
+        <button class="btn-firstcolor" (click)="loadScanner()">Escanear documento</button> &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp;
-        <button class="btn btn-firstcolor" (click)="img.click()">Subir documento</button>
+        <button class="btn-firstcolor" (click)="img.click()">Subir documento</button>
     </div>
-
     <form action="" class="form-complete">
         <div class="scrollbar" id="style-1">
             <div class="input-content">
@@ -49,14 +50,14 @@
             <div class="input-content">
 
                 <label for="ordinarios">Rsb</label>
-                <i class="bi bi-files prefix"></i>
+                <i class="bi bi-file-earmark prefix"></i>
                 <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="ordinarios.rsb">
             </div>
 
             <div class="input-content">
 
                 <label for="ordinarios">Rs</label>
-                <i class="bi bi-files prefix"></i>
+                <i class="bi bi-cursor prefix"></i>
                 <input type="text" class="in" name="rs" id="rs" placeholder="rs" [(ngModel)]="ordinarios.rs">
             </div>
 
@@ -71,7 +72,7 @@
             <div class="input-content">
 
                 <label for="ordinarios">Asunto</label>
-                <i class="bi bi-file-font prefix"></i>
+                <i class="bi bi-file-earmark-text prefix"></i>
                 <input type="text" class="in" name="asunto" id="asunto" placeholder="asunto"
                     [(ngModel)]="ordinarios.asunto">
             </div>
@@ -79,7 +80,7 @@
             <div class="input-content">
 
                 <label for="ordinarios">Destino</label>
-                <i class="bi bi-shop prefix"></i>
+                <i class="bi bi-archive prefix"></i>
                 <input type="text" class="in" name="destino" id="destino" placeholder="destino"
                     [(ngModel)]="ordinarios.destino">
             </div>
@@ -87,7 +88,7 @@
             <div class="input-content">
 
                 <label for="ordinarios">Traslado</label>
-                <i class="bi bi-send prefix"></i>
+                <i class="bi bi-globe prefix"></i>
                 <input type="text" class="in" name="traslado" id="traslado" placeholder="traslado"
                     [(ngModel)]="ordinarios.traslado">
             </div>
@@ -102,9 +103,9 @@
 
         </div>
         <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width: 100%;gap: 5px;">
-            <button id="butt" style="width: 50%;" [disabled]="!validarCamposVacios()" class="btn btn-firstcolor"
+            <button id="butt" style="width: 50%;" [disabled]="!validarCamposVacios()" class="btn-firstcolor"
                 (click)="addUpdateOrdinarios()"> {{modalAction}}</button>
-            <button id="cancel" style="width: 50%;" class="btn btn-firstcolor"
+            <button id="cancel" style="width: 50%;" class="btn-firstcolor"
                 (click)="cancelar()"> Cancelar</button>
         </div>
     </form>
