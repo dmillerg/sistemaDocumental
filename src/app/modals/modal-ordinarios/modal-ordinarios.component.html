@@ -66,7 +66,7 @@
                 <label for="ordinarios">Fecha registro</label>
                 <i class="bi bi-calendar prefix"></i>
                 <input type="date" class="in" [min]="ordinarios.fecha" name="fecha_registro_ctc" id="fecha_registro_ctc"
-                    placeholder="fecha_registro_ctc" [(ngModel)]="ordinarios.fecha_registro_ctc">
+                    placeholder="fecha_registro_ctc" [(ngModel)]="ordinarios.fecha_registro_ctc" onkeydown="return false">
             </div>
 
             <div class="input-content">
@@ -98,7 +98,7 @@
                 <label for="ordinarios">Fecha traslado</label>
                 <i class="bi bi-calendar prefix"></i>
                 <input type="date" class="in" name="fecha_traslado" [min]="ordinarios.fecha_registro_ctc" id="fecha_traslado" placeholder="fecha_traslado"
-                    [(ngModel)]="ordinarios.fecha_traslado">
+                    [(ngModel)]="ordinarios.fecha_traslado" onkeydown="return false">
             </div>
 
         </div>
