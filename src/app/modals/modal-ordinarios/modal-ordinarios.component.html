@@ -35,7 +35,7 @@
 
                 <label for="ordinarios">Fecha</label>
                 <i class="bi bi-calendar prefix"></i>
-                <input type="date" class="in" [max]="minDate" name="fecha" id="fecha" placeholder="fecha"
+                <input type="date" class="in" [max]="minDate" name="fecha" id="fecha" placeholder="fecha" onkeydown="return false"
                     [(ngModel)]="ordinarios.fecha">
             </div>
 
