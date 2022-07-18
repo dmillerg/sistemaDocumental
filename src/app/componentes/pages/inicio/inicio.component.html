@@ -41,7 +41,7 @@
     <div class="col-lg-12">
       <h1 for="" class="title-section" style="text-align: center;"><strong>Instrucciones de uso</strong></h1>
     </div>
-    <div class="border m-2" style="width: 350px;height: 190px;overflow: auto;" *ngFor="let item of tips" >
+    <div class="border m-2" style="width: 350px;height: 190px;overflow: auto;cursor: pointer;" *ngFor="let item of tips" (click)="verTip(item)" >
       <div class="p-4">
         <h5 class="title-section">{{item.title}}</h5>
         <h6 class="mb-2 text-muted">{{item.subtitle}}</h6>

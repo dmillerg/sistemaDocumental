@@ -32,6 +32,7 @@ import { MultiselectComponent } from './componentes/multiselect/multiselect.comp
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InicioComponent } from './componentes/pages/inicio/inicio.component';
 import { ReportesComponent } from './componentes/pages/reportes/reportes.component';
+import { ModalTipsComponent } from './modals/modal-tips/modal-tips.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { ReportesComponent } from './componentes/pages/reportes/reportes.compone
     ModalClasificadosComponent,
     ModalLimitadosComponent,
     ModalSecretosComponent,
+    ModalTipsComponent,
     LoadingComponent,
     ModalOrdinarioPersonalComponent,
     DeleteComponent,
