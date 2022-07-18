@@ -2,6 +2,7 @@
     <div class="login-content">
         <h3>Bienvenido</h3>
         <p class="text-info" >Necesita rellenar todos los campos para confirmar su identidad</p>
+        <p class="text-danger text-center" style="cursor: pointer;" *ngIf="usuarios.length==0" (click)="adminCreate()">Si estas es la primera vez que abre la aplicación dejanos saber quién será el administrador</p>
         <p class="text-danger">{{error}}</p>
         <form action="" class="login-form">
             <div class="input-content">

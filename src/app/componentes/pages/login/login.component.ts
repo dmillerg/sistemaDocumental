@@ -43,12 +43,22 @@ export class LoginComponent implements OnInit {
   password_error: boolean = false;
   see: boolean = false;
   error: string = '';
+  usuarios: any[] = [];
 
-  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
+  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-
+    this.comprobarUsuario();
   }
+
+  comprobarUsuario() {
+    this.api.getUsuarios().subscribe((result: any) => {
+      if (result.message) {
+        this.usuarios = [];
+      } else this.usuarios = result;
+    })
+  }
+
   loguear() {
     if (this.usuario == '') {
       this.usuario_error = true;
@@ -68,5 +78,10 @@ export class LoginComponent implements OnInit {
       console.log(error.error.message);
     }
     );
+  }
+
+  adminCreate() {
+    let modal = this.modalService.open(ModalUsuarioComponent);
+    modal.componentInstance.modalAction='Agregar'
   }
 }
