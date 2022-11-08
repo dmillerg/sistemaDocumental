@@ -80,7 +80,7 @@ export class DocumentosComponent implements OnInit {
   ngOnInit(): void {
     this.loadListado();
     this.opciones = [
-      { value: 1, name: 'Confidenciales', carpeta: 'documentos_confidencial/', tipo: 'documento_confidencial' },
+      { value: 1, name: 'Confidenciales', carpeta: 'documentos_clasificados/', tipo: 'documento_clasificados' },
       { value: 2, name: 'Limitados', carpeta: 'documentos_limitados/', tipo: 'documento_limitado' },
       { value: 3, name: 'Ordinarios', carpeta: 'documentos_ordinarios/', tipo: 'documento_ordinario' },
       { value: 4, name: 'Ordinarios Personales', carpeta: 'documentos_ordinarios_personales/', tipo: 'documento_ordinario_personal' },
