@@ -1,4 +1,4 @@
-<div class="form-content w-100 d-flex flex-column justify-content-center align-items-center">
+<div class="form-content w-100 d-flex flex-column justify-content-center align-items-center" [@scaleAnimation]="':enter'">
     <!-- <button  class="btn btn-fab-close" (click)="actiModal.close()"><i
             class="bi bi-x"></i></button> -->
 
@@ -11,8 +11,8 @@
         &nbsp; &nbsp;
         <button class="btn-firstcolor" (click)="img.click()">Subir documento</button>
     </div>
-    <form action="" class="form-complete">
-        <div class="scrollbar" id="style-1">
+    <form action="" class="form-complete"  style="width: 100%;">
+        <div class="scrollbar" id="style-1"  style="width: 100%;">
             <div class="input-content">
                 <label for="usuario">Tipo de documento</label>
                 <i class="bi bi-files prefix"></i>

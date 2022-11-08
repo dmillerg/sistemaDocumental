@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalClasificadosComponent } from './modal-clasificados.component';
+import { ModalClasificadosComponent } from './modal-confidencial.component';
 
 describe('ModalClasificadosComponent', () => {
   let component: ModalClasificadosComponent;

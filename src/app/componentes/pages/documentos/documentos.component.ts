@@ -1,6 +1,6 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
+import { ModalConfidencialComponent } from 'src/app/modals/modal-confidencial/modal-confidencial.component';
 import { Clasificados } from 'src/app/models/clasificados.model';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -80,7 +80,7 @@ export class DocumentosComponent implements OnInit {
   ngOnInit(): void {
     this.loadListado();
     this.opciones = [
-      { value: 1, name: 'Clasificados', carpeta: 'documentos_clasificados/', tipo: 'documento_clasificado' },
+      { value: 1, name: 'Confidenciales', carpeta: 'documentos_confidencial/', tipo: 'documento_confidencial' },
       { value: 2, name: 'Limitados', carpeta: 'documentos_limitados/', tipo: 'documento_limitado' },
       { value: 3, name: 'Ordinarios', carpeta: 'documentos_ordinarios/', tipo: 'documento_ordinario' },
       { value: 4, name: 'Ordinarios Personales', carpeta: 'documentos_ordinarios_personales/', tipo: 'documento_ordinario_personal' },
@@ -123,7 +123,7 @@ export class DocumentosComponent implements OnInit {
   editReport(item: any) {
     if (item.tipo_doc.tipo == "documento_clasificado") {
 
-      let modal = this.modalService.open(ModalClasificadosComponent);
+      let modal = this.modalService.open(ModalConfidencialComponent);
       modal.componentInstance.modalHeader = "Clasificados";
       modal.componentInstance.modalAction = "Editar";
       modal.componentInstance.clasificados = item;

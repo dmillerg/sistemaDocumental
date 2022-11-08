@@ -30,6 +30,13 @@ export class SidebarComponent implements OnInit {
     },
     {
       active: false,
+      nombre: 'Nuevo documento',
+      icono: 'bi bi-person',
+      link: 'documentos',
+      permiso: false,
+    },
+    {
+      active: false,
       nombre: 'Reportes',
       icono: 'bi bi-file-earmark-text',
       link: 'reportes',
@@ -50,6 +57,13 @@ export class SidebarComponent implements OnInit {
       nombre: 'Usuario',
       icono: 'bi bi-person',
       link: 'usuarios',
+      permiso: false,
+    },
+    {
+      active: false,
+      nombre: 'Nuevo documento',
+      icono: 'bi bi-file-earmark-plus',
+      link: 'documentos',
       permiso: false,
     },
     {

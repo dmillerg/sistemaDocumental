@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionStorageService } from 'ngx-webstorage';
 import { ApiService } from 'src/app/service/api.service';
-import { ModalClasificadosComponent } from '../modal-clasificados/modal-clasificados.component';
+import { ModalConfidencialComponent} from '../modal-confidencial/modal-confidencial.component';
 import { ModalLimitadosComponent } from '../modal-limitados/modal-limitados.component';
 import { ModalOrdinarioPersonalComponent } from '../modal-ordinario-personal/modal-ordinario-personal.component';
 import { ModalOrdinariosComponent } from '../modal-ordinarios/modal-ordinarios.component';

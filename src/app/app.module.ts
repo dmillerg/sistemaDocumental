@@ -17,7 +17,7 @@ import { DetailbarComponent } from './componentes/detailbar/detailbar.component'
 import { LoginComponent } from './componentes/pages/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from './modals/modal-usuario/modal-usuario.component';
-import { ModalClasificadosComponent } from './modals/modal-clasificados/modal-clasificados.component';
+import { ModalConfidencialComponent } from './modals/modal-confidencial/modal-confidencial.component';
 import { ModalLimitadosComponent } from './modals/modal-limitados/modal-limitados.component';
 import { DocumentosComponent } from './componentes/pages/documentos/documentos.component';
 import { ModalSecretosComponent } from './modals/modal-secretos/modal-secretos.component';
@@ -43,7 +43,7 @@ import { ModalTipsComponent } from './modals/modal-tips/modal-tips.component';
     DocumentosComponent,
     ModalUsuarioComponent,
     ModalOrdinariosComponent,
-    ModalClasificadosComponent,
+    ModalConfidencialComponent,
     ModalLimitadosComponent,
     ModalSecretosComponent,
     ModalTipsComponent,

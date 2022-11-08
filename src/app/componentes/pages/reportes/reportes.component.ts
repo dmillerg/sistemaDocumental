@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteComponent } from 'src/app/modals/delete/delete.component';
-import { ModalClasificadosComponent } from 'src/app/modals/modal-clasificados/modal-clasificados.component';
+import { ModalConfidencialComponent } from 'src/app/modals/modal-confidencial/modal-confidencial.component';
 import { ModalLimitadosComponent } from 'src/app/modals/modal-limitados/modal-limitados.component';
 import { ModalOrdinariosComponent } from 'src/app/modals/modal-ordinarios/modal-ordinarios.component';
 import { ModalOrdinarioPersonalComponent } from 'src/app/modals/modal-ordinario-personal/modal-ordinario-personal.component';
