@@ -47,7 +47,7 @@
             </div>
 
 
-            <div class="input-content">
+            <div class="input-content" *ngIf="clasificados.tipo!='1'">
                 <label for="clasificados">Rsb</label>
                 <i class="bi bi-file-earmark prefix"></i>
                 <input type="text" class="in" name="rsb" id="rsb" placeholder="rsb" [(ngModel)]="clasificados.rsb">
