@@ -115,7 +115,7 @@ export class ModalConfidencialComponent implements OnInit {
     if (this.modalAction != 'Editar') {
       if (this.clasificados == undefined) this.clasificados = this.clasificados_pasado;
       this.api.getLastNumberDocument('documento_clasificado').subscribe((result) => {
-        this.clasificados.no = result.length+1;
+        this.clasificados.no = result.length + 1;
       }, (error) => {
         console.log(error)
       })
@@ -209,7 +209,7 @@ export class ModalConfidencialComponent implements OnInit {
         console.log(result);
         this.lib.success('Editado con exito!', 'Editar');
       }, (error) => {
-        this.lib.error('No se pudo editar', 'Error: '+error.error.message);
+        this.lib.error('No se pudo editar', 'Error: ' + error.error.message);
         console.log(error);
       });
     } else {
@@ -240,19 +240,19 @@ export class ModalConfidencialComponent implements OnInit {
 
   validarCamposVacios() {
     //console.log(this.clasificados.imagen.toString());
-    if(this.modalAction == 'Editar'){
-      return this.clasificados.destino.length > 0 && this.clasificados.clasif.length > 0 && this.clasificados.asunto.length > 0 &&
-      this.clasificados.rsb.length > 0 && this.clasificados.rs.length > 0 && this.clasificados.doc.length > 0
-      && this.clasificados.ej.length > 0 && this.clasificados.traslado.length > 0 && this.clasificados.enviado.length > 0
-      && this.clasificados.fecha.toString() != '' && this.clasificados.fecha_traslado.toString() != ''
-      && this.clasificados.fecha_registro_ctc.toString() != '';
-    }else 
-    // console.log('heree '+this.clasificados.imagen);
-    return this.clasificados.destino.length > 0 && this.clasificados.clasif.length > 0 && this.clasificados.asunto.length > 0 &&
-      this.clasificados.rsb.length > 0 && this.clasificados.rs.length > 0 && this.clasificados.doc.length > 0
-      && this.clasificados.ej.length > 0 && this.clasificados.traslado.length > 0 && this.clasificados.enviado.length > 0
-      && this.clasificados.fecha.toString() != '' && this.clasificados.fecha_traslado.toString() != ''
-      && this.clasificados.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
+    if (this.modalAction == 'Editar') {
+      return this.clasificados.destino.length > 0 && this.clasificados.clasif.length > 0 && this.clasificados.asunto.length > 0
+        && (this.clasificados.tipo != '1' ? this.clasificados.rsb.length > 0 : true) && this.clasificados.rs.length > 0 && this.clasificados.doc.length > 0
+        && this.clasificados.ej.length > 0 && this.clasificados.traslado.length > 0 && this.clasificados.enviado.length > 0
+        && this.clasificados.fecha.toString() != '' && this.clasificados.fecha_traslado.toString() != ''
+        && this.clasificados.fecha_registro_ctc.toString() != '';
+    } else
+      // console.log('heree '+this.clasificados.imagen);
+      return this.clasificados.destino.length > 0 && this.clasificados.clasif.length > 0 && this.clasificados.asunto.length > 0
+        && (this.clasificados.tipo != '1' ? this.clasificados.rsb.length > 0 : true) && this.clasificados.rs.length > 0 && this.clasificados.doc.length > 0
+        && this.clasificados.ej.length > 0 && this.clasificados.traslado.length > 0 && this.clasificados.enviado.length > 0
+        && this.clasificados.fecha.toString() != '' && this.clasificados.fecha_traslado.toString() != ''
+        && this.clasificados.fecha_registro_ctc.toString() != '' && this.exito == "Subido con exito"
   }
 
   loadScanner() {

@@ -47,7 +47,7 @@
                     [(ngModel)]="ordinarios.enviado">
             </div>
 
-            <div class="input-content">
+            <div class="input-content" *ngIf="ordinarios.tipo!='1'">
 
                 <label for="ordinarios">Rsb</label>
                 <i class="bi bi-file-earmark prefix"></i>
