@@ -61,6 +61,7 @@ export class ModalSecretosComponent implements OnInit {
     tipo: '',
     procedencia: '',
     fecha: '',
+    archivo: '',
   }
 
   @Input() secretos_pasado: Secreto = {
@@ -82,6 +83,7 @@ export class ModalSecretosComponent implements OnInit {
     tipo: '',
     procedencia: '',
     fecha: '',
+    archivo: '',
   }
   minDate: string = '';
 
@@ -129,6 +131,7 @@ export class ModalSecretosComponent implements OnInit {
       this.secretos_pasado.tipo = this.secretos.tipo;
       this.secretos_pasado.procedencia = this.secretos.procedencia;
       this.secretos_pasado.fecha = this.secretos.fecha;
+      this.secretos_pasado.archivo = this.secretos.archivo;
     }
   }
 
@@ -167,8 +170,9 @@ export class ModalSecretosComponent implements OnInit {
     formData.append('comp', this.secretos.comp.toString());
     formData.append('imagen', this.secretos.imagen.toString());
     formData.append('tipo', this.secretos.tipo.toString());
-    formData.append('procedencia', this.secretos.procedencia.toString());
+    formData.append('procedencia', this.secretos.procedencia);
     formData.append('fecha', this.secretos.fecha.toString());
+    formData.append('archivo', this.secretos.archivo.toString());
     if (this.uploadFiles != undefined) {
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("foto", this.uploadFiles[i], this.uploadFiles[i].name);

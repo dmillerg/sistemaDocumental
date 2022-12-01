@@ -32,6 +32,13 @@
             </div>
 
             <div class="input-content">
+                <label for="ordinarios">No. registro</label>
+                <i class="bi bi-123 prefix"></i>
+                <input type="number" class="in" name="no" id="no" placeholder="no" [(ngModel)]="ordinarios.no_registro" readonly>
+                <p style="color: red;">{{errorN}}</p>
+            </div>
+
+            <div class="input-content">
 
                 <label for="ordinarios">Fecha</label>
                 <i class="bi bi-calendar prefix"></i>

@@ -1,6 +1,7 @@
 export interface Ordinarios{
   id: number;
   no: number;
+  no_registro: number;
   fecha: string;
   enviado: string;
   rsb: string;

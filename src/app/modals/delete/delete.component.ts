@@ -27,6 +27,8 @@ export class DeleteComponent implements OnInit {
   }
 
   eliminar() {
+    console.log(this.modalHeader);
+    
     if (this.seleccionados.length > 0) {
       this.seleccionados.forEach((e, i) => {
         this.api.deleteDocument(e.id, e.tipo_doc).subscribe((result) => {
@@ -46,7 +48,7 @@ export class DeleteComponent implements OnInit {
           );
           break;
 
-        case 'Clasificados':
+        case 'Confidenciales':
           this.api.deleteClasificados(this.id).subscribe(result => {
             this.actiModal.close();
             this.lib.success('Eliminado con exito!', 'Eliminar');

@@ -17,4 +17,5 @@ export interface Secreto {
     tipo: string;
     procedencia: string;
     fecha: string;
+    archivo: string;
 }

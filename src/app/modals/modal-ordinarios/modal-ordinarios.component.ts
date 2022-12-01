@@ -46,6 +46,7 @@ export class ModalOrdinariosComponent implements OnInit {
   @Input() ordinarios: Ordinarios = {
     id: -1,
     no: -1,
+    no_registro: -1,
     fecha: '',
     enviado: '',
     rsb: '',
@@ -61,6 +62,7 @@ export class ModalOrdinariosComponent implements OnInit {
   @Input() ordinarios_pasado: Ordinarios = {
     id: -1,
     no: -1,
+    no_registro: -1,
     fecha: '',
     enviado: '',
     rsb: '',
@@ -99,6 +101,7 @@ export class ModalOrdinariosComponent implements OnInit {
     if (this.modalAction == 'Editar') {
       this.ordinarios_pasado.id = this.ordinarios.id;
       this.ordinarios_pasado.no = this.ordinarios.no;
+      this.ordinarios_pasado.no_registro = this.ordinarios.no_registro;
       this.ordinarios_pasado.fecha = this.ordinarios.fecha;
       this.ordinarios_pasado.enviado = this.ordinarios.enviado;
       this.ordinarios_pasado.rsb = this.ordinarios.rsb;
@@ -135,6 +138,7 @@ export class ModalOrdinariosComponent implements OnInit {
     let formData = new FormData();
     formData.append('id', this.ordinarios.id.toString());
     formData.append('no', this.ordinarios.no.toString());
+    formData.append('no_registro', this.ordinarios.no_registro.toString());
     formData.append('fecha', this.ordinarios.fecha.toString());
     formData.append('enviado', this.ordinarios.enviado.toString());
     formData.append('rs', this.ordinarios.rs.toString());
